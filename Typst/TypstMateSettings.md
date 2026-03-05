@@ -71,7 +71,7 @@
 #set par(leading: 1em)
 #set text(font: ("Cascadia Code","Arial", "Segoe UI Emoji", "KaiTi"), size: 1.2em, weight: "medium" )
 
-#rect(width:100%, height:auto, stroke:1pt+luma(50%), radius:1em, inset:0pt, fill:none, grid(columns:(1fr,2fr), rows: auto, align:(horizon+center,horizon+left), grid.vline(x:1, stroke:1pt+luma(50%)), stroke:none, inset:2em, {import "@preview/cetz:0.4.2" ; cetz.canvas({ import cetz.draw: * ; {CODE} })}, {```typc {CODE} ```}, ) )] else [
+#rect(width:100%, height:auto, stroke:1pt+luma(50%), radius:1em, inset:0pt, fill:none, grid(columns:(1fr,2fr), rows: auto, align:(horizon+center,horizon+left), grid.vline(x:1, stroke:1pt+luma(50%)), stroke:none, inset:2em, {import "@preview/cetz:0.4.2" ; cetz.canvas({ import cetz.draw: * ; {CODE} })}, {```typm {CODE} ```}, ) )] else [
 
 // android: WIDTH == 232.5pt 
 #set align(center)
@@ -79,7 +79,7 @@
 #set par(leading: 0.8em)
 #set text(font: ("Cascadia Code","Arial", "Segoe UI Emoji", "KaiTi"), size: 0.8em, weight:"medium")
 
-#rect(width:100%, height:auto, stroke:1pt+luma(50%),radius:1em, inset:0pt, fill:none, grid( columns:(1fr,), rows: auto, align:(horizon+center,horizon+left), grid.hline(y:1, stroke:1pt+luma(50%)), stroke:none, inset:1em, {import "@preview/cetz:0.4.2" ; cetz.canvas({ import cetz.draw: * ; {CODE} })}, {```typc {CODE} ```}, ) ) ]
+#rect(width:100%, height:auto, stroke:1pt+luma(50%),radius:1em, inset:0pt, fill:none, grid( columns:(1fr,), rows: auto, align:(horizon+center,horizon+left), grid.hline(y:1, stroke:1pt+luma(50%)), stroke:none, inset:1em, {import "@preview/cetz:0.4.2" ; cetz.canvas({ import cetz.draw: * ; {CODE} })}, {```typm {CODE} ```}, ) ) ]
 ```
 
 
@@ -89,11 +89,11 @@
 #if WIDTH>300pt [
 // windows: WIDTH == 525pt 
 #set align(left)
-#set page( width: WIDTH, height: auto, margin: 10pt,)
+#set page( width: WIDTH, height: auto, margin: 1em,)
 #set par(justify:true, leading: 1em)
 #set text(font: ("Cascadia Code","Arial", "Segoe UI Emoji", "KaiTi"), size: 1.3em) 
 #show math.equation: set text(font: "Fira Math")
-#rect( width: WIDTH, height: auto, stroke: 1pt+ luma(50%), radius:10pt, inset:10pt, outset:5pt, fill: none)[```typc {CODE} ```] ] else [
+#rect( width: 100%, height: auto, stroke: 1pt+ luma(50%), radius:10pt, inset:10pt, outset:5pt, fill: none)[```typm {CODE} ```] ] else [
 
 // android: WIDTH == 232.5pt 
 #set align(left)
@@ -101,7 +101,7 @@
 #set par(justify:true, leading: 0.8em)
 #set text(font: ("Cascadia Code","Arial", "Segoe UI Emoji", "KaiTi"), size: 0.8em)
 #show math.equation: set text(font: "Fira Math")
-#rect( width: WIDTH, height: auto, stroke: 1pt+ luma(50%), radius:5pt, inset:5pt, outset:2pt, fill: none)[```typc {CODE} ```]
+#rect( width: 100%, height: auto, stroke: 1pt+ luma(50%), radius:5pt, inset:5pt, outset:2pt, fill: none)[```typm {CODE} ```]
 ]
 ```
 

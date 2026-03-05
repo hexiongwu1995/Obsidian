@@ -106,18 +106,6 @@ Sets up a canvas for drawing on.
 #set page(width:WIDTH, height:auto)
 #set align(left)
 
-#let cetz-code= ```typst import "@preview/cetz:0.4.2" ; 
-cetz.canvas({ import cetz.draw: * ; 
-circle((0,0),radius:1);}) ``` ;
-
-#grid(columns:(1fr,), rows:auto, align:(horizon+center,horizon+left),stroke:(paint:black,thickness:1pt,dash:"solid"),inset:10pt,{eval(cetz-code.text,mode:"code")},{set align(left); "Assign a code block to a variable by using triple-backticks as delimiters. " + "Display both the source code and the rendered image simultaneously by using eval() and raw() function in a grid function."+raw(cetz-code.text,lang:"typm",block:true)})
-```
-
-
-```typ
-#set page(width:WIDTH, height:auto)
-#set align(left)
-
 #let cetz-code= ```typst 
 import "@preview/cetz:0.4.2": canvas, draw, vector, palette
 
@@ -140,24 +128,18 @@ canvas(length: 3cm, stroke: 1pt+luma(20%), background: gray.transparentize(99%),
 
   // Optional: origin label and small origin dot
   circle((0,0,0), radius: 0.02, fill: black)
-  content((0,0,0), [O], padding: (0.45em, 0.45em, 0.6em), anchor: "north")
+  content((0,0,0), [O], padding: (0.5em, 0em, 0em), anchor: "north")
 })
  ``` ;
 
-#grid(columns:(1fr,), rows:auto, align:(horizon+center,horizon+left),stroke:(paint:black,thickness:1pt,dash:"solid"),inset:10pt,{eval(cetz-code.text,mode:"code")},{set align(left); "Assign a code block to a variable by using triple-backticks as delimiters.   "+"Display both the source code and the rendered image simultaneously by using eval() and raw() function in a grid function."+raw(cetz-code.text,lang:"typm",block:true)})
+#grid(columns:(1fr,), rows:auto, align:(horizon+center,horizon+left),stroke:(paint:luma(50%),thickness:1pt,dash:"solid"),inset:10pt,{eval(cetz-code.text,mode:"code")},{set align(left); set text(size:1.2em); "Assign a code block to a variable by using triple-backticks as delimiters.   "+"Display both the source code and the rendered image simultaneously by using eval() and raw() function in a grid function."+raw(cetz-code.text,lang:"typm",block:true)})
 ```
 
 
 
 ```grid
-  // View settings (you can adjust these three lines)
- // set-view((30, 25))   // or try: (35, 20), (20, 35), etc.
-
-  // Axis style
-  let axis-style = (
-    mark: (end: "straight"),
-    stroke: 1.1pt + black
-  )
+// Axis style
+  let axis-style = ( mark: (end: "straight"), stroke: 1.1pt + black );
 
   // Draw axes
   line((0,0,0), (3,0,0), ..axis-style, name: "x") ;
@@ -188,27 +170,6 @@ circle(
 ```
 
 Draws a circle or ellipse. 
-
-```typst
-#import "@preview/cetz:0.4.2"
-#cetz.canvas(
-length:2cm , 
-// let x=1cm, 
-// x:(1,0,0) , y:(0,1,0) , z:(0,0,1) , 
-background:gray.transparentize(90%) ,
-stroke:(paint:blue.lighten(10%),thickness:1pt,dash:"solid") , padding:2em ,
-{ import cetz.draw:*
-line((-1,0,0),(1,0,0),stroke:(paint:blue.transparentize(10%),thickness:1pt),name:"x") ;
-content("x.end","x",padding:1em,anchor:"west") ;
-line((0,-1,0),(0,1,0),stroke:(paint:blue.transparentize(10%),thickness:1pt),name:"y") ;
-content("y.end","y",padding:1em,anchor:"south") ;
-line((0,0,-1),(0,0,1),stroke:(paint:blue.transparentize(10%),thickness:1pt),name:"z") ;
-content("z.end","z",padding:1em,anchor:"north") ;
-
-})
-```
-
-
 
 ```grid
 let length=1cm ;

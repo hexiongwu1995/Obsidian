@@ -11,7 +11,7 @@ CeTZ, ein Typst Zeichenpaket, is a drawing package for Typst. Its API is similar
 
 This is the minimal starting point in a `.typ` file: 
 
-```
+```typm
 #import "@preview/cetz:0.4.2" ; 
 #cetz.canvas({ import cetz.draw: * ; }) ;
 ```

@@ -304,8 +304,6 @@ Supports the same anchors as `circle` as well as:
 ```
 
 
-
-
 ---
 
 #### arc
@@ -325,18 +323,25 @@ arc(
 Draws a circular segment.
 
 ```grid
+circle((0,0),radius:0.1,fill:orange)
 arc((0,0), start: 45deg, stop: 135deg)
 arc((0,-0.5), start: 45deg, delta: 90deg, mode: "CLOSE")
-arc((0,-1), stop: 135deg, delta: 90deg, mode: "PIE")
+arc((0,-1), stop: 135deg, delta: 90deg, mode: "PIE", name:"pie")
+
+
+set-style( arc:(stroke:(paint:orange, thickness:0.5pt, dash:"dotted")) )
+arc((0.707,-0.293), radius:2cm, start:45deg, stop:135deg, mode:"PIE")
+
 ```
+
 
 Note that two of the three angle arguments (`start`, `stop` and `delta`) must be set. The current position `()` gets updated to the arc's end coordinate (anchor `arc-end`). 
 
-**Styling**
+**Styling** 
 
-Root: `arc`
+Root: `arc` 
 
-**Anchors**
+**Anchors** 
 
 Supports border and path anchors.
 
@@ -345,20 +350,38 @@ Supports border and path anchors.
 - **arc-center** The midpoint of the arc's curve.
 - **center** The center of the arc, this position changes depending on if the arc is closed or not.
 - **chord-center** Center of chord of the arc drawn between the start and end point.
-- **origin** The origin of the arc's circle.
+- **origin** The origin of the arc's circle. 
 
-**Parameters**
+**Parameters** 
 
 - **position** `coordinate` — Position to place the arc at.
 - **start** `auto angle` — The angle at which the arc should start. Remember that `0deg` points directly towards the right and `90deg` points up.
 - **stop** `auto angle` — The angle at which the arc should stop.
-- **delta** `auto angle` — The change in angle away start or stop.
+- **delta** `auto angle` — The change in angle away start or stop. 
 - **name** `none str`
 - **anchor** `none str`
 - **..style** `style`
 - **radius** `number array` — The radius of the arc. An elliptical arc can be created by passing a tuple of numbers where the first element is the x radius and the second element is the y radius.
-- **mode** `str` — The options are: `"OPEN"` no additional lines are drawn so just the arc is shown; `"CLOSE"` a line is drawn from the start to the end of the arc creating a circular segment; `"PIE"` lines are drawn from the start and end of the arc to the origin creating a circular sector.
-- **update-position** `bool` — Update the current canvas position to the arc's end point (anchor `"arc-end"`). This overrides the default of `true`, that allows chaining of (arc) elements.
+- **mode** `str` — The options are: `"OPEN"` no additional lines are drawn so just the arc is shown; `"CLOSE"` a line is drawn from the start to the end of the arc creating a circular segment; `"PIE"` lines are drawn from the start and end of the arc to the origin creating a circular sector. 
+- **update-position** `bool` — Update the current canvas position to the arc's end point (anchor `"arc-end"`). This overrides the default of `true`, that allows chaining of (arc) elements. 
+
+```grid
+arc((0,-1), stop: 135deg, delta: 90deg, mode: "PIE", name:"pie")
+arc("pie.origin", radius:2cm, start:0deg, stop:180deg, anchor:"origin")
+```
+
+
+
+```grid
+arc((0,-1), stop: 135deg, delta: 90deg, mode: "PIE", name:"pie")
+arc("pie.arc-end", radius:1cm, start:135deg, stop:180deg, anchor:"start")
+
+set-style(arc:(stroke:(thickness:2pt, paint:orange, dash:"dotted")))
+// calc.pi/4 is a type of float and must multiply by 1rad to convert the float into an angle type.
+arc("pie.arc-start", radius:1cm, start: calc.pi/4 * 1rad, stop: -(calc.pi/2) *1rad, anchor:"start")
+```
+
+
 
 ---
 
@@ -374,22 +397,20 @@ arc-through(
 )
 ```
 
-Draws an arc that passes through three points a, b and c.
-
-Note that all three points must not lie on a straight line, otherwise the function fails.
+Draws an arc that passes through three points a, b and c.  Note that all three points must not lie on a straight line, otherwise the function fails. 
 
 ```grid
 let (a, b, c) = ((0, 1), (2, 2), (2, 0))
 // Draw an arc through 3 points
 arc-through(a, b, c)
 // Show the points
-set-style(content: (frame: "circle", padding: 1pt, fill: white))
+set-style(content: (frame: "circle", padding: 1pt, fill: luma(20%)))
 content(a, [A]); content(b, [B]); content(c, [C])
 ```
 
 **Styling**
 
-Root: `arc`
+Root: `arc` 
 
 Uses the same styling as `arc`.
 
@@ -397,17 +418,18 @@ Uses the same styling as `arc`.
 
 For anchors see `arc`.
 
-**Parameters**
+**Parameters** 
 
-- **a** `coordinate` — Start position of the arc.
-- **b** `coordinate` — Position the arc passes through.
-- **c** `coordinate` — End position of the arc.
-- **name** `none str`
-- **..style** `style`
+- **a** `coordinate` — Start position of the arc. 
+- **b** `coordinate` — Position the arc passes through. 
+- **c** `coordinate` — End position of the arc. 
+- **name** `none str` 
+- **..style** `style` 
 
 ---
 
 #### mark
+
 
 ```typm
 mark(

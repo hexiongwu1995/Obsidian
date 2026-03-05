@@ -381,7 +381,7 @@ set-style(arc:(stroke:(thickness:2pt, paint:orange, dash:"dotted")))
 arc("pie.arc-start", radius:1cm, start: calc.pi/4 * 1rad, stop: -(calc.pi/2) *1rad, anchor:"start")
 ```
 
-
+This text is added from GitHub. I am testing if the sync function works properly?
 
 ---
 

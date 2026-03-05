@@ -84,7 +84,7 @@
 
 
 ```
-// typc preamble used for syntax highlighting. Using a `if` statement to detect the windows platform or the android platform via WIDTH.
+// typm preamble used for syntax highlighting. Using a `if` statement to detect the windows platform or the android platform via WIDTH.
 
 #if WIDTH>300pt [
 // windows: WIDTH == 525pt 

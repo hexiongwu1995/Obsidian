@@ -11,7 +11,7 @@ CeTZ, ein Typst Zeichenpaket, is a drawing package for Typst. Its API is similar
 
 This is the minimal starting point in a `.typ` file: 
 
-```typc
+```typm
 #import "@preview/cetz:0.5.0" ; 
 #cetz.canvas({ import cetz.draw: * ; }) ;
 ```
@@ -45,7 +45,7 @@ Many CeTZ functions expect data in certain formats which we will call types. Not
 
 The `canvas` function is what handles all of the logic and processing in order to produce drawings. It's usually called with a code block `{ ... }` as argument. The content of the curly braces is the body of the canvas. Import all the draw functions you need at the top of the body: 
 
-```typc
+```typm
 #cetz.canvas({
   import cetz.draw: *
 })
@@ -70,7 +70,7 @@ You can style draw elements by passing the relevant named arguments to their dra
 ### 4.1 Canvas
 
 
-```typc
+```typm
 canvas(
   length: length,
   x: number vector,
@@ -161,7 +161,7 @@ canvas(length: 3cm, stroke: 1pt+luma(20%), background: gray.transparentize(99%),
 
 #### circle
 
-```typc
+```typm
 circle(
   ..points-style coordinate style,
   name: none str,
@@ -172,44 +172,53 @@ circle(
 Draws a circle or ellipse. 
 
 ```grid
-let length=1cm ;
+// let length=2cm ;
 // Draw a circle with center (0, 0)
 circle((0, 0),radius:1, name:"a simple circle",anchor: none) ;
-set-style(units:(length:2cm))
-// Draw an ellipse
-circle((0, -2), radius: (1, 0.5)) ;
+
+// Draw two ellipses
+circle((0, -2), radius: (1, 0.5), anchor:"center") ;
+circle((0, -2), radius: (1, 0.5), anchor:"west") ;
+
+// draw a circle with the left-side edge on (0,0)
+set-style(circle:(stroke:orange, fill: gray.transparentize(90%) ))
+circle((0, 0),radius:1, name:"a orange circle",anchor: "west") ;
+
+
 ```
 
+
 ```grid
-let (a, b) = ((2, 1), (1, 1))
-// Draw a circle with its center at (2, 1), going
-// through point (1, 1)
-circle(a, b)
+// Draw a circle with its center at (2, 1), going through point (1, 1)
+let (a, b) = ((2, 1), (1, 1)); 
+circle(a, b); 
+
 // Show both points
-set-style(content: (frame: "circle", padding: 1pt, fill: white))
-content(a, [A]); content(b, [B])
+set-style(content: (frame: "circle", padding: 1pt, fill: luma(20%))); 
+content(a, [A]); 
+content(b, [B]); 
 ```
 
 **Styling**
 
-Root: `circle`
+Root: `circle` 
 
-**Anchors**
+**Anchors** 
 
 Supports border and path anchors. The `"center"` anchor is the default.
 
 **Parameters**
 
 - **..points-style** `coordinate style` — The position to place the circle on. If given two coordinates, the distance between them is used as radius. If given a single coordinate, the radius can be set via the `radius` (style) argument.
-- **name** `none str`
-- **anchor** `none str`
+- **name** `none str` 
+- **anchor** `none str` 
 - **radius** `number array` — A number that defines the size of the circle's radius. Can also be set to a tuple of two numbers to define the radii of an ellipse, the first number is the x radius and the second is the y radius.
 
 ---
 
 #### circle-through
 
-```typc
+```typm
 circle-through(
   a coordinate,
   b coordinate,
@@ -227,19 +236,19 @@ let (a, b, c) = ((0, 0), (2, -0.5), (1, 1))
 // Draw a circle through 3 points
 circle-through(a, b, c, name: "c")
 // Show the points
-set-style(content: (frame: "circle", padding: 1pt, fill: white))
+set-style(content: (frame: "circle", padding: 1pt, fill: luma(20%)))
 content(a, [A]); content(b, [B]); content(c, [C])
 ```
 
 **Styling**
 
-Root: `circle`
+Root: `circle` 
 
 `circle-through` has the same styling as `circle` except for `radius` as the circle's radius is calculated by the given coordinates.
 
-**Anchors**
+**Anchors** 
 
-Supports the same anchors as `circle` as well as:
+Supports the same anchors as `circle` as well as: 
 
 - **a** Coordinate a
 - **b** Coordinate b
@@ -250,15 +259,58 @@ Supports the same anchors as `circle` as well as:
 - **a** `coordinate` — Coordinate a.
 - **b** `coordinate` — Coordinate b.
 - **c** `coordinate` — Coordinate c.
-- **name** `none str`
-- **anchor** `none str`
-- **..style** `style`
+- **name** `none str` 
+- **anchor** `none str` 
+- **..style** `style` 
+
+
+
+```grid
+  // Three points
+  let (A, B, C) = ((0,0), (3, -1), (1, 2.5))
+
+  // Optional: helper triangle to understand the points
+  line(A, B, C, close: true, stroke: gray + 0.5pt)
+
+  // Draw the circle through 3 points and give it a name
+  circle-through(A, B, C, name: "circ")
+
+  // ─────────────── Common ways to use anchors ───────────────
+
+  // 1. Label the three defining points (most frequent use!)
+  set-style(content: (frame: "circle", padding: 1pt, fill: gray.transparentize(90%)))
+  content("circ.a", [A])
+  content("circ.b", [B])
+  content("circ.c", [C])
+
+  // 2. Mark the center (very useful for radius labels, etc.)
+  circle("circ.center", radius: 0.08, fill: red)
+  
+  // rel: (0, 0.1)  Relative offset (a vector) , to: "circ.center"  Base position (any coordinate).  
+  content((rel:(0,0.1),to: "circ.center"), anchor: "south", padding: 1pt, align(top)[#text(7pt)[*Center*]])
+
+  // 3. Place things on the circumference using angle anchors
+  content("circ.45deg",   $45degree$)
+  content("circ.180deg",  text(size:8pt)[$180degree$])
+
+  // 4. Use percentage along the circle path
+  content("circ.0%", text(fill:orange, size:8pt, weight:"regular")[Start])
+  content("circ.75%", padding:1pt, align(center)[ #text( fill: orange, weight: "bold", size: 6pt)[75% \  position]])
+
+  // 5. Use anchors as starting/ending points for other elements (very powerful)
+  line("circ.a", "circ.c", stroke: (paint: blue, thickness:2pt, dash: "dashed"))
+  circle("circ.b", radius: 0.4, stroke: green + 1.5pt)
+
+```
+
+
+
 
 ---
 
 #### arc
 
-```typc
+```typm
 arc(
   position coordinate,
   start: auto angle,
@@ -312,7 +364,7 @@ Supports border and path anchors.
 
 #### arc-through
 
-```typc
+```typm
 arc-through(
   a coordinate,
   b coordinate,
@@ -357,7 +409,7 @@ For anchors see `arc`.
 
 #### mark
 
-```typc
+```typm
 mark(
   from coordinate,
   to coordinate angle,
@@ -399,7 +451,7 @@ You can directly use the styling from mark styling.
 
 #### line
 
-```typc
+```typm
 line(
   ..pts-style coordinate style,
   close: bool,
@@ -451,7 +503,7 @@ Supports path anchors.
 
 #### polygon
 
-```typc
+```typm
 polygon(
   origin coordinate,
   sides int,
@@ -487,7 +539,7 @@ Root: `polygon`
 
 #### n-star
 
-```typc
+```typm
 n-star(
   origin coordinate,
   sides int,
@@ -529,7 +581,7 @@ Root: `nstar`
 
 #### grid
 
-```typc
+```typm
 grid(
   from coordinate,
   to coordinate,
@@ -569,7 +621,7 @@ Supports border anchors.
 
 #### content
 
-```typc
+```typm
 content(
   ..args-style coordinate content style,
   angle: angle coordinate,
@@ -643,7 +695,7 @@ Supports border anchors, the default anchor is set to `center`.
 
 #### rect
 
-```typc
+```typm
 rect(
   a coordinate,
   b coordinate,
@@ -741,7 +793,7 @@ Supports path anchors.
 
 #### bezier-through
 
-```typc
+```typm
 bezier-through(
   start coordinate,
   pass-through coordinate,
@@ -774,7 +826,7 @@ content("curve.ctrl-1", [2]); content("curve.ctrl-0", [1])
 
 #### catmull
 
-```typc
+```typm
 catmull(
   ..pts-style coordinate style,
   close: bool,
@@ -812,7 +864,7 @@ Supports path anchors.
 
 #### hobby
 
-```typc
+```typm
 hobby(
   ..pts-style coordinate style,
   ta: auto array,
@@ -854,7 +906,7 @@ Supports path anchors.
 
 #### compound-path
 
-```typc
+```typm
 compound-path(
   body elements,
   name: none str,
@@ -887,7 +939,7 @@ compound-path({
 
 #### merge-path
 
-```typc
+```typm
 merge-path(
   body elements,
   join: bool,
@@ -928,7 +980,7 @@ Elements hidden via `hide` are ignored.
 
 #### rect-around
 
-```typc
+```typm
 rect-around(
   ..pts-style coordinates style
 )
@@ -959,7 +1011,7 @@ The same as for the `rect` shape.
 
 #### svg-path
 
-```typc
+```typm
 svg-path(
   name: none string,
   anchor: none coordinate,
@@ -980,7 +1032,7 @@ The following commands are supported (uppercase command names use absolute coord
 - `("z",)` Close the current path
 - `("anchor", "<anchor-name>", [coordinate=(0, 0)])` named anchor. If the anchor coordinate is unset, the default `(0, 0, 0)` is used. The anchor named `"default"` serves as origin for the `anchor:` argument.
 
-```typc
+```typm
 svg-path(("h", 2),
   ("anchor", "here"),
   ("c", (0, 1), (0, 0), (-1, 0)),
@@ -1002,7 +1054,7 @@ circle("svg.here", fill: white, radius: 0.1cm)
 
 #### set-style
 
-```typc
+```typm
 set-style(
   ..style style
 )
@@ -1018,7 +1070,7 @@ Set current style.
 
 #### fill
 
-```typc
+```typm
 fill(
   fill paint
 )
@@ -1036,7 +1088,7 @@ Shorthand for `set-style(fill: <fill>)`.
 
 #### stroke
 
-```typc
+```typm
 stroke(
   stroke stroke
 )
@@ -1054,7 +1106,7 @@ Shorthand for `set-style(stroke: <fill>)`.
 
 #### register-mark
 
-```typc
+```typm
 register-mark(
   symbol str,
   body function,
@@ -1105,7 +1157,7 @@ line((0,0), (3,0), mark: (end: ":)"))
 
 #### hide
 
-```typc
+```typm
 hide(
   body element,
   bounds: bool
@@ -1136,7 +1188,7 @@ line("i.0", "i.1")
 
 #### floating
 
-```typc
+```typm
 floating(
   body element
 )
@@ -1164,7 +1216,7 @@ rect("g.north-west", "g.south-east")
 
 #### intersections
 
-```typc
+```typm
 intersections(
   name str,
   ..elements elements str,
@@ -1275,7 +1327,7 @@ circle((name: "a", anchor: "b.north"), radius: 0.2)
 
 #### scope
 
-```typc
+```typm
 scope(
   body elements function
 )
@@ -1291,7 +1343,7 @@ This element acts as a scope, all state changes such as transformations and styl
 
 #### anchor
 
-```typc
+```typm
 anchor(
   name str,
   position coordinate
@@ -1323,7 +1375,7 @@ circle("x", radius: .1)
 
 #### copy-anchors
 
-```typc
+```typm
 copy-anchors(
   element str,
   filter: auto array
@@ -1341,7 +1393,7 @@ Copies multiple anchors from one element into the current group. Panics when use
 
 #### set-ctx
 
-```typc
+```typm
 set-ctx(
   callback function
 )
@@ -1374,7 +1426,7 @@ You can store shared context data under a key in the `ctx.shared-data` dictionar
 
 #### get-ctx
 
-```typc
+```typm
 get-ctx(
   callback function
 )
@@ -1397,7 +1449,7 @@ get-ctx(ctx => {
 
 #### for-each-anchor
 
-```typc
+```typm
 for-each-anchor(
   name str,
   callback function,
@@ -1426,7 +1478,7 @@ angle: -30deg)
 
 #### on-layer
 
-```typc
+```typm
 on-layer(
   layer float int,
   body elements function
@@ -1461,7 +1513,7 @@ on-layer(-1, {
 
 #### set-transform
 
-```typc
+```typm
 set-transform(
   mat none matrix
 )
@@ -1477,7 +1529,7 @@ Overwrites the transformation matrix.
 
 #### transform
 
-```typc
+```typm
 transform(
   mat none matrix
 )
@@ -1495,7 +1547,7 @@ Given the current transformation $C$ and the new transformation $T$, the functio
 
 #### rotate
 
-```typc
+```typm
 rotate(
   ..angles angle,
   origin: none coordinate
@@ -1522,7 +1574,7 @@ circle((0,0))
 
 #### translate
 
-```typc
+```typm
 translate(
   ..args vector float length,
   pre: bool
@@ -1548,7 +1600,7 @@ rect((0, 0), (1, 1))
 
 #### scale
 
-```typc
+```typm
 scale(
   ..args float ratio,
   origin: none coordinate
@@ -1574,7 +1626,7 @@ Note that content like text does not scale automatically. See `auto-scale` styli
 
 #### set-origin
 
-```typc
+```typm
 set-origin(
   origin coordinate
 )
@@ -1598,7 +1650,7 @@ circle((0, 0), radius: .1, fill: white)
 
 #### move-to
 
-```typc
+```typm
 move-to(
   pt coordinate
 )
@@ -1622,7 +1674,7 @@ circle((), radius: .15)
 
 #### set-viewport
 
-```typc
+```typm
 set-viewport(
   from coordinate,
   to coordinate,
@@ -1650,7 +1702,7 @@ circle((5,5))
 
 #### ortho
 
-```typc
+```typm
 ortho(
   x: angle,
   y: angle,
@@ -1690,7 +1742,7 @@ ortho({
 
 #### on-xy
 
-```typc
+```typm
 on-xy(
   z: number,
   body element
@@ -1718,7 +1770,7 @@ ortho({
 
 #### on-xz
 
-```typc
+```typm
 on-xz(
   y: number,
   body element
@@ -1746,7 +1798,7 @@ ortho({
 
 #### on-zy
 
-```typc
+```typm
 on-zy(
   x: number,
   body element
@@ -1776,7 +1828,7 @@ ortho({
 
 #### assert-version
 
-```typc
+```typm
 assert-version(
   min version,
   max: none version,
@@ -1796,7 +1848,7 @@ Assert that the cetz version of the canvas matches the given version (range).
 
 #### register-coordinate-resolver
 
-```typc
+```typm
 register-coordinate-resolver(
   resolver function
 )
@@ -1832,7 +1884,7 @@ circle((log: (1000, 1e-6)), radius: .25)
 
 ##### angle
 
-```typc
+```typm
 angle(
   origin coordinate,
   a coordinate,
@@ -1885,7 +1937,7 @@ Root: `angle`
 
 ##### right-angle
 
-```typc
+```typm
 right-angle(
   origin coordinate,
   a coordinate,
@@ -1933,7 +1985,7 @@ Anchors are the same as the `angle` function.
 
 ##### tree
 
-```typc
+```typm
 tree(
   root array,
   draw-node: auto function,
@@ -1980,7 +2032,7 @@ tree.tree(([Root], ([A], [A.A], [A.B]), ([B], [B.A])))
 
 ###### zigzag
 
-```typc
+```typm
 zigzag(
   target drawable,
   name: none string,
@@ -2014,7 +2066,7 @@ Root: `zigzag`
 
 ###### coil
 
-```typc
+```typm
 coil(
   target drawable,
   close: auto bool,
@@ -2048,7 +2100,7 @@ Root: `coil`
 
 ###### wave
 
-```typc
+```typm
 wave(
   target drawable,
   close: auto bool,
@@ -2083,7 +2135,7 @@ Root: `wave`
 
 ###### square
 
-```typc
+```typm
 square(
   target drawable,
   close: auto bool,
@@ -2120,7 +2172,7 @@ Root: `square`
 
 ###### brace
 
-```typc
+```typm
 brace(
   start coordinate,
   end coordinate,
@@ -2172,7 +2224,7 @@ Use the `fill` style for tapered braces and set `stroke` to `none`.
 
 ###### flat-brace
 
-```typc
+```typm
 flat-brace(
   start coordinate,
   end coordinate,
@@ -2229,7 +2281,7 @@ Root: `flat-brace`
 
 ##### new
 
-```typc
+```typm
 new(
   base: style,
   colors: none array,

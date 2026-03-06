@@ -442,24 +442,29 @@ mark(
 Draws a single mark pointing towards a target coordinate. 
 
 ```grid
-// Show a grid
-grid((-2, -2), (2, 2), stroke: gray)
-// Draw a mark with its tip at (0, 0) pointing to (1, 0)
-mark((-2, 0), (-1, 0), symbol: "stealth", scale: 4)
+circle((0,0), radius:0.1, fill:orange)
+// Show a grid 
+grid((-1, -1), (1, 1), stroke: gray) 
+// Draw a mark with its tip at (0, 0) pointing to (1, 0) 
+mark((0, 0), (1, 0), symbol: ")>", scale: 4)
 ```
 
 ```grid
+circle((0,0), radius:0.1, fill:orange)
 // Show a grid
 grid((-1, -1), (1, 1), stroke: gray)
-// Draw a mark with its center at (0, 0) pointing to (1, 1)
-mark((0, 0), (1, 1), symbol: "straight", anchor: "center", scale: 5)
+
+mark((-1, 1), (0, 1), symbol: "stealth", scale: 2, anchor: "tip" )
+mark((-1, 0), (0, 0), symbol: "curved-stealth", scale: 4, anchor: "center")
+mark((-1, -1), (0, -1), symbol: "stealth", scale: 4, anchor: "base")
 ```
+
 
 Note: To place a mark centered at the first coordinate (`from`) use the marks `anchor: "center"` style.
 
 **Styling**
 
-Root: `mark`
+Root: `mark` 
 
 You can directly use the styling from mark styling.
 
@@ -467,7 +472,7 @@ You can directly use the styling from mark styling.
 
 - **from** `coordinate` — The position to place the mark.
 - **to** `coordinate angle` — The position or angle the mark should point towards.
-- **..style** `str style` — If the third positional argument is of type string, it is treated as mark name (e.g. `">"`) and overrules style keys such as `mark.symbol` or `mark.end`.
+- **..style** `str style` — If the third positional argument is of type string, it is treated as mark name (e.g. `">"`) and overrules style keys such as `mark.symbol` or `mark.end`. 
 
 ---
 

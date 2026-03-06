@@ -64,8 +64,8 @@
 ```
 //grid preamble used for displaying the source code and the rendered image by the source code simultaneously. using a `if` statement to detect the windows platform or the android platform via WIDTH.
 
-#if WIDTH>300pt [
-// windows: WIDTH == 525pt 
+#if WIDTH>400pt [
+// windows: WIDTH == 650pt 
 #set align(center)
 #set page( width: WIDTH, height: auto, margin: (x: 1em, y: 1em),)
 #set par(leading: 1em)
@@ -73,7 +73,7 @@
 
 #rect(width:100%, height:auto, stroke:1pt+luma(50%), radius:1em, inset:0pt, fill:none, grid(columns:(1fr,2fr), rows: auto, align:(horizon+center,horizon+left), grid.vline(x:1, stroke:1pt+luma(50%)), stroke:none, inset:2em, {import "@preview/cetz:0.4.2" ; cetz.canvas({ import cetz.draw: * ; {CODE} })}, {```typm {CODE} ```}, ) )] else [
 
-// android: WIDTH == 232.5pt 
+// android: WIDTH == 270pt 
 #set align(center)
 #set page( width: WIDTH, height: auto, margin: (x: 1em, y: 1em),)
 #set par(leading: 0.8em)
@@ -86,8 +86,8 @@
 ```
 // typm preamble used for syntax highlighting. Using a `if` statement to detect the windows platform or the android platform via WIDTH.
 
-#if WIDTH>300pt [
-// windows: WIDTH == 525pt 
+#if WIDTH>400pt [
+// windows: WIDTH == 650pt 
 #set align(left)
 #set page( width: WIDTH, height: auto, margin: 1em,)
 #set par(justify:true, leading: 1em)
@@ -95,7 +95,7 @@
 #show math.equation: set text(font: "Fira Math")
 #rect( width: 100%, height: auto, stroke: 1pt+ luma(50%), radius:10pt, inset:10pt, outset:5pt, fill: none)[```typm {CODE} ```] ] else [
 
-// android: WIDTH == 232.5pt 
+// android: WIDTH == 270pt 
 #set align(left)
 #set page( width: WIDTH, height: auto, margin: 2pt,)
 #set par(justify:true, leading: 0.8em)

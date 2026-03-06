@@ -381,7 +381,7 @@ set-style(arc:(stroke:(thickness:2pt, paint:orange, dash:"dotted")))
 arc("pie.arc-start", radius:1cm, start: calc.pi/4 * 1rad, stop: -(calc.pi/2) *1rad, anchor:"start")
 ```
 
-This text is added from GitHub. I am testing if the sync function works properly?
+This text is added from GitHub. I am testing if the sync function works properly? 
 
 ---
 
@@ -414,7 +414,7 @@ Root: `arc`
 
 Uses the same styling as `arc`.
 
-**Anchors**
+**Anchors** 
 
 For anchors see `arc`.
 
@@ -439,20 +439,20 @@ mark(
 )
 ```
 
-Draws a single mark pointing towards a target coordinate.
+Draws a single mark pointing towards a target coordinate. 
 
 ```grid
 // Show a grid
-grid((-1, -1), (1, 1), stroke: gray)
+grid((-2, -2), (2, 2), stroke: gray)
 // Draw a mark with its tip at (0, 0) pointing to (1, 0)
-mark((0, 0), (1, 0), symbol: ")>", scale: 4)
+mark((-2, 0), (-1, 0), symbol: "stealth", scale: 4)
 ```
 
 ```grid
 // Show a grid
 grid((-1, -1), (1, 1), stroke: gray)
 // Draw a mark with its center at (0, 0) pointing to (1, 1)
-mark((0, 0), (1, 1), symbol: ">>", anchor: "center", scale: 5)
+mark((0, 0), (1, 1), symbol: "straight", anchor: "center", scale: 5)
 ```
 
 Note: To place a mark centered at the first coordinate (`from`) use the marks `anchor: "center"` style.

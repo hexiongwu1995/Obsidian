@@ -691,16 +691,17 @@ content(
 )
 ```
 
-Positions Typst content in the canvas. Note that the content itself is not transformed only its position is.
+Positions Typst content in the canvas. Note that the content itself is not transformed only its position is. 
 
 ```grid
-content((0,0), [Hello World!])
+circle((0,0),radius:0.1, fill:orange, stroke:none)
+content((0,0), [Hello World!],anchor:"west")
 ```
 
 To put text on a line you can let the function calculate the angle between its position and a second coordinate by passing it to `angle:`:
 
 ```grid
-line((0, 0), (3, 1), name: "line")
+line((0, 0), (6, 1), name: "line")
 content(
   ("line.start", 50%, "line.end"),
   angle: "line.end",
@@ -710,13 +711,30 @@ content(
 )
 ```
 
+
 ```grid
+// text(fill:red)[This is my example] ;
+content((0,3),anchor:"west")[This is my example]
+circle((0,0),radius:0.1, fill:orange, stroke:none) ;
+grid((0,0),(6,2),help-lines:true) ;
+line((0,0),(6,2), name:"line") ;
+// "anchor: 'south'" means to put content at the north direction of the first coordinate.
+content(  ("line.start",50%, "line.end" ), angle:"line.end", padding:0.2, frame:none, anchor:"south"
+)[#text(fill:red)[Text on a line]]
+
+```
+
+The Typst code snippet below fails to render. The compiler returns the error message: ` 'text(fill:red)[This is an simple example] ;' …caused this problem: Cannot join content with array.` Please analyze the code and provide a clear explanation. 
+
+In CeTZ, the code inside the { ... } of a canvas is interpreted as a scripted environment where each line should return a drawing element. Your first line uses the standard Typst text function, which returns content. CeTZ tries to "join" this content with the array of drawing commands it is building, but they are incompatible types. In Typst, text()[...] creates a text object for a standard document page. Inside a CeTZ canvas, if you want to place text at a specific coordinate or simply render it as part of the drawing, you must use the content (or draw.content) function. 
+
+```grid
+circle((0,0),radius:0.1, stroke:none, fill:orange)
+circle((4,2),radius:0.1, stroke:none, fill:orange)
 // Place content in a rect between two coordinates
-content(
-  (0, 0),
-  (2, 2),
+content( (0, 0), (4, 2),
   box(
-    par(justify: false)[This is a long text.],
+    par(justify: true)[This is a long text.],
     stroke: 1pt,
     width: 100%,
     height: 100%,
@@ -725,32 +743,32 @@ content(
 )
 ```
 
-**Styling**
+**Styling** 
 
-Root: `content`
+Root: `content` 
 
-**Anchors**
+**Anchors** 
 
-Supports border anchors, the default anchor is set to `center`.
+Supports border anchors, the default anchor is set to `center`. 
 
 - **mid** Content center, from baseline to top bounds
 - **mid-east** Content center extended to the east
 - **mid-west** Content center extended to the west
 - **base** Horizontally centered baseline of the content
 - **base-east** Baseline height extended to the east
-- **base-west** Baseline height extended to the west
-- **text** Position at the content start on the baseline of the content
+- **base-west** Baseline height extended to the west 
+- **text** Position at the content start on the baseline of the content 
 
 **Parameters**
 
-- **..args-style** `coordinate content style` — When one coordinate is given as a positional argument, the content will be placed at that position. When two coordinates are given as positional arguments, the content will be placed inside a rectangle between the two positions. All named arguments are styling and any additional positional arguments will panic.
+- **..args-style** `coordinate content style` — When one coordinate is given as a positional argument, the content will be placed at that position. When two coordinates are given as positional arguments, the content will be placed inside a rectangle between the two positions. All named arguments are styling and any additional positional arguments will panic. 
 - **angle** `angle coordinate` — Rotates the content by the given angle. A coordinate can be given to rotate the content by the angle between it and the first coordinate given in args. This effectively points the right hand side of the content towards the coordinate. This currently exists because Typst's rotate function does not change the width and height of content.
-- **anchor** `none str`
+- **anchor** `none str` 
 - **name** `none str`
-- **padding** `number dictionary` — Sets the spacing around content. Can be a single number to set padding on all sides or a dictionary to specify each side specifically. The dictionary follows Typst's pad function: https://typst.app/docs/reference/layout/pad/
+- **padding** `number dictionary` — Sets the spacing around content. Can be a single number to set padding on all sides or a dictionary to specify each side specifically. The dictionary follows Typst's pad function: https://typst.app/docs/reference/layout/pad/ 
 - **frame** `str none` — Sets the frame style. Can be `none`, `"rect"` or `"circle"` and inherits the stroke and fill style.
 - **auto-scale** `bool` — If `true`, apply current canvas scaling to the content. Defaults to `false`.
-- **wrap** `function none` — A function to apply the content body to. Must return content. Example: `text.with(red)` to wrap every content element in a `text(red, <body>)` element.
+- **wrap** `function none` — A function to apply the content body to. Must return content. Example: `text.with(red)` to wrap every content element in a `text(red, <body>)` element. 
 
 ---
 
@@ -766,7 +784,7 @@ rect(
 )
 ```
 
-Draws a rectangle between two coordinates.
+Draws a rectangle between two coordinates. 
 
 ```grid
 // Draw a rect from A(0, 0) to B(1, 1)
@@ -776,14 +794,35 @@ set-style(content: (frame: "circle", padding: 1pt, fill: white))
 content((0, 0), [A]); content((1, 1), [B])
 ```
 
+
+
 ```grid
 rect((0,0), (rel: (1,1)), radius: 0)
 rect((2,0), (rel: (1,1)), radius: 25%)
 rect((4,0), (rel: (1,1)), radius: (north: 50%))
-rect((6,0), (rel: (1,1)), radius: (north-east: 50%))
-rect((8,0), (rel: (1,1)), radius: (south-west: 0, rest: 50%))
-rect((10,0), (rel: (1,1)), radius: (rest: (20%, 50%)))
+
+
+rect((0,-2), (rel: (1,1)), radius: (north-east: 50%))
+rect((2,-2), (rel: (1,1)), radius: (south-west: 0, rest: 50%))
+rect((4,-2), (rel: (1,1)), radius: (rest: (20%, 50%)))
 ```
+
+
+```grid
+circle((0,0), fill:orange, stroke:none, radius:0.1)
+rect((0,0),(rel:(2,2)), name:"recta") ;
+rect((3,0),(rel:(2,2)), radius:5pt, name:"rectb") ;
+
+set-style(content:(frame:none))
+content("recta.center",)[Hi]
+content("rectb.0%")[#text(fill:orange)[$0%$]]
+content("rectb.25%")[#text(fill:orange)[$25%$]]
+content("recta.north",)[north]
+content("rectb.north-east", angle:(7,0), anchor:"south")[#text(fill:green, size:8pt)[north-east]]
+
+```
+
+
 
 **Styling**
 
@@ -791,15 +830,15 @@ Root: `rect`
 
 **Anchors**
 
-Supports border and path anchors. Its default is the `"center"` anchor.
+Supports border and path anchors. Its default is the `"center"` anchor. 
 
 **Parameters**
 
-- **a** `coordinate` — Coordinate of the bottom left corner of the rectangle.
-- **b** `coordinate` — Coordinate of the top right corner of the rectangle. You can draw a rectangle with a specified width and height by using relative coordinates for this parameter `(rel: (width, height))`.
-- **name** `none str`
-- **anchor** `none str`
-- **..style** `style`
+- **a** `coordinate` — Coordinate of the bottom left corner of the rectangle. 
+- **b** `coordinate` — Coordinate of the top right corner of the rectangle. You can draw a rectangle with a specified width and height by using relative coordinates for this parameter `(rel: (width, height))`. 
+- **name** `none str` 
+- **anchor** `none str` 
+- **..style** `style` 
 - **radius** `number ratio dictionary` — The rectangle's corner radius. If set to a single number, that radius is applied to all four corners. If passed a dictionary you can set the radii per corner. The following keys support either a `number`, `ratio` or an `array` of `number` or `ratio` for specifying a different x- and y-radius: `north`, `east`, `south`, `west`, `north-west`, `north-east`, `south-west` and `south-east`. To set a default value for remaining corners, the `rest` key can be used. Ratio values are relative to the rectangle's width and height.
 
 ---

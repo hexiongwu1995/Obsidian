@@ -817,7 +817,7 @@ set-style(content:(frame:none))
 content("recta.center",)[Hi]
 content("rectb.0%")[#text(fill:orange)[$0%$]]
 content("rectb.25%")[#text(fill:orange)[$25%$]]
-content("recta.north",)[north]
+content("recta.north",anchor:"south")[north]
 content("rectb.north-east", angle:(7,0), anchor:"south")[#text(fill:green, size:8pt)[north-east]]
 
 ```

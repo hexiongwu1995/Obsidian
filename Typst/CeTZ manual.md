@@ -1,4 +1,6 @@
 
+
+
 # CeTZ Manual
 
 ## 1 Overview
@@ -63,6 +65,10 @@ You can style draw elements by passing the relevant named arguments to their dra
 
 - **fill** `color` or `none` (default: `none`) — How to fill the drawn element.
 - **stroke** `none` or `auto` or `length` or `color` or `dictionary` or `stroke` (default: `black`) — How to stroke the border or the path of the draw element. See Typst's line documentation for more details.  
+
+### 3.4 import typ file 
+
+
 
 
 ## 4 API
@@ -842,6 +848,11 @@ Supports border and path anchors. Its default is the `"center"` anchor.
 - **radius** `number ratio dictionary` — The rectangle's corner radius. If set to a single number, that radius is applied to all four corners. If passed a dictionary you can set the radii per corner. The following keys support either a `number`, `ratio` or an `array` of `number` or `ratio` for specifying a different x- and y-radius: `north`, `east`, `south`, `west`, `north-west`, `north-east`, `south-west` and `south-east`. To set a default value for remaining corners, the `rest` key can be used. Ratio values are relative to the rectangle's width and height.
 
 ---
+
+
+
+
+
 
 #### bezier
 

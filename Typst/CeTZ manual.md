@@ -66,10 +66,6 @@ You can style draw elements by passing the relevant named arguments to their dra
 - **fill** `color` or `none` (default: `none`) — How to fill the drawn element.
 - **stroke** `none` or `auto` or `length` or `color` or `dictionary` or `stroke` (default: `black`) — How to stroke the border or the path of the draw element. See Typst's line documentation for more details.  
 
-### 3.4 import typ file 
-
-
-
 
 ## 4 API
 
@@ -200,7 +196,7 @@ let (a, b) = ((2, 1), (1, 1));
 circle(a, b); 
 
 // Show both points
-set-style(content: (frame: "circle", padding: 1pt, fill: luma(20%))); 
+set-style(content: (frame: "circle", padding: 1pt, fill: white)); 
 content(a, [A]); 
 content(b, [B]); 
 ```
@@ -242,7 +238,7 @@ let (a, b, c) = ((0, 0), (2, -0.5), (1, 1))
 // Draw a circle through 3 points
 circle-through(a, b, c, name: "c")
 // Show the points
-set-style(content: (frame: "circle", padding: 1pt, fill: luma(20%)))
+set-style(content: (frame: "circle", padding: 1pt, fill: white))
 content(a, [A]); content(b, [B]); content(c, [C])
 ```
 
@@ -851,9 +847,6 @@ Supports border and path anchors. Its default is the `"center"` anchor.
 
 
 
-
-
-
 #### bezier
 
 ```
@@ -865,20 +858,30 @@ bezier(
 )
 ```
 
-Draws a quadratic or cubic bezier curve.
+Draws a quadratic or cubic bezier curve. 
 
 ```grid
-let (a, b, c) = ((0, 0), (2, 0), (1, 1))
-bezier(a, b, c)
-set-style(content: (frame: "circle", padding: 1pt, fill: white))
-content(a, [A]); content(b, [B]); content(c, [C])
+let mark-style= (mark:(symbol:"stealth", scale:2), stroke:(paint:orange, thickness:1pt))
+let (a, b, c) = ((0, 0), (4, 0), (2, 1))
+bezier(a, b, c, ..mark-style)
+set-style(content: (frame: none, padding: 1pt, fill: none))
+content(a, text(fill:orange)[A]); content(b, text(fill:orange)[B]); content(c, text(fill:orange)[C])
+circle((2,1), radius:0.05, fill:black, stroke:none)
 ```
 
 ```grid
-let (a, b, c, d) = ((0, 0), (2, 0), (.5, -1), (1.5, 1))
-bezier(a, b, c, d)
-set-style(content: (frame: "circle", padding: 1pt, fill: white))
-content(a, [A]); content(b, [B]); content(c, [C]); content(d, [D])
+let mark-style=(mark:(end:"curved-stealth", scale:2), stroke:(paint:blue, thickness:1pt))
+
+let(a,b,c,d)=((0,0),(6,0),(2,-2),(4,2))
+bezier(a,b,c,d, ..mark-style)
+set-style(content:(frame:none, padding:1pt, fill:none))
+content(a,text(fill:blue)[A]); content(b,text(fill:blue)[B]); 
+content(c,text(fill:blue)[C]); content(d,text(fill:blue)[D]); 
+
+circle((0,0), radius:0.05, fill:blue, stroke:none)
+circle((6,0), radius:0.05, fill:blue, stroke:none)
+circle((2,-2), radius:0.05, fill:blue, stroke:none)
+circle((4,2), radius:0.05, fill:blue, stroke:none)
 ```
 
 **Styling**
@@ -889,16 +892,16 @@ Supports marks.
 
 **Anchors**
 
-Supports path anchors.
+Supports path anchors. 
 
 - **ctrl-n** nth control point where n is an integer starting at 0.
 
 **Parameters**
 
-- **start** `coordinate` — Start position.
-- **end** `coordinate` — End position (last coordinate).
-- **name** `none str`
-- **..ctrl-style** `coordinate style` — The first two positional arguments are taken as cubic bezier control points, where the first is the start control point and the second is the end control point. One control point can be given for a quadratic bezier curve instead. Named arguments are for styling.
+- **start** `coordinate` — Start position. 
+- **end** `coordinate` — End position (last coordinate). 
+- **name** `none str` 
+- **..ctrl-style** `coordinate style` — The first two positional arguments are taken as cubic bezier control points, where the first is the start control point and the second is the end control point. One control point can be given for a quadratic bezier curve instead. Named arguments are for styling. 
 
 ---
 
@@ -914,24 +917,24 @@ bezier-through(
 )
 ```
 
-Draws a cubic bezier curve through a set of three points. See `bezier` for style and anchor details.
+Draws a cubic bezier curve through a set of three points. See `bezier` for style and anchor details. 
 
 ```grid
-let (a, b, c) = ((0, 0), (1, 1), (2, -1))
+let (a, b, c) = ((0, 0), (2, 1), (4, -2))
 bezier-through(a, b, c, name: "curve")
 // Show the computed control points: 1 and 2
 set-style(content: (frame: "circle", padding: 1pt, fill: white))
 content(a, [A]); content(b, [B]); content(c, [C])
-content("curve.ctrl-1", [2]); content("curve.ctrl-0", [1])
+content("curve.ctrl-0", [1]); content("curve.ctrl-1", [2]); 
 ```
 
 **Parameters**
 
-- **start** `coordinate` — The position to start the curve.
-- **pass-through** `coordinate` — The position to pass the curve through.
-- **end** `coordinate` — The position to end the curve.
-- **name** `none str`
-- **..style** `style`
+- **start** `coordinate` — The position to start the curve. 
+- **pass-through** `coordinate` — The position to pass the curve through. 
+- **end** `coordinate` — The position to end the curve. 
+- **name** `none str` 
+- **..style** `style` 
 
 ---
 
@@ -945,12 +948,17 @@ catmull(
 )
 ```
 
-Draws a Catmull-Rom curve through a set of points.
+Draws a Catmull-Rom curve through a set of points. 
 
 ```grid
 catmull((0,0), (1,1), (2,-1), (3,0), tension: .4, stroke: blue)
 catmull((0,0), (1,1), (2,-1), (3,0), tension: .5, stroke: red)
+circle((0,0), radius:0.1, fill:black, stroke:none) ; 
+circle((1,1), radius:0.1, fill:black, stroke:none) ; 
+circle((2,-1), radius:0.1, fill:black, stroke:none) ; 
+circle((3,0), radius:0.1, fill:black, stroke:none) ; 
 ```
+
 
 **Styling**
 
@@ -960,15 +968,15 @@ Supports marks.
 
 **Anchors**
 
-Supports path anchors.
+Supports path anchors. 
 
 - **pt-n** The nth given position (0 indexed so `"pt-0"` is equal to `"start"`). 
 
 **Parameters**
 
 - **..pts-style** `coordinate style` — Positional arguments should be coordinates that the curve should pass through. Named arguments are for styling.
-- **close** `bool` — Closes the curve with a straight line between the start and end of the curve.
-- **name** `none str`
+- **close** `bool` — Closes the curve with a straight line between the start and end of the curve. 
+- **name** `none str` 
 - **tension** `float` — How tight the curve should fit to the points. The higher the tension the less curvy the curve.
 
 ---

@@ -404,7 +404,7 @@ let (a, b, c) = ((0, 1), (2, 2), (2, 0))
 // Draw an arc through 3 points
 arc-through(a, b, c)
 // Show the points
-set-style(content: (frame: "circle", padding: 1pt, fill: luma(20%)))
+set-style(content: (frame: "circle", padding: 1pt, fill: gray))
 content(a, [A]); content(b, [B]); content(c, [C])
 ```
 
@@ -486,9 +486,10 @@ line(
 )
 ```
 
-Draws a line, more than two points can be given to create a line-strip.
+Draws a line, more than two points can be given to create a line-strip. 
 
 ```grid
+circle((0,0), radius:0.1, fill:orange, stroke:none)
 // Draw a line between two points
 line((0, 0), (1.5, 1))
 // Draw a line between more than two points
@@ -496,6 +497,7 @@ line((0, 0), (1, 0.5), (2, -0.5), (3, 0))
 ```
 
 ```grid
+circle((0,0), radius:0.1, fill:orange, stroke:none)
 // Draw a polygon using `close: true`
 line((0, 0), (0, 1), (1, 2), (2, 1), (2,0), close: true)
 ```
@@ -503,9 +505,14 @@ line((0, 0), (0, 1), (1, 2), (2, 1), (2,0), close: true)
 If the first or last coordinates are given as the name of an element, that has a `"default"` anchor, the intersection of that element's border and a line from the first or last two coordinates given is used as coordinate. This is useful to span a line between the borders of two elements.
 
 ```grid
+circle((1,2), radius:0.1, fill:orange, stroke:none)
 circle((1,2), radius: .5, name: "a")
+
+circle((2,1), radius:0.1, fill:orange, stroke:none)
 rect((2,1), (rel: (1,1)), name: "b")
 line("a", "b")
+
+circle((2.5,1.5), radius:0.1, fill:blue, stroke:none)
 ```
 
 **Styling**
@@ -541,18 +548,21 @@ polygon(
 )
 ```
 
-Draws a regular polygon.
+Draws a regular polygon. 
 
 ```grid
-set-style(polygon: (radius: 0.65))
-polygon((0, 0), 3, angle: 90deg)
-polygon((1.5,0), 5)
-polygon((3, 0), 7)
+circle((0,0), radius:0.1, fill:orange, stroke:none)
+circle((3,0), radius:0.1, fill:orange, stroke:none)
+set-style(polygon: (radius: 0.8))
+polygon((0, 0), 3, angle:90deg, name:"triangle") ;
+polygon((3,0), 6, angle: 30deg, name:"Hexagon") ;
+// line((0,0),(3,0),stroke:(paint:orange, thickness:1pt, dash:"dotted")); 
+line("triangle","Hexagon",stroke:(paint:orange, thickness:1pt, dash:"dotted"));
 ```
 
-**Styling**
+**Styling** 
 
-Root: `polygon`
+Root: `polygon` 
 
 **Parameters**
 
@@ -588,9 +598,28 @@ n-star((1.5, 0), 8, angle: 11.25deg)
 n-star((3, 0), 6, show-inner: true)
 ```
 
+```grid
+set-style(n-star:(fill:orange.transparentize(50%)))
+n-star((0,0), 4, angle:45deg, radius:1, fill:gray.transparentize(90%))
+line((0,-2),(0,2))
+
+n-star((3,0), 5, angle:55deg)
+line((3,-2),(3,2))
+```
+
+```grid
+set-style(n-star:(radius:1.2, fill:gray.transparentize(90%)))
+n-star((0,0), 6, angle:60deg, show-inner:true)
+line((0,-2),(0,2))
+
+n-star((3,0), 6, angle:60deg, inner-radius:80%)
+line((3,-2),(3,2))
+```
+
+
 **Styling**
 
-Root: `nstar`
+Root: `nstar` 
 
 **Parameters**
 
@@ -602,7 +631,7 @@ Root: `nstar`
 - **inner-radius** `number ratio` — The radius (if of type ratio, relative to the outer radius) of the star's inner points.
 - **show-inner** `bool` — If `true`, also draws the inner polygon connecting the star's inner points.
 - **fill** `color gradient` — The fill color for the star.
-- **stroke** `color thickness ...` — The stroke for the star and the inner polygon.
+- **stroke** `color thickness ...` — The stroke for the star and the inner polygon. 
 
 ---
 
@@ -617,13 +646,18 @@ grid(
 )
 ```
 
-Draws a grid between two coordinates.
+Draws a grid between two coordinates. 
 
 ```grid
 // Draw a grid
 grid((0,0), (2,2))
 // Draw a smaller blue grid
 grid((1,1), (2,2), stroke: blue, step: .25)
+```
+```grid
+circle((0,0), radius:2, fill:silver, stroke:2pt+silver)
+grid((-2,-2),(2,2), step:(x:0.5,y:0.5), help-lines:true);
+
 ```
 
 **Styling**
@@ -638,11 +672,11 @@ Supports border anchors.
 
 - **from** `coordinate` — The top left of the grid.
 - **to** `coordinate` — The bottom right of the grid.
-- **name** `none str`
+- **name** `none str` 
 - **..style** `style`
 - **step** `number array dictionary` — Distance between grid lines. A distance of 1 means to draw a grid line every 1 length units in x- and y-direction. If given a dictionary with `x` and `y` keys or a tuple, the step is set per axis.
-- **shift** `number array dictionary` — Offset of the grid lines. Supports an array of the form `(x, y)` or a dictionary of the form `(x: <number>, y: <number>)`.
-- **help-lines** `bool` — If `true`, force the stroke style to `gray + 0.2pt`.
+- **shift** `number array dictionary` — Offset of the grid lines. Supports an array of the form `(x, y)` or a dictionary of the form `(x: <number>, y: <number>)`. 
+- **help-lines** `bool` — If `true`, force the stroke style to `gray + 0.2pt`. 
 
 ---
 

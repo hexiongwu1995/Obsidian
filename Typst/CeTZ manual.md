@@ -5,7 +5,7 @@
 
 ## 1 Overview
 
-CeTZ, ein Typst Zeichenpaket, is a drawing package for Typst. Its API is similar to Processing but with relative coordinates and anchors from TikZ. You also won't have to worry about accidentally drawing over other content as the canvas will automatically resize. And remember: up is positive!  
+CeTZ, ein Typst Zeichenpaket, is a drawing package for Typst. Its API is similar to Processing but with relative coordinates and anchors from TikZ. You also won't have to worry about accidentally drawing over other content as the canvas will automatically resize. And remember: up is positive! 
 
 ## 2 Getting Started
 
@@ -959,12 +959,23 @@ circle((2,-1), radius:0.1, fill:black, stroke:none) ;
 circle((3,0), radius:0.1, fill:black, stroke:none) ; 
 ```
 
+```grid
+catmull((0,0),(2,1),(3,-1),(4,1),(5,2),(6,-1), tension:0.5, stroke:1pt+blue, close:true)
+catmull((0,0),(2,1),(3,-1),(4,1),(5,2),(6,-1), tension:0.6, stroke:1pt+red,close:false)
+circle((0,0), radius:0.1, stroke:none, fill:orange);
+circle((2,1), radius:0.1, stroke:none, fill:orange);
+circle((3,-1), radius:0.1, stroke:none, fill:orange);
+circle((4,1), radius:0.1, stroke:none, fill:orange);
+circle((5,2), radius:0.1, stroke:none, fill:orange);
+circle((6,-1), radius:0.1, stroke:none, fill:orange);
+```
+
 
 **Styling**
 
-Root: `catmull`
+Root: `catmull` 
 
-Supports marks.
+Supports marks. 
 
 **Anchors**
 
@@ -974,7 +985,7 @@ Supports path anchors.
 
 **Parameters**
 
-- **..pts-style** `coordinate style` — Positional arguments should be coordinates that the curve should pass through. Named arguments are for styling.
+- **..pts-style** `coordinate style` — Positional arguments should be coordinates that the curve should pass through. Named arguments are for styling. 
 - **close** `bool` — Closes the curve with a straight line between the start and end of the curve. 
 - **name** `none str` 
 - **tension** `float` — How tight the curve should fit to the points. The higher the tension the less curvy the curve.
@@ -993,7 +1004,7 @@ hobby(
 )
 ```
 
-Draws a Hobby curve through a set of points.
+Draws a Hobby curve through a set of points.  
 
 ```grid
 hobby((0, 0), (1, 1), (2, -1), (3, 0), omega: 0, stroke: blue)
@@ -1015,7 +1026,7 @@ Supports path anchors.
 **Parameters**
 
 - **..pts-style** `coordinate style` — Positional arguments are the coordinates to use to draw the curve with, a minimum of two is required. Named arguments are for styling.
-- **tb** `auto array` — Incoming tension at `pts.at(n+1)` from `pts.at(n)` to `pts.at(n+1)`. The number given must be one less than the number of points.
+- **tb** `auto array` — Incoming tension at `pts.at(n+1)` from `pts.at(n)` to `pts.at(n+1)`. The number given must be one less than the number of points. 
 - **ta** `auto array` — Outgoing tension at `pts.at(n)` from `pts.at(n)` to `pts.at(n+1)`. The number given must be one less than the number of points.
 - **close** `bool` — Closes the curve with a proper smooth curve between the start and end of the curve.
 - **name** `none str`
@@ -1033,9 +1044,9 @@ compound-path(
 )
 ```
 
-Create a new path with each element used as sub-paths. This can be used to create paths with holes.
+Create a new path with each element used as sub-paths. This can be used to create paths with holes. 
 
-Unlike `merge-path`, this function groups the shapes as sub-paths instead of concatenating them into a single continuous path.
+Unlike `merge-path`, this function groups the shapes as sub-paths instead of concatenating them into a single continuous path. 
 
 ```grid
 compound-path({
@@ -1046,13 +1057,30 @@ compound-path({
 
 **Anchors**
 
-- **centroid** Centroid of the closed and non self-intersecting shape. Only exists if `close` is `true`. Supports path anchors and shapes where all vertices share the same z-value.
+- **centroid** Centroid of the closed and non self-intersecting shape. Only exists if `close` is `true`. Supports path anchors and shapes where all vertices share the same z-value. 
 
 **Parameters**
 
-- **body** `elements` — Elements with paths to be merged together.
-- **name** `none str`
-- **..style** `style`
+- **body** `elements` — Elements with paths to be merged together.  
+- **name** `none str` 
+- **..style** `style` 
+
+```grid
+compound-path(
+{rect((0,0),(rel:(2,2))) ; circle((1,1),radius:2)},
+fill:orange.transparentize(50%), fill-rule:"even-odd"
+)
+```
+
+
+```grid
+compound-path(
+{rect((0,0),(rel:(2,2))) ; circle((1,1),radius:2) ; polygon((1,1), 6, angle:90deg , radius:0.8,)},
+fill:orange.transparentize(50%), fill-rule:"non-zero"
+)
+```
+
+
 
 ---
 
@@ -1079,7 +1107,7 @@ merge-path(fill: white, {
 })
 ```
 
-Elements hidden via `hide` are ignored.
+Elements hidden via `hide` are ignored. 
 
 **Anchors**
 

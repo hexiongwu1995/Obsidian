@@ -16,11 +16,22 @@ CeTZ, ein Typst Zeichenpaket, is a drawing package for [Typst](https://typst.app
 
 This is the minimal starting point in a `.typ` file: 
 
-```typc
+```typm
+/* Import version 0.4.2 of the CeTZ package from the Typst preview (package) repository.  The "@preview/" prefix tells Typst to fetch the package from the official preview registry. You can also use a locally installed version like "@local/cetz:0.4.2" if you have it installed. */
+
 #import "@preview/cetz:0.4.2"
+
+/* Create a drawing canvas (the actual drawing area). Everything drawn inside this block becomes part of one vector graphic. CeTZ automatically calculates the bounding box → no manual sizing needed in most cases. */
+
 #cetz.canvas({
+
+/* Import all drawing commands (functions) from the cetz.draw module with `*` (wildcard import). This is the strongly recommended pattern in CeTZ. After this line you can write short names like: 
+line((0,0), (2,1))        instead of  cetz.draw.line(...) 
+circle((3,2), radius: 1)  instead of  cetz.draw.circle(...)   etc. */
+  
   import cetz.draw: *
-  ...
+  
+// From here you write your actual drawing commands.
 })
 ```
 
@@ -33,7 +44,9 @@ From this point on only the code inside the `canvas` block will be shown in exam
 ```grid
 circle((0, 0)); 
 
-line((0, 0), (2, 1));
+circle((0, 0), radius:0.15); 
+
+line((0, 0), (2, 2));
 ```
 
 ## Basics
@@ -44,11 +57,11 @@ The following chapters are about the basic and core concepts of CeTZ. They are r
 
 ### Custom Types
 
-Many CeTZ functions expect data in certain formats which we will call types. Note that these are actually made up of Typst primitives.
+Many CeTZ functions expect data in certain formats which we will call types. Note that these are actually made up of Typst primitives. 
 
 #### coordinate
 
-A position on the canvas specified by any coordinate system. See [Coordinate Systems](#coordinate-systems).
+A position on the canvas specified by any coordinate system. See [[CeTZ Documentation#Coordinate Systems|Coordinate Systems]]
 
 #### number
 
@@ -56,13 +69,13 @@ Any of `float`, `int`, or `length`.
 
 #### style
 
-Represents options passed to draw functions that affect how elements are drawn. They are normally taken in the form of named arguments to the draw functions or sometimes can be a dictionary for a single argument.
+Represents options passed to draw functions that affect how elements are drawn. They are normally taken in the form of named arguments to the draw functions or sometimes can be a dictionary for a single argument. 
 
 ---
 
 ### The Canvas
 
-The `canvas` function is what handles all of the logic and processing in order to produce drawings. It's usually called with a code block `{...}` as argument. The content of the curly braces is the *body* of the canvas. Import all the draw functions you need at the top of the body:
+The `canvas` function is what handles all of the logic and processing in order to produce drawings. It's usually called with a code block `{...}` as argument. The content of the curly braces is the *body* of the canvas. Import all the draw functions you need at the top of the body: 
 
 
 ```
@@ -74,7 +87,7 @@ The `canvas` function is what handles all of the logic and processing in order t
 
 You can now call the draw functions within the body and they'll produce some graphics! Typst will evaluate the code block and pass the result to the `canvas` function for rendering.
 
-The canvas does not have typical `width` and `height` parameters. Instead its size will grow and shrink to fit the drawn graphic.
+The canvas does not have typical `width` and `height` parameters. Instead its size will grow and shrink to fit the drawn graphic. 
 
 By default 1 coordinate unit is `1cm`, this can be changed by setting the `length` parameter. If a ratio is given, the length will be the size of the canvas' parent's width!
 
@@ -106,7 +119,7 @@ circle((0, 0), fill: red, stroke: blue) ;
 // Draws a green line
 line((0, 0), (1, 1), stroke: green) ;
 ```
-Instead of having to specify the same styling for each time you want to draw an element, you can use the `set-style` function to change the style for all elements after it, like a Typst `set` rule. You can still pass styling to a draw function to override what has been set with `set-style`. You can also use the `fill` and `stroke` functions as a shorthand to set the fill and stroke respectively.
+Instead of having to specify the same styling for each time you want to draw an element, you can use the `set-style` function to change the style for all elements after it, like a Typst `set` rule. You can still pass styling to a draw function to override what has been set with `set-style`. You can also use the `fill` and `stroke` functions as a shorthand to set the fill and stroke respectively. 
 
 ```grid
 // Draws an empty square with a black border
@@ -115,11 +128,10 @@ rect((-1, -1), (1, 1))
 // Sets the global style to have a fill of red and a stroke of blue
 set-style(stroke: blue, fill: red)
 circle((0,0))
-
+circle((-1,-1), radius:0.1)
 // Draws a green line despite the global stroke being blue
 line((), (1,1), stroke: green)
 ```
-
 When using a dictionary for a style, it is important to note that they update each other instead of overriding the entire option like a non-dictionary value would. For example, if the stroke is set to `(paint: red, thickness: 5pt)` and you pass `(paint: blue)`, the stroke would become `(paint: blue, thickness: 5pt)`. 
 
 ```grid
@@ -135,7 +147,6 @@ line((0,0), (1,1), stroke: (paint: blue))
 // Draws a yellow line with a thickness of 1pt because other values override the style
 line((0,0), (0,1), stroke: yellow)
 ```
-
 You can also specify styling for each type of element. Note that dictionary values will still update with its global value, the full hierarchy is `function > element type > global`. When the value of a style is `auto`, it will become exactly its parent style.
 
 ```grid
@@ -157,7 +168,7 @@ rect((4, 0), (5, 1), stroke: (thickness: 1pt)) ;
 
 ### Coordinate Systems
 
-A coordinate is a position on the canvas on which the picture is drawn. They take the form of dictionaries and the following subsections define the key-value pairs for each system. Some systems have a more implicit form as an array of values and CeTZ attempts to infer the system based on the element types.
+A coordinate is a position on the canvas on which the picture is drawn. They take the form of dictionaries and the following subsections define the key-value pairs for each system. Some systems have a more implicit form as an array of values and CeTZ attempts to infer the system based on the element types. 
 
 #### XYZ
 
@@ -172,7 +183,7 @@ The number of units in the `y` direction.
 **z:** `number` — Default: `0`  
 The number of units in the `z` direction.
 
-The implicit form can be given as an array of two or three numbers, as in `(x, y)` or `(x, y, z)`.
+The implicit form can be given as an array of two or three numbers, as in `(x, y)` or `(x, y, z)`. 
 
 ```grid
 line((0,0), (x: 1)); 
@@ -187,7 +198,11 @@ line((2, 0), (2, 0, 1)) ;
 
 #### Previous
 
-Use this to reference the position of the previous coordinate passed to a draw function. It takes the form of an empty array `()` and the previous position initially will be `(0, 0, 0)`. This will never reference the position of a coordinate used to define another coordinate.
+Use this to reference the position of the previous coordinate passed to a draw function. It takes the form of an empty array `()` and the previous position initially will be `(0, 0, 0)`. This will never reference the position of a coordinate used to define another coordinate. 
+
+```grid
+line((),(1,0))
+```
 
 ```grid
 line((0,0), (1, 1)) ;
@@ -207,7 +222,7 @@ The coordinate to place relative to the previous coordinate.
 When false, the previous position will not be updated.
 
 **to:** `coordinate` — Default: `()`  
-The coordinate to treat as the previous coordinate.
+The coordinate to treat as the previous coordinate. 
 
 In the example below, the red circle is placed one unit to the right of the blue circle. If the blue circle was to be moved to a different position, the red circle would move with the blue circle to stay one unit to the right.
 

@@ -501,7 +501,7 @@ line((0, 0), (1, 0.5), (2, -0.5), (3, 0))
 ```grid
 circle((0,0), radius:0.1, fill:orange, stroke:none)
 // Draw a polygon using `close: true`
-line((0, 0), (0, 1), (1, 2), (2, 1), (2,0), close: true)
+line((0, 0), (0, 1), (1, 2), (2, 1), (2,0), close: true, fill:blue.transparentize(70%))
 ```
 
 If the first or last coordinates are given as the name of an element, that has a `"default"` anchor, the intersection of that element's border and a line from the first or last two coordinates given is used as coordinate. This is useful to span a line between the borders of two elements.
@@ -532,8 +532,23 @@ Supports path anchors.
 **Parameters**
 
 - **..pts-style** `coordinate style` — Positional two or more coordinates to draw lines between. Accepts style key-value pairs.
-- **close** `bool` — If `true`, the line-strip gets closed to form a polygon.
-- **name** `none str`
+- **close** `bool` — If `true`, the line-strip gets closed to form a polygon. 
+- **name** `none str` 
+
+
+```grid
+circle((0,0),radius:0.1, stroke:none, fill:orange) 
+
+line((0,0),(30deg,1),(60deg,1),(90deg,1),(120deg,1),(150deg,1),(180deg,1),(210deg,1),(240deg,1),(270deg,1),(300deg,1),(330deg,1),(360deg,1),(390deg,1), fill:purple.transparentize(70%) )
+```
+
+
+```grid
+circle((0,0),radius:0.1, stroke:none, fill:orange) 
+
+// polar notation
+line((0,0), (angle:30deg, radius:3), (angle:60deg, radius:3), (angle:90deg, radius:3))
+```
 
 ---
 
@@ -1086,6 +1101,8 @@ fill:orange.transparentize(50%), fill-rule:"non-zero"
 
 #### merge-path
 
+There is a `merge-path` function in CeTZ. Could you give me a common example to illustrate how it is used?
+
 ```typm
 merge-path(
   body elements,
@@ -1098,30 +1115,85 @@ merge-path(
 )
 ```
 
-Merges two or more paths by concatenating their elements. Anchors and visual styling, such as stroke and fill, are not preserved. When an element's path does not start at the same position the previous element's path ended, a straight line is drawn between them so that the final path is continuous. You must then pay attention to the direction in which element paths are drawn.
+Merges two or more paths by concatenating their elements. Anchors and visual styling, such as stroke and fill, are not preserved. When an element's path does not start at the same position the previous element's path ended, a straight line is drawn between them so that the final path is continuous. You must then pay attention to the direction in which element paths are drawn. 
 
 ```grid
-merge-path(fill: white, {
-  line((0, 0), (1, 0))
-  bezier((), (0, 0), (1,1), (0,1))
-})
+circle((1,0), radius:0.1, stroke:none, fill:orange) 
+circle((0,0), radius:0.1, stroke:none, fill:orange) 
+circle((1,1), radius:0.1, stroke:none, fill:orange) 
+circle((0,1), radius:0.1, stroke:none, fill:orange) 
+
+merge-path(fill: red.transparentize(80%), { line((0, 0), (1, 0)); bezier((), (0, 0), (1,1), (0,1)); } ) 
 ```
 
 Elements hidden via `hide` are ignored. 
 
 **Anchors**
 
-- **centroid** Centroid of the closed and non self-intersecting shape. Only exists if `close` is `true`. Supports path anchors and shapes where all vertices share the same z-value.
+- **centroid** Centroid of the closed and non self-intersecting shape. Only exists if `close` is `true`. Supports path anchors and shapes where all vertices share the same z-value. 
 
 **Parameters**
 
-- **body** `elements` — Elements with paths to be merged together.
+- **body** `elements` — Elements with paths to be merged together. 
 - **join** `bool` — Connect all sub-paths with a straight line.
 - **close** `bool` — Close the path with a straight line from the start of the path to its end.
 - **ignore-marks** `bool` — If `true`, remove marks from input elements.
 - **ignore-hidden** `bool` — If `true`, ignore all hidden elements.
-- **name** `none str`
-- **..style** `style`
+- **name** `none str` 
+- **..style** `style` 
+
+
+```grid
+merge-path( fill: blue.lighten(70%), stroke:1pt+blue, close: false,
+{ line((0,0), (4,0), stroke:(paint:black, thickness:1pt)) 
+
+bezier((), (4,3), (1,4), (3,4), stroke:(paint:blue, thickness:1pt)) 
+
+line((3,5), (0,2), stroke:(paint:red, thickness:1pt) ) })
+
+// positional coordinates
+circle((0,0), radius: 0.05, stroke:none, fill: red) 
+circle((4,0), radius: 0.05, stroke:none, fill: red) 
+circle((4,3), radius: 0.05, stroke:none, fill: red) 
+circle((3,4), radius: 0.05, stroke:none, fill: red) 
+circle((1,4), radius: 0.05, stroke:none, fill: red) 
+line((1,4),(4,0), stroke:(paint:black, dash:"dashed")) 
+line((3,4),(4,3), stroke:(paint:black, dash:"dashed")) 
+```
+
+
+```grid
+let start = 45deg ;  let stop  = 180deg;
+
+merge-path( fill: purple.lighten(65%), stroke: purple, close: true,
+{ line((0,0), (start, 3)) ; arc((0,0), start: start, stop: stop, radius: 3, anchor: "origin"); line((0,0),(stop,3)); } )
+
+// Optional: full circle in background (dashed)
+circle((0,0), radius: 3, stroke: (dash: "dashed"))
+```
+
+
+```grid
+merge-path(fill: red, stroke: black, {
+    line((0, 0), (0.5, 1)) 
+    arc((0.5, 1), start: 0deg, stop: 180deg, radius: 0.5)
+    line((-0.5, 1), (0, 0))
+  })
+circle((0, 1), radius: 0.2, fill: white)
+```
+
+
+```grid
+merge-path( fill: blue.transparentize(50%), stroke: (paint: blue, thickness: 2pt), close: true,
+{
+// 1. Draw a straight line from the origin out to the right edge
+line((0, 0), (2, 0)); 
+
+// 2. Draw the arc. Centered at (0,0), it starts exactly at (2,0), perfectly continuing the path from the previous line.
+arc((0, 0), start: 0deg, stop: 90deg, radius: 2, anchor:"origin")
+// 3. We don't need to manually draw the line back to (0,0). The `close: true` parameter automatically draws a straight line. from the arc's end at (0, 2) back to the path's very beginning.
+})
+```
 
 ---
 
@@ -1133,7 +1205,7 @@ rect-around(
 )
 ```
 
-Draws an axis aligned bounding box around all given points/elements. Everything else (styling, anchors) is similar to the `rect` shape.
+Draws an axis aligned bounding box around all given points/elements. Everything else (styling, anchors) is similar to the `rect` shape. 
 
 ```grid
 circle((1, 1), radius: 0.1, fill: blue, name: "c1")
@@ -1144,15 +1216,36 @@ rect-around("c1", "c2", "r1", stroke: yellow, padding: 0.1)
 
 **Styling**
 
-The `padding` attribute can be used to control spacing. Other attributes are forwarded to the `rect` shape.
+The `padding` attribute can be used to control spacing. Other attributes are forwarded to the `rect` shape. 
 
 **Anchors**
 
-The same as for the `rect` shape.
+The same as for the `rect` shape. 
 
 **Parameters**
 
-- **..pts-style** `coordinates style` — Positional two or more coordinates/elements to calculate bounding box of. Accepts style key-value pairs.
+- **..pts-style** `coordinates style` — Positional two or more coordinates/elements to calculate bounding box of. Accepts style key-value pairs. 
+
+```grid
+rect((0,0), (rel:(6,1)), radius:(north:5pt), fill:teal.transparentize(85%), name:"recta")
+content("recta.center",[important])
+line((0,0),(0,-3),(6,-3),(6,0), name:"lineb")
+// merge-path("recta","lineb")
+
+```
+
+```grid
+let draw-style=( stroke: (paint: teal, thickness: 1.4pt, dash: "dashed"), fill: teal.transparentize(85%))
+
+// Some example elements we want to surround
+circle((0,0), radius: 0.4, name: "A", fill: blue.lighten(70%))
+rect((0.8, -0.8), (1.6, 0.4), name: "B", fill: red.lighten(75%))
+content((-0.4, 1), text(1.1em)[Important!], name: "C", anchor:"west")
+
+// Here comes rect-around
+rect-around( "A", "B", "C", ..draw-style, radius: 4pt, padding: 0.4 )
+```
+
 
 ---
 
@@ -1452,7 +1545,7 @@ You can add custom named anchors to the group by using the `anchor` element whil
 
 The default anchor is `"center"` but this can be overridden by using `anchor` to place a new anchor called `"default"`.
 
-When using named elements within a group, you can access the element's anchors outside of the group by using the implicit anchor coordinate. e.g. `"a.b.north"`.
+When using named elements within a group, you can access the element's anchors outside of the group by using the implicit anchor coordinate. e.g. `"a.b.north"`. 
 
 ```grid
 group(name: "a", {
@@ -2291,7 +2384,7 @@ square(
 )
 ```
 
-Draw a square-wave along a path using a line-strip.
+Draw a square-wave along a path using a line-strip. 
 
 The number of phases can be controlled via the `segments` or `segment-length` style key, and the width via `amplitude`.
 

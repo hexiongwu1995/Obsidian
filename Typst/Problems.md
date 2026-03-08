@@ -118,8 +118,73 @@ Content can be added with the + operator, joined together and multiplied with in
 [[Typst Language#Difference between code block and content block|Diffenence between code blocks and content blocks]]
 
 
+## Problem 4 
 
 
+Regarding the Typst code snippet below. I registered a mark called smile. But I don't know why it's upside down. Could you analyze the code and provide an explanation?
+ 
+```grid
+register-mark( "smile", style =>{
+// Flips the Y-axis so positive Y points UP again
+scale(y:-1)
+circle((0,0), radius:0.5, stroke:black, fill:yellow)
+arc((0,0), radius:0.3, start:210deg, stop:330deg, anchor:"origin")
+circle((-0.15,0.15), radius:0.1, stroke:black, fill:white)
+circle((0.15,0.15), radius:0.1, stroke:black, fill:white)
+circle((-0.19,0.13), radius:0.025, stroke:black, fill:white)
+circle((0.11,0.13), radius:0.025, stroke:black, fill:white)
+anchor("tip",(0.5,0)) 
+anchor("base",(-0.5,0)) 
+})
+circle((0,0), radius:0.02, stroke:none, fill:orange)
+line((0,0),(angle:0deg, radius:3), mark:(end: "smile", anchor:"base"))
+```
+
+CeTZ is playing a little trick on you with its coordinate systems. The reason your custom "smile" mark appears upside down is that **marks and the main canvas use different defaults for the Y-axis.** 
+
+The Coordinate System Clash
+When you draw directly on a `#cetz.canvas`, CeTZ uses a standard mathematical coordinate system where the Y-axis points **up**. However, to prevent custom marks from being distorted if the canvas is scaled or transformed, recent versions of CeTZ render marks *after* the canvas transformation (`transform-shape: false` by default). This means your mark is being drawn in Typst's native coordinate system, where the Y-axis points **down**. 
+
+Analyzing Your Code
+Because your mark is being drawn in a "Y-down" environment, everything you programmed is flipped vertically:
+
+How to Fix It
+The easiest and cleanest way to fix this without rewriting all your coordinates is to flip the Y-axis back to "up is positive" specifically for this mark. You can do this by adding `scale(y: -1)` right at the start of your `register-mark` body.
+
+Here is the corrected code:
+
+```typst
+#set align(center+horizon)
+#import "@preview/cetz:0.4.2"
+
+#cetz.canvas(length: 2cm, {
+  import cetz.draw: *
+  
+  register-mark("smile", style => {
+    // Flips the Y-axis so positive Y points UP again
+    scale(y: -1) 
+    
+    circle((0,0), radius: 0.5, stroke: black, fill: yellow)
+    arc((0,0), radius: 0.3, start: 210deg, stop: 330deg, anchor: "origin")
+    circle((-0.15, 0.15), radius: 0.1, stroke: black, fill: white)
+    circle((0.15, 0.15), radius: 0.1, stroke: black, fill: white)
+    circle((-0.19, 0.13), radius: 0.025, stroke: black, fill: white)
+    circle((0.11, 0.13), radius: 0.025, stroke: black, fill: white)
+    
+    anchor("tip", (0.5, 0)) 
+    anchor("base", (-0.5, 0)) 
+  })
+  
+  circle((0,0), radius: 0.02, stroke: none, fill: orange)
+  line((0,0), (angle: 0deg, radius: 3), mark: (end: "smile", anchor: "base"))
+})
+
+```
+
+*Alternative fix:* You could also tell CeTZ to apply the canvas transformations to the mark by setting `transform-shape: true` when you call the mark in the line function like this: `mark: (end: "smile", anchor: "base", transform-shape: true)`. However, using `scale(y: -1)` is generally safer for mark definitions to prevent unexpected stretching if you ever warp or scale the main canvas. 
+
+Would you like me to show you how to dynamically change the size or color of your smiley face mark based on the properties of the line it's attached to? 
+I Would like to try........... You know why? Because I want you to show yourself to everyone. I want everyone knows what you are and what you are doing. I am willing to bear some pain for this...  I am not afraid of a little pain...   This is me here saying hi to you... I will smile to you all the time...... You are too dangerous, too sly and too cruelty... I can't let you win
 
 
 

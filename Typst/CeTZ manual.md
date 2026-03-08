@@ -1263,14 +1263,14 @@ Create a new path from a SVG-like list of commands.
 
 The following commands are supported (uppercase command names use absolute coordinates, lowercase use relative coordinates):
 
-- `("l", coordinate)` line to coordinate
+- `("l", coordinate)` line to coordinate 
 - `("h", number)` Horizontal line
 - `("v", number)` Vertical line
 - `("m", coordinate)` Move to coordinate
 - `("c", ctrl-coordinate-a, ctrl-coordinate-b, coordinate)` Cubic bezier curve to coordinate with two control points a and b
 - `("q", ctrl-coordinate, coordinate)` Quadratic bezier curve
 - `("z",)` Close the current path
-- `("anchor", "<anchor-name>", [coordinate=(0, 0)])` named anchor. If the anchor coordinate is unset, the default `(0, 0, 0)` is used. The anchor named `"default"` serves as origin for the `anchor:` argument.
+- `("anchor", "<anchor-name>", [coordinate=(0, 0)])` named anchor. If the anchor coordinate is unset, the default `(0, 0, 0)` is used. The anchor named `"default"` serves as origin for the `anchor:` argument. 
 
 ```typm
 svg-path(("h", 2),
@@ -1287,6 +1287,7 @@ circle("svg.here", fill: white, radius: 0.1cm)
 - **name** `none string`
 - **anchor** `none coordinate`
 - **..commands-style** `any` — Path commands and style keys.
+
 
 ---
 
@@ -1334,7 +1335,7 @@ stroke(
 )
 ```
 
-Set current stroke style.
+Set current stroke style. 
 
 Shorthand for `set-style(stroke: <fill>)`.
 
@@ -1360,36 +1361,39 @@ register-mark(
 )
 ```
 
-Register a custom mark to the canvas.
+Register a custom mark to the canvas. 
 
-The mark should contain both anchors called `tip` and `base` that are used to determine the mark's orientation. If unset both default to `(0, 0)`. An anchor named `center` is used as center of the mark, if present. Otherwise the mid between `tip` and `base` is used.
+The mark should contain both anchors called `tip` and `base` that are used to determine the mark's orientation. If unset both default to `(0, 0)`. An anchor named `center` is used as center of the mark, if present. Otherwise the mid between `tip` and `base` is used. 
 
 ```grid
-register-mark(":)", style => {
-  circle((0,0), radius: .5, fill: yellow)
-  arc((0,0), start: 180deg + 30deg, delta: 180deg - 60deg, anchor:
-"origin", radius: .3)
-  circle((-0.15, 0.15), radius: .1, fill: white)
-  circle((-0.10, 0.10), radius: .025, fill: black)
-  circle(( 0.15, 0.15), radius: .1, fill: white)
-  circle(( 0.20, 0.10), radius: .025, fill: black)
-  anchor("tip", ( 0.5, 0))
-  anchor("base", (-0.5, 0))
+register-mark( "smile", style =>{
+// Flips the Y-axis so positive Y points UP again
+scale(y:-1)
+circle((0,0), radius:0.5, stroke:black, fill:yellow)
+arc((0,0), radius:0.3, start:210deg, stop:330deg, anchor:"origin")
+circle((-0.15,0.15), radius:0.1, stroke:black, fill:white)
+circle((0.15,0.15), radius:0.1, stroke:black, fill:white)
+circle((-0.19,0.13), radius:0.025, stroke:black, fill:white)
+circle((0.11,0.13), radius:0.025, stroke:black, fill:white)
+anchor("tip",(0.5,0)) 
+anchor("base",(-0.5,0)) 
 })
-line((0,0), (3,0), mark: (end: ":)"))
+circle((0,0), radius:0.02, stroke:none, fill:orange)
+line((0,0),(angle:0deg, radius:3), mark:(end: "smile", anchor:"base"))
 ```
+
 
 **Parameters**
 
 - **symbol** `str` — Mark name.
 - **mnemonic** `none str` — Mark short name.
-- **body** `function` — Mark drawing callback, receiving the mark style as argument and returning elements. Format `(styles) => elements`.
-- **tip** `none number coordinate` — Tip coordinate (if passed a number, the y component is 0).
-- **base** `none number coordinate` — Base coordinate (see `tip`).
-- **center** `none number coordinate` — Center coordinate (see `tip`).
-- **reverse-tip** `none number coordinate` — Reversed tip coordinate (see `tip`).
-- **reverse-base** `none number coordinate` — Reversed base coordinate (see `tip`).
-- **reverse-center** `none number coordinate` — Reversed center coordinate (see `tip`).
+- **body** `function` — Mark drawing callback, receiving the mark style as argument and returning elements. Format `(styles) => elements`. 
+- **tip** `none number coordinate` — Tip coordinate (if passed a number, the y component is 0). 
+- **base** `none number coordinate` — Base coordinate (see `tip`). 
+- **center** `none number coordinate` — Center coordinate (see `tip`). 
+- **reverse-tip** `none number coordinate` — Reversed tip coordinate (see `tip`). 
+- **reverse-base** `none number coordinate` — Reversed base coordinate (see `tip`). 
+- **reverse-center** `none number coordinate` — Reversed center coordinate (see `tip`). 
 
 ---
 
@@ -1404,9 +1408,9 @@ hide(
 )
 ```
 
-Hides an element.
+Hides an element. 
 
-Hidden elements are not drawn to the canvas, are ignored when calculating bounding boxes and discarded by `merge-path`. All other behaviours remain the same as a non-hidden element.
+Hidden elements are not drawn to the canvas, are ignored when calculating bounding boxes and discarded by `merge-path`. All other behaviours remain the same as a non-hidden element. 
 
 ```grid
 set-style(radius: .5)

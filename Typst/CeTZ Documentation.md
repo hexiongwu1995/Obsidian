@@ -403,18 +403,18 @@ circle((name: "a", anchor: "b.north"), radius: 0.2)
 
 #### Tangent
 
-This system allows you to compute the point that lies tangent to a shape. In detail, consider an element and a point. Now draw a straight line from the point so that it "touches" the element (more formally, so that it is *tangent* to this element). The point where the line touches the shape is the point referred to by this coordinate system.
+This system allows you to compute the point that lies tangent to a shape. In detail, consider an element and a point. Now draw a straight line from the point so that it "touches" the element (more formally, so that it is *tangent* to this element). The point where the line touches the shape is the point referred to by this coordinate system. 
 
 **element:** `str`  
 The name of the element on whose border the tangent should lie.
 
 **point:** `coordinate`  
-The point through which the tangent should go.
+The point through which the tangent should go. 
 
 **solution:** `int`  
-Which solution should be used if there are more than one.
+Which solution should be used if there are more than one.  
 
-A special algorithm is needed in order to compute the tangent for a given shape. Currently it does this by fitting an ellipse to the given center, north and east anchors (see Anchors), so only circles and ellipses will work correctly. 
+A special algorithm is needed in order to compute the tangent for a given shape. Currently it does this by fitting an ellipse to the given center, north and east anchors (see Anchors), so only circles and ellipses will work correctly.  
 
 ```grid
 grid((0,0), (3,2), help-lines: true)
@@ -424,33 +424,75 @@ circle((1,1), name: "c", radius: 0.75)
 content("c", $ c $, anchor: "north-east", padding: .1)
 
 line(
-  // The starting point or element
-  "a",
-  // The tangent coordinate
-  (element: "c", point: "a", solution: 1),
-  // The center of the circle
-  "c",
-  // The other tangent coordinate
-  (element: "c", point: "a", solution: 2),
+  "a.center",   // The starting point or element
+
+  (element: "c", point: "a", solution: 1),  // The tangent coordinate
+
+  "c",  // The center of the circle
+
+  (element: "c", point: "a", solution: 2),  // The other tangent coordinate
+  
   "a",
   stroke: red
 )
 ```
 
+
+```grid
+grid((-2,-2), (2,2), help-lines:true)
+circle((0,1), radius:0.6, name:"circle", stroke:black)
+
+circle((0,-1), radius:2pt, name:"point")
+
+line(
+"point.center", 
+(element:"circle", point:"point.center", solution:1),
+"circle.center",
+(element:"circle", point:"point.center", solution:2),
+"point.center",
+stroke:red
+ )
+```
+
 #### Perpendicular
 
-Can be used to find the intersection of a vertical line going through a point $p$ and a horizontal line going through some other point $q$.
+Can be used to find the intersection of a vertical line going through a point $p$ and a horizontal line going through some other point $q$. 
 
 **horizontal:** `coordinate`  
-The coordinate through which the horizontal line passes.
+The coordinate through which the horizontal line passes. 
 
 **vertical:** `coordinate`  
-The coordinate through which the vertical line passes.
+The coordinate through which the vertical line passes.  
 
-You can use the implicit syntax of `(horizontal, "|-", vertical)` or `(vertical, "-|", horizontal)`.
+You can use the implicit syntax of `(horizontal, "|-", vertical)` or `(vertical, "-|", horizontal)`.  
+
+
+```grid
+grid((-2,-2),(2,2), help-lines:true)
+
+line((-2,0), (1,0), name:"horizontal")
+line((1,-2), (1,2), name:"vertical")
+line((horizontal:"vertical.end",vertical:"horizontal.end"),(2,-1)) 
+
+/* Symbol "-|" means to extract the y-component of the preceding coordinate and the x-component of the succeeding coordinate as the new coordinate: (x,y). x=x-component, y=y-component. */
+
+line(("horizontal.end","-|","vertical.end"),(0,-1))
+
+line(("horizontal.end","|-","vertical.end"),(0,-1))
 
 ```
-set-style(content: (padding: .05))
+
+```grid
+grid((-3,-3),(3,3), help-lines:true) 
+
+```
+
+```grid
+circle((0,0), radius:0.05, fill:orange, stroke:none)
+circle((rel:(30deg,1), update:false), radius:0.05, fill:orange, stroke:none)
+circle((rel:(75deg,1), update:false), radius:0.05, fill:orange, stroke:none)
+
+set-style(content: (padding: 0.05))
 content((30deg, 1), $p_1$, name: "p1")
 content((75deg, 1), $p_2$, name: "p2")
 
@@ -460,11 +502,15 @@ content("xline.end", $q_1$, anchor: "west")
 line((2, -0.2), (2, 1.2), name: "yline")
 content("yline.end", $q_2$, anchor: "south")
 
-line("p1.south-east", (horizontal: (), vertical: "xline.end"))
-line("p2.south-east", ((), "|-", "xline.end")) // Short form
-line("p1.south-east", (vertical: (), horizontal: "yline.end"))
-line("p2.south-east", ((), "-|", "yline.end")) // Short form
+line("p1.south-east", (horizontal: (), vertical: "xline.end"), stroke:red)
+
+line("p2.south-east", ((), "|-", "xline.end"), stroke:orange)
+
+line("p1.south-east", (vertical: (), horizontal: "yline.end"), stroke:blue)
+
+line("p2.south-east", ((), "-|", "yline.end"), stroke:teal)
 ```
+
 
 #### Interpolation
 

@@ -234,19 +234,72 @@ circle((rel: (1, 0)), stroke: red) ;
 
 #### Polar
 
-Defines a point that is `radius` distance away from the origin at the given angle.
+Defines a point that is `radius` distance away from the origin at the given angle. 
 
 **angle:** `angle`  
-The angle of the coordinate. A value of `0deg` is to the right, a value of `90deg` is upward.
+The angle of the coordinate. A value of `0deg` is to the right, a value of `90deg` is upward. 
 
 **radius:** `number` or `array`  
 The distance from the origin. An array of numbers can be given, in the form `(x, y)`, to define the `x` and `y` radii of an ellipse instead of a circle.
 
 ```grid
-line((0, 0), (angle: 30deg, radius: 1)) ;
+line((0, 0), (angle: 30deg, radius: 2)) ;
 ```
 
-The implicit form is an array of the angle then the radius `(angle, radius)` or `(angle, (x, y))`.
+The implicit form is an array of the angle then the radius `(angle, radius)` or `(angle, (x, y))`. 
+
+
+```grid
+line((0,0),
+(rel:(30deg,1), update:false),
+(rel:(60deg,1), update:false),
+(rel:(90deg,1), update:false),
+(rel:(120deg,1), update:false),
+(rel:(150deg,1), update:false),
+(rel:(180deg,1), update:false),
+(rel:(210deg,1), update:false),
+(rel:(240deg,1), update:false),
+(rel:(270deg,1), update:false),
+(rel:(300deg,1), update:false),
+(rel:(330deg,1), update:false),
+(rel:(360deg,1), update:false),
+(rel:(390deg,1), update:false), 
+fill:orange.transparentize(95%))
+```
+
+
+```grid
+line((0,0), 
+(rel:(0deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(30deg, 2*calc.sin(15deg) ) ,update:true),
+(rel:(60deg, 2*calc.sin(15deg) ) ,update:true),
+(rel:(90deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(120deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(150deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(180deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(210deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(240deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(270deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(300deg, 2*calc.sin(15deg) ) ,update:true), 
+(rel:(330deg, 2*calc.sin(15deg) ) ,update:true), )
+```
+
+```grid
+line((0,0), 
+(rel:(0deg, 0.6), update:true), 
+(rel:(30deg, 0.6), update:true), 
+(rel:(60deg, 0.6), update:true), 
+(rel:(90deg, 0.6), update:true), 
+(rel:(120deg, 0.6), update:true), 
+(rel:(150deg, 0.6), update:true), 
+(rel:(180deg, 0.6), update:true), 
+(rel:(210deg, 0.6), update:true), 
+(rel:(240deg, 0.6), update:true), 
+(rel:(270deg, 0.6), update:true), 
+(rel:(300deg, 0.6), update:true), 
+(rel:(330deg, 0.6), update:true), )
+```
+
 
 ```grid
 line(
@@ -262,25 +315,21 @@ line(
 
 #### Barycentric
 
-In the barycentric coordinate system a point is expressed as the linear combination of multiple vectors. The idea is that you specify vectors $v_1, v_2, ..., v_n$ and numbers $alpha_1, alpha_2, ..., alpha_n$. Then the barycentric coordinate specified by these vectors and numbers is:
+In the barycentric coordinate system a point is expressed as the linear combination of multiple vectors. The idea is that you specify vectors $v_1, v_2, ..., v_n$ and numbers $alpha_1, alpha_2, ..., alpha_n$. Then the barycentric coordinate specified by these vectors and numbers is: $display((alpha_1 v_1 + alpha_2 v_2 + dots.c + alpha_n v_n) / (alpha_1 + alpha_2 + dots.c + alpha_n))$ 
 
-$ (alpha_1 v_1 + alpha_2 v_2 + dots.c + alpha_n v_n) / (alpha_1 + alpha_2 + dots.c + alpha_n) $
+
+
 
 **bary:** `dictionary`  
-A dictionary where the key is a named element and the value is a `float`. The `center` anchor of the named element is used as $v$ and the value is used as $alpha$. 
+A dictionary where the key is a named element and the value is a `float`. The `center` anchor of the named element is used as$v$and the value is used as $alpha$. 
 
 ```grid
 circle((90deg, 3), radius: 0, name: "content")
 circle((210deg, 3), radius: 0, name: "structure")
 circle((-30deg, 3), radius: 0, name: "form")
 
-for (c, a) in (
-  ("content", "south"),
-  ("structure", "north"),
-  ("form", "north")
-) {
-  content(c, align(center, c + [\ oriented]), padding: .1, anchor: a)
-}
+for (c, a) in ( ("content", "south"), ("structure", "north"), ("form", "north")
+) { content(c, align(center, text(size:8pt)[#c \  oriented]), padding: 1pt, anchor: a) }
 
 stroke(gray + 1.2pt)
 line("content", "structure", "form", close: true)
@@ -298,12 +347,8 @@ for (c, s, f, cont) in (
   (1, 0.05, 0.05, "ASCII")
 ) {
   content(
-    (bary: (
-      content: c,
-      structure: s,
-      form: f
-    )),
-    cont,
+    (bary: ( content: c, structure: s, form: f )),
+    text(size:8pt)[#cont],
     fill: rgb(50, 50, 255, 100),
     stroke: none,
     frame: "circle"
@@ -313,7 +358,7 @@ for (c, s, f, cont) in (
 
 #### Anchor
 
-Defines a point relative to a named element using anchors, see [Anchors](#anchors).
+Defines a point relative to a named element using anchors, see [Anchors](#anchors). 
 
 **name:** `str`  
 The name of the element that you wish to use to specify a coordinate.
@@ -322,24 +367,24 @@ The name of the element that you wish to use to specify a coordinate.
 The anchor of the element. Strings are named anchors, angles are border anchors and numbers and ratios are path anchors. If not given, the default anchor will be used, on most elements this is `center` but it can be different or not exist at all!
 
 ```grid 
-circle((0,0), name: "circle")
+circle((0,0), radius:2, name: "circle")
 
 // Anchor at 30 degree
-content((name: "circle", anchor: 30deg), box(fill: white, $30 degree$))
+content((name: "circle", anchor: 30deg), box(fill: white, $sscript(30 degree)$))
 
 // Anchor at 30% of the path length
-content((name: "circle", anchor: 30%), box(fill: white, $30%$))
+content((name: "circle", anchor: 30%), box(fill: white, $sscript(30%)$))
 
 // Anchor at 3.14 of the path
-content((name: "circle", anchor: 3.14), box(fill: white, $p = 3.14$))
+content((name: "circle", anchor:2*3.14), box(fill: white, $sscript(p =2* 3.14)$), anchor:"center")
 ```
 
-You can also use implicit syntax of a dot separated string in the form `"name.anchor"` for all anchors.
+You can also use implicit syntax of a dot separated string in the form `"name.anchor"` for all anchors. 
 
 ```grid
 line((0, 0), (4, 3), name: "line")
 
-circle("line.75%", name: "circle")
+circle("line.4", name: "circle")
 
 rect("line.start", "circle.east")
 ```
@@ -347,11 +392,11 @@ rect("line.start", "circle.east")
 When using named elements within a group, you can access the element's anchors outside of the group by using the implicit anchor coordinate, e.g. `"a.b.north"`.
 
 ```grid
-group(name: "a", {
-  circle((), name: "b")
-})
+circle((), radius:0.05, fill:teal, stroke:none)
 
-circle("a.b.south", radius: 0.2)
+group(name: "a", {circle((0,0), radius:1, name: "b")} )
+
+circle("a.b.south", radius: 0.1)
 
 circle((name: "a", anchor: "b.north"), radius: 0.2)
 ```

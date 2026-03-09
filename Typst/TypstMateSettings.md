@@ -21,7 +21,7 @@
 
 ```
 //inline-math preamble
-#set page( width: auto, height: auto, margin: (x: 10pt, y: 5pt))
+#set page( width: auto, height: auto, margin: (x:5pt, y:5pt))
 #show math.equation: set text(font: "Fira Math")
 #math.equation([$ {CODE} $], block:false, numbering:none, number-align:end, supplement:none)
 ```

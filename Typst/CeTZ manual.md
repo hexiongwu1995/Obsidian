@@ -1425,8 +1425,8 @@ line("i.0", "i.1")
 
 **Parameters**
 
-- **body** `element` — One or more elements to hide.
-- **bounds** `bool` — If `true`, respect the bounding box of the hidden elements for resizing the canvas.
+- **body** `element` — One or more elements to hide. 
+- **bounds** `bool` — If `true`, respect the bounding box of the hidden elements for resizing the canvas. 
 
 ---
 
@@ -1440,7 +1440,7 @@ floating(
 
 Places an element without affecting bounding boxes.
 
-Floating elements are drawn to the canvas but are ignored when calculating bounding boxes. All other behaviours remain the same.
+Floating elements are drawn to the canvas but are ignored when calculating bounding boxes. All other behaviours remain the same. 
 
 ```grid
 group(name: "g", {
@@ -1454,7 +1454,7 @@ rect("g.north-west", "g.south-east")
 
 **Parameters**
 
-- **body** `element` — One or more elements to place.
+- **body** `element` — One or more elements to place. 
 
 ---
 
@@ -1470,7 +1470,7 @@ intersections(
 )
 ```
 
-Calculates the intersections between multiple paths and creates one anchor per intersection point.
+Calculates the intersections between multiple paths and creates one anchor per intersection point. 
 
 All resulting anchors will be named numerically, starting at 0. i.e., a call `intersections("a", ...)` will generate the anchors `"a.0"`, `"a.1"`, `"a.2"` to `"a.n"`, depending of the number of intersections.
 
@@ -1516,7 +1516,7 @@ CeTZ provides the following sorting functions:
 
 #### group
 
-```
+```typm
 group(
   body elements function,
   name: none str,
@@ -1577,11 +1577,11 @@ scope(
 )
 ```
 
-This element acts as a scope, all state changes such as transformations and styling only affect the elements in the scope. Elements after the scope are not affected by the changes inside the scope. In contrast to `group`, the scope element does not create a named element itself and "leaks" body elements and anchors to the outside.
+This element acts as a scope, all state changes such as transformations and styling only affect the elements in the scope. Elements after the scope are not affected by the changes inside the scope. In contrast to `group`, the scope element does not create a named element itself and "leaks" body elements and anchors to the outside. 
 
 **Parameters**
 
-- **body** `elements function` — Elements to group together. A least one is required. A function that accepts `ctx` and returns elements is also accepted.
+- **body** `elements function` — Elements to group together. A least one is required. A function that accepts `ctx` and returns elements is also accepted. 
 
 ---
 

@@ -739,11 +739,11 @@ The first is by using the `anchor` argument on an element. When given, the eleme
 
 The second is by using anchor coordinates. You must first give the element a name by passing a string to its `name` argument, you can then use its anchors to place other elements. Note this is only available for elements that have a `name` argument.
 
-Note that all anchors are transformed along with the element.
+Note that all anchors are transformed along with the element. 
 
 #### Named Anchors
 
-Named anchors are normally unique to the type of element, such as a bezier curve's control points. All elements also have a `"default"` named anchor; it always refers to another anchor on the element.
+Named anchors are normally unique to the type of element, such as a bezier curve's control points. All elements also have a `"default"` named anchor; it always refers to another anchor on the element. 
 
 #### Border Anchors
 
@@ -751,16 +751,19 @@ A border anchor refers to a point on the element's border where a ray is cast fr
 
 #### Path Anchors
 
-A path anchor refers to a point along the path of an element. They can be given as either a number for an absolute distance along the path, or a ratio for a relative distance along the path. Path anchors also specify three anchors: `"start"`, `"mid"`, and `"end"`.
+A path anchor refers to a point along the path of an element. They can be given as either a number for an absolute distance along the path, or a ratio for a relative distance along the path. Path anchors also specify three anchors: `"start"`, `"mid"`, and `"end"`. 
 
 ---
 
 ### Marks
 
-Marks are arrow tips that can be added to the end of path based elements that support the `mark` style key, or can be directly drawn by using the `mark` draw function. Marks are specified by giving their names (or shorthand) as strings and have several options to customise them. You can give an array of names to have multiple marks, and dictionaries can be used in the array for per mark styling.
+Marks are arrow tips that can be added to the end of path based elements that support the `mark` style key, or can be directly drawn by using the `mark` draw function. Marks are specified by giving their names (or shorthand) as strings and have several options to customise them. You can give an array of names to have multiple marks, and dictionaries can be used in the array for per mark styling. 
 
 ```grid
-let c = ((rel: (0, -1)), (rel: (2, 0), update: false)) 
+
+grid((0,0),(2,2), help-lines:true)
+
+let c = ((rel: (0, -1), update:true), (rel: (2, 0), update: false)) 
 // Coordinates to draw the line, it is not necessary to understand this for this example.
 
 // No marks
@@ -783,6 +786,52 @@ set-style(mark: (symbol: ((symbol: ">", stroke: red), ">"), end: (stroke: blue))
 line(..c)
 ```
 
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0), radius:0.1, fill:orange, stroke:none)
+
+set-style(mark:(scale:1.2))
+
+line((-2,3),(2,3), mark:(symbol:">"))
+
+line((-2,2),(2,2), mark:(end:"stealth", stroke:black))
+
+line((-2,1),(2,1), mark:(end:"curved-stealth", stroke:black))
+
+line((-2,1),(2,1), mark:(symbol:"curved-stealth", stroke:black))
+
+line((-2,0),(2,0), mark:(symbol:(start:"straight", end:"curved-stealth"), stroke:black))
+
+line((-2,-1),(2,-1), mark:(symbol:(start:">", end:">>"), stroke:black))
+
+line((-2,-2),(2,-2), mark:(symbol:(start:")>", end:")>"), stroke:black))
+```
+
+
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0), radius:0.1, fill:orange, stroke:none)
+
+set-style(mark:(scale:1.2))
+
+line((-3,3),(0,3), mark:(symbol:(start:"straight", end:"stealth")))
+
+let c=( (rel:(0,-1), update:true), (rel:(3,0), update:false) )
+
+line(..c, mark:(symbol:(start:"straight",end:"curved-stealth"), harpoon:true))
+
+line(..c, mark:(start:"curved-stealth",end:"curved-stealth"), stroke:orange)
+
+line(..c, mark:(start:"straight",end:"<>"))
+
+line(..c,stroke:green, mark:(start:(symbol:"straight", stroke:blue),end:(symbol:"<>", stroke:orange)))
+```
+
+
+
+
 #### symbol:
 `none` or `str` or `array` or `dictionary` — Default: `none`
 
@@ -791,7 +840,7 @@ This option sets the mark to draw when using the `mark` draw function, or applie
 #### start:
 `none` or `str` or `array` or `dictionary` — Default: `none`
 
-This option sets the mark to draw at the start of a path based element. It will override all options of the `symbol` key and will not affect marks drawn using the `mark` draw function.
+This option sets the mark to draw at the start of a path based element. It will override all options of the `symbol` key and will not affect marks drawn using the `mark` draw function. 
 
 #### end:
 `none` or `str` or `array` or `dictionary` — Default: `none`
@@ -826,7 +875,7 @@ The distance between multiple marks along their path.
 #### position-samples:
 `int` — Default: `30`
 
-Only applicable when marks are used on curves such as bezier and hobby. The maximum number of samples to use for calculating curve positions. A higher number gives better results but may slow down compilation.
+Only applicable when marks are used on curves such as bezier and hobby. The maximum number of samples to use for calculating curve positions. A higher number gives better results but may slow down compilation. 
 
 #### pos:
 `number` or `ratio` or `none` — Default: `none`
@@ -851,7 +900,7 @@ How much to slant the mark relative to the axis of the arrow. `0%` means no slan
 #### harpoon:
 `bool` — Default: `false`
 
-When true only the top half of the mark is drawn.
+When true only the top half of the mark is drawn. 
 
 #### flip:
 `bool` — Default: `false`
@@ -893,43 +942,19 @@ The tree library allows the drawing of diagrams with simple tree layout algorith
 
 #### Nodes
 
-A tree node is an array consisting of the node's value at index 0 followed by its child nodes. For the default `draw-node` function, the value (the first item) of a node must be of type `content`.
+A tree node is an array consisting of the node's value at index 0 followed by its child nodes. For the default `draw-node` function, the value (the first item) of a node must be of type `content`. 
 
 Example of a list of nodes:
 
 ```grid
-cetz.tree.tree(
-  (
-    [A],
-    (
-      [B],
-      (
-        [C],
-        ([D],)
-      )
-    )
-  ),
-  direction: "right"
-)
+cetz.tree.tree( ( [A], ( [B], ( [C], ([D],) ) ) ), direction: "right")
 ```
 
 Example of a tree of nodes:
 
 ```grid
-cetz.tree.tree(
-  (
-    [A],
-    (
-      [B],
-      [C]
-    ),
-    (
-      [D],
-      [E]
-    )
-  ),
-  direction: "right"
-)
+cetz.tree.tree( ( [A], ( [B], [C] ), ( [D], [E] ) ),
+  direction: "bottom" )
 ```
 
 #### Drawing and Styling Tree Nodes
@@ -938,7 +963,7 @@ The `tree()` function takes an optional `draw-node:` and `draw-edge:` callback f
 
 The `draw-node` function must take the current node and its parent's node anchor as arguments and return one or more elements.
 
-For drawing edges between nodes, the `draw-edge` function must take two node anchors and the target node as arguments and return one or more elements.
+For drawing edges between nodes, the `draw-edge` function must take two node anchors and the target node as arguments and return one or more elements. 
 
 ```grid
 import cetz.tree
@@ -957,9 +982,9 @@ tree.tree(
 )
 ```
 
-For each node, the tree function creates an anchor of the format `"[<child-index>-]<child-index>"` (the root is `"0"`, its first child `"0-0"`, second `"0-1"` and so on) that can be used to query a node's position on the canvas.
+For each node, the tree function creates an anchor of the format `"[<child-index>-]<child-index>"` (the root is `"0"`, its first child `"0-0"`, second `"0-1"` and so on) that can be used to query a node's position on the canvas. 
 
-```
+```grid
 import cetz.tree
 set-style(content: (padding: .1))
 tree.tree(([Root], ([A], [A.A], [A.B]), ([B], [B.A])))
@@ -983,8 +1008,8 @@ Karl wants to put a graphic on the next worksheet for his students. He is curren
 
 In CeTZ, to draw a picture, two imports and a function call is all you need. Karl sets up his file as follows:
 
-```
-#set page(width: auto, height: auto)
+```typ
+// #set page(width: auto, height: auto)
 #import "@preview/cetz:0.4.2"
 
 We are working on
@@ -1007,7 +1032,7 @@ The basic building block of all pictures in CeTZ are draw functions. A draw func
 
 In order to draw a path of straight lines, the `line` draw function can be used. You specify the coordinates of the start position by passing an array with two numbers (a coordinate type) to the first parameter of `line`. The second coordinate must be given as the second parameter of the function otherwise it will panic. Subsequent coordinates can be passed to the function to draw additional lines between the previous and next coordinates.
 
-```
+```grid
 line((-1.5, 0), (1.5, 0), (0, -1.5), (0, 1.5))
 ```
 
@@ -1046,19 +1071,19 @@ Karl is happy with the result, but finds specifying circles in this way to be ex
 
 In order to draw a circle, the `circle` draw function can be used:
 
-```
+```grid
 circle((0, 0), radius: 10pt)
 ```
 
 You can also draw an ellipse with this draw function by passing an array of two numbers to the `radius` argument:
 
-```
+```grid
 circle((0, 0), radius: (20pt, 10pt))
 ```
 
 So, returning to Karl's problem, he can write `circle((0, 0))` to draw the circle as, by default, the `radius` argument is `1`:
 
-```
+```grid
 line((-1.5, 0), (1.5, 0))
 line((0, -1.5), (0, 1.5))
 
@@ -1088,7 +1113,7 @@ The `grid` draw function adds a grid to the picture. It will add lines making up
 
 For Karl, the following code could be used:
 
-```
+```grid
 line((-1.5, 0), (1.5, 0))
 line((0, -1.5), (0, 1.5))
 circle((0, 0))
@@ -1098,7 +1123,7 @@ grid((-1.5, -1.5), (1.5, 1.5), step: 0.5)
 
 Having another look at his desired picture, Karl notices that it would be nice for the grid to be more subdued. To subdue the grid, Karl adds more named arguments to the `grid` draw function: `gray` for the grid lines and a reduced line width of `0.2pt`. He also swaps the ordering of the commands so that the grid is drawn first and everything else on top.
 
-```
+```grid
 grid((-1.5, -1.5), (1.5, 1.5), step: 0.5, stroke: gray + 0.2pt)
 line((-1.5, 0), (1.5, 0))
 line((0, -1.5), (0, 1.5))
@@ -1109,7 +1134,7 @@ circle((0, 0))
 
 Karl notices that the thickness of the circle and axes paths are much greater than the grid's thickness. He learns that CeTZ's default stroke thickness is actually `1pt` and not TikZ's `0.4pt`. We can use the `set-style` draw function to apply styling to all subsequent draw functions, similar to how Typst's `set` and `show` rules work:
 
-```
+```grid
 set-style(stroke: 0.4pt)
 grid((-1.5, -1.5), (1.5, 1.5), step: 0.5, stroke: gray + 0.2pt)
 line((-1.5, 0), (1.5, 0))
@@ -1141,9 +1166,9 @@ circle((0, 0))
 arc((3mm, 0), start: 0deg, stop: 30deg, radius: 3mm)
 ```
 
-As for circles, you can specify the radius as an array of two numbers to get an elliptical arc:
+As for circles, you can specify the radius as an array of two numbers to get an elliptical arc: 
 
-```
+```grid
 arc((0, 0), start: 0deg, stop: 315deg, radius: (1.75, 1))
 ```
 
@@ -1159,7 +1184,7 @@ set-style(
     step: 0.5
   )
 )
-scale(3)
+scale(2)
 grid((-0.5, -0.5), (1.5, 1.5))
 line((-0.5, 0), (1.5, 0), mark: (end: ">"))
 line((0, -0.5), (0, 1.5), mark: (end: ">"))
@@ -1195,7 +1220,7 @@ set-style(
     fill: black
   )
 )
-scale(3)
+scale(2)
 grid((-1, -1), (1.5, 1.5))
 line((-1, 0), (1.5, 0), mark: (end: "stealth"))
 line((0, -1), (0, 1.5), mark: (end: "stealth"))

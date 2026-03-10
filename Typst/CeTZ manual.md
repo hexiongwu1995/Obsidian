@@ -2544,7 +2544,7 @@ for i in range(0, p("len")) {
 }
 ```
 
-The functions returned by this function have the following named arguments:
+The functions returned by this function have the following named arguments: 
 
 You can use a palette for stroking via: `red.with(stroke: true)`.
 

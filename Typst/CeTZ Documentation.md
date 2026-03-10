@@ -791,7 +791,7 @@ line(..c)
 grid((-3,-3),(3,3), help-lines:true)
 circle((0,0), radius:0.1, fill:orange, stroke:none)
 
-set-style(mark:(scale:1.2))
+set-style(mark:(fill:black, scale:1.0, transform-shape:false))
 
 line((-2,3),(2,3), mark:(symbol:">"))
 
@@ -1009,7 +1009,7 @@ Karl wants to put a graphic on the next worksheet for his students. He is curren
 In CeTZ, to draw a picture, two imports and a function call is all you need. Karl sets up his file as follows:
 
 ```typm
-// #set page(width: auto, height: auto)
+#set page(width: auto, height: auto)
 #import "@preview/cetz:0.4.2"
 
 We are working on
@@ -1020,7 +1020,7 @@ We are working on
 })
 ```
 
-Admittedly, not quite the whole picture, yet, but we do have the axes established. Let's have a more detailed look at the code. First, the package `cetz` is imported. The `canvas` function in the `cetz` module is then called and a pair of curly braces are placed as the function's first (and only) positional argument. The braces create a scope or body, in which more functions can be called, but first must be imported from the `draw` module.
+Admittedly, not quite the whole picture, yet, but we do have the axes established. Let's have a more detailed look at the code. First, the package `cetz` is imported. The `canvas` function in the `cetz` module is then called and a pair of curly braces are placed as the function's first (and only) positional argument. The braces create a scope or body, in which more functions can be called, but first must be imported from the `draw` module. 
 
 Inside the body there are two `line` functions. They are draw functions that draw straight lines between given positions. The first `line` function is given the parameters `(-1.5, 0), (1.5, 0)`, which refer to a point at position $(-1.5, 0)$ and $(1.5, 0)$. Here, the positions are specified within a special coordinate system in which, initially, one unit is 1cm.
 
@@ -1030,19 +1030,19 @@ Karl is quite pleased to note that the environment automatically reserves enough
 
 The basic building block of all pictures in CeTZ are draw functions. A draw function is a function that can be called inside the canvas body in order to create the graphic, such as `line`, `bezier`, `rect` and many more (not all draw functions *actually* draw something, like `set-style`, but still effect the outcome of the picture).
 
-In order to draw a path of straight lines, the `line` draw function can be used. You specify the coordinates of the start position by passing an array with two numbers (a coordinate type) to the first parameter of `line`. The second coordinate must be given as the second parameter of the function otherwise it will panic. Subsequent coordinates can be passed to the function to draw additional lines between the previous and next coordinates.
+In order to draw a path of straight lines, the `line` draw function can be used. You specify the coordinates of the start position by passing an array with two numbers (a coordinate type) to the first parameter of `line`. The second coordinate must be given as the second parameter of the function otherwise it will panic. Subsequent coordinates can be passed to the function to draw additional lines between the previous and next coordinates. 
 
 ```grid
 line((-1.5, 0), (1.5, 0), (0, -1.5), (0, 1.5))
 ```
 
-Note that the `canvas` function and import statements have been omitted from the code as they are boiler plate and don't always need to be shown.
+Note that the `canvas` function and import statements have been omitted from the code as they are boiler plate and don't always need to be shown. 
 
 #### Curve Construction
 
 The next thing Karl wants to do is to draw the circle. For this, straight lines obviously will not do. Instead, we need some way to draw curves. For this, CeTZ provides several other draw functions, the most useful here would be the `bezier` function. As the name suggests, it can draw a bezier curve when a start and end coordinate is given, as well as one or two control points.
 
-Here is an example (the control points have been added for clarity):
+Here is an example (the control points have been added for clarity): 
 
 ```grid
 // start and end
@@ -1121,7 +1121,7 @@ circle((0, 0))
 grid((-1.5, -1.5), (1.5, 1.5), step: 0.5)
 ```
 
-Having another look at his desired picture, Karl notices that it would be nice for the grid to be more subdued. To subdue the grid, Karl adds more named arguments to the `grid` draw function: `gray` for the grid lines and a reduced line width of `0.2pt`. He also swaps the ordering of the commands so that the grid is drawn first and everything else on top.
+Having another look at his desired picture, Karl notices that it would be nice for the grid to be more subdued. To subdue the grid, Karl adds more named arguments to the `grid` draw function: `gray` for the grid lines and a reduced line width of `0.2pt`. He also swaps the ordering of the commands so that the grid is drawn first and everything else on top. 
 
 ```grid
 grid((-1.5, -1.5), (1.5, 1.5), step: 0.5, stroke: gray + 0.2pt)
@@ -1204,7 +1204,7 @@ intersections("x", "upward line", "sloped line")
 line((1, 0), "x.0", stroke: orange + 1.2pt)
 ```
 
-If Karl had used the value `(start: ">")` instead of `(end: ">")`, arrow tips would have been put at the beginning of the path. The value `(start: ">", end: ">")` or `(symbol: ">")` puts the marks at both ends of the path.
+If Karl had used the value `(start: ">")` instead of `(end: ">")`, arrow tips would have been put at the beginning of the path. The value `(start: ">", end: ">")` or `(symbol: ">")` puts the marks at both ends of the path. 
 
 Karl notices that the marks are unnaturally large because the shape of marks are transformed by default. This can be resolved by setting the `transform-shape: false` styling parameter. He also wants the mark to be filled and to have a different shape: 
 

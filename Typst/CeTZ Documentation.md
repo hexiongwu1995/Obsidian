@@ -996,9 +996,9 @@ tree.tree(([Root], ([A], [A.A], [A.B]), ([B], [B.A])))
 
 ### A Picture for Karl's New Students
 
-This tutorial is intended for new users of CeTZ. It does not give an exhaustive account of all the features of CeTZ, just of those you are likely to use right away. This tutorial also acts as a parallel to TikZ's tutorial *A Picture for Karl's Students*.
+This tutorial is intended for new users of CeTZ. It does not give an exhaustive account of all the features of CeTZ, just of those you are likely to use right away. This tutorial also acts as a parallel to TikZ's tutorial *A Picture for Karl's Students*. 
 
-Karl is a math and chemistry high-school teacher. He used to create the graphics in his worksheets and exams using the TikZ package with LaTeX. While the results were acceptable, Karl, for his own reasons, has started using Typst instead. He looks through the provided packages in Typst: Universe and finds CeTZ, which is supposed to stand for "CeTZ, ein Typst Zeichenpaket" and appears appropriate.
+Karl is a math and chemistry high-school teacher. He used to create the graphics in his worksheets and exams using the TikZ package with LaTeX. While the results were acceptable, Karl, for his own reasons, has started using Typst instead. He looks through the provided packages in Typst: Universe and finds CeTZ, which is supposed to stand for "CeTZ, ein Typst Zeichenpaket" and appears appropriate. 
 
 #### Problem Statement
 
@@ -1008,7 +1008,7 @@ Karl wants to put a graphic on the next worksheet for his students. He is curren
 
 In CeTZ, to draw a picture, two imports and a function call is all you need. Karl sets up his file as follows:
 
-```typ
+```typm
 // #set page(width: auto, height: auto)
 #import "@preview/cetz:0.4.2"
 

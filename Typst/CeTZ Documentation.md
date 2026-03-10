@@ -240,10 +240,13 @@ Defines a point that is `radius` distance away from the origin at the given angl
 The angle of the coordinate. A value of `0deg` is to the right, a value of `90deg` is upward. 
 
 **radius:** `number` or `array`  
-The distance from the origin. An array of numbers can be given, in the form `(x, y)`, to define the `x` and `y` radii of an ellipse instead of a circle.
+The distance from the origin. An array of numbers can be given, in the form `(x, y)`, to define the `x` and `y` radii of an ellipse instead of a circle. 
 
 ```grid
-line((0, 0), (angle: 30deg, radius: 2)) ;
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0), radius:0.1, fill:orange, stroke:none)
+
+line((1, 0), (angle: 45deg, radius: 2* calc.sqrt(2))) ;
 ```
 
 The implicit form is an array of the angle then the radius `(angle, radius)` or `(angle, (x, y))`. 
@@ -467,6 +470,35 @@ The coordinate through which the vertical line passes.
 You can use the implicit syntax of `(horizontal, "|-", vertical)` or `(vertical, "-|", horizontal)`.  
 
 
+
+```grid
+grid((-3,-3),(3,3), help-lines:true) 
+circle((0,0), radius:0.1, fill:orange, stroke:none)
+line((-3,1),(1,-2), name:"linea")
+
+/* Symbol "-|" means to extract the y-component of the preceding coordinate and the x-component of the succeeding coordinate as the new coordinate: (x,y). x=x-component, y=y-component. */
+line((2,2.5),((),"-|", "linea.start")) 
+
+line((2,2.5),((),"|-", "linea.end")) 
+```
+
+
+```grid
+grid((-3,-3),(3,3), help-lines:true) 
+circle((-2,1), radius:0.8, name:"circ")
+circle((2,-2), radius:0.1, name:"poi")
+
+line("poi.center", (element:"circ", point:"poi.center", solution:1), name:"linea")
+
+line("poi.center", (element:"circ", point:"poi.center", solution:2), name:"lineb")
+
+line((1,2),((),"|-", "lineb.end"))
+
+line((1,2),((),"-|", "lineb.start"))
+
+```
+
+
 ```grid
 grid((-2,-2),(2,2), help-lines:true)
 
@@ -482,10 +514,6 @@ line(("horizontal.end","|-","vertical.end"),(0,-1))
 
 ```
 
-```grid
-grid((-3,-3),(3,3), help-lines:true) 
-
-```
 
 ```grid
 circle((0,0), radius:0.05, fill:orange, stroke:none)
@@ -523,30 +551,29 @@ The coordinate to interpolate from.
 The coordinate to interpolate to.
 
 **number:** `ratio` or `number`  
-The distance between `a` and `b`. A ratio will be the relative distance between the two points, a number will be the absolute distance between the two points.
+The distance between `a` and `b`. A ratio will be the relative distance between the two points, a number will be the absolute distance between the two points. 
 
 **angle:** `angle` — Default: `0deg`  
-Angle between $arrow(A B)$ and $arrow(A P)$, where $P$ is the resulting coordinate. This can be used to get the *normal* for a tangent between two points.
+Angle between $arrow(A B)$ and $arrow(A P)$, where $P$ is the resulting coordinate. This can be used to get the *normal* for a tangent between two points. 
 
-Can be used implicitly as an array in the form `(a, number, b)` or `(a, number, angle, b)`.
+Can be used implicitly as an array in the form `(a, number, b)` or `(a, number, angle, b)`. 
 
-```
-grid((0,0), (3,3), help-lines: true)
+```grid
+grid((-3,-3), (3,3), help-lines: true)
 
-line((0,0), (2,2), name: "a")
-for i in (0%, 20%, 50%, 80%, 100%, 125%) { // Relative distance
+line((-2,-2), (2,2), name: "a")
+for i in (0%, 20%, 50%, 80%, 100%, 125%) {
   content(("a.start", i, "a.end"),
-  box(fill: white, inset: 1pt, [#i]))
-}
+  box(fill: white, inset: 1pt, [#i])) }
 
-line((1,0), (3,2), name: "b")
-for i in (0, 0.5, 1, 2) { // Absolute distance
+line((-2,-3), (3,2), name: "b")
+for i in (0, 1, 3, 5.5) {
   content(("b.start", i, "b.end"),
-  box(fill: white, inset: 1pt, text(red, [#i])))
-}
+  box(fill: white, inset: 1pt, text(red, [#i])))}
 ```
 
-```
+
+```grid
 grid((0,0), (3,3), help-lines: true)
 line((1,0), (3,2))
 line((1,0), ((1, 0), 1, 10deg, (3,2)))
@@ -555,32 +582,79 @@ stroke(none)
 circle(((1, 0), 50%, 10deg, (3, 2)), radius: 2pt)
 ```
 
+```grid
+grid((-3,-3), (3,3), help-lines:true) 
+let n=3 
+for i in range(0, n+1) {circle( ((-3,0), i, (3,0)), radius:2pt, fill:orange, stroke:none)}
 ```
-grid((0,0), (4,4), help-lines: true)
+
+
+```grid
+
+grid((-3,-3), (3,3), help-lines: true)
 
 fill(black)
 stroke(none)
 let n = 16
 for i in range(0, n+1) {
-  circle(((2,2), i / 8, i * 22.5deg, (3,2)), radius: 2pt)
-}
+  circle(((0,0), i / 8, i * 22.5deg, (1,0)), radius: 2pt)}
+  
+content((-3,4),[#text(size:10pt)[Parameter function \ in the form of Polar coordinate] \ $rho= t/8$ \ $theta= t* 22.5degree$ \ $t= 0, 1, 2, ..., 16$ ], anchor:"south-west")
 ```
+
+
+
+```grid
+grid((-3, -3), (3, 3), help-lines: true)
+content((-3, 3.5), [Archimedean spiral #linebreak() $r = a theta$], anchor: "south-west")
+
+// Archimedean spiral (r = 0.4 θ)
+let a = 0.4
+let max-theta = 2*calc.pi
+let step = 0.1
+let num-steps = calc.ceil(max-theta / step)
+
+for i in range(0, int(num-steps) + 1) {
+let theta = i * step
+let r = a * theta
+circle((theta * 1rad, r), fill: black, radius: 2pt, stroke: none)
+}
+
+```
+
+Archimedean spiral
+
+The Archimedean spiral, also known as Archimedes' spiral, is a plane curve formed by a point starting at the origin and moving away from it at a constant linear speed while the line from the origin to the point rotates at a constant angular speed around the origin, producing a spiral with successive turns separated by a fixed distance.  In polar coordinates, it is defined by the equation  $r = a theta$, where $r$ is the radial distance from the origin, $theta$ is the polar angle in radians, and $a$ is a positive constant determining the spacing between arms. This contrasts with logarithmic spirals, where the spacing increases exponentially, making the Archimedean spiral the locus of points where the radius grows linearly with the angle.
+
+Key properties include: constant pitch, where the perpendicular distance between successive turns is $2 pi a$. Parametric equations in Cartesian coordinates: $x = a  theta cos theta$, $y = a theta sin theta$.  Arc length from $theta = 0$ to $theta$ is  $display(s(theta) = a/2[ theta sqrt(1 + theta^(2)) + ln(theta + sqrt(1 + theta^(2))) ])$ ,  Curvature: $kappa(theta) = frac(2 + theta^(2), a(1 + theta^(2))^(3 /2))$ decreases as $theta$ increases. 
+
 
 #### Function
 
 An array where the first element is a function and the rest are coordinates will cause the function to be called with the resolved coordinates. The resolved coordinates will be given as a vector that represents an xyz point in space.
 
-```
+```grid
 circle((0, 0), name: "c")
 fill(red)
 circle((v => cetz.vector.add(v, (0, -1)), "c.west"), radius: 0.3)
 ```
 
+
+```grid
+let frange(start, end, step: 1.0) = {
+  let count = int(calc.ceil((end - start) / step))
+  range(0, count, step:1).map(i => start + i * step)}
+
+// Example Output: (0.0, 0.5, 1.0, 1.5)
+content((0,0),[#frange(0.0, 2.0, step: 0.5)])
+```
+
+
 #### Projection
 
 You can project a point `pt` onto a line from `a` to `b` using the `(project: pt, onto: (a, b))` coordinate or the short form `(pt, "_|_", a, b)`.
 
-```
+```grid
 set-style(fill: black, radius: 0.1)
 circle(name: "A", (0, 0))
 circle(name: "B", (3, 1))
@@ -591,12 +665,12 @@ line("P", (project: "P", onto: ("A", "B")))
 
 You can also get the normal for a tangent line between two points `a` and `b` using `(a: (), b: a, number: .5, angle: 90deg)`.
 
-```
+```grid
 let (a, b) = ((0,0), (3,2))
 line(a, b)
 // Get normal for tangent from a to () with distance .5, at a
 circle(a, radius: .1, fill: black)
-line((a, .7, b), (a: (), b: a, number: .5, angle: 90deg), stroke: red)
+line((a, 1.5, b), (a: (), b: a, number: 0.9, angle: 90deg), stroke: red)
 ```
 
 ---

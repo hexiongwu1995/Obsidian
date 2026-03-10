@@ -542,13 +542,13 @@ line("p2.south-east", ((), "-|", "yline.end"), stroke:teal)
 
 #### Interpolation
 
-Use this to linearly interpolate between two coordinates `a` and `b` with a given distance `number`. If `number` is a number the position will be at the absolute distance away from `a` towards `b`, a ratio can be given instead to be the relative distance between `a` and `b`. An angle can also be given for the general meaning: "First consider the line from `a` to `b`. Then rotate this line by `angle` around point `a`. Then the two endpoints of this line will be `a` and some point `c`. Use the point `c` for the subsequent computation."
+Use this to linearly interpolate between two coordinates `a` and `b` with a given distance `number`. If `number` is a number the position will be at the absolute distance away from `a` towards `b`, a ratio can be given instead to be the relative distance between `a` and `b`. An angle can also be given for the general meaning: "First consider the line from `a` to `b`. Then rotate this line by `angle` around point `a`. Then the two endpoints of this line will be `a` and some point `c`. Use the point `c` for the subsequent computation." 
 
 **a:** `coordinate`  
-The coordinate to interpolate from.
+The coordinate to interpolate from. 
 
 **b:** `coordinate`  
-The coordinate to interpolate to.
+The coordinate to interpolate to. 
 
 **number:** `ratio` or `number`  
 The distance between `a` and `b`. A ratio will be the relative distance between the two points, a number will be the absolute distance between the two points. 
@@ -572,14 +572,25 @@ for i in (0, 1, 3, 5.5) {
   box(fill: white, inset: 1pt, text(red, [#i])))}
 ```
 
+You can also get the normal for a tangent line between two points `a` and `b` using `(a: (), b: a, number: .5, angle: 90deg)`. 
+
+```grid
+let (a, b) = ((0,0), (3,2))
+line(a, b)
+// Get normal for tangent from a to () with distance .5, at a
+circle(a, radius: .1, fill: black)
+line((a, 1.5, b), (a: (), b: a, number: 1.2, angle: 90deg), stroke: red)
+```
+
+
 
 ```grid
 grid((0,0), (3,3), help-lines: true)
 line((1,0), (3,2))
-line((1,0), ((1, 0), 1, 10deg, (3,2)))
-fill(red)
-stroke(none)
-circle(((1, 0), 50%, 10deg, (3, 2)), radius: 2pt)
+line((1,0), ((1, 0), 1.5, 20deg, (3,2))) 
+fill(red) 
+stroke(none) 
+circle(((1, 0), 50%, 20deg, (3, 0)), radius: 2pt) 
 ```
 
 ```grid
@@ -599,9 +610,8 @@ let n = 16
 for i in range(0, n+1) {
   circle(((0,0), i / 8, i * 22.5deg, (1,0)), radius: 2pt)}
   
-content((-3,4),[#text(size:10pt)[Parameter function \ in the form of Polar coordinate] \ $rho= t/8$ \ $theta= t* 22.5degree$ \ $t= 0, 1, 2, ..., 16$ ], anchor:"south-west")
+content((-3,4),[#text(size:10pt)[Parametric polar equation] #linebreak() $rho= t/8$ #linebreak() $theta= t* 22.5degree$ #linebreak() $t= 0, 1, 2, ..., 16$ #linebreak() $rho = 0.3183 * theta$ #linebreak() $theta in (0, 2 pi )$], anchor:"south-west")
 ```
-
 
 
 ```grid
@@ -631,7 +641,7 @@ Key properties include: constant pitch, where the perpendicular distance between
 
 #### Function
 
-An array where the first element is a function and the rest are coordinates will cause the function to be called with the resolved coordinates. The resolved coordinates will be given as a vector that represents an xyz point in space.
+An array where the first element is a function and the rest are coordinates will cause the function to be called with the resolved coordinates. The resolved coordinates will be given as a vector that represents an xyz point in space. 
 
 ```grid
 circle((0, 0), name: "c")
@@ -640,44 +650,90 @@ circle((v => cetz.vector.add(v, (0, -1)), "c.west"), radius: 0.3)
 ```
 
 
-```grid
-let frange(start, end, step: 1.0) = {
-  let count = int(calc.ceil((end - start) / step))
-  range(0, count, step:1).map(i => start + i * step)}
+map() function 
 
-// Example Output: (0.0, 0.5, 1.0, 1.5)
-content((0,0),[#frange(0.0, 2.0, step: 0.5)])
+Typst provides a very useful .map() method on arrays (and similar collection types).  It creates a new array where each element is transformed by the given function.  Here are some simple, progressively more practical examples:
+
+```grid
+let numbers = (1, 4, 7, -2, 9)
+
+content((0,0),[#numbers.map(n => n * 2)], anchor:"west")
+
+content((0,-2),[#numbers.map(calc.abs)], anchor:"west")
+
+content((0,-4),[#numbers.map(n => n + 10)], anchor:"west")
+```
+
+
+```grid
+let data = (12, 18, 5) 
+
+let data-transform = data.map( n => str(n) + " kg" ) 
+
+content((0,0), [#data-transform], anchor:"west") 
+```
+
+Define frange() function 
+Neither CeTZ nor Typst provides a built-in range() function for floating-point numbers. Typst's native range() function strictly accepts integers for its start, end, and step arguments.  However, you can easily create a float-compatible range functions using the integer range() combined with the .map() method.  
+
+Step-Based Float Range 
+If you want to specify a continuous interval (e.g., step by 0.5), you can calculate the number of steps needed, generate an integer array, and map the float step over it. This behaves similarly to numpy.arange in Python. 
+
+An Archimedean spiral generated by using frange function. 
+```grid
+let frange(start, end, interval:1.0)= { 
+let num-steps=  calc.ceil( (end - start)/interval ); 
+let arr =range(0, num-steps, step:1)
+.map(i => start + i*interval)
+arr.map(a => calc.round(a, digits:3))
+}
+
+// Archimedean spiral  r= 0.4 * theta 
+grid((-3,-3),(3,3), help-lines:true)
+let theta-array = frange(0, 2*calc.pi, interval:0.1) 
+
+for theta in theta-array {
+let r = 0.4 * theta; 
+circle((theta*1rad, r), radius:2pt, fill:black, stroke:none)
+}
+content((-3,3.5), [Archimedean spiral #linebreak() $r = 0.4 theta$], anchor:"south-west")
+```
+An Archimedean spiral generated by using linspace function.
+```grid
+let linspace(start, end, num)= {
+let step =  (end - start)/num ;
+let arr = range(num).map(a => start + a * step )
+arr 
+} 
+
+grid((-3,-3),(3,3), help-lines:true) 
+let theta-array = linspace(0, 2*calc.pi, 60) 
+for theta in theta-array {
+let r = 0.4 * theta 
+circle((theta*1rad, r), radius:2pt, fill:black, stroke:none) 
+}
+content((-3,3.5), [Archimedean spiral #linebreak() $r = 0.4 * theta$], anchor:"south-west")
 ```
 
 
 #### Projection
 
-You can project a point `pt` onto a line from `a` to `b` using the `(project: pt, onto: (a, b))` coordinate or the short form `(pt, "_|_", a, b)`.
+You can project a point `pt` onto a line from `a` to `b` using the `(project: pt, onto: (a, b))` coordinate or the short form `(pt, "_|_", a, b)`. 
 
 ```grid
 set-style(fill: black, radius: 0.1)
-circle(name: "A", (0, 0))
+circle(name: "A", (0, 0), fill:orange, stroke:none)
 circle(name: "B", (3, 1))
 circle(name: "P", (1.9, -1.6))
 line("A", "B")
 line("P", (project: "P", onto: ("A", "B")))
 ```
 
-You can also get the normal for a tangent line between two points `a` and `b` using `(a: (), b: a, number: .5, angle: 90deg)`.
-
-```grid
-let (a, b) = ((0,0), (3,2))
-line(a, b)
-// Get normal for tangent from a to () with distance .5, at a
-circle(a, radius: .1, fill: black)
-line((a, 1.5, b), (a: (), b: a, number: 0.9, angle: 90deg), stroke: red)
-```
-
 ---
 
 ### Anchors
 
-You can refer to a position relative to a named element by using its anchors. Anchors come in several different variations but can all be used in two different ways.
+You can refer to a position relative to a named element by using its anchors. Anchors come in several different variations but can all be used in two different ways. 
 
 The first is by using the `anchor` argument on an element. When given, the element will be translated such that the given anchor will be where the given position is. This is supported by all elements that have an `anchor` argument.
 

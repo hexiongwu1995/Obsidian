@@ -4,7 +4,7 @@
 # table 
 `Element`
 
-A table of items.
+A table of items. 
 
 Tables are used to arrange content in cells. Cells can contain arbitrary content, including multiple paragraphs and are specified in row-major order. For a hands-on explanation of all the ways you can use and customize tables in Typst, check out the [Table Guide](https://typst.app/docs/guides/tables/). 
 

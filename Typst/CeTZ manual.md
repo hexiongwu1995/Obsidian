@@ -1842,23 +1842,104 @@ circle((x: 1), radius:0.5,  fill: blue.transparentize(90%))
 circle((x: 2), radius:0.5,  fill: green.transparentize(90%))
 ```
 
-You can store shared context data under a key in the `ctx.shared-data` dictionary. The `ctx.shared-data` dictionary is not scoped by `group` or `scope` elements and can be used for canvas global state.
-
-```grid
-set-style(fill: black, radius: 0.1)
-circle(name: "A", (0, 0), fill:orange, stroke:none)
-circle(name: "B", (3, 1))
-circle(name: "P", (1.9, -1.6))
-line("A", "B")
-line("P", (project: "P", onto: ("A", "B")))
-```
-
+You can store shared context data under a key in the `ctx.shared-data` dictionary. The `ctx.shared-data` dictionary is not scoped by `group` or `scope` elements and can be used for canvas global state. 
 
 **Parameters**
 
-- **callback** `function` — A function that accepts the context dictionary and only returns a new one.
+- **callback** `function` — A function that accepts the context dictionary and only returns a new one. 
 
----
+```grid
+set-style(fill: black, radius: 0.1)
+  circle(name: "A", (0, 0), fill: orange, stroke: none)
+  circle(name: "B", (3, 1))
+  circle(name: "P", (1.9, -1.6))
+  line("A", "B")
+  
+  let proj-coord = (project: "P", onto: ("A", "B"))
+  line("P", proj-coord)
+
+  // 1. Intercept the drawing context
+  get-ctx(ctx => {
+    // 2. Resolve the dictionary into a numeric vector array
+    let (ctx, resolved-pt) = cetz.coordinate.resolve(ctx, proj-coord)
+    
+    // 3. Print the resolved vector
+    content((0, 2), [#text(size:10pt,fill:purple)[projection point:] #linebreak()  #resolved-pt], anchor:"west")
+  })
+```
+
+Here is a comprehensive introduction to `cetz.coordinate.resolve`. 
+
+#### cetz.coordinate.resolve 
+
+Overview
+`cetz.coordinate.resolve` is a utility function in the `cetz.coordinate` module. It converts any CeTZ coordinate expression — named anchors like `"circle.west"`, relative coordinates, polar coordinates, etc. — into a concrete 3D vector of the form `$( x, y, z )$`. This is essential when you need to programmatically inspect or manipulate absolute canvas positions inside a `get-ctx` callback.
+
+Function Signature 
+
+```typm
+cetz.coordinate.resolve(ctx, ..coordinates) -> (ctx, vec1, vec2, ...)
+```
+
+**Parameters:**
+
+| Parameter       | Type                 | Description                                                                                             |
+| --------------- | -------------------- | ------------------------------------------------------------------------------------------------------- |
+| `ctx`           | `dictionary`         | The current canvas context, obtained from `get-ctx` or `group(ctx => ...)`.                             |
+| `..coordinates` | variadic coordinates | One or more CeTZ coordinates of any supported format (XYZ, named anchor string, relative, polar, etc.). |
+
+**Returns:** A tuple starting with the updated `ctx`, followed by one resolved `$( x, y, z )$` vector per input coordinate. 
+
+
+Syntax
+
+```typm
+get-ctx(ctx => {
+  let (ctx, pt) = cetz.coordinate.resolve(ctx, my-coord)
+  // pt is now (x, y, z)
+})
+```
+
+You can resolve multiple coordinates in a single call: 
+
+```typm
+get-ctx(ctx => {
+  let (ctx, a, b) = cetz.coordinate.resolve(ctx, coord-a, coord-b)
+})
+```
+
+Note the destructuring pattern: the first element of the returned tuple is always the (potentially updated) context, and each subsequent element corresponds to a resolved vector. 
+
+Example  — Measure the distance between two points 
+
+```grid
+grid((0,0),(3,4), help-lines:true)
+line((0, 0), (3, 4), name: "ln")
+get-ctx(ctx => {
+let (ctx, a, b) = cetz.coordinate.resolve(ctx, "ln.start", "ln.end")
+let (x1, y1,_) = a
+let (x2, y2, z2) = b
+// Euclidean distance: sqrt((x2-x1)^2 + (y2-y1)^2) = 5
+let dist = calc.sqrt( calc.pow((x2 - x1),2) + calc.pow((y2 - y1),2) )
+content((1.5, -0.5), [Distance = #dist]) 
+content((1.5, -1.0), [a= #a]) 
+content((1.5, -1.5), [b= #b]) 
+content((1.5, -2.0), [z2= #z2]) 
+})
+
+
+/*  In Typst, _ in a destructuring pattern is a discard placeholder — it means "there is a value here, but I don't need it and won't give it a name." There's no semantic difference from writing `let (x1, y1, z1) = a`. The `z1` just goes unused — but using `_` makes the intent explicit: *this third value is intentionally ignored*.  */
+
+```
+
+Key Points
+
+- You must call `resolve` inside a `get-ctx` (or `group(ctx => ...)`) block, because it needs the live canvas context to look up named elements and apply the current transformation matrix.
+- The returned vectors are in canvas space (after all active `rotate`, `translate`, `scale` transforms are applied), so arithmetic on them is straightforward.
+- Resolving a named anchor like `"myshape.north"` will panic if no element with that name has been drawn yet — order of drawing matters. 
+- The function is part of the semi-public API (`cetz.coordinate`), meaning it's stable enough for custom element authoring but not officially part of the high-level drawing API. 
+
+
 
 #### get-ctx
 
@@ -1868,7 +1949,7 @@ get-ctx(
 )
 ```
 
-An advanced element that allows you to read the current context through a callback and return elements based on it.
+An advanced element that allows you to read the current context through a callback and return elements based on it. 
 
 ```grid
 // Print the transformation matrix
@@ -1879,7 +1960,16 @@ get-ctx(ctx => {
 
 **Parameters**
 
-- **callback** `function` — A function that accepts the context and can return elements.
+- **callback** `function` — A function that accepts the context and can return elements. 
+
+#### Dynamically output
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+content((-2,3),[Outputs:], anchor:"east")
+for i in range(6) {content( (rel:(0,-1), update:true), [#i] )}
+```
+
 
 ---
 
@@ -1893,7 +1983,7 @@ for-each-anchor(
 )
 ```
 
-Iterates through all named anchors of an element and calls a callback for each one.
+Iterates through all named anchors of an element and calls a callback for each one. 
 
 ```grid
 // Label nodes anchors
@@ -1906,9 +1996,9 @@ angle: -30deg)
 
 **Parameters**
 
-- **name** `str` — The name of the element with the anchors to loop through.
+- **name** `str` — The name of the element with the anchors to loop through. 
 - **callback** `function` — A function that takes the anchor name and can return elements.
-- **exclude** `array` — An array of anchor names to not include in the loop.
+- **exclude** `array` — An array of anchor names to not include in the loop. 
 
 ---
 
@@ -1941,7 +2031,7 @@ on-layer(-1, {
 **Parameters**
 
 - **layer** `float int` — The layer to place the elements on. Elements placed without `on-layer` are always placed on layer 0.
-- **body** `elements function` — Elements to draw on the layer specified. A function that accepts `ctx` and returns elements is also accepted.
+- **body** `elements function` — Elements to draw on the layer specified. A function that accepts `ctx` and returns elements is also accepted. 
 
 ---
 
@@ -1959,7 +2049,7 @@ Overwrites the transformation matrix.
 
 **Parameters**
 
-- **mat** `none matrix` — The $4 times 4$ transformation matrix to set. If `none` is passed, the transformation matrix is set to the identity matrix (`matrix.ident(4)`).
+- **mat** `none matrix` — The $4 times 4$ transformation matrix to set. If `none` is passed, the transformation matrix is set to the identity matrix (`matrix.ident(4)`). 
 
 ---
 
@@ -1990,21 +2080,50 @@ rotate(
 )
 ```
 
-Rotates the transformation matrix on the z-axis by a given angle or other axes when specified.
+Rotates the transformation matrix on the z-axis by a given angle or other axes when specified. 
 
 ```grid
+grid((-3,-3),(3,3), help-lines:true)
 // Rotate on z-axis
 rotate(z: 45deg)
 rect((-1,-1), (1,1))
-// Rotate on y-axis
-rotate(y: 80deg)
-circle((0,0))
 ```
+
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0), radius:1pt)
+// Rotate around origin point on y-axis
+rotate(y: 180deg, origin:(1,0,0))
+rect((-1,-1),(1,1))
+```
+
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0), radius:1pt)
+// Rotate around origin point on z-axis
+rotate(z: 180deg, origin:(1,1,0))
+rect((-1,-1),(1,1))
+```
+
+
+```grid
+let mark-style= (mark:(start:none, end:(symbol:"curved-stealth", fill:black), ))
+line((0,0,0),(3,0,0), ..mark-style, name:"x")
+line((0,0,0),(0,3,0), ..mark-style, name:"y")
+line((0,0,0),(0,0,3), ..mark-style, name:"z")
+content((3,0,0),$x$, anchor:"west")
+content((0,3,0),$y$, anchor:"south")
+content((0,0,3),$z$, anchor:"north-east")
+/* grid((0,0,0),(3,0,3)) */
+```
+
 
 **Parameters**
 
 - **..angles** `angle` — A single angle as a positional argument to rotate on the z-axis by. Named arguments of `x`, `y` or `z` can be given to rotate on their respective axis. You can give named arguments of `yaw`, `pitch` or `roll`, too.
-- **origin** `none coordinate` — Origin to rotate around, or `(0, 0, 0)` if set to `none`.
+- **origin** `none coordinate` — Origin to rotate around, or `(0, 0, 0)` if set to `none`. 
 
 ---
 
@@ -2020,6 +2139,8 @@ translate(
 Translates the transformation matrix by the given vector or dictionary.
 
 ```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt,stroke:none, fill:orange)
 // Outer rect
 rect((0, 0), (2, 2))
 // Inner rect
@@ -2031,6 +2152,15 @@ rect((0, 0), (1, 1))
 
 - **..args** `vector float length` — A single vector or any combination of the named arguments `x`, `y` and `z` to translate by. A translation matrix with the given offsets gets multiplied with the current transformation depending on the value of `pre`.
 - **pre** `bool` — Specify matrix multiplication order - `false`: `World = World * Translate` - `true`: `World = Translate * World`.
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt,stroke:none, fill:orange)
+
+// Inner rect
+translate((1,1,0))
+rect((0, 0), (1, 1))
+```
 
 ---
 
@@ -2046,6 +2176,9 @@ scale(
 Scales the transformation matrix by the given factor(s).
 
 ```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt,stroke:none, fill:orange)
+
 // Scale the y-axis
 scale(y: 50%)
 circle((0,0))
@@ -2068,9 +2201,12 @@ set-origin(
 )
 ```
 
-Sets the given position as the new origin $(0, 0, 0)$.
+Sets the given position as the new origin $(0, 0, 0)$. 
 
 ```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt,stroke:none, fill:orange)
+
 // Draw some rect
 rect((0,0), (2,2), name: "r")
 // Move (0, 0) to the top edge of "r"
@@ -2096,9 +2232,39 @@ Sets the previous coordinate.
 
 The previous coordinate can be used via `()` (empty coordinate). It is also used as base for relative coordinates if not specified otherwise.
 
+Most common usage:
+
+```typm
+move-to((3, 1))             // absolute
+move-to( (rel:(2, 0.5)) )   // relative to previous
+move-to((30deg, 2))         // polar: angle, radius
+move-to("A.north")          // anchor
+move-to(())                 // go back to where we already are (rarely useful)
+```
+
+
 ```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt, stroke:none, fill:orange)
+
 circle((), radius: .25)
+
+circle((1,1), radius:0.1)
+
 move-to((1,0))
+circle((), radius: .15)
+```
+
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt, stroke:none, fill:orange)
+
+circle((), radius: .25)
+
+circle((1,1), radius:0.1)
+
+move-to((rel:(1,0)))
 circle((), radius: .15)
 ```
 
@@ -2118,11 +2284,15 @@ set-viewport(
 )
 ```
 
-Span viewport between two coordinates and set-up scaling and translation.
+Span viewport between two coordinates and set-up scaling and translation. 
 
 ```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt, stroke:none, fill:orange)
+
 rect((0,0), (2,2))
 set-viewport((0,0), (2,2), bounds: (10, 10))
+grid((0,0),(10,10), help-lines:true)
 circle((5,5))
 ```
 
@@ -2130,7 +2300,9 @@ circle((5,5))
 
 - **from** `coordinate` — Bottom left corner coordinate.
 - **to** `coordinate` — Top right corner coordinate.
-- **bounds** `vector` — Viewport bounds vector that describes the inner width, height and depth of the viewport.
+- **bounds** `vector` — Viewport bounds vector that describes the inner width, height and depth of the viewport. 
+
+
 
 ---
 

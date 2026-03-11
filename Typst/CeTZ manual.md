@@ -1594,7 +1594,7 @@ anchor(
 )
 ```
 
-Creates a new anchor for the current group. The new anchor will be accessible from inside the group by using just the anchor's name as a coordinate.
+Creates a new anchor for the current group. The new anchor will be accessible from inside the group by using just the anchor's name as a coordinate. 
 
 ```grid
 // Inside a group
@@ -1626,14 +1626,194 @@ copy-anchors(
 )
 ```
 
-Copies multiple anchors from one element into the current group. Panics when used outside of a group. Copied anchors will be accessible in the same way anchors created by the `anchor` element are.
+Copies multiple anchors from one element into the current group. Panics when used outside of a group. Copied anchors will be accessible in the same way anchors created by the `anchor` element are. 
 
 **Parameters**
 
 - **element** `str` — The name of the element to copy anchors from.
-- **filter** `auto array` — When set to `auto` all anchors will be copied to the group. An array of anchor names can instead be given so only the anchors that are in the element and the list will be copied over.
+- **filter** `auto array` — When set to `auto` all anchors will be copied to the group. An array of anchor names can instead be given so only the anchors that are in the element and the list will be copied over. 
 
 ---
+#### ctx ( canvas context object )
+
+In CeTZ, `ctx` is not a standalone function — rather, it refers to the canvas context object that is passed into callback functions in two dedicated draw functions: **`get-ctx`** and **`set-ctx`**. Together, they form CeTZ's context modification API. Here's a full breakdown : 
+
+The Canvas Context (`ctx`) 
+The context of a canvas holds the canvas' internal state like style and transformation. Note that the fields of the context are considered private and therefore unstable. You can add custom values to the context, but to prevent naming conflicts with future CeTZ versions, try to assign unique names. 
+
+`get-ctx` — Read the Context
+
+Purpose: Access the current canvas context and use it to conditionally produce draw commands.
+
+Signature:
+```
+get-ctx(body: function) -> elements
+```
+
+Parameter:
+
+| Name   | Type       | Description                                                                                           |
+| ------ | ---------- | ----------------------------------------------------------------------------------------------------- |
+| `body` | `function` | A function of the form `ctx => elements` that receives the current context and returns draw commands. |
+
+Example — Reading context to branch logic:
+
+```grid
+// Draw something based on a custom context value
+
+get-ctx(ctx => {
+// ctx holds the internal canvas state. You can inspect or use ctx fields here
+let len = 2* ctx.at("length")
+circle((0, 0), radius: len) })
+```
+
+---
+
+`set-ctx` — Modify the Context
+
+Purpose: Mutate the canvas context (e.g., to inject a custom transformation matrix or store custom state). 
+
+Signature:
+```
+set-ctx(callback: function) -> none
+```
+
+Parameter:
+
+| Name       | Type       | Description                                                                                                      |
+| ---------- | ---------- | ---------------------------------------------------------------------------------------------------------------- |
+| `callback` | `function` | A function of the form `ctx => ctx` that receives the current context, modifies it, and returns the new context. |
+
+Example — Injecting a custom shear transformation matrix: 
+
+```grid
+set-ctx(ctx => {
+  let mat = (
+    (2, 0, .5, 0),
+    (0, 1,  0, 0),
+    (0, 0,  1, 0),
+    (0, 0,  0, 1),
+  )
+  ctx.transform = mat
+  return ctx
+})
+circle((x: 0), radius:0.5, fill: red.transparentize(50%))
+circle((x: 1), radius:0.5, fill: blue.transparentize(50%))
+circle((x: 2), radius:0.5, fill: green.transparentize(50%))
+```
+
+This shears all subsequent drawing along the `z`-axis, making the three circles appear offset in 3D perspective. 
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+
+circle((z:0))
+
+circle((x:2, y:2, z:0), radius:0.5)
+```
+
+The syntax (z: 0) in CeTZ is a named coordinate that means: "the point with z = 0 and x = 0, y = 0" →  in other words: exactly the origin (0, 0, 0). 
+
+Why write it this way instead of just (0, 0) or (0, 0, 0)?
+CeTZ supports several coordinate systems, and one very convenient one is the named field syntax (also called "explicit" or "key-value" coordinates). When you write only one (or some) of the fields, CeTZ implicitly sets the missing ones to 0. 
+
+```typm
+(x: 3)          // → (3, 0, 0)
+(y: 2)          // → (0, 2, 0)
+(z: -1.5)       // → (0, 0, -1.5)
+(x: 4, z: 1)    // → (4, 0, 1)
+(y: 5, z: 7)    // → (0, 5, 7)
+```
+
+
+
+Combining `set-ctx` + `get-ctx` — Stateful Drawing
+You can use them together to store and retrieve custom state across draw commands:
+
+```grid
+// Store custom data into context
+set-ctx(ctx => { ctx.my-radius = 0.8; return ctx })
+
+// Read custom data back and use it
+get-ctx(ctx => {
+    let r = ctx.at("my-radius", default: 0.5);
+    circle((0, 0), radius: r, fill: blue);
+    circle((2, 0), radius: r * 0.5, fill: red);
+  })
+```
+
+Here, `my-radius` is stored as a custom key. The value $r = 0.8$ is retrieved later by `get-ctx` to draw two circles scaled relative to each other. 
+
+```grid
+grid((-3,-3),(3,3),help-lines:true)
+circle((0,0),radius:3cm)
+circle((0,0),radius:2pt, stroke:none, fill:orange)
+// length must be set with a length unit
+set-ctx( ctx=> { ctx.length= 4cm; return ctx } )
+
+// get-ctx(ctx => { circle((0,0), radius:2cm) })
+
+circle((-2,0),radius:4cm)
+
+circle((4cm,0),radius:1)
+```
+
+You’ve stumbled upon a very counterintuitive part of how CeTZ handles its coordinate system. It is completely logical to expect that changing the global ctx.length would scale the drawing, but due to CeTZ's internal rendering pipeline, it does not affect raw numerical coordinates like (-2, 0). 
+
+Here is the breakdown of exactly why your code behaves this way, and how to actually achieve the scaling you are looking for.
+
+The CeTZ Coordinate Pipeline
+CeTZ processes coordinates in a specific sequence, treating "raw numbers" and "Typst lengths" very differently. 
+
+Input Resolution: Internally, CeTZ maps everything to a dimensionless, floating-point coordinate grid. If you provide a raw number like (-2, 0), CeTZ treats these as pure floats and skips unit conversion entirely. If you provide an explicit Typst length like (4cm, 0), CeTZ divides that length by the current ctx.length to convert it into a dimensionless float. 
+
+Final Canvas Rendering: After all elements are processed, CeTZ takes the internal floating-point grid and translates it into absolute Typst positions on the page. To do this, it multiplies the floats by the original length defined in the `#cetz.canvas(length: 1cm)` wrapper. 
+
+Why Your Code Didn't Scale
+Because you passed (-2, 0) to the circle function, CeTZ saw raw numbers and stored the coordinate as -2.0 internally, completely bypassing the ctx.length check.
+
+Even if you had passed explicit units via (4cm, 0), modifying ctx.length to 4cm would actually shrink the internal coordinate. CeTZ would divide 4cm by your new 4cm context length, resulting in an internal float of 1.0. The final renderer would then multiply that 1.0 by the canvas's base 1cm, drawing the circle at 1.0cm instead of 16cm!
+
+The Correct Way to Scale Elements
+If you want to scale specific elements dynamically within the canvas, you should modify the transformation matrix using the scale() function.
+
+If your goal was to change the scale of the entire drawing, you simply modify the base canvas parameter directly: `#cetz.canvas(length: 4cm, { ... })`. 
+
+A Quick Note on Typst Mutability: You mentioned the code renders without errors, which is interesting! In modern Typst versions (0.11+), function arguments are strictly immutable. Attempting to directly assign a field via ctx.length = 4cm within a closure will typically throw a cannot mutate 'ctx' compiler error. If you ever need to legally modify context variables in newer versions, you must shadow the variable first (let c = ctx; c.length = 4cm; return c) or merge dictionaries (return ctx + (length: 4cm)).
+
+Would you like me to explain how to use CeTZ's set-ctx to apply custom transformation matrices, or do you need help with any other drawing elements?
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+scale(2)
+circle((0,0))
+```
+
+`ctx` in `group` Callbacks 
+The `ctx => draw-cmds` pattern also appears inside `group()`: 
+
+```grid
+set-ctx( ctx=> { ctx.length= 2cm; return ctx } )
+grid((-2,-2),(2,2), help-lines:true)
+group(ctx => {
+  // ctx available here too
+  circle((0,0), radius: 1cm)
+  rect((1,0), (2,1))
+})
+```
+
+You can pass content as a function of the form `ctx => draw-cmds`, which returns the group's children.
+
+Summary Table
+
+| Function  | Signature                  | `ctx` role                             |
+| --------- | -------------------------- | -------------------------------------- |
+| `get-ctx` | `get-ctx(ctx => elements)` | Read-only access; return draw commands |
+| `set-ctx` | `set-ctx(ctx => ctx)`      | Modify and return the new context      |
+| `group`   | `group(ctx => elements)`   | Optionally receive ctx in group scope  |
+
+The key mental model: `ctx` is always a dictionary-like object representing the live internal state of the canvas — transformations, styles, and any custom data you've stored. `get-ctx` lets you observe it; `set-ctx` lets you mutate it. 
+
 
 #### set-ctx
 
@@ -1643,24 +1823,36 @@ set-ctx(
 )
 ```
 
-An advanced element that allows you to modify the current canvas context. Note: The transformation matrix (`transform`) is rounded after calling the callback function and therefore might not be exactly the matrix specified. This is due to rounding errors and should not cause any problems.
+An advanced element that allows you to modify the current canvas context. Note: The transformation matrix (`transform`) is rounded after calling the callback function and therefore might not be exactly the matrix specified. This is due to rounding errors and should not cause any problems. 
 
 ```grid
+grid((0,-2),(4,2), help-lines:true)
+circle((0,0),radius:1pt)
 // Setting a custom transformation matrix
 set-ctx(ctx => {
-  let mat = ((1, 0, .5, 0),
-             (0, 1, 0, 0),
-             (0, 0, 1, 0),
-             (0, 0, 0, 1))
+  let mat = ((2, 0, 0.5, 0),
+             (0, 1,   0,   0),
+             (0, 0,   1,   0),
+             (0, 0,   0,   1))
   ctx.transform = mat
   return ctx
 })
-circle((z: 0), fill: red)
-circle((z: 1), fill: blue)
-circle((z: 2), fill: green)
+circle((x: 0), radius:0.5, fill: red.transparentize(90%))
+circle((x: 1), radius:0.5,  fill: blue.transparentize(90%))
+circle((x: 2), radius:0.5,  fill: green.transparentize(90%))
 ```
 
 You can store shared context data under a key in the `ctx.shared-data` dictionary. The `ctx.shared-data` dictionary is not scoped by `group` or `scope` elements and can be used for canvas global state.
+
+```grid
+set-style(fill: black, radius: 0.1)
+circle(name: "A", (0, 0), fill:orange, stroke:none)
+circle(name: "B", (3, 1))
+circle(name: "P", (1.9, -1.6))
+line("A", "B")
+line("P", (project: "P", onto: ("A", "B")))
+```
+
 
 **Parameters**
 

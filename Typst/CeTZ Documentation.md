@@ -727,7 +727,9 @@ circle(name: "B", (3, 1))
 circle(name: "P", (1.9, -1.6))
 line("A", "B")
 line("P", (project: "P", onto: ("A", "B")))
+let c= (project: "P", onto: ("A", "B"))
 ```
+
 
 ---
 

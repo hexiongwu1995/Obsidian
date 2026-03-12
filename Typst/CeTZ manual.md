@@ -2304,85 +2304,250 @@ Here is a breakdown of how they differ, starting with the axonometric family whe
 
 ---
 
-1. Isometric Projection
+Axonometric projection is a form of orthographic (parallel) projection used in technical and engineering drawing to represent a 3D object in 2D. The projection lines are all parallel, and the object is rotated relative to the projection plane so that three of its faces are visible at once. Unlike multiview orthographic drawings (which align with the principal planes), axonometric views show depth, width, and height in a single pictorial view.
 
-In an isometric projection, all three axes ($x, y, z$) are equally foreshortened. This means the object is rotated so that the viewer looks down exactly at the corner of the object.
+The three subtypes—isometric, dimetric, and trimetric—are classified solely by how the three principal axes of the object (typically x, y, and z) appear when projected. The fundamental cause of the differences is the exact direction of the line of sight (i.e., the orientation or angle of the viewing direction relative to the object's three axes). Because the projection is parallel and the viewer is effectively at infinity, the viewer's "position" matters only in terms of direction—not distance. This viewing direction determines the angles between the sight line and each object axis, which in turn controls the foreshortening (scale reduction) along each axis.
 
-* **Key Trait:** The angles between the projections of the $x, y,$ and $z$ axes are identically $120degree$.
-* **Use Case:** Highly popular in engineering, technical drawing, and classical 2D video games because the scale is consistent; a unit of length along the $x$-axis is visually the exact same length as a unit on the $y$ or $z$-axis.
+Mathematically, if the unit viewing direction vector is $upright(bold(v))$ and the unit vectors along the object axes are $upright(bold(u))_(x)$,  $upright(bold(u)_y)$, and $upright(bold(u))_(z)$ , the projected scale factor along each axis is $sqrt(1 -(upright(bold(u)) dot upright(bold(v)))^(2))$. The pattern of these dot products (i.e., whether the angles are equal or unequal) decides the type:
 
-2. Dimetric Projection
+- Isometric projection: The line of sight makes equal angles with all three axes. All three axes are equally foreshortened, and the angles between the projected axes are 120°. The true foreshortening factor along each axis is $sqrt(2 /3) approx 0.816$. This is the most common and easiest to draw/measure because one uniform scale can be used for all dimensions.
 
-In a dimetric projection, the object is rotated such that only **two** of the three axes are equally foreshortened.
+- Dimetric projection: The line of sight makes equal angles with two axes but a different angle with the third. Two axes share the same scale factor (and foreshortening), while the third has a different one. The projected angles between axes are not all 120°. This produces a somewhat more realistic look than isometric but still allows simplified scaling for two directions.
 
-* **Key Trait:** Two of the angles between the axes are equal, while the third is different.
-* **Use Case:** Often used when one specific face or angle of a product needs to be emphasized while still maintaining some strict geometric scale on two of its axes.
+- Trimetric projection: The line of sight makes three different angles with the three axes. All three axes have unique scale factors and unique angles between them in the drawing. This is the most flexible (and potentially most realistic) but requires separate scales and measurements for each axis, making it the most complex to construct.
 
-3. Trimetric Projection
+In practice, these differences arise simply by choosing different rotation angles for the object (or equivalently, different elevation and azimuth for the viewing direction). For example, the classic isometric view uses a viewing direction at approximately 45° azimuth and 35°16' elevation relative to the axes, producing perfect symmetry. Any deviation from that symmetry moves the result into dimetric or trimetric territory. There are infinitely many possible orientations, but only those that create equal/two-equal/all-different foreshortening fall neatly into the three named categories.
 
-In a trimetric projection, the object is rotated so that **all three** axes are unequally foreshortened.
+The viewer’s absolute position in space does not matter (parallel rays mean distance is irrelevant), and there is no perspective convergence. The only variable that creates the distinction is the angular relationship between the sight line and the object’s axes—which directly dictates the scale ratios visible in the final drawing. This is why isometric is popular for quick technical illustrations, while dimetric and trimetric are used when a more “natural” or customized appearance is desired.
 
-* **Key Trait:** The angles between all three axes are completely different. The scale along each axis requires its own unique unit of measurement.
-* **Use Case:** Used when a very specific, custom viewing angle is needed to show the most crucial details of an object, though it is the most mathematically tedious to draw by hand.
+Unlike axonometric projections, perspective projection mimics how the human eye actually perceives the world. Parallel lines in 3D space do *not* remain parallel on the 2D page; instead, they converge at one or more vanishing points.
 
-4. Perspective Projection
-
-Unlike axonometric projections, perspective projection mimics how the human eye actually perceives the world. Parallel lines in 3D space do *not* remain parallel on the 2D page; instead, they converge at one or more **vanishing points**.
-
-* **Key Trait:** Objects appear smaller as their distance from the viewer increases.
-* **Use Case:** Architectural rendering, modern 3D gaming, and photography, where visual realism is prioritized over the ability to take exact measurements from the image.
+Key Trait: Objects appear smaller as their distance from the viewer increases.
+Use Case: Architectural rendering, modern 3D gaming, and photography, where visual realism is prioritized over the ability to take exact measurements from the image.
 
 ---
 
 Typst / CeTZ Implementation
 
-Here is a comprehensive Typst document using CeTZ 0.4.2 that illustrates these four projections. Rather than writing a complex projection matrix, this code explicitly plots the vertices for a wireframe cube to visually demonstrate how the angles and foreshortening change across each type.
-
+Here is a comprehensive Typst document using CeTZ 0.4.2 that illustrates these four projections. 
 
 ```grid
-let draw-cube(bottom, top) = {
+let b= ( (0,0,0), (1,0,0), (1,1,0), (0,1,0) )
+let t= b.map( p => (p.at(0), p.at(1), p.at(2)+1 ) )
+let draw-cube() = {
 
-// Draw bottom face, top face, and connecting vertical edges
-line(bottom.at(0), bottom.at(1), bottom.at(2), bottom.at(3), close: true)
-line(top.at(0), top.at(1), top.at(2), top.at(3), close: true)
-for i in range(4) { line(bottom.at(i), top.at(i)) }}
+let mark-style= (mark:(start:none, end:(symbol:"curved-stealth", fill:black, scale:0.5), ))
+line((0,0,0),(1.5,0,0), ..mark-style, name:"x", stroke:0.5pt)
+line((0,0,0),(0,1.5,0), ..mark-style, name:"y", stroke:0.5pt)
+line((0,0,0),(0,0,1.5), ..mark-style, name:"z", stroke:0.5pt)
+content("x.end",$x$, anchor:"west")
+content("y.end",$y$, anchor:"north")
+content("z.end",$z$, anchor:"south-east")
 
-// 1. ISOMETRIC (Equal angles: 30 degrees up from horizontal)
-// x = (0.866, 0.5), y = (-0.866, 0.5)
-set-origin((0,0))
-content((0,0),[ISOMETRIC ],padding:0.5em, anchor:"north")
-let b = ((0,0), (0.866, 0.5), (0, 1), (-0.866, 0.5))
-let t = b.map(p => (p.at(0), p.at(1) + 1))
-draw-cube(b, t)
+line(..b, close:true, stroke:(paint:red, dash:"dashed"))
+line(..t, close:true, stroke:blue)
+for i in range(4) { line( b.at(i), t.at(i)) }
+}
 
-// 2. DIMETRIC (Two equal angles, e.g., 15 degrees up)
-// Axes: x = (0.966, 0.259), y = (-0.966, 0.259)
-set-origin((4,0))
-content((0,0),[DIMETRIC],padding:0.5em, anchor:"north")
-let b = ((0,0), (0.966, 0.259), (0, 0.518), (-0.966, 0.259))
-let t = b.map(p => (p.at(0), p.at(1) + 1))
-draw-cube(b, t)
+ortho(x: 35.264deg, y: 45deg, { draw-cube() } )
+content((0,0), [#text(size:10pt)[Isometric]], padding:1.3cm, anchor:"north")
 
-// 3. TRIMETRIC (Three different angles, e.g., 15 deg and 45 deg)
-// Axes: x = (0.966, 0.259), y = (-0.707, 0.707)
-set-origin((-4,-3))
-content((0,0),[TRIMETRIC],padding:0.5em, anchor:"north")
-let b = ((0,0), (0.966, 0.259), (0.259, 0.966), (-0.707, 0.707))
-let t = b.map(p => (p.at(0), p.at(1) + 1))
-draw-cube(b, t)
+set-origin((3,0,0))
+ortho( x: 42deg, y: 30deg, { draw-cube() } )
+content((0,0), [#text(size:10pt)[Dimetric]], padding:1.3cm, anchor:"north")
 
-// 4. PERSPECTIVE (1-Point Perspective)
-// Front face is square, back face is smaller and shifted to a vanishing point
-set-origin((3.5,0))
-content((0,0),[PERSPECTIVE],padding:0.5em, anchor:"north")
- let front = ((0,0), (1,0), (1,1), (0,1))
- let back = ((0.3, 0.4), (0.7, 0.4), (0.7, 0.8), (0.3, 0.8))
- draw-cube(front, back)
+set-origin((-3,-4,0))
+ortho( x: 20deg, y: 20deg, { draw-cube() } )
+content((0,0), [#text(size:10pt)[Trimetric]], padding:1.3cm, anchor:"north")
+
+
+set-origin((3,0,0))
+scale(0.8)
+let rot-x(p, theta) = { 
+let (x, y, z) = p ; 
+let c = calc.cos(theta) ; 
+let s = calc.sin(theta); 
+(x, y * c - z * s, y * s + z * c) }
+
+let rot-y(p, theta) = {
+  let (x, y, z) = p
+  let c = calc.cos(theta)
+  let s = calc.sin(theta)
+  (x * c + z * s, y, -x * s + z * c)
+}
+
+let rot-z(p, theta) = {
+  let (x, y, z) = p
+  let c = calc.cos(theta)
+  let s = calc.sin(theta)
+  (x * c - y * s, x * s + y * c, z)
+}
+
+let persp-project(p, d: 5) = {
+  let (x, y, z) = p
+  let w = 1 - z / d   // perspective divide factor
+  (x / w, y / w)      // returns a 2D (x', y') tuple
+}
+
+let transform-and-project(
+  p,
+  rx: 0deg, ry: 0deg, rz: 0deg,
+  offset: 3,    // pushes object away from eye along −z
+  d: 6,
+) = {
+  let q = rot-x(p, rx)
+  let q = rot-y(q, ry)
+  let q = rot-z(q, rz)
+  // Translate: move object in front of the eye
+  let (qx, qy, qz) = q
+  let q = (qx, qy, qz - offset)
+  persp-project(q, d: d)
+}
+
+let cube-verts = ( (-1, -1, -1), ( 1, -1, -1), ( 1,  1, -1), (-1,  1, -1), (-1, -1,  1), ( 1, -1,  1), ( 1,  1,  1), (-1,  1,  1),)
+
+let cube-edges = (
+  (0, 1), (1, 2), (2, 3), (3, 0),
+  (4, 5), (5, 6), (6, 7), (7, 4),
+  (0, 4), (1, 5), (2, 6), (3, 7),
+)
+
+// Project all 8 vertices once
+let pts = cube-verts.map(v =>
+    transform-and-project( v, rx: 25deg, ry: 35deg, rz: 0deg, offset: 3, d: 6, ) )
+
+// Draw each edge as a line between projected 2D points
+for (i, j) in cube-edges { line(pts.at(i), pts.at(j)) }
+content((rel:(0,-2)),padding:0cm, [#text(size:10pt)[Perspective]], anchor:"north")
 ```
 
 Would you like to see how to add color coding to the specific $x, y,$ and $z$ axes in this Typst code to make the distinction between the foreshortened angles even clearer?
 
 
+```typm
+#import "@preview/cetz:0.4.2": canvas, draw
+
+// ─────────────────────────────────────────────
+// SECTION 1 — Rotation helpers
+// Each function applies R_x, R_y, or R_z to a
+// point represented as an array (x, y, z).
+// ─────────────────────────────────────────────
+
+#let rot-x(p, theta) = {
+  let (x, y, z) = p
+  let c = calc.cos(theta)
+  let s = calc.sin(theta)
+  (x, y * c - z * s, y * s + z * c)
+}
+
+#let rot-y(p, theta) = {
+  let (x, y, z) = p
+  let c = calc.cos(theta)
+  let s = calc.sin(theta)
+  (x * c + z * s, y, -x * s + z * c)
+}
+
+#let rot-z(p, theta) = {
+  let (x, y, z) = p
+  let c = calc.cos(theta)
+  let s = calc.sin(theta)
+  (x * c - y * s, x * s + y * c, z)
+}
+
+// ─────────────────────────────────────────────
+// SECTION 2 — Core perspective projection
+//
+// Parameters:
+//   p   — 3D point (x, y, z) already in camera space
+//   d   — eye distance (focal length).
+//          Larger d = weaker perspective (more "telephoto").
+//          Smaller d = stronger perspective (more "fisheye").
+//
+// Formula: x' = x / (1 − z/d),  y' = y / (1 − z/d)
+// ─────────────────────────────────────────────
+
+#let persp-project(p, d: 5) = {
+  let (x, y, z) = p
+  let w = 1 - z / d   // perspective divide factor
+  (x / w, y / w)      // returns a 2D (x', y') tuple
+}
+
+// ─────────────────────────────────────────────
+// SECTION 3 — Combined transform + project
+//
+// Rotates a 3D point, then moves it along the
+// z-axis by `offset` (so it sits in front of the
+// eye at z = d), then projects to 2D.
+// ─────────────────────────────────────────────
+
+#let transform-and-project(
+  p,
+  rx: 0deg, ry: 0deg, rz: 0deg,
+  offset: 3,    // pushes object away from eye along −z
+  d: 6,
+) = {
+  let q = rot-x(p, rx)
+  let q = rot-y(q, ry)
+  let q = rot-z(q, rz)
+  // Translate: move object in front of the eye
+  let (qx, qy, qz) = q
+  let q = (qx, qy, qz - offset)
+  persp-project(q, d: d)
+}
+
+// ─────────────────────────────────────────────
+// SECTION 4 — Cube geometry
+//
+// A unit cube centered at the origin.
+// Vertices are labeled 0–7:
+//   0–3 = back face (z = −1)
+//   4–7 = front face (z = +1)
+// ─────────────────────────────────────────────
+
+#let cube-verts = (
+  (-1, -1, -1),  // 0 back-bottom-left
+  ( 1, -1, -1),  // 1 back-bottom-right
+  ( 1,  1, -1),  // 2 back-top-right
+  (-1,  1, -1),  // 3 back-top-left
+  (-1, -1,  1),  // 4 front-bottom-left
+  ( 1, -1,  1),  // 5 front-bottom-right
+  ( 1,  1,  1),  // 6 front-top-right
+  (-1,  1,  1),  // 7 front-top-left
+)
+
+#let cube-edges = (
+  // back face
+  (0, 1), (1, 2), (2, 3), (3, 0),
+  // front face
+  (4, 5), (5, 6), (6, 7), (7, 4),
+  // connecting edges
+  (0, 4), (1, 5), (2, 6), (3, 7),
+)
+
+// ─────────────────────────────────────────────
+// SECTION 5 — Draw the cube
+// ─────────────────────────────────────────────
+
+#canvas({
+  import draw: *
+
+  // Project all 8 vertices once
+  let pts = cube-verts.map(v =>
+    transform-and-project(
+      v,
+      rx: 25deg,   // tilt down slightly
+      ry: 35deg,   // rotate left
+      rz: 0deg,
+      offset: 3,   // move 3 units in front of eye
+      d: 6,        // eye distance
+    )
+  )
+
+  // Draw each edge as a line between projected 2D points
+  for (i, j) in cube-edges { line(pts.at(i), pts.at(j)) }
+  content((rel:(0,-2)),[Perspective projection])
+})
+```
 
 
 #### ortho
@@ -2470,15 +2635,15 @@ ortho({
 ```
 
 
-**Parameters**
+Parameters
 
-- **x** `angle` — X-axis rotation angle.
-- **y** `angle` — Y-axis rotation angle.
-- **z** `angle` — Z-axis rotation angle.
-- **sorted** `bool` — Sort drawables by maximum distance (front to back).
-- **cull-face** `none str` — Enable back-face culling if set to `"cw"` for clockwise or `"ccw"` for counter-clockwise. Polygons of the specified order will not get drawn.
-- **reset-transform** `bool` — Ignore the current transformation matrix. 
-- **body** `element` — Elements to draw.
+- x `angle` — X-axis rotation angle.
+- y `angle` — Y-axis rotation angle.
+- z `angle` — Z-axis rotation angle.
+- sorted `bool` — Sort drawables by maximum distance (front to back).
+- cull-face `none str` — Enable back-face culling if set to `"cw"` for clockwise or `"ccw"` for counter-clockwise. Polygons of the specified order will not get drawn.
+- reset-transform `bool` — Ignore the current transformation matrix. 
+- body `element` — Elements to draw.
 
 
 The `ortho()` function in CeTZ is a draw function that sets up an orthographic projection environment — most commonly used for isometric or dimetric/trimetric style 3D drawings in Typst. 
@@ -2595,41 +2760,6 @@ Quick Tips
 - For real perspective projection use `perspective(…)` instead (different function)
 
 Hope this gives you a good overview and starting point for using `ortho()`! 
-
-```grid
-let perspective() = {
-  let fovx = 60deg
-  let fovy = 60deg
-  let near = 0.1
-  let far  = 100.0
-  set-transform((
-    (1 / calc.tan(fovx / 2), 0, 0, 0),
-    (0, 1 / calc.tan(fovy / 2), 0, 0),
-    (0, 0, -(far + near) / (far - near), -2 * (near * far) / (far - near)),
-    (0, 0, -1, 0),
-  ))
-}
-
-
-  perspective()
-  rotate(x: 20deg)
-  rotate(z: 30deg)
-  translate((0, 0, -4))  // push the box away from camera
-
-  // Front face
-  line((-.5,-.5,.5), (.5,-.5,.5), (.5,.5,.5), (-.5,.5,.5), close: true, stroke: blue)
-  // Back face
-  line((-.5,-.5,-.5), (.5,-.5,-.5), (.5,.5,-.5), (-.5,.5,-.5), close: true, stroke: red)
-  // Connecting edges
-  for (f, b) in (
-    ((-.5,-.5,.5), (-.5,-.5,-.5)),
-    (( .5,-.5,.5), ( .5,-.5,-.5)),
-    (( .5, .5,.5), ( .5, .5,-.5)),
-    ((-.5, .5,.5), (-.5, .5,-.5)),
-  ) {
-    line(f, b, stroke: gray)
-  }
-```
 
 
 ---

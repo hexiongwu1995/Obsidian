@@ -2108,17 +2108,6 @@ rect((-1,-1),(1,1))
 ```
 
 
-```grid
-let mark-style= (mark:(start:none, end:(symbol:"curved-stealth", fill:black), ))
-line((0,0,0),(3,0,0), ..mark-style, name:"x")
-line((0,0,0),(0,3,0), ..mark-style, name:"y")
-line((0,0,0),(0,0,3), ..mark-style, name:"z")
-content((3,0,0),$x$, anchor:"west")
-content((0,3,0),$y$, anchor:"south")
-content((0,0,3),$z$, anchor:"north-east")
-/* grid((0,0,0),(3,0,3)) */
-```
-
 
 **Parameters**
 
@@ -2303,7 +2292,6 @@ circle((5,5))
 - **bounds** `vector` — Viewport bounds vector that describes the inner width, height and depth of the viewport. 
 
 
-
 ---
 
 ### 4.6 Projection
@@ -2322,11 +2310,67 @@ ortho(
 )
 ```
 
-Set-up an orthographic projection environment.
+Set-up an orthographic projection environment. 
 
-This is a transformation matrix that rotates elements around the x, the y and the z axis by the parameters given.
+This is a transformation matrix that rotates elements around the x, the y and the z axis by the parameters given. 
 
-By default an isometric projection ($x approx 35.264°$, $y = 45°$) is set.
+By default an isometric projection ($x approx 35.264°$, $y = 45°$) is set. 
+
+
+```grid
+let mark-style= (mark:(start:none, end:(symbol:"curved-stealth", fill:black), ))
+line((0,0,0),(3,0,0), ..mark-style, name:"x")
+line((0,0,0),(0,3,0), ..mark-style, name:"y")
+line((0,0,0),(0,0,3), ..mark-style, name:"z")
+content((3,0,0),$x$, anchor:"west")
+content((0,3,0),$y$, anchor:"south")
+content((0,0,3),$z$, anchor:"north-east")
+/* grid((0,0,0),(3,0,3)) */
+```
+
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt, stroke:none, fill:orange)
+
+
+ortho(x:90deg, y:0deg, z:0deg,{rect((-1,-1),(1,1))})
+
+```
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt, stroke:none, fill:orange)
+
+
+ortho(x:0deg, y:90deg, z:0deg,{rect((-1,-1),(1,1))})
+
+```
+
+```grid
+grid((-3,-3),(3,3), help-lines:true)
+circle((0,0,0), radius:2pt, stroke:none, fill:orange)
+
+
+ortho(x:0deg, y:0deg, z:45deg,{rect((-1,-1),(1,1))})
+
+```
+
+
+```grid
+let mark-style= (mark:(start:none, end:(symbol:"curved-stealth", fill:black), ))
+line((0,0,0),(3,0,0), ..mark-style, name:"x")
+line((0,0,0),(0,3,0), ..mark-style, name:"y")
+line((0,0,0),(0,0,3), ..mark-style, name:"z")
+content((3,0,0),$x$, anchor:"west")
+content((0,3,0),$y$, anchor:"south")
+content((0,0,3),$z$, anchor:"north-east")
+ortho( x:88deg, y:0deg, z:0deg,cull-face:"cw",{rect((1,1), (2,2)) })
+ortho( x:0deg, y:88deg, z:0deg,cull-face:"cw",{rect((1,1), (2,2)) })
+ortho( x:0deg, y:0deg, z:90deg,cull-face:"cw",{rect((1,1), (2,2)) })
+rect((-0.1,-0.1), (2.5,2.5), stroke:orange, )
+```
+
 
 ```grid
 ortho({
@@ -2336,6 +2380,7 @@ ortho({
 })
 ```
 
+
 **Parameters**
 
 - **x** `angle` — X-axis rotation angle.
@@ -2343,8 +2388,160 @@ ortho({
 - **z** `angle` — Z-axis rotation angle.
 - **sorted** `bool` — Sort drawables by maximum distance (front to back).
 - **cull-face** `none str` — Enable back-face culling if set to `"cw"` for clockwise or `"ccw"` for counter-clockwise. Polygons of the specified order will not get drawn.
-- **reset-transform** `bool` — Ignore the current transformation matrix.
+- **reset-transform** `bool` — Ignore the current transformation matrix. 
 - **body** `element` — Elements to draw.
+
+
+The `ortho()` function in CeTZ is a draw function that sets up an orthographic projection environment — most commonly used for isometric or dimetric/trimetric style 3D drawings in Typst. 
+
+It applies successive rotations around the X, Y, and Z axes (in that order) and is the main helper for "fake 3D" orthographic axonometric projections. 
+
+Complete Function Signature (≈ v0.3 – v0.5 range) 
+
+```typm
+ortho(
+  x: angle               = 35.264deg,     // around X axis (elevation-like)
+  y: angle               = 45deg,         // around Y axis (azimuth-like)
+  z: angle               = 0deg,          // around Z axis (usually left at 0)
+  reset-transform: bool  = false,         // if true → ignores current transform matrix
+  sorted: bool           = true,          // newer versions: depth-sort drawables
+  cull-face: bool        = false,         // newer versions: basic face culling
+  body,                                   // required: drawing commands / content
+  // name: str = none     // older versions had this (now removed / leaks like scope)
+)
+```
+
+Most common usage pattern (highly recommended): 
+
+```grid
+  ortho({
+    // all your 3D drawing goes here
+    line((0,0,0), (2,0,0), stroke: blue)
+    line((0,0,0), (0,2,0), stroke: green)
+    line((0,0,0), (0,0,2), stroke: red)
+  })
+```
+
+Default Values ≈ Isometric Projection
+
+```typm
+ortho(x: 35.264deg, y: 45deg)
+```
+
+This is very close to classic isometric view (≈35.264° = arcsin(1/√3)).
+
+Many people use slight variations:
+
+- Classic technical drawing isometric: `ortho(x: 35.264deg, y: 45deg)`
+- "Cabinet" style (shallower z): `ortho(x: 63.435deg, y: 20deg)` or similar
+- Top-down-ish: `ortho(x: 90deg, y: 0deg)`
+- Side view: `ortho(x: 0deg, y: 90deg)` 
+
+Common Examples
+
+1. Basic RGB axes in isometric view 
+
+```grid
+let mark-style= (mark:(end:(symbol:"curved-stealth", fill:black)))
+ortho({
+    line((0,0,0), (3,0,0), name: "x",..mark-style, stroke: (paint: blue, thickness: 1.4pt))
+    line((0,0,0), (0,3,0), name: "y",..mark-style, stroke: (paint: green, thickness: 1.4pt))
+    line((0,0,0), (0,0,3), name: "z",..mark-style, stroke: (paint: red, thickness: 1.4pt))
+
+    content("x.end", $x$, padding: 0.5em, anchor: "west")
+    content("y.end", $y$, padding: 0.5em, anchor: "north")
+    content("z.end", $z$, padding: 0.5em, anchor: "east")
+})
+```
+
+2. Cube (most frequent first test)
+
+```grid
+
+ortho(sorted:true,cull-face:"cw",{
+    rect((-1,-1), (1,1))               // front face
+    line((-1,-1,2), (1,-1,2))         // back bottom
+    line(( 1,-1,2), (1, 1,2))
+    line(( 1, 1,2), (-1, 1,2))
+    line((-1, 1,2), (-1,-1,2))
+
+    // connect front → back
+    line((-1,-1), (-1,-1,2))
+    line(( 1,-1), ( 1,-1,2))
+    line(( 1, 1), ( 1, 1,2))
+    line((-1, 1), (-1, 1,2))
+})
+```
+
+3. Using helper planes `on-xy`, `on-xz`, `on-yz` inside ortho
+
+```grid
+ortho(y: 30deg, x: 20deg, {
+  on-xz(y: -1.5, {
+    rect((-2,-1), (2,1), fill: rgb(0,180,255,40))
+    content((0,0), [bottom face])
+  })
+
+  on-xy(z: 0, {
+    circle((0,0), radius: 0.8, fill: rgb(220,80,80,60))
+  })
+})
+```
+
+4. Quick axis rotation experiments
+
+```typm
+// Very flat "cabinet" style
+ortho(x: 70deg, y: 15deg)
+
+// Classic dimetric look
+ortho(x: 42deg, y: 30deg)
+```
+
+Quick Tips
+
+- Use `sorted: true` (default in recent versions) → elements with higher average Z are drawn later → better hidden-line removal in many cases
+- Combine with `cull-face: true` if you draw closed faces and want very basic back-face removal
+- `on-xy(z: …)`, `on-xz(y: …)`, `on-yz(x: …)` are very convenient helpers inside `ortho(…)` — they force all coordinates onto one plane
+- For real perspective projection use `perspective(…)` instead (different function)
+
+Hope this gives you a good overview and starting point for using `ortho()`!
+
+```grid
+let perspective() = {
+  let fovx = 60deg
+  let fovy = 60deg
+  let near = 0.1
+  let far  = 100.0
+  set-transform((
+    (1 / calc.tan(fovx / 2), 0, 0, 0),
+    (0, 1 / calc.tan(fovy / 2), 0, 0),
+    (0, 0, -(far + near) / (far - near), -2 * (near * far) / (far - near)),
+    (0, 0, -1, 0),
+  ))
+}
+
+
+  perspective()
+  rotate(x: 20deg)
+  rotate(z: 30deg)
+  translate((0, 0, -4))  // push the box away from camera
+
+  // Front face
+  line((-.5,-.5,.5), (.5,-.5,.5), (.5,.5,.5), (-.5,.5,.5), close: true, stroke: blue)
+  // Back face
+  line((-.5,-.5,-.5), (.5,-.5,-.5), (.5,.5,-.5), (-.5,.5,-.5), close: true, stroke: red)
+  // Connecting edges
+  for (f, b) in (
+    ((-.5,-.5,.5), (-.5,-.5,-.5)),
+    (( .5,-.5,.5), ( .5,-.5,-.5)),
+    (( .5, .5,.5), ( .5, .5,-.5)),
+    ((-.5, .5,.5), (-.5, .5,-.5)),
+  ) {
+    line(f, b, stroke: gray)
+  }
+```
+
 
 ---
 

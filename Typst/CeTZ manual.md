@@ -2296,6 +2296,95 @@ circle((5,5))
 
 ### 4.6 Projection
 
+what is isometric or dimetric or trimetric or perspective projection? Please provide Typst code snippets to illustrate. If CeTZ is needed, please use cetz version:0.4.2.
+
+These four terms describe different methods of graphical projection—techniques used to represent 3D objects on a 2D surface (like a screen or a piece of paper). They are broadly categorized into Axonometric projections (Isometric, Dimetric, Trimetric) and Perspective projections.
+
+Here is a breakdown of how they differ, starting with the axonometric family where parallel lines in 3D space remain parallel in the 2D drawing.
+
+---
+
+1. Isometric Projection
+
+In an isometric projection, all three axes ($x, y, z$) are equally foreshortened. This means the object is rotated so that the viewer looks down exactly at the corner of the object.
+
+* **Key Trait:** The angles between the projections of the $x, y,$ and $z$ axes are identically $120degree$.
+* **Use Case:** Highly popular in engineering, technical drawing, and classical 2D video games because the scale is consistent; a unit of length along the $x$-axis is visually the exact same length as a unit on the $y$ or $z$-axis.
+
+2. Dimetric Projection
+
+In a dimetric projection, the object is rotated such that only **two** of the three axes are equally foreshortened.
+
+* **Key Trait:** Two of the angles between the axes are equal, while the third is different.
+* **Use Case:** Often used when one specific face or angle of a product needs to be emphasized while still maintaining some strict geometric scale on two of its axes.
+
+3. Trimetric Projection
+
+In a trimetric projection, the object is rotated so that **all three** axes are unequally foreshortened.
+
+* **Key Trait:** The angles between all three axes are completely different. The scale along each axis requires its own unique unit of measurement.
+* **Use Case:** Used when a very specific, custom viewing angle is needed to show the most crucial details of an object, though it is the most mathematically tedious to draw by hand.
+
+4. Perspective Projection
+
+Unlike axonometric projections, perspective projection mimics how the human eye actually perceives the world. Parallel lines in 3D space do *not* remain parallel on the 2D page; instead, they converge at one or more **vanishing points**.
+
+* **Key Trait:** Objects appear smaller as their distance from the viewer increases.
+* **Use Case:** Architectural rendering, modern 3D gaming, and photography, where visual realism is prioritized over the ability to take exact measurements from the image.
+
+---
+
+Typst / CeTZ Implementation
+
+Here is a comprehensive Typst document using CeTZ 0.4.2 that illustrates these four projections. Rather than writing a complex projection matrix, this code explicitly plots the vertices for a wireframe cube to visually demonstrate how the angles and foreshortening change across each type.
+
+
+```grid
+let draw-cube(bottom, top) = {
+
+// Draw bottom face, top face, and connecting vertical edges
+line(bottom.at(0), bottom.at(1), bottom.at(2), bottom.at(3), close: true)
+line(top.at(0), top.at(1), top.at(2), top.at(3), close: true)
+for i in range(4) { line(bottom.at(i), top.at(i)) }}
+
+// 1. ISOMETRIC (Equal angles: 30 degrees up from horizontal)
+// x = (0.866, 0.5), y = (-0.866, 0.5)
+set-origin((0,0))
+content((0,0),[ISOMETRIC ],padding:0.5em, anchor:"north")
+let b = ((0,0), (0.866, 0.5), (0, 1), (-0.866, 0.5))
+let t = b.map(p => (p.at(0), p.at(1) + 1))
+draw-cube(b, t)
+
+// 2. DIMETRIC (Two equal angles, e.g., 15 degrees up)
+// Axes: x = (0.966, 0.259), y = (-0.966, 0.259)
+set-origin((4,0))
+content((0,0),[DIMETRIC],padding:0.5em, anchor:"north")
+let b = ((0,0), (0.966, 0.259), (0, 0.518), (-0.966, 0.259))
+let t = b.map(p => (p.at(0), p.at(1) + 1))
+draw-cube(b, t)
+
+// 3. TRIMETRIC (Three different angles, e.g., 15 deg and 45 deg)
+// Axes: x = (0.966, 0.259), y = (-0.707, 0.707)
+set-origin((-4,-3))
+content((0,0),[TRIMETRIC],padding:0.5em, anchor:"north")
+let b = ((0,0), (0.966, 0.259), (0.259, 0.966), (-0.707, 0.707))
+let t = b.map(p => (p.at(0), p.at(1) + 1))
+draw-cube(b, t)
+
+// 4. PERSPECTIVE (1-Point Perspective)
+// Front face is square, back face is smaller and shifted to a vanishing point
+set-origin((3.5,0))
+content((0,0),[PERSPECTIVE],padding:0.5em, anchor:"north")
+ let front = ((0,0), (1,0), (1,1), (0,1))
+ let back = ((0.3, 0.4), (0.7, 0.4), (0.7, 0.8), (0.3, 0.8))
+ draw-cube(front, back)
+```
+
+Would you like to see how to add color coding to the specific $x, y,$ and $z$ axes in this Typst code to make the distinction between the foreshortened angles even clearer?
+
+
+
+
 #### ortho
 
 ```typm
@@ -2505,7 +2594,7 @@ Quick Tips
 - `on-xy(z: …)`, `on-xz(y: …)`, `on-yz(x: …)` are very convenient helpers inside `ortho(…)` — they force all coordinates onto one plane
 - For real perspective projection use `perspective(…)` instead (different function)
 
-Hope this gives you a good overview and starting point for using `ortho()`!
+Hope this gives you a good overview and starting point for using `ortho()`! 
 
 ```grid
 let perspective() = {

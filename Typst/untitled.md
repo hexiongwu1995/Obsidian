@@ -59,6 +59,8 @@ let step= (end - start)/n
 let arr= range(n+1).map(a => start + a* step)
 return arr }
 scale(2)
+
+
 ortho(x:20deg, y:20deg, z:0deg,{
 let mark-style= (mark:(end:(symbol:")>", fill:black, scale:0.5)))
 line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:gray )
@@ -78,7 +80,7 @@ on-xy(z:0, circle((4,0), radius:1.5, ))
 6. 使用两个圆形切面上的4个相邻路径锚点构建封闭矩形对游泳圈表面进行近似
 7. 对封闭矩形填充颜色
 */
-
+for 
 
 })   })
 ```

@@ -27,7 +27,6 @@ on-xy(z:0, circle((4,0), radius:0.6, stroke:(paint:blue.transparentize(90%), thi
 
 
 
-
 // This Typst code snippet is intended to draw a torus
 #set page(paper:"a4", flipped:true)
 #set align(center+horizon)
@@ -55,32 +54,10 @@ on-xy(z:0, circle((4,0), radius:1.5, ))
 2. 游泳圈的中心圆环的半径为 R
 3. 任意过y轴的平面，在游泳圈上的切面为一个相同半径的圆形，设这个半径为 r
 4. 游泳圈的中心圆环上的任意一点P可以使用 P(R, 0, φ)来表示。
-5. 
+5. 通过 φ参数将游泳圈分割成100份，每一份都包含两个圆形切面
+6. 使用两个圆形切面上的4个相邻路径锚点构建封闭矩形对游泳圈表面进行近似
+7. 对封闭矩形填充颜色
 */
 
 
 })   })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

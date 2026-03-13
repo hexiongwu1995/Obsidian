@@ -79,7 +79,7 @@ You think that your report would benefit from a figure. Let's add one. Typst sup
 We have seen before that specific symbols (called *markup*) have specific meaning in Typst. We can use `=`, `-`, `+`, and `_` to create headings, lists and emphasized text, respectively. However, having a special symbol for everything we want to insert into our document would soon become cryptic and unwieldy. For this reason, Typst reserves markup symbols only for the most common things. Everything else is inserted with *functions.* For our image to show up on the page, we use Typst's `image` function.
 
 ```
-#image("/Model/MathModel/Typst/glacier.jpg")
+#image("/Obsidian/Typst/attachments/glacier.jpg")
 ```
 
 In general, a function produces some output for a set of *arguments*. When you *call* a function within markup, you provide the arguments and Typst inserts the result (the function's *return value*) into the document. In our case, the `image` function takes one argument: The path to the image file. To call a function in markup, we first need to type the `#` character, immediately followed by the name of the function. Then, we enclose the arguments in parentheses. Typst recognizes many different data types within argument lists. Our file path is a short string of text, so we need to enclose it in double quotes.

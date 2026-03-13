@@ -2649,22 +2649,63 @@ on-xy(
 )
 ```
 
-Draw elements on the xy-plane with optional z offset.
-
-All vertices of all elements will be changed in the following way: $(x, y, z_"argument")$, where $z_"argument"$ is the z-value given as argument.
-
-```grid
-ortho({
-  on-xy({
-    rect((-1, -1), (1, 1))
-  })
-})
-```
+Draw elements on the xy-plane with optional z offset. All vertices of all elements will be changed in the following way: $(x, y, z_"argument")$, where $z_"argument"$ is the z-value given as argument. 
 
 **Parameters**
 
 - **z** `number` — Z offset for all coordinates.
 - **body** `element` — Elements to draw.
+
+
+```grid
+ortho({
+// Draw an 3d isometric coordinate system
+let mark-style= (mark:(start:none, end:(symbol:"curved-stealth", fill:black), ))
+line((0,0,0),(3,0,0), ..mark-style, name:"x")
+line((0,0,0),(0,3,0), ..mark-style, name:"y")
+line((0,0,0),(0,0,3), ..mark-style, name:"z")
+content((3,0,0),$x$, anchor:"west")
+content((0,3,0),$y$, anchor:"north")
+content((0,0,3),$z$, anchor:"north-east")
+// Draw a rectangle in xy plane at z=0
+on-xy( z: 0, rect((-1, 0), (1, 1), stroke: (dash: "dashed" )) )
+})
+```
+
+Above is a Typst code snippet. It's intended to render an image containing a 3d isomeric coordinate system and a rectangle at z=0 plane. But the rendered image is not what I want. Because the rectangle in the image is not in z=0 plane. Please investigate this issue and provide an explanation and a solution to me. Below is a wrong answer.
+
+The Issue: 2D Primitives in a 3D Space
+The reason your rectangle isn't rendering on the $z=0$ plane is that CeTZ's `rect` function is fundamentally a 2D drawing primitive.
+
+When you use `rect((-1, -1), (1, 1))`, CeTZ draws an axis-aligned 2D rectangle directly onto the flat canvas. It ignores the 3D isometric skew because `rect` only understands flat canvas coordinates, not 3D spatial geometry. Even if wrapped in a helper function, an axis-aligned 2D rectangle cannot accurately represent a flat plane in an isometric projection (which should visually look like a rhombus).
+
+The Solution: Use 3D Lines
+To draw shapes that properly conform to your 3D isometric perspective, you need to use drawing primitives that accept 3D coordinates.
+
+Instead of using a 2D `rect`, you can construct the rectangle manually by drawing a closed path between its four corners in 3D space using the `line` function. Because you provide the exact $(x, y, z)$ coordinates for each vertex, CeTZ will project each point correctly into the isometric view.
+
+Here is the corrected code:
+
+```grid
+  ortho({
+    // Draw a 3d isometric coordinate system
+    let mark-style = (mark: (start: none, end: (symbol: "curved-stealth", fill: black)))
+    line((0,0,0), (3,0,0), ..mark-style, name: "x")
+    line((0,0,0), (0,3,0), ..mark-style, name: "y")
+    line((0,0,0), (0,0,3), ..mark-style, name: "z")
+    content((3,0,0), $x$, anchor: "west")
+    content((0,3,0), $y$, anchor: "north")
+    content((0,0,3), $z$, anchor: "north-east")
+    
+    // Draw a rectangle in the xy plane at z=0 using 3D coordinates
+    line( (0,0,0), (1,0,0), (1,1,0), (0,1,0),
+    close: true, stroke: (dash: "dashed") )
+    
+   on-xy(z:2, {line( (0,0,0), (1,0,0), (1,1,0), (0,1,0),
+    close: true, stroke: (dash: "dashed") )} )
+  })
+```
+
 
 ---
 
@@ -2679,13 +2720,21 @@ on-xz(
 
 Draw elements on the xz-plane with optional y offset.
 
-All vertices of all elements will be changed in the following way: $(x, y_"argument", y)$, where $y_"argument"$ is the y-value given as argument.
+All vertices of all elements will be changed in the following way: $(x, y_"argument", y)$, where $y_"argument"$ is the y-value given as argument. 
 
 ```grid
-ortho({
-  on-xz({
-    rect((-1, -1), (1, 1))
-  })
+ortho(x: 20deg, y: 40deg,z: 0deg, {
+    // Draw a 3d isometric coordinate system
+    let mark-style = (mark: (start: none, end: (symbol: "curved-stealth", fill: black)))
+    line((0,0,0), (3,0,0), ..mark-style, name: "x")
+    line((0,0,0), (0,3,0), ..mark-style, name: "y")
+    line((0,0,0), (0,0,3), ..mark-style, name: "z")
+    content((rel:(0.2,0,0), to: "x.end"), $x$, anchor: "center")
+    content((rel:(0,0.3,0), to: "y.end"), $y$, anchor: "center")
+    content((rel:(0,0,0.3), to:"z.end"), $z$, anchor: "center")
+// Draw a rectangle in xz plane at y=0
+  on-xz({ grid((-1,-1),(3,3),help-lines:true)
+          rect((0, -1), (1, 1))  })
 })
 ```
 
@@ -2705,15 +2754,22 @@ on-zy(
 )
 ```
 
-Draw elements on the zy-plane with optional x offset.
+Draw elements on the zy-plane with optional x offset. 
 
 All vertices of all elements will be changed in the following way: $(x_"argument", y, x)$, where $x_"argument"$ is the x-value given as argument.
 
-```
-ortho({
-  on-zy({
-    rect((-1, -1), (1, 1))
-  })
+```grid
+ortho(x:20deg,y:30deg, z:0deg,{
+    // Draw a 3d isometric coordinate system
+    let mark-style = (mark: (start: none, end: (symbol: "curved-stealth", fill: black)))
+    line((0,0,0), (3,0,0), ..mark-style, name: "x")
+    line((0,0,0), (0,3,0), ..mark-style, name: "y")
+    line((0,0,0), (0,0,3), ..mark-style, name: "z")
+    content((rel:(0.2,0,0), to: "x.end"), $x$, anchor: "center")
+    content((rel:(0,0.3,0), to: "y.end"), $y$, anchor: "center")
+    content((rel:(0,0,0.3), to:"z.end"), $z$, anchor: "center")
+// Draw a rectangle in xz plane at y=0
+  on-yz(x:2,{grid((0,-1),(1,1),step:0.5, help-lines:true); rect((0, -1), (1, 1));  })
 })
 ```
 
@@ -2758,7 +2814,7 @@ Push a custom coordinate resolve function to the list of coordinate resolvers. T
 
 A coordinate resolver must be a function of the format `(context, coordinate) => coordinate`. And must always return a valid coordinate or panic, in case of an error.
 
-If multiple resolvers are registered, coordinates get passed through all resolvers in reverse registering order. All coordinates get passed to cetz' default coordinate resolvers.
+If multiple resolvers are registered, coordinates get passed through all resolvers in reverse registering order. All coordinates get passed to cetz' default coordinate resolvers. 
 
 ```grid
 register-coordinate-resolver((ctx, c) => {
@@ -2796,7 +2852,7 @@ angle(
 )
 ```
 
-Draw an angle counter-clock-wise between a and b through origin `origin`.
+Draw an angle counter-clock-wise between a and b through origin `origin`. 
 
 ```grid
 line((0, 0), (60deg, 2), name: "a")
@@ -2805,7 +2861,7 @@ line((0, 0), (330deg, 2), name: "b")
 cetz.angle.angle("a.start", "a.end", "b.end", label: $alpha$,
   mark: (end: ">"), radius: 1.5)
 cetz.angle.angle("a.start", "b.end", "a.end", label: $beta$,
-  radius: 50%, direction: "ccw")
+  radius: 50%, direction: "ccw", mark:(end:(symbol:"curved-stealth", fill:black, scale:0.7)))
 ```
 
 **Styling**
@@ -2858,7 +2914,7 @@ cetz.angle.right-angle(
   "a.start",
   "a.end",
   "b.end",
-  radius: 1.5
+  radius: 0.5
 )
 ```
 

@@ -2,8 +2,8 @@
 // Note: current settings use about 2 GiB of RAM and 20 s of compilation time.
 #import "@preview/cetz:0.4.2"
 
-#set page(width: auto, height: auto, margin: 20pt)
-
+#set page("a3")
+#set align(center)
 #let draw-torus(
   fill: green,
   stroke: auto,

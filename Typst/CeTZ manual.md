@@ -2904,7 +2904,7 @@ right-angle(
 )
 ```
 
-Draw a right angle between a and b through origin `origin`.
+Draw a right angle between a and b through origin `origin`. 
 
 ```grid
 line((0,0), (1,2), name: "a")

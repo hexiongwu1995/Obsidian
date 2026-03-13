@@ -14,7 +14,7 @@ arr
 } 
 // Archimedean spiral r = 0.4 * theta 
 grid((-3,-3),(3,3), help-lines:true) 
-let theta-array = linspace(0, 2*calc.pi, 20) 
+let theta-array = linspace(0, 2*calc.pi, 60) 
 for theta in theta-array {
 let r = 0.4 * theta 
 circle((theta*1rad, r), radius:2pt, fill:black, stroke:none) 

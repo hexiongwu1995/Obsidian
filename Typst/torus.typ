@@ -2,15 +2,15 @@
 // Note: current settings use about 2 GiB of RAM and 20 s of compilation time.
 #import "@preview/cetz:0.4.2"
 
-#set page(width: auto, height: auto, margin: 0.6pt)
+#set page(width: auto, height: auto, margin: 20pt)
 
 #let draw-torus(
   fill: green,
   stroke: auto,
   outer-radius: 4,
   inner-radius: 1,
-  theta-divisions: 40, // Steps around major circle.
-  phi-divisions: 40, // Steps around minor circle.
+  theta-divisions: 30, // Steps around major circle.
+  phi-divisions: 30, // Steps around minor circle.
   light-direction: (1, 1, 1), // Light source direction
   ambient-light: 0.2, // Ambient light intensity (0-1)
   diffuse-strength: 0.8, // Diffuse lighting strength (0-1)
@@ -112,6 +112,6 @@
 
 #cetz.canvas({
   import cetz.draw: *
-  scale(2.5)
-  ortho(x: -50deg, y: 0deg, draw-torus(light-direction: (0, -1, 1)))
+  scale(2)
+  ortho(x: -60deg, y: 0deg, draw-torus(light-direction: (0, -1, 1)))
 })

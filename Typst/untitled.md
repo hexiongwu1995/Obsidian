@@ -117,6 +117,14 @@ return arr }
 scale(2)
 
 
+let sph(radius, theta, phi)={
+let x= radius* calc.sin(theta)* calc.sin(phi)
+let y= radius* calc.cos(theta)
+let z= radius* calc.sin(theta)* calc.cos(phi)
+return (x,y,z)
+}
+
+
 ortho(x:20deg, y:20deg, z:0deg,{
 let mark-style= (mark:(end:(symbol:")>", fill:black, scale:0.5)))
 line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:gray )
@@ -136,6 +144,7 @@ on-xy(z:0, circle((4,0), radius:1.5, ))
 6. 使用两个圆形切面上的4个相邻路径锚点构建封闭矩形对游泳圈表面进行近似
 7. 对封闭矩形填充颜色
 */
+
 let Draw-SwingRing(R:4, r:1.2, num:20)={
 
 for j in linspace(0, 2*calc.pi, n:num) { circle((R, 0rad, j* 1rad), radius:r) }

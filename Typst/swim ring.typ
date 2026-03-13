@@ -10,6 +10,16 @@ let step= (end - start)/n
 let arr= range(n+1).map(a => start + a* step)
 return arr }
 
+
+let sph(radius, theta, phi)={
+let x= radius * calc.sin(theta) * calc.sin(phi) 
+let y= radius * calc.cos(theta) 
+let z= radius * calc.sin(theta) * calc.cos(phi) 
+return (x,y,z) 
+}
+
+
+
 ortho(x:20deg, y:20deg, z:0deg,{
 let mark-style= (mark:(end:(symbol:")>", fill:black, scale:0.5)))
 line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:gray )

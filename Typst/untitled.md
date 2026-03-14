@@ -74,15 +74,15 @@ return (x,y,z)
 
 
 ```
-// This Typst code snippet is intended to draw a torus
 
 /*
+This Typst code snippet is intended to draw a torus
 1. 以Torus的质心所在位置为坐标原点
-2. Torus的中心圆环的半径为 R
+2. 设Torus的中心圆环的半径为 R
 3. 以Torus的中心圆环所在平面为xz平面，则任意过y轴的平面，在Torus上的切面为一个相同半径的圆环，设这个半径为 r
 4. Torus的中心圆环上的任意一点P可以使用球坐标(R, calc.pi/2, phi)来表示。
-5. 通过 phi参数将游泳圈分割成40份，每一份都包含两个圆形切面
-6. 使用两个圆形切面上的4个相邻路径锚点构建封闭矩形对Torus表面进行近似
+5. 通过 phi参数将Torus分割成40份，每一份都包含两个圆形切面
+6. 使用这两个圆形切面上的4个相邻边框锚点构建封闭矩形对Torus表面进行近似
 7. 对封闭矩形填充颜色
 */
 
@@ -116,29 +116,47 @@ content((rel:(0,0.3,0), to: "y.end"), $y$)
 content((rel:(0,0,0.3), to: "z.end"), $z$)
 
 
-let Draw-Torus(R:4, r:0.5, num:40)={
-
-for(idx,j) in linspace(0, 2*calc.pi, n:num).enumerate() { 
-circle( sph(R, calc.pi/2, j), radius:r, name:"circle-"+str(idx), stroke:(paint:gray.transparentize(80%))) 
- 
-let r=0.5
-let num=40
-let segment=40
-
-for k in range(num) {
-  for path-anchor in range(segment) {
-  let interval= 2* calc.pi * r/segment
-  let p= path-anchor* interval 
-line("circle-"+str(k)+"."+str(p), "circle-"+str(k)+"."+str(p+interval), "circle-"+str(k+1)+"."+str(p), "circle-"+str(k+1)+"."+str(p+interval),fill:green)
+let Draw-Torus(R:4, r:0.5, Rnum:10, rnum:10)={
+for (idxa,i) in range(Rnum+1).enumerate() {
+let phi-step = 2* calc.pi/Rnum 
+let phi-i = i* phi-step 
+circle(sph(R, calc.pi/2, phi-i), radius:r, name:"circle-"+ str(idxa) , stroke:(paint:gray.transparentize(95%))) 
 }
 
-}
-}}
-Draw-Torus(R:4, r:0.5, num:40)
+for j in range(Rnum) {
+for k in range(rnum) {
+let r-curr-percent = str(k*(100/rnum))+ "%" 
+let r-next-percent = str((k+1)*(100/rnum))+ "%" 
+line("circle-" + str(j) + "." + r-curr-percent,   "circle-" + str(j) + "." + r-next-percent, 
+"circle-" + str(j+1) + "." + r-next-percent, "circle-" + str(j+1) + "." + r-curr-percent,  
+close:true, stroke:gray, fill:green.transparentize(80%))
 
+} }
+
+}
+
+Draw-Torus(R:4, r:0.5, Rnum:30, rnum:30)
 
 
 }) })
+
+/* 
+step by step analysis
+circle-0,..., circle-10 exist
+The first segment
+j=0, k=0, r-curr-percent= 0%, r-next-percent= 10%, line("circle-0.0%", "circle-0.10%", "circle-1.0%", "circle-1.10%", close:true)
+j=0, k=1, r-curr-percent= 10%, r-next-percent= 20%, line("circle-0.10%", "circle-0.20%", "circle-1.10%", "circle-1.20%", close:true)
+...
+j=0, k=9, r-curr-percent= 90%, r-next-percent= 100%, line("circle-0.90%", "circle-0.100%", "circle-1.90%", "circle-1.100%", close:true)
+...
+
+The second segment
+j=1, k=0, r-curr-percent= 0%, r-next-percent= 10%, line("circle-1.0%", "circle-1.10%", "circle-2.0%", "circle-2.10%", close:true)
+j=1, k=1, r-curr-percent= 10%, r-next-percent= 20%, line("circle-1.10%", "circle-1.20%", "circle-2.10%", "circle-2.20%", close:true)
+...
+j=1, k=9, r-curr-percent= 90%, r-next-percent= 100%, line("circle-1.90%", "circle-1.100%", "circle-2.90%", "circle-2.100%", close:true)
+
+*/
 ```
 
 

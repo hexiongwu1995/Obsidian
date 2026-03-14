@@ -52,41 +52,13 @@ let O=(0,0,0)
 let P= sph(3.5, pi/4, pi/3 ) 
 line(O,P) 
 
+let A=(0,0,3.5)
+let B=sph(3.5, pi/2, pi/3)
+arc-through(A, P, B)
 })
-
-
-
-
-
-
-
 
 let Daw-torus(R:4, r:0.6, Rnum:30, rnum:30, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.8, Aintensity:0.2)= {
 
-
-
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 })

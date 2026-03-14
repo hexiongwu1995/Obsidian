@@ -5,9 +5,8 @@ This Typst code snippet is intended to draw a torus
 2. 设Torus的中心圆环的半径为 R
 3. 以Torus的中心圆环所在平面为xz平面，则任意过y轴的平面，在Torus上的切面为一个相同半径的圆环，设这个半径为 r
 4. Torus的中心圆环上的任意一点P可以使用球坐标(R, calc.pi/2, phi)来表示。
-5. 通过 phi参数将Torus分割成40份，每一份都包含两个圆形切面
-6. 使用这两个圆形切面上的4个相邻边框锚点构建封闭矩形对Torus表面进行近似
-7. 对封闭矩形填充颜色
+5. 通过 phi参数将Torus分割成许多份，每一份都包含两个圆形切面
+6. 使用这两个圆形切面上的4个相邻边框锚点构建封闭矩形对Torus表面进行近似，对封闭矩形填充颜色
 */
 
 #set page(paper:"a4", flipped:true)
@@ -55,12 +54,9 @@ line("circle-" + str(j) + "." + r-curr-percent,   "circle-" + str(j) + "." + r-n
 "circle-" + str(j+1) + "." + r-next-percent, "circle-" + str(j+1) + "." + r-curr-percent,  
 close:true, stroke:gray, fill:green.transparentize(80%))
 
-} }
-
-}
+} } }
 
 Draw-Torus(R:4, r:0.5, Rnum:30, rnum:30)
-
 
 }) })
 

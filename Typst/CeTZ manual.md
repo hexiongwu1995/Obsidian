@@ -368,6 +368,7 @@ Supports border and path anchors.
 - **update-position** `bool` — Update the current canvas position to the arc's end point (anchor `"arc-end"`). This overrides the default of `true`, that allows chaining of (arc) elements. 
 
 ```grid
+circle((0,0),radius:0.1, stroke:none, fill:orange)
 arc((0,-1), stop: 135deg, delta: 90deg, mode: "PIE", name:"pie")
 arc("pie.origin", radius:2cm, start:0deg, stop:180deg, anchor:"origin")
 ```

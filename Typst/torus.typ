@@ -2,20 +2,22 @@
 // Note: current settings use about 2 GiB of RAM and 20 s of compilation time.
 #import "@preview/cetz:0.4.2"
 
-#set page("a3")
-#set align(center)
+#set page(paper:"a4", flipped:true, margin: 0.6pt)
+#set align(center+horizon)
 #let draw-torus(
-  fill: green,
-  stroke: auto,
+  fill: none,
+  stroke: gray,
   outer-radius: 4,
   inner-radius: 1,
   theta-divisions: 30, // Steps around major circle.
   phi-divisions: 30, // Steps around minor circle.
-  light-direction: (-1, -1, -1), // Light source direction
-  ambient-light: 0.4, // Ambient light intensity (0-1)
-  diffuse-strength: 0.2, // Diffuse lighting strength (0-1)
+  light-direction: (1, 1, 1), // Light source direction
+  ambient-light: 0.3, // Ambient light intensity (0-1)
+  diffuse-strength: 0.6, // Diffuse lighting strength (0-1)
 ) = {
-  import calc: cos, max, min, pi, pow, sin, sqrt
+  import calc: *
+  
+  //cos, max, min, pi, pow, sin, sqrt
 
   let get-torus-point(theta, phi) = {
     let x = (outer-radius + inner-radius * cos(phi)) * cos(theta)
@@ -113,5 +115,5 @@
 #cetz.canvas({
   import cetz.draw: *
   scale(2)
-  ortho(x: -60deg, y: 0deg, draw-torus(light-direction: (0, -1, 1)))
+  ortho(x: -50deg, y: 0deg, draw-torus(light-direction: (1, 1, 1)))
 })

@@ -11,9 +11,9 @@
   inner-radius: 1,
   theta-divisions: 30, // Steps around major circle.
   phi-divisions: 30, // Steps around minor circle.
-  light-direction: (1, 1, 1), // Light source direction
-  ambient-light: 0.2, // Ambient light intensity (0-1)
-  diffuse-strength: 0.8, // Diffuse lighting strength (0-1)
+  light-direction: (-1, -1, -1), // Light source direction
+  ambient-light: 0.4, // Ambient light intensity (0-1)
+  diffuse-strength: 0.2, // Diffuse lighting strength (0-1)
 ) = {
   import calc: cos, max, min, pi, pow, sin, sqrt
 

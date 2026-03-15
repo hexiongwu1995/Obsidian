@@ -1,3 +1,4 @@
+
 /*
 绘制一个圆环面(Torus)
 1. 以圆环面的几何中心作为坐标系原点O
@@ -45,8 +46,6 @@ content((rel:(0.3,0,0), to: "x.end"), $x$)
 content((rel:(0,0.3,0), to: "y.end"), $y$) 
 content((rel:(0,0,0.3), to: "z.end"), $z$) 
 
-
-
 let Rdivision=1
 for k in range(Rdivision) {
 let Rinterval= 2*pi/Rdivision
@@ -60,24 +59,13 @@ line("cir.center","cir.10%", stroke:(paint:orange))
 } ) }) } 
 
 
-let Draw-torus(R:4, r:0.6, Rnum:10, rnum:10, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.8, Aintensity:0.2)= {
+let Draw-torus(R:4, r:0.6, Rnum:10, rnum:10, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.2, Aintensity:0.1)= {
 
 let Get-Coords(Phi,Polar)={
 let x= (R+ r*cos(Polar))*cos(Phi)
 let y= (R+ r*cos(Polar))*sin(Phi)
 let z= r*sin(Polar)
 return (x,y,z)
-}
-
-let Cross-product(m,n)={
-let (a1,a2,a3)= m;
-let (b1,b2,b3)= n;
-let cross-product= (a2*b3 - a3*b2, a3*b1 - a1*b3, a1*b2 - a2*b1)
-}
-
-let Get-normal(rect-diagonal-a, rect-diagonal-b)={
-let normal = Cross-product(rect-diagonal-a, rect-diagonal-b) 
-return normal
 }
 
 for i in range(Rnum) {
@@ -96,15 +84,18 @@ let Pb= Get-Coords(Phi-curr, Polar-next)
 let Pc= Get-Coords(Phi-next, Polar-next)
 let Pd= Get-Coords(Phi-next, Polar-curr)
 
-line(Pa, Pb, Pc, Pd, close:true, fill:none, stroke:gray)
-
 let rect-diagonal-a = vector.sub(Pa, Pc)
 let rect-diagonal-b = vector.sub(Pb, Pd)
 let normal-of-rect= vector.cross(rect-diagonal-a, rect-diagonal-b)
 let normalize-of-rect= vector.norm(normal-of-rect)
 let normalize-of-Plight= vector.norm(Plight)
-let Diffuse= 
+let Diffuse= max(0,vector.dot(normalize-of-rect, normalize-of-Plight))
+let Intensity= min(1,Pintensity*Diffuse + Aintensity)
 
+// The following if segment run into an error, error message: "cannot join array with color". Please investigate this matter and provide some insights and solutions to me.
+let fill-lighten(fill)= {if type(fill)==std.color {let fill-lighten= fill.lighten(100%*(Intensity - 0.5)); return fill-lighten} else {return fill} }
+
+line(Pa, Pb, Pc, Pd, close:true, fill:fill-lighten(fill), stroke:none)
 } } 
 
 }
@@ -113,7 +104,6 @@ Draw-torus()
 
 
 }) })
-
 
 
 

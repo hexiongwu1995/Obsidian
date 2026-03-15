@@ -100,9 +100,10 @@ line(Pa, Pb, Pc, Pd, close:true, fill:none, stroke:gray)
 
 let rect-diagonal-a = vector.sub(Pa, Pc)
 let rect-diagonal-b = vector.sub(Pb, Pd)
-let normal-of-rect= Get-normal(rect-diagonal-a, rect-diagonal-b)
-
-let Diffuse= Cross-product
+let normal-of-rect= vector.cross(rect-diagonal-a, rect-diagonal-b)
+let normalize-of-rect= vector.norm(normal-of-rect)
+let normalize-of-Plight= vector.norm(Plight)
+let Diffuse= 
 
 } } 
 

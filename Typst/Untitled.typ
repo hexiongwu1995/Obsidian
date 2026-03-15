@@ -33,9 +33,9 @@ let P= sph(3.5, pi/4, pi/3 )
 line(O,P) 
 
 // error comes from the following codes:
-let A=(0,0,3.5)
-let B=sph(3.5, pi/2, pi/3)
-arc-through(A, P, B)
+// let A=(0,0,3.5)
+// let B=sph(3.5, pi/2, pi/3)
+// arc-through(A, P, B)
 })
 
 })

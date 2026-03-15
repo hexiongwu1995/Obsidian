@@ -99,7 +99,7 @@ let Diffuse= max(0,vector.dot(normalize-of-rect, normalize-of-Plight))
 
 let Intensity= min(1,Pintensity*Diffuse + Aintensity)
 
-let fill-lighten(fill)= {if type(fill)==std.color { fill.lighten(100% * Intensity )} else { fill} }
+let fill-lighten(fill)= {if type(fill)==color { fill.lighten(100% * Intensity )} else { fill} }
 
 line(Pa, Pb, Pc, Pd, close:true, fill:fill-lighten(fill), stroke:none)
 } } } 

@@ -22,7 +22,9 @@
 #import "@preview/cetz:0.4.2"
 #cetz.canvas({
 import cetz.draw:*
+import cetz.angle:*
 import calc:*
+
 
 let sph(r, theta, phi)={
 let x=r* sin(theta)* cos(phi)
@@ -36,9 +38,9 @@ scale(x:2,y:2,z:2)
 
 ortho(x:300deg, y:0deg, z:250deg,{
 let mark-style= ( mark:(end:(symbol:"curved-stealth", fill:black, scale:0.5) ) ) 
-line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:gray ) 
-line((0,0,0), (0,4,0), name:"y",..mark-style, stroke:gray ) 
-line((0,0,0), (0,0,4), name:"z",..mark-style, stroke:gray ) 
+line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:(dash:"dashed")) 
+line((0,0,0), (0,4,0), name:"y",..mark-style, stroke:(dash:"dashed") ) 
+line((0,0,0), (0,0,4), name:"z",..mark-style, stroke:(dash:"dashed") ) 
 content((rel:(0.3,0,0), to: "x.end"), $x$) 
 content((rel:(0,0.3,0), to: "y.end"), $y$) 
 content((rel:(0,0,0.3), to: "z.end"), $z$) 
@@ -48,17 +50,32 @@ on-xy(z:0, arc((0,0),start:0deg, stop:90deg, radius:3.5, anchor:"origin"))
 on-xz(y:0, arc((0,0),start:0deg, stop:90deg, radius:3.5, anchor:"origin")) 
 on-yz(x:0, arc((0,0),start:0deg, stop:90deg, radius:3.5, anchor:"origin")) 
 
-let O=(0,0,0) 
-let P= sph(3.5, pi/4, pi/3 ) 
-line(O,P) 
-
-// let A=(0,0,3.5)
-// let B=sph(3.5, pi/2, pi/3)
-// arc-through(A, P, B)
+let (O, P)= ((0,0,0), sph(3.5, pi/4, pi/3 ) )
+line(O,P,stroke:(dash:"dashed") , ..mark-style ) 
+content((rel:(0, 0.5, 0.1), to: P), $P(r,theta,phi)$)
+scope({
+rotate(z:60deg);
+on-xz(y:0, arc((0,0),start:0deg, stop:90deg, radius:3.5, anchor:"origin",));
 })
 
-let Daw-torus(R:4, r:0.6, Rnum:30, rnum:30, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.8, Aintensity:0.2)= {
+let (PX,PY,PZ)=P
+let (Px,Py,Pz,Pxy)=((PX,0,0),(0,PY,0),(0,0,PZ),(PX,PY,0)) 
+line(Pz,P,Pxy,Px,stroke:(dash:"dashed") )
+line(O,Pxy,Py,stroke:(dash:"dashed") )
+angle((0,0,0),Px, Pxy, radius:PX, label: text(size:15pt,fill:teal)[$phi$], ..mark-style, stroke:(thickness:2pt, paint:teal)) ;
+// angle((0,0,0),Pz, P, radius:1cm, label: text(fill:teal)[$theta$], ..mark-style, stroke:(thickness:2pt, paint:teal)); 
+scope({
+rotate(z:60deg);
+on-xz(y:0, arc((0,0),start:90deg, stop:45deg, radius:1.5, anchor:"origin", ..mark-style, stroke:(thickness:2pt,paint:teal), name:"angle-theta"));
+content(sph(0.8,pi/8,pi/3),text(size:15pt, fill:teal)[$theta$])
+// Is there another method to draw the theta angle?
+})
+
+})
+
+/* let Daw-torus(R:4, r:0.6, Rnum:30, rnum:30, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.8, Aintensity:0.2)= {
 
 }
+*/
 
 })

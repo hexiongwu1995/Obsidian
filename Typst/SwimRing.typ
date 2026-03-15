@@ -16,7 +16,8 @@
 14. 设置描边颜色
 */
 
-#set page(paper:"a4", flipped:true, margin:1cm)
+
+#set page(paper:"a5", flipped:true, margin:1cm)
 #set align(center+horizon)
 
 #import "@preview/cetz:0.4.2"
@@ -25,6 +26,57 @@ import cetz.draw:*
 import cetz.angle:*
 import calc:*
 
+let sph(r, theta, phi)={
+let x=r* sin(theta)* cos(phi)
+let y=r* sin(theta)* sin(phi)
+let z=r*cos(theta)
+return (x,y,z)
+}
+
+scale(x:1.5,y:1.5,z:1.5)
+
+ortho(x:300deg, y:0deg, z:250deg,{
+let mark-style= ( mark:(end:(symbol:"curved-stealth", fill:black, scale:0.5) ) ) 
+line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:(dash:"dashed")) 
+line((0,0,0), (0,4,0), name:"y",..mark-style, stroke:(dash:"dashed") ) 
+line((0,0,0), (0,0,4), name:"z",..mark-style, stroke:(dash:"dashed") ) 
+content((rel:(0.3,0,0), to: "x.end"), $x$) 
+content((rel:(0,0.3,0), to: "y.end"), $y$) 
+content((rel:(0,0,0.3), to: "z.end"), $z$) 
+
+let Daw-torus(R:4, r:0.6, Rnum:30, rnum:30, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.8, Aintensity:0.2)= {
+
+}
+
+
+}) })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#set page(paper:"a5", flipped:true, margin:1cm)
+#set align(center+horizon)
+
+#import "@preview/cetz:0.4.2"
+#cetz.canvas({
+import cetz.draw:*
+import cetz.angle:*
+import calc:*
 
 let sph(r, theta, phi)={
 let x=r* sin(theta)* cos(phi)
@@ -33,8 +85,7 @@ let z=r*cos(theta)
 return (x,y,z)
 }
 
-
-scale(x:2,y:2,z:2)
+scale(x:1.5,y:1.5,z:1.5)
 
 ortho(x:300deg, y:0deg, z:250deg,{
 let mark-style= ( mark:(end:(symbol:"curved-stealth", fill:black, scale:0.5) ) ) 
@@ -69,13 +120,7 @@ rotate(z:60deg);
 on-xz(y:0, arc((0,0),start:90deg, stop:45deg, radius:1.5, anchor:"origin", ..mark-style, stroke:(thickness:2pt,paint:teal), name:"angle-theta"));
 content(sph(0.8,pi/8,pi/3),text(size:15pt, fill:teal)[$theta$])
 // Is there another method to draw the theta angle?
-})
+}) }) })
 
-})
 
-/* let Daw-torus(R:4, r:0.6, Rnum:30, rnum:30, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.8, Aintensity:0.2)= {
 
-}
-*/
-
-})

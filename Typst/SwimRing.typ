@@ -25,6 +25,7 @@
 import cetz.draw:*
 import cetz.angle:*
 import calc:*
+import cetz.util.vector
 
 let sph(r, theta, phi)={
 let x=r* sin(theta)* cos(phi)
@@ -59,10 +60,6 @@ line("cir.center","cir.10%", stroke:(paint:orange))
 } ) }) } 
 
 
-
-
-
-
 let Draw-torus(R:4, r:0.6, Rnum:10, rnum:10, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.8, Aintensity:0.2)= {
 
 let Get-Coords(Phi,Polar)={
@@ -72,11 +69,16 @@ let z= r*sin(Polar)
 return (x,y,z)
 }
 
-let Get-normal={
-
-
+let Cross-product(m,n)={
+let (a1,a2,a3)= m;
+let (b1,b2,b3)= n;
+let cross-product= (a2*b3 - a3*b2, a3*b1 - a1*b3, a1*b2 - a2*b1)
 }
 
+let Get-normal(rect-diagonal-a, rect-diagonal-b)={
+let normal = Cross-product(rect-diagonal-a, rect-diagonal-b) 
+return normal
+}
 
 for i in range(Rnum) {
 for j in range(rnum) {
@@ -94,11 +96,13 @@ let Pb= Get-Coords(Phi-curr, Polar-next)
 let Pc= Get-Coords(Phi-next, Polar-next)
 let Pd= Get-Coords(Phi-next, Polar-curr)
 
-let rect-mid= (Pa+Pd).map(a=> a/2)
-
-
 line(Pa, Pb, Pc, Pd, close:true, fill:none, stroke:gray)
 
+let rect-diagonal-a = vector.sub(Pa, Pc)
+let rect-diagonal-b = vector.sub(Pb, Pd)
+let normal-of-rect= Get-normal(rect-diagonal-a, rect-diagonal-b)
+
+let Diffuse= Cross-product
 
 } } 
 

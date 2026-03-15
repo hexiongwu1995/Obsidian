@@ -17,7 +17,6 @@
 14. 设置描边颜色
 */
 
-
 #set page(paper:"a4", flipped:true, margin:0.2cm)
 #set align(center+horizon)
 
@@ -38,8 +37,8 @@ scale(x:1.5,y:1.5,z:1.5)
 
 ortho(x:300deg, y:0deg, z:280deg,{
 let mark-style= ( mark:(end:(symbol:"curved-stealth", fill:black, scale:0.5) ) ) 
-line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:(dash:"dashed")) 
-line((0,0,0), (0,4,0), name:"y",..mark-style, stroke:(dash:"dashed") ) 
+line((0,0,0), (5.5,0,0), name:"x",..mark-style, stroke:(dash:"dashed")) 
+line((0,0,0), (0,5,0), name:"y",..mark-style, stroke:(dash:"dashed") ) 
 line((0,0,0), (0,0,4), name:"z",..mark-style, stroke:(dash:"dashed") ) 
 content((rel:(0.3,0,0), to: "x.end"), $x$) 
 content((rel:(0,0.3,0), to: "y.end"), $y$) 
@@ -57,7 +56,7 @@ line("cir.west","cir.east", stroke:(dash:"solid"))
 line("cir.center","cir.10%", stroke:(paint:orange))
 } ) }) } 
 
-let Draw-torus(R:4, r:0.6, Rnum:20, rnum:20, fill:blue, stroke:none, Plight:(1,0,0), Pintensity:0.2, Aintensity:0.1)= {
+let Draw-torus(R:4, r:0.6, Rnum:20, rnum:20, fill:blue, stroke:none, Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
 
 let Get-Coords(Phi,Polar)={
 let x= (R+ r*cos(Polar))*cos(Phi)
@@ -108,29 +107,6 @@ line(Pa, Pb, Pc, Pd, close:true, fill:fill-lighten(fill), stroke:none)
 Draw-torus()
 
 }) })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

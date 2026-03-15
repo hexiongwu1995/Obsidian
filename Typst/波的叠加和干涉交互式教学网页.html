@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>波的叠加和干涉</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 24px;
+      background-color: #f9fafc;
+    }
+
+    .card {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 12px;
+    }
+
+    .intro {
+      text-align: center;
+      color: #5a6c7d;
+      max-width: 800px;
+      margin: 0 auto 24px;
+      font-size: 1rem;
+    }
+
+    @media (min-width: 992px) {
+      .main-content {
+        display: flex;
+        gap: 24px;
+      }
+      .controllers {
+        flex: 4;
+      }
+      .chart-container {
+        flex: 8;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .controllers, .chart-container {
+        width: 100%;
+      }
+    }
+
+    .control-card {
+      background: #f8fafc;
+      border-radius: 8px;
+      border-left: 4px solid #3498db;
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+
+    .control-card-wave2 {
+      border-left-color: #e67e22;
+    }
+
+    .control-header {
+      padding: 12px 16px;
+      background: #edf2f7;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: bold;
+    }
+
+    .control-body {
+      padding: 16px;
+      display: none; /* 默认折叠 */
+    }
+
+    .control-body.open {
+      display: block;
+    }
+
+    .slider-group {
+      margin-bottom: 16px;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+      font-size: 0.95rem;
+    }
+
+    input[type='range'] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #e2e8f0;
+      outline: none;
+    }
+
+    .value-display {
+      min-width: 40px;
+      text-align: right;
+      font-family: monospace;
+      color: #2d3748;
+    }
+
+    .global-controls {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .btn-play {
+      background-color: #2ecc71;
+      color: white;
+    }
+    .btn-play:hover {
+      background-color: #27ae60;
+    }
+    .btn-reset {
+      background-color: #95a5a6;
+      color: white;
+    }
+    .btn-reset:hover {
+      background-color: #7f8c8d;
+    }
+    .btn-preset {
+      background-color: #9b59b6;
+      color: white;
+    }
+    .btn-preset:hover {
+      background-color: #8e44ad;
+    }
+    .btn-toggle-grid {
+      background-color: #3498db;
+      color: white;
+    }
+    .btn-toggle-grid:hover {
+      background-color: #2980b9;
+    }
+
+    canvas {
+      width: 100%;
+      min-height: 360px;
+      background: #f8fafc;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .legend {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 10px 15px;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin: 5px 0;
+    }
+
+    .color-box {
+      width: 16px;
+      height: 3px;
+      margin-right: 8px;
+    }
+
+    .placeholder-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #a0aec0;
+      font-style: italic;
+    }
+
+    .explanation-card p {
+      margin-bottom: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>波的叠加和干涉</h1>
+  <p class="intro">
+    两个或多个波在同一介质中传播时会发生叠加。当它们相遇时，质点的总位移等于各波单独引起的位移之和。
+    通过调节下方参数，观察波形变化，理解相长干涉（波峰与波峰相遇）与相消干涉（波峰与波谷相遇）现象。
+  </p>
+
+  <div class="main-content">
+    <div class="controllers card">
+      <div class="control-card">
+        <div class="control-header" onclick="toggleCollapse('wave1')">
+          <span>🌊 波1</span>
+          <span>▼</span>
+        </div>
+        <div class="control-body open" id="wave1Body">
+          <div class="slider-group">
+            <label>
+              <span>振幅 A₁</span>
+              <span class="value-display"><span id="a1Value">1.0</span></span>
+            </label>
+            <input type="range" id="a1" min="0" max="2" step="0.1" value="1.0" oninput="updateValueDisplay('a1','a1Value'); updateAndRender();">
+          </div>
+          <div class="slider-group">
+            <label>
+              <span>频率 f₁</span>
+              <span class="value-display"><span id="f1Value">1.0</span> Hz</span>
+            </label>
+            <input type="range" id="f1" min="0.2" max="5" step="0.1" value="1.0" oninput="updateValueDisplay('f1','f1Value'); updateAndRender();">
+          </div>
+          <div class="slider-group">
+            <label>
+              <span>相位 φ₁</span>
+              <span class="value-display"><span id="p1Value">0</span>°</span>
+            </label>
+            <input type="range" id="p1" min="0" max="360" step="1" value="0" oninput="updateValueDisplay('p1','p1Value'); updateAndRender();">
+          </div>
+        </div>
+      </div>
+
+      <div class="control-card control-card-wave2">
+        <div class="control-header" onclick="toggleCollapse('wave2')">
+          <span>🌊 波2</span>
+          <span>▼</span>
+        </div>
+        <div class="control-body open" id="wave2Body">
+          <div class="slider-group">
+            <label>
+              <span>振幅 A₂</span>
+              <span class="value-display"><span id="a2Value">1.0</span></span>
+            </label>
+            <input type="range" id="a2" min="0" max="2" step="0.1" value="1.0" oninput="updateValueDisplay('a2','a2Value'); updateAndRender();">
+          </div>
+          <div class="slider-group">
+            <label>
+              <span>频率 f₂</span>
+              <span class="value-display"><span id="f2Value">1.0</span> Hz</span>
+            </label>
+            <input type="range" id="f2" min="0.2" max="5" step="0.1" value="1.0" oninput="updateValueDisplay('f2','f2Value'); updateAndRender();">
+          </div>
+          <div class="slider-group">
+            <label>
+              <span>相位 φ₂</span>
+              <span class="value-display"><span id="p2Value">0</span>°</span>
+            </label>
+            <input type="range" id="p2" min="0" max="360" step="1" value="0" oninput="updateValueDisplay('p2','p2Value'); updateAndRender();">
+          </div>
+        </div>
+      </div>
+
+      <div class="global-controls">
+        <button class="btn-play" id="playPauseBtn" onclick="togglePlay()">播放</button>
+        <button class="btn-reset" onclick="resetAll()">重置</button>
+        <button class="btn-preset" onclick="applyPreset('inPhase')">同频同相</button>
+        <button class="btn-preset" onclick="applyPreset('outOfPhase')">同频反相</button>
+        <button class="btn-preset" onclick="applyPreset('differentFreq')">不同频率</button>
+        <button class="btn-toggle-grid" onclick="toggleGrid()">隐藏网格</button>
+      </div>
+    </div>
+
+    <div class="chart-container card">
+      <canvas id="waveCanvas"></canvas>
+      <div class="legend">
+        <div class="legend-item">
+          <div class="color-box" style="background-color: #3498db;"></div>
+          <span>波1</span>
+        </div>
+        <div class="legend-item">
+          <div class="color-box" style="background-color: #e67e22;"></div>
+          <span>波2</span>
+        </div>
+        <div class="legend-item">
+          <div class="color-box" style="background-color: #2ecc71;"></div>
+          <span>合成波</span>
+        </div>
+      </div>
+      <div class="placeholder-text" id="placeholderText">拖动滑块或点击播放开始观察吧</div>
+    </div>
+  </div>
+
+  <div class="card explanation-card">
+    <h3>🔍 原理与提示</h3>
+    <p><strong>相长干涉：</strong>当两列波的波峰与波峰、波谷与波谷相遇时，振幅增大，形成加强区域。</p>
+    <p><strong>相消干涉：</strong>当一列波的波峰与另一列波的波谷相遇时，振幅减小，甚至为零，形成减弱区域。</p>
+    <p>💡 <strong>实验建议：</strong></p>
+    <ul>
+      <li>改变两波的相位差（φ₁ vs φ₂），观察合成波的变化。</li>
+      <li>让两波频率稍有不同（如 f₁=1.0Hz, f₂=1.2Hz），观察“拍”现象。</li>
+      <li>尝试使两波完全反相（相位差180°），看合成波如何抵消。</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  // --- State ---
+  let state = {
+    a1: 1.0,
+    f1: 1.0,
+    p1: 0,
+    a2: 1.0,
+    f2: 1.0,
+    p2: 0,
+    t: 0,
+    isPlaying: false,
+    showGrid: true,
+    animationId: null,
+    lastTime: 0,
+  };
+
+  const canvas = document.getElementById('waveCanvas');
+  const ctx = canvas.getContext('2d');
+  const placeholderText = document.getElementById('placeholderText');
+
+  // --- Initialization ---
+  function init() {
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    resetAll();
+  }
+
+  // --- Update Logic ---
+  function update(time) {
+    if (!state.isPlaying) return;
+
+    const deltaTime = (time - state.lastTime) / 1000;
+    state.lastTime = time;
+
+    state.t += deltaTime;
+    render();
+    state.animationId = requestAnimationFrame(update);
+  }
+
+  function togglePlay() {
+    const btn = document.getElementById('playPauseBtn');
+    state.isPlaying = !state.isPlaying;
+    btn.textContent = state.isPlaying ? '暂停' : '播放';
+    placeholderText.style.display = 'none';
+
+    if (state.isPlaying) {
+        state.lastTime = performance.now();
+        state.animationId = requestAnimationFrame(update);
+    } else {
+        cancelAnimationFrame(state.animationId);
+    }
+  }
+
+  function updateAndRender() {
+      placeholderText.style.display = 'none';
+      render();
+  }
+
+  function resetAll() {
+    state.a1 = 1.0;
+    state.f1 = 1.0;
+    state.p1 = 0;
+    state.a2 = 1.0;
+    state.f2 = 1.0;
+    state.p2 = 0;
+    state.t = 0;
+    state.isPlaying = false;
+    document.getElementById('playPauseBtn').textContent = '播放';
+    cancelAnimationFrame(state.animationId);
+
+    document.getElementById('a1').value = state.a1;
+    document.getElementById('f1').value = state.f1;
+    document.getElementById('p1').value = state.p1;
+    document.getElementById('a2').value = state.a2;
+    document.getElementById('f2').value = state.f2;
+    document.getElementById('p2').value = state.p2;
+
+    updateValueDisplay('a1', 'a1Value');
+    updateValueDisplay('f1', 'f1Value');
+    updateValueDisplay('p1', 'p1Value');
+    updateValueDisplay('a2', 'a2Value');
+    updateValueDisplay('f2', 'f2Value');
+    updateValueDisplay('p2', 'p2Value');
+    render();
+  }
+
+  function applyPreset(type) {
+    switch(type) {
+      case 'inPhase':
+        state.a1 = 1.0; state.f1 = 1.0; state.p1 = 0;
+        state.a2 = 1.0; state.f2 = 1.0; state.p2 = 0;
+        break;
+      case 'outOfPhase':
+        state.a1 = 1.0; state.f1 = 1.0; state.p1 = 0;
+        state.a2 = 1.0; state.f2 = 1.0; state.p2 = 180;
+        break;
+      case 'differentFreq':
+        state.a1 = 1.0; state.f1 = 1.0; state.p1 = 0;
+        state.a2 = 1.0; state.f2 = 1.2; state.p2 = 0;
+        break;
+    }
+    document.getElementById('a1').value = state.a1;
+    document.getElementById('f1').value = state.f1;
+    document.getElementById('p1').value = state.p1;
+    document.getElementById('a2').value = state.a2;
+    document.getElementById('f2').value = state.f2;
+    document.getElementById('p2').value = state.p2;
+
+    updateValueDisplay('a1', 'a1Value');
+    updateValueDisplay('f1', 'f1Value');
+    updateValueDisplay('p1', 'p1Value');
+    updateValueDisplay('a2', 'a2Value');
+    updateValueDisplay('f2', 'f2Value');
+    updateValueDisplay('p2', 'p2Value');
+    placeholderText.style.display = 'none';
+    render();
+  }
+
+  function toggleGrid() {
+    state.showGrid = !state.showGrid;
+    document.querySelector('.btn-toggle-grid').textContent = state.showGrid ? '隐藏网格' : '显示网格';
+    render();
+  }
+
+  function toggleCollapse(id) {
+    const body = document.getElementById(`${id}Body`);
+    const header = body.previousElementSibling;
+    const icon = header.querySelector('span:last-child');
+    body.classList.toggle('open');
+    icon.textContent = body.classList.contains('open') ? '▲' : '▼';
+  }
+
+  function updateValueDisplay(sliderId, displayId) {
+    const val = document.getElementById(sliderId).value;
+    document.getElementById(displayId).textContent = parseFloat(val).toFixed(sliderId.startsWith('p') ? 0 : 1);
+  }
+
+  function resizeCanvas() {
+    canvas.width = canvas.clientWidth;
+    canvas.height = Math.max(canvas.clientHeight, 360); // 最小高度
+    render();
+  }
+
+  // --- Render ---
+  function render() {
+    const width = canvas.width;
+    const height = canvas.height;
+    const xMax = 6 * Math.PI;
+    const maxAmp = state.a1 + state.a2 || 1; // 避免除零
+
+    ctx.clearRect(0, 0, width, height);
+
+    if (state.showGrid) {
+      drawGrid(ctx, width, height, xMax, maxAmp);
+    }
+
+    drawAxes(ctx, width, height, xMax, maxAmp);
+
+    // Only draw waves if there's any amplitude
+    if (maxAmp > 0) {
+      drawWave(ctx, width, height, xMax, maxAmp, state.a1, state.f1, state.p1 * Math.PI / 180, state.t, '#3498db');
+      drawWave(ctx, width, height, xMax, maxAmp, state.a2, state.f2, state.p2 * Math.PI / 180, state.t, '#e67e22');
+      drawSumWave(ctx, width, height, xMax, maxAmp, state.t, '#2ecc71');
+    }
+  }
+
+  function drawGrid(ctx, width, height, xMax, maxAmp) {
+    ctx.strokeStyle = '#e2e8f0';
+    ctx.lineWidth = 1;
+
+    // Vertical grid lines (x-axis)
+    for (let x = 0; x <= xMax; x += Math.PI / 2) {
+        const pixelX = (x / xMax) * width;
+        ctx.beginPath();
+        ctx.moveTo(pixelX, 0);
+        ctx.lineTo(pixelX, height);
+        ctx.stroke();
+    }
+
+    // Horizontal grid lines (y-axis)
+    for (let y = -maxAmp; y <= maxAmp; y += maxAmp / 4) {
+        if (y === 0) continue; // Skip zero line as it's the axis
+        const pixelY = height / 2 - (y / maxAmp) * (height / 2);
+        ctx.beginPath();
+        ctx.moveTo(0, pixelY);
+        ctx.lineTo(width, pixelY);
+        ctx.stroke();
+    }
+  }
+
+  function drawAxes(ctx, width, height, xMax, maxAmp) {
+    ctx.strokeStyle = '#a0aec0';
+    ctx.lineWidth = 2;
+
+    // x-axis
+    ctx.beginPath();
+    ctx.moveTo(0, height / 2);
+    ctx.lineTo(width, height / 2);
+    ctx.stroke();
+
+    // y-axis
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(0, height);
+    ctx.stroke();
+
+    // Labels (simple)
+    ctx.fillStyle = '#718096';
+    ctx.font = '12px Arial';
+    ctx.fillText('0', 4, height / 2 - 4);
+    ctx.fillText('2π', (2 * Math.PI / xMax) * width - 10, height / 2 - 4);
+    ctx.fillText('4π', (4 * Math.PI / xMax) * width - 10, height / 2 - 4);
+    ctx.fillText('6π', (6 * Math.PI / xMax) * width - 10, height / 2 - 4);
+  }
+
+  function drawWave(ctx, width, height, xMax, maxAmp, A, f, phi, t, color) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 2;
+
+    for (let i = 0; i < width; i++) {
+      const x_canvas = i;
+      const x_wave = (i / width) * xMax;
+      const y_val = A * Math.sin(x_wave - 2 * Math.PI * f * t + phi);
+      const y_canvas = height / 2 - (y_val / maxAmp) * (height / 2);
+
+      if (i === 0) {
+        ctx.moveTo(x_canvas, y_canvas);
+      } else {
+        ctx.lineTo(x_canvas, y_canvas);
+      }
+    }
+    ctx.stroke();
+  }
+
+  function drawSumWave(ctx, width, height, xMax, maxAmp, t, color) {
+    ctx.beginPath();
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 3;
+
+    for (let i = 0; i < width; i++) {
+      const x_wave = (i / width) * xMax;
+      const y1 = state.a1 * Math.sin(x_wave - 2 * Math.PI * state.f1 * t + state.p1 * Math.PI / 180);
+      const y2 = state.a2 * Math.sin(x_wave - 2 * Math.PI * state.f2 * t + state.p2 * Math.PI / 180);
+      const y_sum = y1 + y2;
+      const y_canvas = height / 2 - (y_sum / maxAmp) * (height / 2);
+
+      if (i === 0) {
+        ctx.moveTo(i, y_canvas);
+      } else {
+        ctx.lineTo(i, y_canvas);
+      }
+    }
+    ctx.stroke();
+  }
+
+  // --- Startup ---
+  window.onload = init;
+</script>
+
+</body>
+</html>

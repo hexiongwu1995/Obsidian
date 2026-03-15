@@ -1,6 +1,6 @@
 
 /*
-绘制一个圆环面(Torus)
+目标：绘制一个圆环面(Torus)
 1. 以圆环面的几何中心作为坐标系原点O
 2. 以圆环面的管中心环线所在平面作为xy平面(同时也是球坐标系中theta=pi/2的平面)
 3. 任意过z轴的平面与圆环面的相交截面都是一个具有相同半径的圆形，设这个圆形的半径为r
@@ -32,8 +32,7 @@ let sph(r, theta, phi)={
 let x=r* sin(theta)* cos(phi)
 let y=r* sin(theta)* sin(phi)
 let z=r*cos(theta)
-return (x,y,z)
-}
+return (x,y,z) }
 
 scale(x:1.5,y:1.5,z:1.5)
 
@@ -58,8 +57,7 @@ line("cir.west","cir.east", stroke:(dash:"solid"))
 line("cir.center","cir.10%", stroke:(paint:orange))
 } ) }) } 
 
-
-let Draw-torus(R:4, r:0.6, Rnum:10, rnum:10, fill:orange, stroke:none, Plight:(1,1,1), Pintensity:0.2, Aintensity:0.1)= {
+let Draw-torus(R:4, r:0.6, Rnum:20, rnum:20, fill:blue, stroke:none, Plight:(1,0,0), Pintensity:0.2, Aintensity:0.1)= {
 
 let Get-Coords(Phi,Polar)={
 let x= (R+ r*cos(Polar))*cos(Phi)
@@ -87,21 +85,27 @@ let Pd= Get-Coords(Phi-next, Polar-curr)
 let rect-diagonal-a = vector.sub(Pa, Pc)
 let rect-diagonal-b = vector.sub(Pb, Pd)
 let normal-of-rect= vector.cross(rect-diagonal-a, rect-diagonal-b)
-let normalize-of-rect= vector.norm(normal-of-rect)
-let normalize-of-Plight= vector.norm(Plight)
-let Diffuse= max(0,vector.dot(normalize-of-rect, normalize-of-Plight))
-let Intensity= min(1,Pintensity*Diffuse + Aintensity)
 
-// The following if segment run into an error, error message: "cannot join array with color". Please investigate this matter and provide some insights and solutions to me.
-let fill-lighten(fill)= {if type(fill)==std.color {let fill-lighten= fill.lighten(100%*(Intensity - 0.5)); return fill-lighten} else {return fill} }
-
-line(Pa, Pb, Pc, Pd, close:true, fill:fill-lighten(fill), stroke:none)
-} } 
-
+let rect-center= vector.scale(vector.add(Pa, Pc),0.5)
+let tube-center= sph(R, pi/2, (Phi-curr+ Phi-next)/2,)
+let tubecenter-to-rectcenter= vector.sub( rect-center, tube-center )
+let Outward-normal-of-rect= { 
+let dot-product= vector.dot(normal-of-rect,tubecenter-to-rectcenter);
+if dot-product < 0 { vector.scale(normal-of-rect,-1)} else { normal-of-rect}
 }
 
-Draw-torus()
+let normalize-of-rect= vector.norm(Outward-normal-of-rect)
+let normalize-of-Plight= vector.norm(Plight)
+let Diffuse= max(0,vector.dot(normalize-of-rect, normalize-of-Plight))
 
+let Intensity= min(1,Pintensity*Diffuse + Aintensity)
+
+let fill-lighten(fill)= {if type(fill)==std.color { fill.lighten(100% * Intensity )} else { fill} }
+
+line(Pa, Pb, Pc, Pd, close:true, fill:fill-lighten(fill), stroke:none)
+} } } 
+
+Draw-torus()
 
 }) })
 

@@ -69,6 +69,17 @@ let Daw-torus(R:4, r:0.6, Rnum:30, rnum:30, fill:orange, stroke:none, Plight:(1,
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 #set page(paper:"a5", flipped:true, margin:1cm)
 #set align(center+horizon)
 

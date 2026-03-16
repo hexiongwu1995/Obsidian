@@ -140,11 +140,6 @@ Draw-torus()
 
 
 
-
-
-
-
-
 #set page(paper:"a5", flipped:true, margin:1cm)
 #set align(center+horizon)
 
@@ -163,7 +158,7 @@ return (x,y,z)
 
 scale(x:1.5,y:1.5,z:1.5)
 
-ortho(x:300deg, y:0deg, z:250deg,{
+ortho(x:-70deg, y:0deg, z:-110deg,{
 let mark-style= ( mark:(end:(symbol:"curved-stealth", fill:black, scale:0.5) ) ) 
 line((0,0,0), (4,0,0), name:"x",..mark-style, stroke:(dash:"dashed")) 
 line((0,0,0), (0,4,0), name:"y",..mark-style, stroke:(dash:"dashed") ) 

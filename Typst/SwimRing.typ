@@ -42,18 +42,19 @@ return (x,y,z) }
 scale(x:1, y:1, z:1)
 set-style(mark:(end:(symbol:"stealth", fill:black, scale:0.5)))
 
-ortho(x:-70deg, y:0deg, z:-120deg,{
-
-// 绘制的坐标轴与Torus之间需要进行深度排序
-line((0,0,0), (7,0,0), name:"x", stroke:(dash:"dotted") ) 
-line((0,0,0), (0,6,0), name:"y", stroke:(dash:"dotted") ) 
-line((0,0,0), (0,0,4), name:"z", stroke:(dash:"dotted") ) 
-content((rel:(0.3,0,0), to: "x.end"), $x$) 
-content((rel:(0,0.3,0), to: "y.end"), $y$) 
-content((rel:(0,0,0.3), to: "z.end"), $z$) 
+ortho(x:-70deg, y:0deg, z:-120deg, sorted:true,{
 
 
-let Draw-torus(R:4, r:0.6, Phi-num:30, Polar-num:30, Fill:blue, Stroke:none,  Plight:(1,1,0.5), Pintensity:1.0, Aintensity:0.4)= {
+
+let Draw-torus(R:4, r:0.6, Phi-num:20, Polar-num:20, Fill:blue, Stroke:none,  Plight:(1,1,0.5), Pintensity:1.0, Aintensity:0.4)= {
+
+// 绘制的坐标轴与Torus之间需要先求解交点，然后进行深度排序
+line((0,0,0), (R+r,0,0), name:"x", stroke:(dash:"dotted") ) 
+line((0,0,0), (0,R+r,0), name:"y", stroke:(dash:"dotted") ) 
+line((0,0,0), (0,0,R+r), name:"z", stroke:(dash:"dotted") ) 
+content((rel:(0.4,0,0), to: "x.end"), $x$) 
+content((rel:(0,0.4,0), to: "y.end"), $y$) 
+content((rel:(0,0,0.4), to: "z.end"), $z$) 
 
 let Get-Coords(Phi,Polar)={
 let x= (R+ r*cos(Polar))*cos(Phi)
@@ -98,7 +99,7 @@ let Intensity= min(1,Pintensity * P-Diffuse + Aintensity)
 
 let Fill-darken = {if type(Fill)==color { Fill.darken(100% * (1-Intensity) )} else { Fill} }
 
-line(Pa, Pb, Pc, Pd, close:true, fill:Fill-darken, mark:none, stroke: Stroke )
+line(Pa, Pb, Pc, Pd, close:true, fill:Fill-darken.transparentize(40%), mark:none, stroke: Stroke )
 /* 
 在此处设置stroke:none之前，必须先设置mark:none，否则会报错。
 提示：" 'stroke:Stroke' expected color, gradient, tiling, or auto, found none"。

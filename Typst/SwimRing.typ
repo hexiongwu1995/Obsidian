@@ -29,7 +29,6 @@ Testing.......
 
 #import "@preview/cetz:0.4.2"
 #cetz.canvas({
-// 这里是否能一次性导入所有需要的模块？
 import cetz.draw:*
 import cetz.angle:*
 import calc:*
@@ -46,36 +45,18 @@ set-style(mark:(end:(symbol:"stealth", fill:black, scale:0.5)))
 
 ortho(x:-70deg, y:0deg, z:-120deg,{
 
-/*
+// 绘制的坐标轴与Torus之间需要进行深度排序
 line((0,0,0), (7,0,0), name:"x", stroke:(dash:"dotted") ) 
 line((0,0,0), (0,6,0), name:"y", stroke:(dash:"dotted") ) 
 line((0,0,0), (0,0,4), name:"z", stroke:(dash:"dotted") ) 
 content((rel:(0.3,0,0), to: "x.end"), $x$) 
 content((rel:(0,0.3,0), to: "y.end"), $y$) 
 content((rel:(0,0,0.3), to: "z.end"), $z$) 
-*/
 
-/*
-/*绘制前期用于辅助确定参数或坐标之间函数关系的简易参考图形*/
-let Rdivision=1
-for k in range(Rdivision) {
-let Rinterval= 2*pi/Rdivision
-scope({
-rotate(z: k*Rinterval) ;
-on-yz(x:0, 
-{circle((0,4), radius:2cm, name:"cir");  
-/* 这里的圆心为什么是(0,4)而不是(4,0)? */
-/* 下面line()函数中的锚点位置在实际渲染结果上均出现错位，无法确定是否为CeTZ的BUG? */
-line("cir.south","cir.north", stroke:(dash:"dotted"));
-line("cir.west","cir.east", stroke:(dash:"solid"))
-line("cir.center","cir.10%", stroke:(paint:orange))
-} ) }) } 
-*/
 
-let Draw-torus(R:4, r:0.6, Phi-num:30, Polar-num:30, Fill:blue, Stroke:none,  Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
+let Draw-torus(R:4, r:0.6, Phi-num:30, Polar-num:30, Fill:blue, Stroke:none,  Plight:(1,1,0.5), Pintensity:1.0, Aintensity:0.4)= {
 
 let Get-Coords(Phi,Polar)={
-/* 此处，Polar in (0, pi/2)是否对应 z>0 的情况？ */
 let x= (R+ r*cos(Polar))*cos(Phi)
 let y= (R+ r*cos(Polar))*sin(Phi)
 let z= r*sin(Polar)
@@ -116,23 +97,20 @@ let P-Diffuse= max(0,vector.dot(normalize-of-rect, normalize-of-Plight))
 
 let Intensity= min(1,Pintensity * P-Diffuse + Aintensity)
 
-let Fill-lighten = {if type(Fill)==color { Fill.lighten(100% * Intensity )} else { Fill} }
+let Fill-darken = {if type(Fill)==color { Fill.darken(100% * (1-Intensity) )} else { Fill} }
 
-line(Pa, Pb, Pc, Pd, close:true, fill:Fill-lighten, mark:none, stroke: Stroke )
+line(Pa, Pb, Pc, Pd, close:true, fill:Fill-darken, mark:none, stroke: Stroke )
 /* 
 在此处设置stroke:none之前，必须先设置mark:none，否则会报错。
 提示：" 'stroke:Stroke' expected color, gradient, tiling, or auto, found none"。
 很可能是因为之前已经在set-style中设置了全部路径的mark样式，而mark必须附着于路径之上。 
-我查阅了Typst的官方Reference文档，确认stroke不能取none值，我不明白为什么要这样设置？
-但是此处设置stroke:none并未报错。 
+我查阅了Typst的官方Reference文档，确认stroke可以取none值。此处设置stroke:none也并未报错。 
 */
 } } } 
 
 Draw-torus()
 
 }) })
-
-
 
 
 

@@ -22,11 +22,12 @@
 20. 将总的反射光强度映射为深浅不一的颜色值。
 */
 
-#set page(paper:"a4", flipped:true, margin:0.2cm)
+#set page(paper:"a4", flipped:true, margin:1cm)
 #set align(center+horizon)
 
 #import "@preview/cetz:0.4.2"
 #cetz.canvas({
+// 这里是否能一次性导入所有需要的模块？
 import cetz.draw:*
 import cetz.angle:*
 import calc:*
@@ -38,32 +39,39 @@ let y=r* sin(theta)* sin(phi)
 let z=r*cos(theta)
 return (x,y,z) }
 
-scale(x:1.5,y:1.5,z:1.5)
+scale(x:1.5, y:1.5, z:1.5)
+set-style(mark:(end:(symbol:"stealth", fill:black, scale:0.5)))
 
-ortho(x:300deg, y:0deg, z:280deg,{
-let mark-style= ( mark:(end:(symbol:"curved-stealth", fill:black, scale:0.5) ) ) 
-line((0,0,0), (5.5,0,0), name:"x",..mark-style, stroke:(dash:"dashed")) 
-line((0,0,0), (0,5,0), name:"y",..mark-style, stroke:(dash:"dashed") ) 
-line((0,0,0), (0,0,4), name:"z",..mark-style, stroke:(dash:"dashed") ) 
+ortho(x:300deg, y:0deg, z:240deg,{
+
+line((0,0,0), (6,0,0), name:"x", stroke:(dash:"dotted") ) 
+line((0,0,0), (0,6,0), name:"y", stroke:(dash:"dotted") ) 
+line((0,0,0), (0,0,4), name:"z", stroke:(dash:"dotted") ) 
 content((rel:(0.3,0,0), to: "x.end"), $x$) 
 content((rel:(0,0.3,0), to: "y.end"), $y$) 
 content((rel:(0,0,0.3), to: "z.end"), $z$) 
 
+/*
+/*绘制前期用于辅助确定参数或坐标之间函数关系的简易参考图形*/
 let Rdivision=1
 for k in range(Rdivision) {
 let Rinterval= 2*pi/Rdivision
 scope({
-rotate(z:k*Rinterval) ;
+rotate(z: k*Rinterval) ;
 on-yz(x:0, 
-{circle((0,4), radius:0.2cm, name:"cir"); 
+{circle((0,4), radius:2cm, name:"cir");  
+/* 这里的圆心为什么是(0,4)而不是(4,0)? */
+/* 下面line()函数中的锚点位置在实际渲染结果上均出现错位，无法确定是否为CeTZ的BUG? */
 line("cir.south","cir.north", stroke:(dash:"dotted"));
 line("cir.west","cir.east", stroke:(dash:"solid"))
 line("cir.center","cir.10%", stroke:(paint:orange))
 } ) }) } 
+*/
 
-let Draw-torus(R:4, r:0.6, Phi-num:50, Polar-num:50, fill:blue, stroke:none, Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
+let Draw-torus(R:4, r:0.6, Phi-num:20, Polar-num:20, fill:none, stroke:gray, Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
 
 let Get-Coords(Phi,Polar)={
+/* 此处，Polar in (0, pi/2)是否对应 z>0 的情况？ */
 let x= (R+ r*cos(Polar))*cos(Phi)
 let y= (R+ r*cos(Polar))*sin(Phi)
 let z= r*sin(Polar)
@@ -106,7 +114,7 @@ let Intensity= min(1,Pintensity*Diffuse + Aintensity)
 
 let fill-lighten(fill)= {if type(fill)==color { fill.lighten(100% * Intensity )} else { fill} }
 
-line(Pa, Pb, Pc, Pd, close:true, fill:fill-lighten(fill), stroke:none)
+line(Pa, Pb, Pc, Pd, close:true, fill:fill-lighten(fill), stroke:stroke)
 } } } 
 
 Draw-torus()

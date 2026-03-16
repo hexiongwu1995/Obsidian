@@ -56,7 +56,7 @@ line("cir.west","cir.east", stroke:(dash:"solid"))
 line("cir.center","cir.10%", stroke:(paint:orange))
 } ) }) } 
 
-let Draw-torus(R:4, r:0.6, Rnum:20, rnum:20, fill:blue, stroke:none, Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
+let Draw-torus(R:4, r:0.6, Rnum:50, rnum:50, fill:blue, stroke:none, Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
 
 let Get-Coords(Phi,Polar)={
 let x= (R+ r*cos(Polar))*cos(Phi)

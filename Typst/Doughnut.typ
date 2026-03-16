@@ -9,10 +9,11 @@
 6. 把这个圆环面同时沿theta角正向和polar角正向(逆时针)进行分割，分割数量分别设为theta-num和polar-num。
 7. 则圆环面将被分割成theta-num*polar-num个四顶点曲面，这个四顶点曲面的两组对边都是圆弧段，可以被精确绘制。
 8. 但是，我不知道应该怎样把这四个独立的圆弧段合并成一个封闭的曲面，这决定了我后续无法对这些曲面进行颜色填充。
-9. 发现分割方式错误，因为theta与phi并不是两个独立的正交分量,theta分量的位置完全由phi分量决定。
+9. 发现分割方式错误，因为polar与theta并不是两个独立的正交分量,theta分量的位置完全由polar分量决定。
 10. 分割时必须使用polar分量，因为它能线性对应内管的周长。
 11. 选定polar分量以后，再选独立分量，发现只有phi分量可选。Dead end.
 */
+
 #set page(paper:"a4", flipped:true, margin:1cm)
 #set align(center + horizon)
 #set text(size:1em)

@@ -24,7 +24,7 @@ Testing.......
 */
 
 
-#set page(paper:"a4", flipped:true, margin:1cm)
+#set page(paper:"a5", flipped:true, margin:1cm)
 #set align(center+horizon)
 
 #import "@preview/cetz:0.4.2"
@@ -44,14 +44,16 @@ return (x,y,z) }
 scale(x:1, y:1, z:1)
 set-style(mark:(end:(symbol:"stealth", fill:black, scale:0.5)))
 
-ortho(x:-60deg, y:0deg, z:-110deg,{
+ortho(x:-70deg, y:0deg, z:-120deg,{
 
-line((0,0,0), (6,0,0), name:"x", stroke:(dash:"dotted") ) 
+/*
+line((0,0,0), (7,0,0), name:"x", stroke:(dash:"dotted") ) 
 line((0,0,0), (0,6,0), name:"y", stroke:(dash:"dotted") ) 
 line((0,0,0), (0,0,4), name:"z", stroke:(dash:"dotted") ) 
 content((rel:(0.3,0,0), to: "x.end"), $x$) 
 content((rel:(0,0.3,0), to: "y.end"), $y$) 
 content((rel:(0,0,0.3), to: "z.end"), $z$) 
+*/
 
 /*
 /*绘制前期用于辅助确定参数或坐标之间函数关系的简易参考图形*/
@@ -70,7 +72,7 @@ line("cir.center","cir.10%", stroke:(paint:orange))
 } ) }) } 
 */
 
-let Draw-torus(R:4, r:0.6, Phi-num:10, Polar-num:10, Fill:blue, Stroke:none,  Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
+let Draw-torus(R:4, r:0.6, Phi-num:30, Polar-num:30, Fill:blue, Stroke:none,  Plight:(1,0,0.3), Pintensity:0.5, Aintensity:0.2)= {
 
 let Get-Coords(Phi,Polar)={
 /* 此处，Polar in (0, pi/2)是否对应 z>0 的情况？ */
@@ -129,6 +131,7 @@ line(Pa, Pb, Pc, Pd, close:true, fill:Fill-lighten, mark:none, stroke: Stroke )
 Draw-torus()
 
 }) })
+
 
 
 

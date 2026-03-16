@@ -134,8 +134,6 @@ Draw-torus()
 
 
 
-
-
 #set page(paper:"a5", flipped:true, margin:1cm)
 #set align(center+horizon)
 

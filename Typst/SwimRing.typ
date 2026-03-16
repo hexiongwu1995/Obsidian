@@ -39,10 +39,10 @@ let y=r* sin(theta)* sin(phi)
 let z=r*cos(theta)
 return (x,y,z) }
 
-scale(x:1.5, y:1.5, z:1.5)
+scale(x:1, y:1, z:1)
 set-style(mark:(end:(symbol:"stealth", fill:black, scale:0.5)))
 
-ortho(x:-60deg, y:0deg, z:-120deg,{
+ortho(x:-60deg, y:0deg, z:-110deg,{
 
 line((0,0,0), (6,0,0), name:"x", stroke:(dash:"dotted") ) 
 line((0,0,0), (0,6,0), name:"y", stroke:(dash:"dotted") ) 

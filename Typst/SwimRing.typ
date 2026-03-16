@@ -117,11 +117,13 @@ let Intensity= min(1,Pintensity * P-Diffuse + Aintensity)
 let Fill-lighten = {if type(Fill)==color { Fill.lighten(100% * Intensity )} else { Fill} }
 
 line(Pa, Pb, Pc, Pd, close:true, fill:Fill-lighten, mark:none, stroke: Stroke )
-/* 在此处设置stroke:none之前，必须先设置mark:none，否则会报错，
+/* 
+在此处设置stroke:none之前，必须先设置mark:none，否则会报错。
 提示：" 'stroke:Stroke' expected color, gradient, tiling, or auto, found none"。
 很可能是因为之前已经在set-style中设置了全部路径的mark样式，而mark必须附着于路径之上。 
 我查阅了Typst的官方Reference文档，确认stroke不能取none值，我不明白为什么要这样设置？
-但是此处设置stroke:none并未报错。 */
+但是此处设置stroke:none并未报错。 
+*/
 } } } 
 
 Draw-torus()

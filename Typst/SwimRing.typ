@@ -15,6 +15,9 @@
 12. 使用平行光线模拟太阳光线，使用Lambert's cosine law来计算反射光强度，叠加环境光以避免全黑阴影。
 13. 将总的反射光强度转化为深浅不一的颜色值
 14. 设置描边颜色
+15. 需要注意分割方式，因为polar与theta并不是两个独立的分量,theta分量的位置完全由polar分量决定。
+16. 分割时必须使用polar分量，因为只有它能线性对应内管的周长。
+17. 选定polar分量以后，再选独立分量，发现只有phi分量可选。Dead end.
 */
 
 #set page(paper:"a4", flipped:true, margin:0.2cm)

@@ -34,19 +34,17 @@ import calc:*
 import cetz.util.vector
 
 let sph(r, theta, phi)={
-let x=r* sin(theta)* cos(phi)
-let y=r* sin(theta)* sin(phi)
-let z=r*cos(theta)
+let z=r* sin(theta)* cos(phi)
+let x=r* sin(theta)* sin(phi)
+let y=r*cos(theta)
 return (x,y,z) }
 
 scale(x:1.5, y:1.5, z:1.5)
 set-style(mark:(end:(symbol:"stealth", fill:black, scale:0.5)))
 
-ortho(x:-60deg, y:0deg, z:-120deg,{
-
 line((0,0,0), (6,0,0), name:"x", stroke:(dash:"dotted") ) 
 line((0,0,0), (0,6,0), name:"y", stroke:(dash:"dotted") ) 
-line((0,0,0), (0,0,4), name:"z", stroke:(dash:"dotted") ) 
+line((0,0,0), (0,0,6), name:"z", stroke:(dash:"dotted") ) 
 content((rel:(0.3,0,0), to: "x.end"), $x$) 
 content((rel:(0,0.3,0), to: "y.end"), $y$) 
 content((rel:(0,0,0.3), to: "z.end"), $z$) 
@@ -72,9 +70,9 @@ let Draw-torus(R:4, r:0.6, Phi-num:10, Polar-num:10, Fill:blue, Stroke:none,  Pl
 
 let Get-Coords(Phi,Polar)={
 /* 此处，Polar in (0, pi/2)是否对应 z>0 的情况？ */
-let x= (R+ r*cos(Polar))*cos(Phi)
-let y= (R+ r*cos(Polar))*sin(Phi)
-let z= r*sin(Polar)
+let z= (R+ r*cos(Polar))*cos(Phi)
+let x= (R+ r*cos(Polar))*sin(Phi)
+let y= r*sin(Polar)
 return (x,y,z)
 }
 
@@ -120,5 +118,5 @@ line(Pa, Pb, Pc, Pd, close:true, fill:Fill-lighten, mark:none, stroke: Stroke )
 
 Draw-torus()
 
-}) })
+})
 

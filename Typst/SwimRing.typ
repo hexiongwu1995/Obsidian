@@ -46,7 +46,7 @@ ortho(x:-70deg, y:0deg, z:-120deg, sorted:true,{
 
 
 
-let Draw-torus(R:4, r:0.6, Phi-num:20, Polar-num:20, Fill:blue, Stroke:none,  Plight:(1,1,0.5), Pintensity:1.0, Aintensity:0.4)= {
+let Draw-torus(R:4, r:0.6, Phi-num:30, Polar-num:30, Fill:blue, Stroke:none,  Plight:(1,1,0.5), Pintensity:1.0, Aintensity:0.4)= {
 
 // 绘制的坐标轴与Torus之间需要先求解交点，然后进行深度排序
 line((0,0,0), (R+r,0,0), name:"x", stroke:(dash:"dotted") ) 

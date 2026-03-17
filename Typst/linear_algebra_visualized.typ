@@ -13,7 +13,7 @@
   header: align(right)[
     #text(size: 9pt, fill: luma(140))[Linear Algebra Visualized]
   ],
-  numbering: "1",
+  numbering: "1/1",
 )
 
 #set text(font: "New Computer Modern", size: 11pt, lang: "en")
@@ -23,7 +23,8 @@
 #show heading.where(level: 1): it => {
   v(1.2em)
   block(
-    fill: rgb("#1a1a2e"),
+      fill: rgb("#4169E1"),
+//    fill: rgb("#1a1a2e"),
     radius: 4pt,
     inset: (x: 12pt, y: 8pt),
     width: 100%,
@@ -57,11 +58,11 @@
   ]
   #v(0.5cm)
   #text(size: 14pt, fill: luma(80))[
-    Matrix Multiplication · Eigenvalues & Eigenvectors · SVD \
+    Matrix Multiplication · Eigenvalues & Eigenvectors · SVD \ 
     Transformation Matrices · Quaternions · Projection Matrices
   ]
   #v(0.5cm)
-  #line(length: 60%, stroke: rgb("#3a86ff") + 2pt)
+//  #line(length: 60%, stroke: rgb("#3a86ff") + 2pt)
   #v(2cm)
 ]
 

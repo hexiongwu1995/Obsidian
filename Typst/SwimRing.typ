@@ -114,6 +114,7 @@ Draw-torus()
 
 
 
+// -------------------------------------------------------------------------------------------------------------------
 
 
 #set page(paper:"a5", flipped:true, margin:1cm)
@@ -159,7 +160,7 @@ $y(u, v) = (R + r * cos(v)) * sin(u)$  #linebreak()
 $z(u, v) = r * sin(v)$], )
 
 
-
+// -------------------------------------------------------------------------------------------------------------------
 
 #set page(paper:"a5", flipped:true, margin:1cm)
 #set align(center+horizon)
@@ -218,16 +219,14 @@ content(sph(0.8,pi/8,pi/3),text(size:15pt, fill:teal)[$theta$])
 
 
 
+// -------------------------------------------------------------------------------------------------------------------
 
 
 
-
-#set page(paper:"a5", flipped:true, margin:1cm)
+#set page(paper:"a4", flipped:false, margin:1cm)
 #set align(center+horizon)
 
-
 ```python
-
 # micropip 是 Pyodide 提供的专用工具，用于在浏览器中动态安装 Python 包
 # 异步安装 numpy 包（因为 Pyodide 环境下的安装是异步的，必须使用 await）
 # 异步安装 matplotlib 包（绘图用，常一起安装）
@@ -246,13 +245,15 @@ r = 1.0   # 管半径（tube radius）
 R = 3.0   # 中心到管中心的距离（major radius）
 
 # 生成参数网格
+# polar角 映射内管周长
+# theta角映射方位角
 angle = np.linspace(0, 2 * np.pi, 100)
-theta, phi = np.meshgrid(angle, angle)
+polar,phi = np.meshgrid(angle, angle) 
 
 # Torus 参数方程
-x = (R + r * np.cos(phi)) * np.cos(theta)
-y = (R + r * np.cos(phi)) * np.sin(theta)
-z = r * np.sin(phi)
+x = (R + r * np.cos(polar)) * np.cos(phi) 
+y = (R + r * np.cos(polar)) * np.sin(phi) 
+z = r * np.sin(polar) 
 
 # 创建图形
 fig = plt.figure(figsize=(8, 8))
@@ -273,9 +274,8 @@ ax.set_ylim([-max_range, max_range])
 ax.set_zlim([-max_range, max_range])
 
 # 可选：关闭自动缩放以避免 matplotlib 自动调整比例
-ax.auto_scale_xyz([-max_range, max_range],
-                  [-max_range, max_range],
-                  [-max_range, max_range])
+ax.auto_scale_xyz([-max_range, max_range], 
+[-max_range, max_range],[-max_range, max_range])
 
 plt.tight_layout()
 plt.show()

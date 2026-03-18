@@ -214,3 +214,94 @@ content(sph(0.8,pi/8,pi/3),text(size:15pt, fill:teal)[$theta$])
 // Is there another method to draw the theta angle?
 }) }) })
 
+
+
+
+
+
+
+
+
+#set page(paper:"a5", flipped:true, margin:1cm)
+#set align(center+horizon)
+
+
+```python
+
+# micropip 是 Pyodide 提供的专用工具，用于在浏览器中动态安装 Python 包
+# 异步安装 numpy 包（因为 Pyodide 环境下的安装是异步的，必须使用 await）
+# 异步安装 matplotlib 包（绘图用，常一起安装）
+
+import micropip
+await micropip.install("numpy")
+await micropip.install("scipy")
+await micropip.install("matplotlib")
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+# 参数设置
+r = 1.0   # 管半径（tube radius）
+R = 3.0   # 中心到管中心的距离（major radius）
+
+# 生成参数网格
+angle = np.linspace(0, 2 * np.pi, 100)
+theta, phi = np.meshgrid(angle, angle)
+
+# Torus 参数方程
+x = (R + r * np.cos(phi)) * np.cos(theta)
+y = (R + r * np.cos(phi)) * np.sin(theta)
+z = r * np.sin(phi)
+
+# 创建图形
+fig = plt.figure(figsize=(8, 8))
+ax = fig.add_subplot(111, projection='3d')
+
+# 绘制曲面
+ax.plot_surface(x, y, z, cmap='viridis', alpha=0.9)
+
+# 设置坐标轴标签
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
+# 计算统一的坐标轴范围
+max_range = R + r
+ax.set_xlim([-max_range, max_range])
+ax.set_ylim([-max_range, max_range])
+ax.set_zlim([-max_range, max_range])
+
+# 可选：关闭自动缩放以避免 matplotlib 自动调整比例
+ax.auto_scale_xyz([-max_range, max_range],
+                  [-max_range, max_range],
+                  [-max_range, max_range])
+
+plt.tight_layout()
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

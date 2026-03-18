@@ -62,6 +62,55 @@ plt.show()
 
 
 
+
+```python
+
+import micropip
+await micropip.install("numpy")
+await micropip.install("scipy")
+await micropip.install("matplotlib")
+
+import numpy as np
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+
+import matplotlib.pyplot as plt
+
+from mpl_toolkits.mplot3d import axes3d
+
+plt.style.use('_mpl-gallery')
+
+# Make data
+X, Y, Z = axes3d.get_test_data(0.05)
+
+# Plot
+fig, ax = plt.subplots(subplot_kw={"projection": "3d"})
+ax.plot_wireframe(X, Y, Z, rstride=10, cstride=10)
+
+ax.set(xticklabels=[],
+       yticklabels=[],
+       zticklabels=[])
+
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 请生成一个包含 CeTZ 代码的单一 Markdown 文档，用于直观地演示以下列出的每个线性代数主题，每个主题都需要介绍相应的数学背景或相关的知识，所有数学公式全部使用CeTZ内置的行内数学公式格式，CeTZ 代码块使用cetz:0.4.2版本。文档使用全英文编写。请你自行决定篇幅。
 需要可视化的内容：矩阵乘法，特征值 / 特征向量，SVD（奇异值分解），变换矩阵（平移、旋转、缩放、透视），四元数，投影矩阵。
 

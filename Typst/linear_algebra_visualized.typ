@@ -179,10 +179,9 @@ The diagram below shows how the $(1,1)$ entry of $C$ is formed by dotting the fi
   )
 
   // Arrow from highlighted row/col to result
-  line((1.2, -0.45), (5.75, -0.45),
-    stroke: (paint: rgb("#ff6b6b"), dash: "dashed", thickness: 1pt),
-    mark: (end: ">"),
-  )
+//  line((1.2, -0.45), (5.75, -0.45),
+//    stroke: (paint: rgb("#ff6b6b"), dash: "dashed", thickness: 1pt),
+//    mark: (end: ">"),  )
 })
 ]
 
@@ -281,6 +280,22 @@ $(A - 2 I)bold(v) = 0 => mat(1,1;0,0) bold(v) = 0 => bold(v)_2 = vec(-1, 1)$
 ]
 
 Eigenvectors $bold(v)_1$ and $bold(v)_2$ stay on the same line through the origin after transformation; the generic vector $bold(u)$ changes direction.
+
+
+
+
+#align(center)[
+#canvas({
+import draw:*
+
+grid((-3,-3),(3,3),help-lines:true)
+let A= ((3,1),(0,2))
+let (v_1,v_2)=((1,0),(-1,1))
+// let lambda_1 = matrix.mul-vec()
+// let (lambda_1v_1, lambda_2v_2)=()
+
+})
+]
 
 // ============================================================
 // 3. SINGULAR VALUE DECOMPOSITION (SVD)

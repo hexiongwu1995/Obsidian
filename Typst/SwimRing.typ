@@ -116,6 +116,49 @@ Draw-torus()
 
 
 
+#set page(paper:"a5", flipped:true, margin:1cm)
+#import "@preview/plotsy-3d:0.2.1": plot-3d-parametric-surface
+#set align(left)
+#set text(font: "New Computer Modern")
+
+#let R = 4.0  // major radius
+#let r = 1.5  // minor radius
+
+// Parametric equations of a torus
+#let x(u, v) = (R + r * calc.cos(v)) * calc.cos(u)
+#let y(u, v) = (R + r * calc.cos(v)) * calc.sin(u)
+#let z(u, v) = r * calc.sin(v)
+
+#grid( columns:(3fr,2fr,), rows:(auto,), inset: 10pt, stroke:gray+1pt,
+align(center+horizon)[
+#figure(
+  caption: [3D Torus rendered with `plotsy-3d` ],
+  plot-3d-parametric-surface(
+    x, y, z,
+    udomain: (0, 2 * calc.pi),
+    vdomain: (0, 2 * calc.pi),
+    xaxis:(-6,6) ,
+    yaxis:(-6,6) ,
+    zaxis:(-2,2) ,   
+    subdivisions: 5, 
+    scale-dim: (0.05, 0.05, 0.05),
+    axis-step: (1, 1, 1),
+    dot-thickness: 0.04em,
+    front-axis-thickness: 0.12em,
+    rear-axis-text-size: 0.6em,
+    axis-labels: ($x$, $y$, $z$),
+    axis-label-size: 1.8em,
+    rotation-matrix: ((-2, 2, 4), (0, -1, 0)),
+    xyz-colors: (rgb("#e74c3c"), rgb("#2ecc71"), rgb("#3498db")),
+  )
+)],
+align(left+horizon)[
+*Parametric equations of a torus* #linebreak()
+$x(u, v) = (R + r * cos(v)) * cos(u)$ #linebreak()
+$y(u, v) = (R + r * cos(v)) * sin(u)$  #linebreak()
+$z(u, v) = r * sin(v)$], )
+
+
 
 
 #set page(paper:"a5", flipped:true, margin:1cm)

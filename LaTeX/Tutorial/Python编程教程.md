@@ -2220,6 +2220,7 @@ plt.show()
 ```
 进阶小贴士。如果你希望文本在缩放图形时保持在固定位置（例如左上角），即使数据范围发生了变化，建议在 `ax.text` 中设置 `transform=ax.transAxes`。这样坐标 $(0, 0)$ 到 $(1, 1)$ 就代表了当前子图的四个角。
 
+
 ### 3.3 Pandas数据处理
 
 Pandas是处理表格数据的强大工具，非常适合处理实验数据。
@@ -2298,6 +2299,8 @@ import pandas as pd
 # spectrum_data['wavelength_m'] = spectrum_data['wavelength'] * 1e-9
 # spectrum_data['energy_eV'] = 1240 / spectrum_data['wavelength']  # 转换为能量
 ```
+
+
 
 ### 3.4 绘制专业化学图表
 

@@ -55,7 +55,7 @@ Because **Code Emitter** in Obsidian runs each code block as an independent cell
 import pandas as pd
 
 # Load the file — adjust the path to match where you saved the .xlsx
-FILE_PATH = r"C:\Users\hexio\Documents\Obsidian\Typst\Data\湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.xlsx"
+FILE_PATH = r"https://github.com/hexiongwu1995/Obsidian/blob/db570d8353d09326582c9eb0b3f6cffd605d573e/Typst/Data/Nylon6.xlsx"
 
 # Read the first (and only) sheet; row 0 is used as column headers by default
 df_raw = pd.read_excel(FILE_PATH, sheet_name=0, header=0, engine="openpyxl")

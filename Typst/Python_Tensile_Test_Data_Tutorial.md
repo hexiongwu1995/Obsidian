@@ -47,17 +47,15 @@ Because **Code Emitter** in Obsidian runs each code block as an independent cell
 
 ---
 
-## 2. Reading Excel Data with pandas
+## 2. Reading Excel Data with pandas 
 
-### 2.1 Understanding `pd.read_excel()` 
+### 2.1 Understanding `pd.read_excel()`  
 
-```python
-import micropip
-await micropip.install("pandas")
+```run-python
 import pandas as pd
 
 # Load the file — adjust the path to match where you saved the .xlsx
-FILE_PATH = r"C:\Users\hexio\Documents\Obsidian\Typst\Nylon6.xlsx"
+FILE_PATH = r"C:\Users\hexio\Documents\Obsidian\Typst\Data\湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.xlsx"
 
 # Read the first (and only) sheet; row 0 is used as column headers by default
 df_raw = pd.read_excel(FILE_PATH, sheet_name=0, header=0, engine="openpyxl")
@@ -65,40 +63,6 @@ df_raw = pd.read_excel(FILE_PATH, sheet_name=0, header=0, engine="openpyxl")
 print(df_raw.shape)        # (rows, columns)
 print(df_raw.columns.tolist())
 ```
-
-
-
-
-```python
-import micropip
-await micropip.install("pandas")
-
-import pandas as pd
-
-FILE_PATH = "Nylon6.csv" 
-
-df = pd.read_csv(FILE_PATH)
-print(df.shape)
-print(df.columns.tolist())
-
-```
-
-
-
-```python
-
-import os
-
-print("Current working dir:", os.getcwd())
-print("Files here:", os.listdir("."))
-print("Files in root:", os.listdir("/"))
-print("Files in home/pyodide:", os.listdir("/home/pyodide") if os.path.exists("/home/pyodide") else "No /home/pyodide")
-```
-
-
-
-
-
 
 
 **Key parameters of `pd.read_excel()`** 
@@ -116,10 +80,10 @@ print("Files in home/pyodide:", os.listdir("/home/pyodide") if os.path.exists("/
 
 The original column names contain Chinese characters and trailing spaces, which can be inconvenient. Rename them to clean ASCII names:
 
-```python
+```run-python
 import pandas as pd
 
-FILE_PATH = "湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.xlsx"
+FILE_PATH = r"C:\Users\hexio\Documents\Obsidian\Typst\Data\湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.xlsx"
 df_raw = pd.read_excel(FILE_PATH, header=0, engine="openpyxl")
 
 # Map old names → new names
@@ -143,7 +107,7 @@ print(df.head(5))
 
 ### 3.1 Inspecting the DataFrame
 
-```python
+```run-python
 # (Assumes df is defined from Section 2)
 
 # Shape
@@ -155,6 +119,8 @@ print(df.info())
 # Descriptive statistics for every numeric column
 print(df.describe())
 ```
+
+
 
 **Reading `df.describe()` output**
 
@@ -168,7 +134,7 @@ print(df.describe())
 
 ### 3.2 Checking for Missing Values
 
-```python
+```run-python
 # Count NaN in each column
 print(df.isnull().sum())
 
@@ -185,7 +151,7 @@ print("Rows after cleaning:", len(df))
 
 At the start of a tensile test the specimen is being gripped and force is effectively zero. Including this region can distort calculations. Filter it out by keeping only rows where force exceeds a small threshold:
 
-```python
+```run-python
 FORCE_THRESHOLD_KGF = 0.05   # adjust if needed
 
 df_clean = df[df["force_kgf"] >= FORCE_THRESHOLD_KGF].copy()

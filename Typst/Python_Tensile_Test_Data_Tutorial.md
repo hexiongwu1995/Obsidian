@@ -51,19 +51,100 @@ Because **Code Emitter** in Obsidian runs each code block as an independent cell
 
 ### 2.1 Understanding `pd.read_excel()`  
 
+
 ```run-python
 import pandas as pd
+from urllib.parse import quote
 
-# Load the file — adjust the path to match where you saved the .xlsx
-FILE_PATH = "https://github.com/hexiongwu1995/Obsidian/raw/refs/heads/main/Typst/Data/Hubei%20Zhangchen%20Technology%20-%20BG205%20-%20Nylon%206%20-%20Tensile%20Test%20-%205mm%20per%20min%20-%20Gauge%20Length%20100mm%20-%20Width%2010mm%20-%20Thickness%204mm.xlsx"
-
-# Read the first (and only) sheet; row 0 is used as column headers by default
-df_raw = pd.read_excel(FILE_PATH, sheet_name=0, header=0, engine="openpyxl")
-
-print(df_raw.shape)        # (rows, columns)
+# URL-encode the filename to handle Chinese characters
+File_Name = "湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.xlsx"
+FILE_PATH = f"https://github.com/hexiongwu1995/Obsidian/raw/refs/heads/main/Typst/Data/{quote(File_Name)}"
+# Verify the encoded URL
+# print(FILE_PATH)  
+# io means input object
+df_raw = pd.read_excel(io=FILE_PATH, sheet_name=0, header=0, engine="openpyxl")
+print(df_raw.shape)
 print(df_raw.columns.tolist())
 ```
 
+
+
+```
+pandas.read_excel(io, sheet_name=0, *, header=0, names=None, index_col=None, usecols=None, dtype=None, engine=None, converters=None, true_values=None, false_values=None, skiprows=None, nrows=None, na_values=None, keep_default_na=True, na_filter=True, verbose=False, parse_dates=False, date_format=None, thousands=None, decimal='.', comment=None, skipfooter=0, storage_options=None, dtype_backend=<no_default>, engine_kwargs=None)
+
+Read an Excel file into a DataFrame.
+
+Supports xls, xlsx, xlsm, xlsb, odf, ods and odt file extensions read from a local filesystem or URL. Supports an option to read a single sheet or a list of sheets.
+
+```
+
+
+```
+
+Parameters:
+
+io:str, ExcelFile, xlrd.Book, path object, or file-like object
+Any valid string path is acceptable. The string could be a URL. Valid URL schemes include http, ftp, s3, and file. For file URLs, a host is expected. A local file could be: file://localhost/path/to/table.xlsx.
+If you want to pass in a path object, pandas accepts any os.PathLike.
+By file-like object, we refer to objects with a read() method, such as a file handle (e.g. via builtin open function) or StringIO.
+
+sheet_name:str, int, list, or None, default 0
+Strings are used for sheet names. Integers are used in zero-indexed sheet positions (chart sheets do not count as a sheet position). Lists of strings/integers are used to request multiple sheets. When None, will return a dictionary containing DataFrames for each sheet.
+Available cases:
+• Defaults to 0: 1st sheet as a DataFrame
+• 1: 2nd sheet as a DataFrame
+• "Sheet1": Load sheet with name “Sheet1”
+• [0, 1, "Sheet5"]: Load first, second and sheet named “Sheet5” as a dict of DataFrame
+• None: Returns a dictionary containing DataFrames for each sheet.
+
+header:int, list of int, default 0
+Row (0-indexed) to use for the column labels of the parsed DataFrame. If a list of integers is passed those row positions will be combined into a MultiIndex. Use None if there is no header.
+
+names:array-like, default None
+List of column names to use. If file contains no header row, then you should explicitly pass header=None.
+
+index_col:int, str, list of int, default None
+Column (0-indexed) to use as the row labels of the DataFrame. Pass None if there is no such column. If a list is passed, those columns will be combined into a MultiIndex. If a subset of data is selected with usecols, index_col is based on the subset.
+Missing values will be forward filled to allow roundtripping with to_excel for merged_cells=True. To avoid forward filling the missing values use set_index after reading the data instead of index_col.
+
+usecols:str, list-like, or callable, default None
+• If None, then parse all columns.
+• If str, then indicates comma separated list of Excel column letters and column ranges (e.g. “A:E” or “A,C,E:F”). Ranges are inclusive of both sides.
+• If list of int, then indicates list of column numbers to be parsed (0-indexed).
+• If list of string, then indicates list of column names to be parsed.
+• If callable, then evaluate each column name against it and parse the column if the callable returns True.
+Returns a subset of the columns according to behavior above.
+
+dtype:Type name or dict of column -> type, default None
+Data type for data or columns. E.g. {‘a’: np.float64, ‘b’: np.int32} Use object to preserve data as stored in Excel and not interpret dtype, which will necessarily result in objectdtype. If converters are specified, they will be applied INSTEAD of dtype conversion. If you use None, it will infer the dtype of each column based on the data.
+
+engine{‘openpyxl’, ‘calamine’, ‘odf’, ‘pyxlsb’, ‘xlrd’}, default None
+If io is not a buffer or path, this must be set to identify io. Engine compatibility :
+
+openpyxl supports newer Excel file formats.
+calamine supports Excel (.xls, .xlsx, .xlsm, .xlsb) and OpenDocument (.ods) file formats.
+odf supports OpenDocument file formats (.odf, .ods, .odt).
+pyxlsb supports Binary Excel files.
+xlrd supports old-style Excel files (.xls).
+When engine=None, the following logic will be used to determine the engine:
+If path_or_buffer is an OpenDocument format (.odf, .ods, .odt), then odf will be used.
+Otherwise if path_or_buffer is an xls format, xlrd will be used.
+Otherwise if path_or_buffer is in xlsb format, pyxlsb will be used.
+Otherwise openpyxl will be used.
+
+convertersdict, default None
+Dict of functions for converting values in certain columns. Keys can either be integers or column labels, values are functions that take one input argument, the Excel cell content, and return the transformed content.
+```
+
+
+
+
+
+```
+pandas.DataFrame.columns : The column labels of the DataFrame.
+This property holds the column names as a pandas Index object. It provides an immutable sequence of column labels that can be used for data selection, renaming, and alignment in DataFrame operations.
+Returns: pandas.Index, The column labels of the DataFrame.
+```
 
 
 

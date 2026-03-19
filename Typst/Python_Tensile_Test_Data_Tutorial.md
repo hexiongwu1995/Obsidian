@@ -118,7 +118,7 @@ Returns a subset of the columns according to behavior above.
 dtype:Type name or dict of column -> type, default None
 Data type for data or columns. E.g. {‘a’: np.float64, ‘b’: np.int32} Use object to preserve data as stored in Excel and not interpret dtype, which will necessarily result in objectdtype. If converters are specified, they will be applied INSTEAD of dtype conversion. If you use None, it will infer the dtype of each column based on the data.
 
-engine{‘openpyxl’, ‘calamine’, ‘odf’, ‘pyxlsb’, ‘xlrd’}, default None
+engine: {‘openpyxl’, ‘calamine’, ‘odf’, ‘pyxlsb’, ‘xlrd’}, default None
 If io is not a buffer or path, this must be set to identify io. Engine compatibility :
 
 openpyxl supports newer Excel file formats.
@@ -132,11 +132,78 @@ Otherwise if path_or_buffer is an xls format, xlrd will be used.
 Otherwise if path_or_buffer is in xlsb format, pyxlsb will be used.
 Otherwise openpyxl will be used.
 
-convertersdict, default None
+converters: dict, default None
 Dict of functions for converting values in certain columns. Keys can either be integers or column labels, values are functions that take one input argument, the Excel cell content, and return the transformed content.
+
+
+true_values:list, default None
+Values to consider as True.
+
+false_values:list, default None
+Values to consider as False.
+
+skiprows:list-like, int, or callable, optional
+Line numbers to skip (0-indexed) or number of lines to skip (int) at the start of the file. If callable, the callable function will be evaluated against the row indices, returning True if the row should be skipped and False otherwise. An example of a valid callable argument would be lambda x: x in [0, 2].
+
+nrows:int, default None
+Number of rows to parse. Does not include header rows.
+
+keep_default_na: bool, default True
+Whether or not to include the default NaN values when parsing the data. Depending on whether na_values is passed in, the behavior is as follows:
+• If keep_default_na is True, and na_values are specified, na_values is appended to the default NaN values used for parsing.
+• If keep_default_na is True, and na_values are not specified, only the default NaN values are used for parsing.
+• If keep_default_na is False, and na_values are specified, only the NaN values specified by na_values are used for parsing.
+• If keep_default_na is False, and na_values are not specified, no strings will be parsed as NaN.
+Note that if na_filter is passed in as False, the keep_default_na and na_values parameters will be ignored.
+
+# 针对 '应变( %)' 列，将 Inf 视为缺失值；针对 'Comment' 列，将 '无' 视为缺失值
+df = pd.read_csv('data.csv', na_values={'应变( %)': Inf, 'Comment': '无'})
+
+na_filter:bool, default True
+Detect missing value markers (empty strings and the value of na_values). In data without any NAs, passing na_filter=False can improve the performance of reading a large file.
+
+verbose:bool, default False
+Indicate number of NA values placed in non-numeric columns.
+
+parse_dates: bool, list-like, or dict, default False
+The behavior is as follows:
+• bool. If True -> try parsing the index.
+• list of int or names. e.g. If [1, 2, 3] -> try parsing columns 1, 2, 3 each as a separate date column.
+• list of lists. e.g. If [[1, 3]] -> combine columns 1 and 3 and parse as a single date column.
+• dict, e.g. {‘foo’ : [1, 3]} -> parse columns 1, 3 as date and call result ‘foo’
+If a column or index contains an unparsable date, the entire column or index will be returned unaltered as an object data type. If you don`t want to parse some cells as date just change their type in Excel to “Text”. For non-standard datetime parsing, use pd.to_datetime after pd.read_excel.
+Note: A fast-path exists for iso8601-formatted dates.
+
+date_format:str or dict of column -> format, default None
+If used in conjunction with parse_dates, will parse dates according to this format. For anything more complex, please read in as object and then apply to_datetime() as-needed.
+
+thousands: str, default None
+Thousands separator for parsing string columns to numeric. Note that this parameter is only necessary for columns stored as TEXT in Excel, any numeric columns will automatically be parsed, regardless of display format.
+
+decimal: str, default ‘.’
+Character to recognize as decimal point for parsing string columns to numeric. Note that this parameter is only necessary for columns stored as TEXT in Excel, any numeric columns will automatically be parsed, regardless of display format.(e.g. use ‘,’ for European data).
+
+comment: str, default None
+Comments out remainder of line. Pass a character or characters to this argument to indicate comments in the input file. Any data between the comment string and the end of the current line is ignored.
+
+skipfooter: int, default 0
+Rows at the end to skip (0-indexed).
+
+storage_options: dict, optional
+Extra options that make sense for a particular storage connection, e.g. host, port, username, password, etc. For HTTP(S) URLs the key-value pairs are forwarded to urllib.request.Request as header options. For other URLs (e.g. starting with “s3://”, and “gcs://”) the key-value pairs are forwarded to fsspec.open. Please see fsspec and urllib for more details, and for more examples on storage options refer here.
+
+dtype_backend: {‘numpy_nullable’, ‘pyarrow’}
+Back-end data type applied to the resultant DataFrame (still experimental). If not specified, the default behavior is to not use nullable data types. If specified, the behavior is as follows:
+"numpy_nullable": returns nullable-dtype-backed DataFrame
+"pyarrow": returns pyarrow-backed nullable
+
+engine_kwargs: dict, optional
+Arbitrary keyword arguments passed to excel engine.
+
+Returns:
+DataFrame or dict of DataFrames
+DataFrame from the passed in Excel file. See notes in sheet_name argument for more information on when a dict of DataFrames is returned.
 ```
-
-
 
 
 
@@ -145,6 +212,37 @@ pandas.DataFrame.columns : The column labels of the DataFrame.
 This property holds the column names as a pandas Index object. It provides an immutable sequence of column labels that can be used for data selection, renaming, and alignment in DataFrame operations.
 Returns: pandas.Index, The column labels of the DataFrame.
 ```
+
+
+
+```
+pandas.DataFrame.shape
+
+Return a tuple representing the dimensionality of the DataFrame.
+Unlike the len() method, which only returns the number of rows, shape provides both row and column counts, making it a more informative method for understanding dataset size.
+
+>>> df = pd.DataFrame({"col1": [1, 2], "col2": [3, 4], "col3": [5, 6]})
+>>> df.shape
+(2, 3)
+
+```
+
+
+
+```
+
+ExtensionArray.tolist()
+Return a list of the values.
+These are each a scalar type, which is a Python scalar (for str, int, float) or a pandas scalar (for Timestamp/Timedelta/Interval/Period)
+Returns:list, Python list of values in array.
+
+>>> arr = pd.array([1, 2, 3])
+>>> arr.tolist()
+[1, 2, 3]
+
+```
+
+
 
 
 

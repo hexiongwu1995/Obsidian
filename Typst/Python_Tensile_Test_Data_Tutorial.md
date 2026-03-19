@@ -244,9 +244,6 @@ Returns:list, Python list of values in array.
 
 
 
-
-
-
 **Key parameters of `pd.read_excel()`** 
 
 | Parameter | What it controls |
@@ -263,25 +260,27 @@ Returns:list, Python list of values in array.
 The original column names contain Chinese characters and trailing spaces, which can be inconvenient. Rename them to clean ASCII names:
 
 ```run-python
-import pandas as pd
 
-FILE_PATH = r"C:\Users\hexio\Documents\Obsidian\Typst\Data\湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.xlsx"
-df_raw = pd.read_excel(FILE_PATH, header=0, engine="openpyxl")
+import pandas as pd
+from urllib.parse import quote
+
+# URL-encode the filename to handle Chinese characters
+File_Name = "湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.xlsx"
+FILE_PATH = f"https://github.com/hexiongwu1995/Obsidian/raw/refs/heads/main/Typst/Data/{quote(File_Name)}"
+# Verify the encoded URL
+# print(FILE_PATH)  
+# io means input object
+df_raw = pd.read_excel(io=FILE_PATH, sheet_name=0, header=0, engine="openpyxl")
 
 # Map old names → new names
-column_map = {
-    "No.":        "index",
-    "时间( s) ":  "time_s",
-    "变形( mm) ": "displacement_mm",
-    "力( kgf) ":  "force_kgf",
-    "应力( MPa) ":"stress_MPa",
-    "应变( %) ":  "strain_pct",
-}
+column_map = { "No.": "index", "时间( s) ":  "time_s", "变形( mm) ": "displacement_mm", "力( kgf) ":  "force_kgf",
+"应力( MPa) ": "stress_MPa", "应变( %) ":  "strain_pct", }
 df = df_raw.rename(columns=column_map)
 
 print(df.columns.tolist())
 print(df.head(5))
 ```
+
 
 ---
 

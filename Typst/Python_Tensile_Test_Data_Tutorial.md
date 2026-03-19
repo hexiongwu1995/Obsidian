@@ -55,7 +55,7 @@ Because **Code Emitter** in Obsidian runs each code block as an independent cell
 import pandas as pd
 
 # Load the file — adjust the path to match where you saved the .xlsx
-FILE_PATH = r"https://github.com/hexiongwu1995/Obsidian/blob/db570d8353d09326582c9eb0b3f6cffd605d573e/Typst/Data/Nylon6.xlsx"
+FILE_PATH = "https://raw.githubusercontent.com/hexiongwu1995/Obsidian/refs/heads/main/Typst/Data/湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.csv"
 
 # Read the first (and only) sheet; row 0 is used as column headers by default
 df_raw = pd.read_excel(FILE_PATH, sheet_name=0, header=0, engine="openpyxl")
@@ -63,6 +63,12 @@ df_raw = pd.read_excel(FILE_PATH, sheet_name=0, header=0, engine="openpyxl")
 print(df_raw.shape)        # (rows, columns)
 print(df_raw.columns.tolist())
 ```
+
+https://raw.githubusercontent.com/hexiongwu1995/Obsidian/refs/heads/main/Typst/Data/湖北彰宸科技-BG205-尼龙6-拉伸测试-5mm每min-标距100mm-宽度10mm-厚度4mm.csv
+
+
+https://raw.githubusercontent.com/hexiongwu1995/Obsidian/refs/heads/main/Typst/Data/%E6%B9%96%E5%8C%97%E5%BD%B0%E5%AE%B8%E7%A7%91%E6%8A%80-BG205-%E5%B0%BC%E9%BE%996-%E6%8B%89%E4%BC%B8%E6%B5%8B%E8%AF%95-5mm%E6%AF%8Fmin-%E6%A0%87%E8%B7%9D100mm-%E5%AE%BD%E5%BA%A610mm-%E5%8E%9A%E5%BA%A64mm.csv
+
 
 
 **Key parameters of `pd.read_excel()`** 

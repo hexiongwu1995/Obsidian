@@ -8,10 +8,10 @@
 
 ## Basic data structures in pandas
 
-pandas provides two types of classes for handling data:
+pandas provides two types of classes for handling data: 
 
 1. **`Series`**: a one-dimensional labeled array holding data of any type (integers, strings, Python objects, etc.)
-2. **`DataFrame`**: a two-dimensional data structure that holds data like a two-dimensional array or a table with rows and columns.
+2. **`DataFrame`**: a two-dimensional data structure that holds data like a two-dimensional array or a table with rows and columns. 
 
 ---
 
@@ -19,7 +19,7 @@ pandas provides two types of classes for handling data:
 
 See the [Intro to data structures section](https://pandas.pydata.org/docs/user_guide/dsintro.html).
 
-Creating a `Series` by passing a list of values, letting pandas create a default `RangeIndex`:
+Creating a `Series` by passing a list of values, letting pandas create a default `RangeIndex`: 
 
 ```run-python
 import numpy as np
@@ -30,9 +30,10 @@ print(s)
 ```
 
 
-Creating a `DataFrame` by passing a NumPy array with a datetime index using `date_range()` and labeled columns:
+Creating a `DataFrame` by passing a NumPy array with a datetime index using `date_range()` and labeled columns: 
 
-```python
+
+```run-python
 import numpy as np
 import pandas as pd
 
@@ -43,18 +44,127 @@ df = pd.DataFrame(np.random.randn(6, 4), index=dates, columns=list("ABCD"))
 print(df)
 ```
 
-Expected output:
-```
-DatetimeIndex(['2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04',
-               '2013-01-05', '2013-01-06'],
-              dtype='datetime64[us]', freq='D')
 
-                   A         B         C         D
-2013-01-01  0.469112 -0.282863 -1.509059 -1.135632
-...
+
+
+
+
+```
+numpy.random.randn
+random.randn(d0, d1, ..., dn)
+Return a sample (or samples) from the “standard normal” distribution.
+
+Note: This is a convenience function for users porting code from Matlab, and wraps standard_normal. That function takes a tuple to specify the size of the output, which is consistent with other NumPy functions like numpy.zeros and numpy.ones.
+
+Note: New code should use the standard_normal method of a Generator instance instead; please see the Quick start.
+If positive int_like arguments are provided, randn generates an array of shape (d0, d1, ..., dn), filled with random floats sampled from a univariate “normal” (Gaussian) distribution of mean 0 and variance 1. A single float randomly sampled from the distribution is returned if no argument is provided. 
+
+Parameters: d0, d1, …, dn     int, optional
+The dimensions of the returned array, must be non-negative. If no argument is given a single Python float is returned.
+
+Returns:Z  ndarray or float
+A (d0, d1, ..., dn)-shaped array of floating-point samples from the standard normal distribution, or a single such float if no parameters were supplied.
 ```
 
-Creating a `DataFrame` by passing a dictionary of objects where the keys are the column labels and the values are the column values:
+
+```run-python
+
+import numpy as np
+import pandas as pd
+print( np.random.randn() )
+print("------------------------------------------------------------------------------")
+
+print( np.random.randn(2) )
+print("------------------------------------------------------------------------------")
+
+print( np.random.randn(2,3) )
+print("------------------------------------------------------------------------------")
+print( np.random.randn(2,3,2) )
+print("------------------------------------------------------------------------------")
+print( np.random.randn(2,3,2,2) )
+```
+
+
+
+```
+
+random.Generator.standard_normal(size=None, dtype=np.float64, out=None)
+Draw samples from a standard Normal distribution (mean=0, stdev=1).
+Parameters:
+
+size:int or tuple of ints, optional
+Output shape. If the given shape is, e.g., (m, n, k), then m * n * k samples are drawn. Default is None, in which case a single value is returned.
+
+dtype:dtype, optional
+Desired dtype of the result, only float64 and float32 are supported. Byteorder must be native. The default value is np.float64.
+
+out:ndarray, optional
+Alternative output array in which to place the result. If size is not None, it must have the same shape as the provided size and must match the type of the output values.
+
+Returns:
+out:float or ndarray
+A floating-point array of shape size of drawn samples, or a single sample if sizewas not specified.
+
+```
+
+
+
+```
+
+mu + sigma * rng.standard_normal(size=...)
+rng.normal(mu, sigma, size=...)
+```
+
+
+
+```run-python
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy import stats
+
+# Generate 1000 samples from standard normal distribution
+np.random.seed(42)  # for reproducibility
+samples = np.random.randn(1000)
+
+# Create x values for the theoretical PDF curve
+x = np.linspace(-4, 4, 1000)
+pdf = stats.norm.pdf(x)  # standard normal pdf: mean=0, std=1
+
+# Create the plot
+plt.figure(figsize=(8, 4))
+
+# Plot histogram of samples (normalized to density)
+plt.hist(samples, bins=40, density=True, alpha=0.6, color='skyblue', 
+         edgecolor='white', label='Sampled data (n=1000)')
+
+# Plot theoretical standard normal PDF
+plt.plot(x, pdf, 'r-', lw=2.5, label='Standard Normal PDF')
+
+# Add formula annotation
+formula = r'$\phi(x) = \dfrac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$'
+plt.text(-3.8, 0.38, formula, fontsize=16, 
+         bbox=dict(facecolor='white', alpha=0.9, edgecolor='none'))
+
+# Labels and title
+plt.title('Standard Normal Distribution\n(μ = 0, σ = 1)', fontsize=14, pad=12)
+plt.xlabel('x', fontsize=12)
+plt.ylabel('Probability Density', fontsize=12)
+plt.grid(True, alpha=0.3, linestyle='--')
+plt.legend(loc='upper right', fontsize=11)
+
+# Set reasonable axis limits
+plt.xlim(-4, 4)
+plt.ylim(0, 0.45)
+
+plt.tight_layout()
+plt.show()
+```
+
+
+
+
+
+Creating a `DataFrame` by passing a dictionary of objects where the keys are the column labels and the values are the column values: 
 
 ```python
 import numpy as np

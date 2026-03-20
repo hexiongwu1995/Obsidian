@@ -117,52 +117,119 @@ rng.normal(mu, sigma, size=...)
 
 
 
-```run-python
+
+```python
+
+import micropip
+await micropip.install("numpy")
+await micropip.install("scipy")
+await micropip.install("matplotlib")
+
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy import stats
+from scipy.stats import norm
 
-# Generate 1000 samples from standard normal distribution
-np.random.seed(42)  # for reproducibility
-samples = np.random.randn(1000)
 
-# Create x values for the theoretical PDF curve
-x = np.linspace(-4, 4, 1000)
-pdf = stats.norm.pdf(x)  # standard normal pdf: mean=0, std=1
 
-# Create the plot
-plt.figure(figsize=(8, 4))
+# ==================== Set global font sizes (easy way) ====================
+plt.rcParams.update({
+    'font.size': 12,           # Base font size for everything
+    'axes.titlesize': 10,      # Title font size
+    'axes.labelsize': 10,      # X and Y label font size
+    'xtick.labelsize': 10,     # X tick labels
+    'ytick.labelsize': 10,     # Y tick labels
+    'legend.fontsize': 6,     # Legend font size
+    'figure.titlesize': 10     # Overall figure title (if any)
+})
 
-# Plot histogram of samples (normalized to density)
-plt.hist(samples, bins=40, density=True, alpha=0.6, color='skyblue', 
-         edgecolor='white', label='Sampled data (n=1000)')
+# Parameters for the standard normal distribution (mu=0, sigma=1)
+mu = 0
+sigma = 1
 
-# Plot theoretical standard normal PDF
-plt.plot(x, pdf, 'r-', lw=2.5, label='Standard Normal PDF')
+# Generate x values and the probability density function (PDF)
+x = np.linspace(-5, 5, 1000)
+pdf = norm.pdf(x, mu, sigma)
 
-# Add formula annotation
-formula = r'$\phi(x) = \dfrac{1}{\sqrt{2\pi}} e^{-\frac{x^2}{2}}$'
-plt.text(-3.8, 0.38, formula, fontsize=16, 
-         bbox=dict(facecolor='white', alpha=0.9, edgecolor='none'))
+# Generate 500 random samples from the normal distribution
+samples = np.random.normal(mu, sigma, 500)
 
-# Labels and title
-plt.title('Standard Normal Distribution\n(μ = 0, σ = 1)', fontsize=14, pad=12)
-plt.xlabel('x', fontsize=12)
-plt.ylabel('Probability Density', fontsize=12)
-plt.grid(True, alpha=0.3, linestyle='--')
-plt.legend(loc='upper right', fontsize=11)
+# Create a side-by-side figure with professional styling
+fig, axs = plt.subplots(1, 2, figsize=(7.5, 4), dpi=120)
+fig.suptitle('Normal Distribution Visualizations', fontsize=12, fontweight='bold')
 
-# Set reasonable axis limits
-plt.xlim(-4, 4)
-plt.ylim(0, 0.45)
+# ==================== LEFT PLOT: PDF with 3-Sigma Rule Regions ====================
+axs[0].plot(x, pdf, 'k-', linewidth=2.5, label='Normal PDF')
 
-plt.tight_layout()
+# Fill 3-sigma regions with distinct colors to illustrate the rule
+# Inner region (|x| ≤ 1σ): ~68% (light green)
+axs[0].fill_between(x, 0, pdf,
+                    where=(x >= mu - 1*sigma) & (x <= mu + 1*sigma),
+                    color='lightgreen', alpha=0.7, label='±1σ (~68.27%)')
+
+# Middle region (1σ < |x| ≤ 2σ): adds to ~95% (light blue)
+axs[0].fill_between(x, 0, pdf,
+                    where=((x >= mu - 2*sigma) & (x < mu - 1*sigma)) |
+                          ((x > mu + 1*sigma) & (x <= mu + 2*sigma)),
+                    color='lightblue', alpha=0.7, label='±2σ (~95.45%)')
+
+# Outer region (2σ < |x| ≤ 3σ): adds to ~99.7% (light coral)
+axs[0].fill_between(x, 0, pdf,
+                    where=((x >= mu - 3*sigma) & (x < mu - 2*sigma)) |
+                          ((x > mu + 2*sigma) & (x <= mu + 3*sigma)),
+                    color='lightcoral', alpha=0.7, label='±3σ (~99.73%)')
+
+# Tails outside ±3σ (very light gray, minimal probability)
+axs[0].fill_between(x, 0, pdf,
+                    where=(x < mu - 3*sigma) | (x > mu + 3*sigma),
+                    color='lightgray', alpha=0.4)
+
+# Professional labels and ticks
+axs[0].set_title('PDF with 3-Sigma Rule Highlighted', fontsize=10)
+axs[0].set_xlabel('x (in σ units)', fontsize=10)
+axs[0].set_ylabel('Probability Density', fontsize=10)
+axs[0].legend(loc='upper right', fontsize=7, frameon=True)
+
+# Custom x-axis ticks showing sigma multiples
+sigma_ticks = [-3, -2, -1, 0, 1, 2, 3]
+axs[0].set_xticks([mu + s * sigma for s in sigma_ticks])
+axs[0].set_xticklabels([f'{s}$\\sigma$' for s in sigma_ticks], fontsize=10)
+
+axs[0].grid(True, linestyle='--', alpha=0.3)
+axs[0].set_xlim(-5, 5)
+
+# ==================== RIGHT PLOT: PDF + Histogram of Samples ====================
+# Histogram of 500 random samples (density=True for direct PDF overlay)
+axs[1].hist(samples, bins=30, density=True, alpha=0.6,
+            color='gray', edgecolor='black', label='Histogram (n=500)')
+
+# Overlay the analytical PDF curve
+axs[1].plot(x, pdf, 'r-', linewidth=2.5, label='Normal PDF')
+
+# Add the normal distribution probability density function formula
+formula = r'$\phi(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$'
+axs[1].text(0.02, 0.88, formula, transform=axs[1].transAxes,
+            fontsize=7, bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.85))
+
+# Professional labels
+axs[1].set_title('PDF Overlay on 500 Random Samples', fontsize=10)
+axs[1].set_xlabel('x', fontsize=10)
+axs[1].set_ylabel('Probability Density', fontsize=10)
+axs[1].legend(loc='upper right', fontsize=6, frameon=True)
+
+axs[1].grid(True, linestyle='--', alpha=0.3)
+axs[1].set_xlim(-5, 5)
+
+# Final layout adjustments for clarity
+plt.tight_layout(rect=[0, 0, 1, 0.95])
 plt.show()
 ```
 
+In probability theory and statistics, a normal distribution or Gaussian distribution is a type of continuous probability distribution for a real-valued random variable. The general form of its probability density function is $f (x)= frac(1, sqrt(2 pi sigma^(2)))exp (- frac((x - mu)^(2), 2 sigma^(2))) thin$ 
 
+The parameter ⁠$mu$ is the mean or expectation of the distribution (and also its median and mode), while the parameter  $sigma^2$ 
+ is the variance. The standard deviation of the distribution is the positive value ⁠$sigma$. A random variable with a Gaussian distribution is said to be normally distributed and is called a normal deviate.  
 
-
+Normal distributions are important in statistics and are often used in the natural and social sciences to represent real-valued random variables whose distributions are not known. Their importance is partly due to the central limit theorem.
 
 Creating a `DataFrame` by passing a dictionary of objects where the keys are the column labels and the values are the column values: 
 

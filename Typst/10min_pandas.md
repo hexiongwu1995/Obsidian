@@ -182,8 +182,6 @@ plt.show()
 
 
 
-这是我windows电脑上的python地址："C:\Users\hexio\AppData\Local\Python\pythoncore-3.14-64\python.exe"
-
 In probability theory and statistics, a normal distribution or Gaussian distribution is a type of continuous probability distribution for a real-valued random variable. The general form of its probability density function is $f (x)= frac(1, sqrt(2 pi sigma^(2)))exp (- frac((x - mu)^(2), 2 sigma^(2))) thin$ 
 
 The parameter ⁠$mu$ is the mean or expectation of the distribution (and also its median and mode), while the parameter  $sigma^2$ 

@@ -117,112 +117,72 @@ rng.normal(mu, sigma, size=...)
 
 
 
-
 ```python
-
-import micropip
-await micropip.install("numpy")
-await micropip.install("scipy")
-await micropip.install("matplotlib")
-
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.stats import norm
 
+# Adjustable parameters (change these and re-run)
+mu = 0.0
+sigma = 1.0
 
-
-# ==================== Set global font sizes (easy way) ====================
-plt.rcParams.update({
-    'font.size': 12,           # Base font size for everything
-    'axes.titlesize': 10,      # Title font size
-    'axes.labelsize': 10,      # X and Y label font size
-    'xtick.labelsize': 10,     # X tick labels
-    'ytick.labelsize': 10,     # Y tick labels
-    'legend.fontsize': 6,     # Legend font size
-    'figure.titlesize': 10     # Overall figure title (if any)
-})
-
-# Parameters for the standard normal distribution (mu=0, sigma=1)
-mu = 0
-sigma = 1
-
-# Generate x values and the probability density function (PDF)
-x = np.linspace(-5, 5, 1000)
-pdf = norm.pdf(x, mu, sigma)
-
-# Generate 500 random samples from the normal distribution
+# Generate data
+x = np.linspace(mu - 4*sigma, mu + 4*sigma, 1000)
+def normal_pdf(x, mu, sigma):
+    return (1 / (sigma * np.sqrt(2 * np.pi))) * np.exp( - (x - mu)**2 / (2 * sigma**2) )
+pdf = normal_pdf(x, mu, sigma)
 samples = np.random.normal(mu, sigma, 500)
 
-# Create a side-by-side figure with professional styling
-fig, axs = plt.subplots(1, 2, figsize=(7.5, 4), dpi=120)
-fig.suptitle('Normal Distribution Visualizations', fontsize=12, fontweight='bold')
+fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(9, 4))
 
-# ==================== LEFT PLOT: PDF with 3-Sigma Rule Regions ====================
-axs[0].plot(x, pdf, 'k-', linewidth=2.5, label='Normal PDF')
+# Left: PDF with 3-sigma regions filled in different colors
+ax1.plot(x, pdf, 'b-', linewidth=2, label='PDF')
+# ±1σ region (~68%)
+x_1 = np.linspace(mu - sigma, mu + sigma, 200)
+ax1.fill_between(x_1, 0, normal_pdf(x_1, mu, sigma), color='blue', alpha=0.4, label='±1σ (~68%)')
+# 1σ to 2σ regions (~27%)
+x_2_low = np.linspace(mu - 2*sigma, mu - sigma, 200)
+x_2_high = np.linspace(mu + sigma, mu + 2*sigma, 200)
+ax1.fill_between(x_2_low, 0, normal_pdf(x_2_low, mu, sigma), color='green', alpha=0.4)
+ax1.fill_between(x_2_high, 0, normal_pdf(x_2_high, mu, sigma), color='green', alpha=0.4, label='1σ–2σ (~27%)')
+# 2σ to 3σ regions (~4.5%)
+x_3_low = np.linspace(mu - 3*sigma, mu - 2*sigma, 200)
+x_3_high = np.linspace(mu + 2*sigma, mu + 3*sigma, 200)
+ax1.fill_between(x_3_low, 0, normal_pdf(x_3_low, mu, sigma), color='orange', alpha=0.4)
+ax1.fill_between(x_3_high, 0, normal_pdf(x_3_high, mu, sigma), color='orange', alpha=0.4, label='2σ–3σ (~4.5%)')
+# Outside ±3σ (~0.3%)
+x_tail_low = np.linspace(mu - 4*sigma, mu - 3*sigma, 100)
+x_tail_high = np.linspace(mu + 3*sigma, mu + 4*sigma, 100)
+ax1.fill_between(x_tail_low, 0, normal_pdf(x_tail_low, mu, sigma), color='red', alpha=0.3)
+ax1.fill_between(x_tail_high, 0, normal_pdf(x_tail_high, mu, sigma), color='red', alpha=0.3, label='Outside ±3σ (~0.3%)')
 
-# Fill 3-sigma regions with distinct colors to illustrate the rule
-# Inner region (|x| ≤ 1σ): ~68% (light green)
-axs[0].fill_between(x, 0, pdf,
-                    where=(x >= mu - 1*sigma) & (x <= mu + 1*sigma),
-                    color='lightgreen', alpha=0.7, label='±1σ (~68.27%)')
+ax1.set_title('Normal Distribution PDF - 3-Sigma Rule')
+ax1.set_xlabel('x')
+ax1.set_ylabel('Probability Density')
+ax1.legend(loc='upper right')
+# Sigma tick marks
+ticks = [mu-3*sigma, mu-2*sigma, mu-sigma, mu, mu+sigma, mu+2*sigma, mu+3*sigma]
+ax1.set_xticks(ticks)
+ax1.set_xticklabels(['μ−3σ', 'μ−2σ', 'μ−σ', 'μ', 'μ+σ', 'μ+2σ', 'μ+3σ'])
 
-# Middle region (1σ < |x| ≤ 2σ): adds to ~95% (light blue)
-axs[0].fill_between(x, 0, pdf,
-                    where=((x >= mu - 2*sigma) & (x < mu - 1*sigma)) |
-                          ((x > mu + 1*sigma) & (x <= mu + 2*sigma)),
-                    color='lightblue', alpha=0.7, label='±2σ (~95.45%)')
+# Right: PDF + histogram + formula
+ax2.hist(samples, bins=30, density=True, alpha=0.6, color='gray', label='Histogram (500 samples)')
+ax2.plot(x, pdf, 'r-', linewidth=2, label='PDF')
+ax2.set_title('PDF with Histogram of 500 Random Samples')
+ax2.set_xlabel('x')
+ax2.set_ylabel('Density')
+ax2.legend()
 
-# Outer region (2σ < |x| ≤ 3σ): adds to ~99.7% (light coral)
-axs[0].fill_between(x, 0, pdf,
-                    where=((x >= mu - 3*sigma) & (x < mu - 2*sigma)) |
-                          ((x > mu + 2*sigma) & (x <= mu + 3*sigma)),
-                    color='lightcoral', alpha=0.7, label='±3σ (~99.73%)')
+# Normal distribution formula (English)
+formula = r'$f(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$'
+ax2.text(0.02, 0.85, formula, transform=ax2.transAxes, fontsize=9)
 
-# Tails outside ±3σ (very light gray, minimal probability)
-axs[0].fill_between(x, 0, pdf,
-                    where=(x < mu - 3*sigma) | (x > mu + 3*sigma),
-                    color='lightgray', alpha=0.4)
-
-# Professional labels and ticks
-axs[0].set_title('PDF with 3-Sigma Rule Highlighted', fontsize=10)
-axs[0].set_xlabel('x (in σ units)', fontsize=10)
-axs[0].set_ylabel('Probability Density', fontsize=10)
-axs[0].legend(loc='upper right', fontsize=7, frameon=True)
-
-# Custom x-axis ticks showing sigma multiples
-sigma_ticks = [-3, -2, -1, 0, 1, 2, 3]
-axs[0].set_xticks([mu + s * sigma for s in sigma_ticks])
-axs[0].set_xticklabels([f'{s}$\\sigma$' for s in sigma_ticks], fontsize=10)
-
-axs[0].grid(True, linestyle='--', alpha=0.3)
-axs[0].set_xlim(-5, 5)
-
-# ==================== RIGHT PLOT: PDF + Histogram of Samples ====================
-# Histogram of 500 random samples (density=True for direct PDF overlay)
-axs[1].hist(samples, bins=30, density=True, alpha=0.6,
-            color='gray', edgecolor='black', label='Histogram (n=500)')
-
-# Overlay the analytical PDF curve
-axs[1].plot(x, pdf, 'r-', linewidth=2.5, label='Normal PDF')
-
-# Add the normal distribution probability density function formula
-formula = r'$\phi(x)=\frac{1}{\sigma\sqrt{2\pi}}\exp\left(-\frac{(x-\mu)^2}{2\sigma^2}\right)$'
-axs[1].text(0.02, 0.88, formula, transform=axs[1].transAxes,
-            fontsize=7, bbox=dict(boxstyle='round,pad=0.5', facecolor='white', alpha=0.85))
-
-# Professional labels
-axs[1].set_title('PDF Overlay on 500 Random Samples', fontsize=10)
-axs[1].set_xlabel('x', fontsize=10)
-axs[1].set_ylabel('Probability Density', fontsize=10)
-axs[1].legend(loc='upper right', fontsize=6, frameon=True)
-
-axs[1].grid(True, linestyle='--', alpha=0.3)
-axs[1].set_xlim(-5, 5)
-
-# Final layout adjustments for clarity
-plt.tight_layout(rect=[0, 0, 1, 0.95])
+plt.tight_layout()
 plt.show()
 ```
+
+
+
+这是我windows电脑上的python地址："C:\Users\hexio\AppData\Local\Python\pythoncore-3.14-64\python.exe"
 
 In probability theory and statistics, a normal distribution or Gaussian distribution is a type of continuous probability distribution for a real-valued random variable. The general form of its probability density function is $f (x)= frac(1, sqrt(2 pi sigma^(2)))exp (- frac((x - mu)^(2), 2 sigma^(2))) thin$ 
 

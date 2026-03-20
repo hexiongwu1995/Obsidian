@@ -45,7 +45,7 @@ Let me know if you want more examples for any specific command (e.g., how to run
 
 
 
-
+"C:\Users\hexio\Documents\Obsidian\.jupymd\Scripts\python.exe"
 
 
 

@@ -191,6 +191,8 @@ Normal distributions are important in statistics and are often used in the natur
 
 Creating a `DataFrame` by passing a dictionary of objects where the keys are the column labels and the values are the column values: 
 
+
+
 ```python
 import numpy as np
 import pandas as pd

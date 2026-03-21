@@ -88,22 +88,23 @@ print( np.random.randn(2,3,2,2) )
 
 ```
 
-random.Generator.standard_normal(size=None, dtype=np.float64, out=None)
+random.Generator.standard_normal(size=None, dtype=np.float64, out=None) 
 Draw samples from a standard Normal distribution (mean=0, stdev=1).
+
 Parameters:
 
-size:int or tuple of ints, optional
-Output shape. If the given shape is, e.g., (m, n, k), then m * n * k samples are drawn. Default is None, in which case a single value is returned.
+size:int or tuple of ints, optional 
+Output shape. If the given shape is, e.g., (m, n, k), then m * n * k samples are drawn. Default is None, in which case a single value is returned. 
 
 dtype:dtype, optional
 Desired dtype of the result, only float64 and float32 are supported. Byteorder must be native. The default value is np.float64.
 
 out:ndarray, optional
-Alternative output array in which to place the result. If size is not None, it must have the same shape as the provided size and must match the type of the output values.
+Alternative output array in which to place the result. If size is not None, it must have the same shape as the provided size and must match the type of the output values. 
 
 Returns:
-out:float or ndarray
-A floating-point array of shape size of drawn samples, or a single sample if sizewas not specified.
+out:float or ndarray 
+A floating-point array of shape size of drawn samples, or a single sample if size was not specified. 
 
 ```
 
@@ -113,6 +114,22 @@ A floating-point array of shape size of drawn samples, or a single sample if siz
 
 mu + sigma * rng.standard_normal(size=...)
 rng.normal(mu, sigma, size=...)
+```
+
+
+```run-python
+import numpy as np
+s=np.random.default_rng()
+a=s.standard_normal()
+b=np.random.standard_normal()
+c=s.standard_normal(size=(3,4))
+d=np.random.standard_normal(20)
+e=np.random.normal(loc=1.3, scale=2.3, size=(2,3))
+f=np.mean(e)
+g=np.mean(e, axis=0)
+h=np.mean(e, axis=1)
+i=np.random.normal(loc=1.2, scale=2, size=5)
+print(a, '\n', '\n', b, '\n', '\n', c, '\n', '\n', d, '\n', '\n', e,'\n', '\n', f, '\n', '\n', g, '\n', '\n', h, '\n', '\n', i)
 ```
 
 

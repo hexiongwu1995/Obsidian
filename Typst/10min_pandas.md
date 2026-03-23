@@ -134,7 +134,7 @@ print(a, '\n', '\n', b, '\n', '\n', c, '\n', '\n', d, '\n', '\n', e,'\n', '\n', 
 
 
 
-```python
+```run-python
 import numpy as np
 import matplotlib.pyplot as plt
 

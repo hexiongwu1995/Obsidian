@@ -226,62 +226,48 @@ content(sph(0.8,pi/8,pi/3),text(size:15pt, fill:teal)[$theta$])
 #set page(paper:"a4", flipped:false, margin:1cm)
 #set align(center+horizon)
 
-```python
-# micropip 是 Pyodide 提供的专用工具，用于在浏览器中动态安装 Python 包
-# 异步安装 numpy 包（因为 Pyodide 环境下的安装是异步的，必须使用 await）
-# 异步安装 matplotlib 包（绘图用，常一起安装）
 
+
+```python
 import micropip
 await micropip.install("numpy")
-await micropip.install("scipy")
 await micropip.install("matplotlib")
 
 import numpy as np
 import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
+from matplotlib.colors import LightSource
 
-# 参数设置
-r = 1.0   # 管半径（tube radius）
-R = 3.0   # 中心到管中心的距离（major radius）
+R, r= 3, 0.8
+polar, phi= np.meshgrid( np.linspace(start=0, stop= 2* np.pi, num=40, endpoint=True), np.linspace(start=0, stop= 2* np.pi, num=40, endpoint=True) )
+x= (R + r* np.cos(polar))* np.cos(phi)
+y= (R + r* np.cos(polar))* np.sin(phi)
+z= r* np.sin(polar)
 
-# 生成参数网格
-# polar角 映射内管周长
-# theta角映射方位角
-angle = np.linspace(0, 2 * np.pi, 100)
-polar,phi = np.meshgrid(angle, angle) 
+fig= plt.figure(figsize=(8,6))
+ax= fig.add_subplot(111, projection='3d') 
 
-# Torus 参数方程
-x = (R + r * np.cos(polar)) * np.cos(phi) 
-y = (R + r * np.cos(polar)) * np.sin(phi) 
-z = r * np.sin(polar) 
+ax.plot_surface(x, y, z, rstride=1, cstride=1, color=(0, 0.6, 0.9, 0.9), linewidth=0, shade = True, lightsource= LightSource(azdeg=0, altdeg=-20, hsv_min_val=0.2, hsv_max_val=0.9), antialiased=True )
+ax.set_box_aspect(aspect=(R+r, R+r, r), zoom=1.0)
+ax.set_title(label='3D Torus')
+ax.set_xlim(xmin= -(R + r), xmax=(R + r))
+ax.set_ylim(ymin= -(R + r), ymax=(R + r))
+ax.set_zlim(zmin= - r, zmax= r)
 
-# 创建图形
-fig = plt.figure(figsize=(8, 8))
-ax = fig.add_subplot(111, projection='3d')
+ax.set_xticks((-(R+r), 0, R+r),(" ", "0", "R+r"))
+ax.set_yticks((-(R+r), 0, R+r),(" ", "0", "R+r"))
+ax.set_zticks((-r, 0, r),(" ", "0", "r"))
+ax.tick_params(axis='both', which='both', direction='in', labelsize=7, grid_alpha=0)
+ax.set_xlabel(xlabel='x', labelpad=1)
+ax.set_ylabel(ylabel='y', labelpad=1)
+ax.set_zlabel(zlabel='z', labelpad=1)
+ax.grid(visible=None)
+ax.view_init(elev= 25, azim=-45, vertical_axis='z')
 
-# 绘制曲面
-ax.plot_surface(x, y, z, cmap='viridis', alpha=0.9)
+# 可选：关闭自动缩放以避免 matplotlib 自动调整比例???
+ax.auto_scale_xyz([-(R+r), R+r], [-(R+r), R+r], [-r, r]  )
 
-# 设置坐标轴标签
-ax.set_xlabel('X')
-ax.set_ylabel('Y')
-ax.set_zlabel('Z')
-
-# 计算统一的坐标轴范围
-max_range = R + r
-ax.set_xlim([-max_range, max_range])
-ax.set_ylim([-max_range, max_range])
-ax.set_zlim([-max_range, max_range])
-
-# 可选：关闭自动缩放以避免 matplotlib 自动调整比例
-ax.auto_scale_xyz([-max_range, max_range], 
-[-max_range, max_range],[-max_range, max_range])
-
-plt.tight_layout()
 plt.show()
 ```
-
-
 
 
 

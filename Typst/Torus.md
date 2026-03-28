@@ -39,10 +39,11 @@ ax.set_zlabel(zlabel='z', labelpad=1)
 ax.grid(visible=None)
 ax.view_init(elev= 25, azim=-45, vertical_axis='z')
 
+# 可选：关闭自动缩放以避免 matplotlib 自动调整比例???
+ax.auto_scale_xyz([-(R+r), R+r], [-(R+r), R+r], [-r, r]  )
+
 plt.show()
 ```
-
-
 
 
 

@@ -1,9 +1,4 @@
 
-
-
-
-
-
 ```python
 import micropip
 await micropip.install("numpy")

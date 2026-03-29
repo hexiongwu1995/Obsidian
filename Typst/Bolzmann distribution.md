@@ -1,12 +1,84 @@
 
 
-
 $$p_{i}=\frac{1}{Q} \exp \left(-\frac{\varepsilon_{i}}{k_{\mathrm{B}} T}\right)=\frac{\exp \left(-\frac{\varepsilon_{i}}{k_{\mathrm{B}} T}\right)}{\sum_{j=1}^{M} \exp \left(-\frac{\varepsilon_{j}}{k_{\mathrm{B}} T}\right)}$$
 
 Bolzmann constant:  $K_B = 1.381 \times 10^{-23} J \cdot K^{-1}$ 
+
 Elementary charge:  $e=1.602 \times 10^{-19} C = 1.602 \times 10^{-19} J/V$ 
+
 $1 J= 6.242 \times 10^{18} eV$ 
-Bolzmann constant in electron volt: $K_B = 1.381 \times 10^{-23} J \cdot K^{-1}= 8.620 \times 10^{-5} eV/K$
+
+Bolzmann constant in electron volt: $K_B = 1.381 \times 10^{-23} J \cdot K^{-1}= 8.620 \times 10^{-5} eV/K$ 
+
+
+
+
+
+
+
+```run-python
+import numpy as np
+import matplotlib.pyplot as plt
+
+kB= 8.620e-5
+T= np.array([273.15, 298.15])
+kBT= kB * T
+print(kBT)
+```
+
+
+
+
+
+
+```run-python
+import numpy as np
+import matplotlib.pyplot as plt
+
+def boltzmann_probs(eps, T, kB=1.0):
+    exp_terms = np.exp(-eps / (kB * T))
+    Z = np.sum(exp_terms)
+    return exp_terms / Z
+
+# Scenario parameters
+M = 15
+delta_eps = 1.0
+eps = np.arange(M) * delta_eps          # ε_i = i * Δε
+T_values = [0.5, 1.0, 2.0, 5.0]        # several temperatures
+
+# Bar plot at one temperature
+T = 1.0
+p = boltzmann_probs(eps, T)
+plt.bar(range(M), p)
+plt.xlabel("Level index $i$")
+plt.ylabel("$p_i$")
+plt.title(f"Boltzmann distribution at $T = {T}$")
+plt.show()
+
+# Heatmap vs temperature (optional)
+Ts = np.linspace(0.1, 10, 100)
+P = np.array([boltzmann_probs(eps, t) for t in Ts])
+plt.imshow(P.T, aspect="auto", origin="lower",
+           extent=[Ts[0], Ts[-1], 0, M-1], cmap="viridis")
+plt.colorbar(label="$p_i$")
+plt.xlabel("$T$")
+plt.ylabel("Level $i$")
+plt.title("Probability vs temperature")
+plt.show()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

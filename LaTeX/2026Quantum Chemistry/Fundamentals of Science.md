@@ -169,11 +169,11 @@ plt.show()
 
 同理得：$\displaystyle \frac{\partial^2 u}{\partial t^2} = X(x)Y(y)Z(z) \frac{\partial^2 T}{\partial t^2}$ 
 
-代入求解方程得：$\displaystyle Y(y)Z(z)T(t) \frac{\partial^2 X}{\partial x^2} + X(x)Z(z)T(t) \frac{\partial^2 Y}{\partial y^2} + X(x)Y(y)T(t) \frac{\partial^2 Z}{\partial z^2} = X(x)Y(y)Z(z) \frac{\partial^2 T}{\partial t^2}$ 
+代入求解方程得：$\displaystyle Y(y)Z(z)T(t) \frac{\partial^2 X}{\partial x^2} + X(x)Z(z)T(t) \frac{\partial^2 Y}{\partial y^2} + X(x)Y(y)T(t) \frac{\partial^2 Z}{\partial z^2} = X(x)Y(y)Z(z) \frac{1}{c^2} \frac{\partial^2 T}{\partial t^2}$ 
 
-假设：$X(x)Y(y)Z(z)T(t) \neq 0$ ，全式同除 X(x)Y(y)Z(z)T(t) 得：$\displaystyle \frac{1}{X} \frac{\partial^2 X}{\partial x^2} + \frac{1}{Y}  \frac{\partial^2 Y}{\partial y^2} + \frac{1}{Z} \frac{\partial^2 Z}{\partial z^2} = \frac{1}{T}  \frac{\partial^2 T}{\partial t^2}$  
+假设：$X(x)Y(y)Z(z)T(t) \neq 0$ ，全式同除 X(x)Y(y)Z(z)T(t) 得：$\displaystyle \frac{1}{X} \frac{\partial^2 X}{\partial x^2} + \frac{1}{Y}  \frac{\partial^2 Y}{\partial y^2} + \frac{1}{Z} \frac{\partial^2 Z}{\partial z^2} = \frac{1}{c^2} \frac{1}{T}  \frac{\partial^2 T}{\partial t^2}$  
 
-这是根据假设推导得出的结论：上面这个等式在任意点 (x,y,z,t) 成立。这意味着，当自变量t变化，如果等式右边的函数值也跟随变化，为使等式成立，要求等式左边的函数值也需要变化，这意味着等式左边不仅是(x, y, z)的函数，这与假设矛盾。所以等式右边是一个与自变量 t 无关的常数 $C_t$ 。同理可证，第一项等于常数 $C_x$ ，第二项等于常数 $C_y$ ，第三项等于常数 $C_z$ 。这是初始假设的自然结论。
+这是根据假设推导得出的结论：上面这个等式在任意点 (x, y ,z, t) 成立。这意味着，当自变量t变化，如果等式右边的函数值也跟随变化，为使等式成立，要求等式左边的函数值也需要变化，这意味着等式左边不仅是(x, y, z)的函数，这与假设矛盾。所以等式右边是一个与自变量 t 无关的常数 $C_t$ 。同理可证，第一项等于常数 $C_x$ ，第二项等于常数 $C_y$ ，第三项等于常数 $C_z$ 。这是初始假设的自然结论。
 
 **求解方程：** $\color{orange}{ \displaystyle \frac{1}{X} \frac{\partial^2 X}{\partial x^2} = C_x }$ 
 
@@ -1940,7 +1940,7 @@ $\displaystyle r= \sqrt{x^2 + y^2 +z^2}$  ,  $\displaystyle \theta = \arctan{\fr
 
 
 
-```typ
+```typst
 #set page(width:auto, height:auto, margin:1cm)
 #set align(center+horizon)
 

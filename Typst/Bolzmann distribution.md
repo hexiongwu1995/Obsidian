@@ -2,13 +2,13 @@
 
 $$p_{i}=\frac{1}{Q} \exp \left(-\frac{\varepsilon_{i}}{k_{\mathrm{B}} T}\right)=\frac{\exp \left(-\frac{\varepsilon_{i}}{k_{\mathrm{B}} T}\right)}{\sum_{j=1}^{M} \exp \left(-\frac{\varepsilon_{j}}{k_{\mathrm{B}} T}\right)}$$
 
-Bolzmann constant:  $K_B = 1.381 \times 10^{-23} J \cdot K^{-1}$ 
+Boltzmann constant:  $K_B = 1.381 \times 10^{-23} J \cdot K^{-1}$ 
 
 Elementary charge:  $e=1.602 \times 10^{-19} C = 1.602 \times 10^{-19} J/V$ 
 
 $1 J= 6.242 \times 10^{18} eV$ 
 
-Bolzmann constant in electron volt: $K_B = 1.381 \times 10^{-23} J \cdot K^{-1}= 8.620 \times 10^{-5} eV/K$ 
+Boltzmann constant in electron volt: $K_B = 1.381 \times 10^{-23} J \cdot K^{-1}= 8.620 \times 10^{-5} eV/K$ 
 
 
 
@@ -66,21 +66,6 @@ plt.ylabel("Level $i$")
 plt.title("Probability vs temperature")
 plt.show()
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

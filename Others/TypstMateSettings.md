@@ -1,5 +1,4 @@
 
-
 ## Preamble
 
 
@@ -105,7 +104,6 @@
 #rect( width: 100%, height: auto, stroke: 1pt+ luma(50%), radius:5pt, inset:5pt, outset:2pt, fill: none)[```typm {CODE} ```]
 ]
 ```
-
 
 
 

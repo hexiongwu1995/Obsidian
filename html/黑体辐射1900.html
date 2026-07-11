@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Chemistry</title>
+
+    <script src="./mathjax.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@4.1.3/tex-svg.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css" />
+    <script src="https://tikzjax.com/v1/tikzjax.js"></script>
+  </head>
+
+  <body>
+    <section>
+      <h2>量子化学起源历史简介</h2>
+
+      <p>
+        1900年：普朗克提出能量量子化假说 <br />
+        事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（“量子”）发射或吸收，即 $E = h\nu$。<br />
+        意义：标志量子理论的诞生。
+      </p>
+
+      <p>
+        1905年：爱因斯坦解释光电效应 <br />
+        事件：阿尔伯特·爱因斯坦提出光量子（光子）概念，认为光由粒子（光子）组成，成功解释光电效应（金属受光照释放电子的现象）。<br />
+        意义：首次将量子概念扩展到光本身，支持能量量子化。
+      </p>
+
+      <p>
+        1907 & 1912年：量子理论解释固体热容 <br />
+        1907年：爱因斯坦用量子化振子模型解释低温下固体热容偏离经典杜隆-珀蒂定律的现象。<br />
+        1912年：彼得·德拜改进模型（德拜模型），更准确描述热容随温度变化。<br />
+      </p>
+
+      <p>
+        1911–1913年：卢瑟福与玻尔模型 <br />
+        1911年：欧内斯特·卢瑟福通过α粒子散射实验提出原子核式结构模型。<br />
+        1913年：尼尔斯·玻尔结合量子化条件提出玻尔原子模型，成功解释氢原子光谱的离散谱线（如巴尔末系）。<br />
+        关键点：电子只能在特定轨道上运动，跃迁时发射/吸收特定频率的光。
+      </p>
+
+      <p>
+        1916年：索末菲推广玻尔模型 <br />
+        阿诺德·索末菲引入椭圆轨道和相对论修正，解释精细结构，推动原子光谱理论发展。
+      </p>
+
+      <p>
+        1923–1924年：德布罗意提出物质波 <br />
+        1924年：路易·德布罗意在其论文中提出波粒二象性不仅适用于光，也适用于电子等物质粒子，即 $\lambda = \frac{h}{p} $。<br />
+        意义：为波动力学奠定基础。
+      </p>
+
+      <p>
+        1925–1926年：量子力学正式建立 <br />
+        1925年：海森堡提出矩阵力学。<br />
+        1926年：薛定谔提出波动力学（薛定谔方程），并证明与矩阵力学等价。<br />
+        同年，玻恩提出波函数的概率诠释。
+      </p>
+
+      <p>
+        1925年：泡利不相容原理 <br />
+        沃尔夫冈·泡利提出不相容原理，解释元素周期表和原子壳层结构，对量子化学至关重要。
+      </p>
+
+      <p>
+        1927年：海森堡不确定性原理 & 戴维森-革末实验证实电子波动性 <br />
+        海森堡提出不确定性原理。<br />
+        戴维森与革末通过电子衍射实验证实电子具有波动性，直接验证德布罗意假说。
+      </p>
+
+      <p>这些里程碑事件共同构成了从经典物理向量子理论过渡的基础，并为后续量子化学（如1927年海特勒-伦敦对氢分子的量子处理）的发展铺平道路。</p>
+    </section>
+
+    <section>
+      <h3>黑体辐射1900</h3>
+
+      <p>回过头来看，随着19世纪物理学的发展，理论物理其实已经徘徊在构建物质的量子力学描述的边缘。然而，真正推动这场革命的是一系列实验观测。在这些观测中，从历史上看最重要的是黑体辐射的研究。黑体辐射是指一个能无差别地吸收和发射所有频率电磁波的物体处于热平衡状态的辐射。一个密闭容器上的小孔就是一个很好的近似（见图0.1）。</p>
+
+      <p>到19世纪末，人们已经总结出黑体辐射的两个特征，并将其归纳为两条定律。</p>
+
+      <p>根据斯特藩-玻尔兹曼定律（Stefan–Boltzmann law），辐出度 $M$（即单位面积发射的功率）与温度的四次方成正比：$M = \sigma T^4$ ，其中，斯特藩-玻尔兹曼常数 $\sigma$ 与构成黑体的材料无关，其现代值为 $56.7 , \text{nW} \cdot \text{m}^{-2} \cdot \text{K}^{-4}$。因此，一块面积为 $1 , \text{cm}^2$ 的黑体在 $1000 , \text{K}$ 时，若计入所有频率，其辐射功率约为 $6 , \text{W}$。</p>
+
+      <p>然而，并非所有频率（或波长，$\lambda = c/\nu$）在辐射中的贡献是均等的。实验观察到，随着温度升高，辐射能量分布的峰值会向更短的波长移动。根据韦恩位移定律（Wien's displacement law）：$\lambda_{\text{max}} T = \text{常数}$， 该常数等于 $2.9 , \text{mm} \cdot \text{K}$。</p>
+      <!-- [[BlackBodyRadiation.svg#invert]] -->
+      <p>19世纪末，物理学界面临的一大挑战就是解释这两条定律。其核心在于找到一个能量密度 $E(\lambda)$（单位体积内的能量）的表达式，并将波长范围 $\lambda$ 到 $\lambda + d\lambda$ 内辐射的贡献写作：$dE(\lambda) = \rho_R(\lambda) d\lambda$， 其中 $\rho_R(\lambda)$ 是波长 $\lambda$ 处的谱态密度。</p>
+
+      <p>瑞利勋爵（Lord Rayleigh）凭借其深厚的经典物理学功底，在詹姆斯·金斯（James Jeans）的少量协助下，提出了理论上的瑞利-金斯定律（Rayleigh–Jeans law）：$\displaystyle \rho_R(\lambda) = \frac{8\pi kT}{\lambda^4}$， 其中 $k$ 是玻尔兹曼常数（$k = 1.381 \times 10^{-23} , \text{J} \cdot \text{K}^{-1}$）。</p>
+
+      <p>这个公式恰恰总结了经典物理学的失败。因为当 $\lambda$ 趋近于零时，$\rho_R(\lambda)$ 会趋向无穷大。这意味着，无论温度多低，极短波长处都应该存在无限大的能量密度。这个荒谬的结果被埃伦费斯特（Ehrenfest）称为“紫外灾难”（ultraviolet catastrophe）。</p>
+
+      <p>此时，普朗克做出了他划时代的贡献。他的建议相当于提出：频率为 $\nu$ 的电磁场振荡，其能量只能以大小为 $h\nu$ 的离散步长被激发，其中 $h$ 是一个全新的、自然界的基本常数，现在被称为普朗克常数。</p>
+
+      <p>根据这种能量量子化的假设——即能量只能以离散的量进行转移——振荡器可能具有的能量只能是 $0, h\nu, 2h\nu, \dots$，而不能取其他任何值。经典物理学允许能量连续变化，因此即使是一个极高频率的振荡器，也可以用极小的能量被激发；这正是紫外灾难的根源，因为即使在低温下也能发射短波长辐射。</p>
+
+      <p>量子理论的特征就在于能量（以及我们后面将看到的某些其他物理量）的离散性。对最小激发能量的需求，有效地“关闭”了那些极高频率的振荡器，从而消除了紫外灾难。</p>
+
+      <p>当普朗克将自己的假设付诸实施时，他推导出了如今被称为普朗克分布（Planck distribution）的黑体辐射谱态密度公式： $$\displaystyle \rho_R(\lambda) = \frac{8\pi hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$$</p>
+
+      <p>这个表达式（如图0.2所示）成功避免了紫外灾难，并且只要取 $h = 6.626 \times 10^{-34} , \text{J} \cdot \text{s}$，就能与观测到的能量分布惊人地吻合。如果说瑞利-金斯定律是经典物理学失败的象征，那么普朗克分布则是量子理论诞生的标志。它不仅开启了一个新的世纪，也开启了一个崭新的时代，因为它发表于1900年。</p>
+
+      <p>普朗克分布的归一化形式为：$$\displaystyle y=\frac{1}{x^5*(e^{1/x}-1)}$$</p>
+
+      <div style="display: flex; justify-content: center; align-items: center">
+        <script type="text/tikz">
+          \begin{tikzpicture}[x=4cm, y=0.4cm,xscale=1,yscale=0.6]
+            \definecolor{myblue}{RGB}{63, 117, 162}
+            \usetikzlibrary{fpu}
+
+            \draw[->,thick](0,0)--(1.65,0)node[right,font=\large]{x};
+            \draw[->,thick](0,0)--(0,23)node[above,font=\large]{y};
+            \foreach \x in {0.2,0.4, ..., 1.6}
+            \draw[thick](\x,0)--(\x,0.2);
+            \foreach \y in {2,4, ..., 22}
+            \draw[thick](0,\y)--(0.02,\y);
+            \foreach \x in {0.2, 0.4, ..., 1.6}
+            \node[below=0.5] at (\x,0){\pgfmathprintnumber[fixed, precision=1]{\x}};
+
+            \foreach \y in {2, 4, ..., 22}
+            \node[left] at (0,\y){\y};
+            \draw[xstep=0.8cm, ystep=0.8cm, loosely dotted, thin](0,0)grid(1.6,22);
+
+            \node[above=0.4cm,font=\large] at (0.8,23){Normalized Planck distribution};
+            \node[below=0.4cm,font=\large] at (0.8,0){normalized wavelength $x=\frac{hc}{\lambda kT}$};
+            \node[rotate=90,font=\large] at (-0.2,12){normalized  spectral  density };
+
+            \begin{scope}
+            \pgfkeys{/pgf/fpu=true, /pgf/fpu/output format=fixed}
+            \draw[thick,myblue] plot[domain=0.05:1.6, samples=30, smooth] (\x, {1 / ( (\x^5) * (exp(1/\x) - 1) )});
+            \end{scope}
+            \end{tikzpicture}
+        </script>
+      </div>
+    </section>
+
+    <section>
+      <h3>历史上引入黑体辐射概念的原因</h3>
+
+      <p>黑体辐射（Blackbody Radiation）这一概念的引入，并非出于纯粹的理论兴趣，而是源于19世纪工业革命背景下对热辐射现象的实验需求与理论解释之间的深刻矛盾。其历史动因可归纳为以下几个关键方面：</p>
+
+      <p>一、工业实践的需求：高温测量与热效率</p>
+
+      <p>
+        背景：19世纪中后期，冶金、玻璃制造、蒸汽机等工业技术迅速发展，对物体（如熔炉、金属）的温度测量提出了迫切需求。<br />
+        问题：传统接触式测温（如水银温度计）在极高温度下失效，而物体颜色随温度变化的现象（如铁块加热时从暗红到白炽）提示可通过热辐射的颜色或强度间接推断温度。<br />
+        目标：建立一个普适的、与材料无关的热辐射规律，用于标准化测温与能量效率评估。<br />
+        黑体正是为了构建这样一个理想参考标准而被提出的：它不依赖具体材质，只由温度决定辐射特性。<br />
+      </p>
+
+      <p>二、理论物理的挑战：经典电磁学与统计力学的失败</p>
+
+      <p>
+        基尔霍夫热辐射定律（1859）<br />
+        古斯塔夫·基尔霍夫（Gustav Kirchhoff）通过热力学论证指出：在热平衡下，任意物体的发射率 $e(\nu, T)$ 与其吸收率 $a(\nu, T)$ 之比是一个普适函数，仅依赖于频率 $\nu$ 和温度 $T$：$\displaystyle \frac{e(\nu, T)}{a(\nu, T)} = u(\nu, T)$ ，其中 $u(\nu, T)$ 是空腔内辐射的能量密度。特别地，当 $a(\nu, T) = 1$（即完全吸收），该物体就是黑体，其发射率等于 $u(\nu, T)$。因此，研究黑体辐射等价于确定这个普适函数 $u(\nu, T)$。
+      </p>
+
+      <p>
+        实验技术的进步：空腔辐射体的实现<br />
+        物理学家（如Otto Lummer、Ernst Pringsheim等）设计了带小孔的加热空腔（如图）：<br />
+        小孔几乎完全吸收入射光（多次反射后被腔壁吸收）；加热后，小孔发出的辐射近似理想黑体辐射。<br />
+        这使得精确测量 $u(\nu, T)$ 成为可能。<br />
+      </p>
+
+      <p>
+        经典理论的崩溃：紫外灾难<br />
+        维恩公式（1896）：基于热力学和部分假设，在高频区与实验吻合，但低频区偏离。<br />
+        瑞利–金斯公式（1900/1905）：基于经典统计力学和电磁模式计数，给出：$\displaystyle u_{\text{RJ}}(\nu, T) = \frac{8\pi \nu^2}{c^3} k_B T$ ，此公式在低频（长波）有效，但在高频极限下预测能量密度趋于无穷：$\displaystyle \lim_{\nu \to \infty} u_{\text{RJ}}(\nu, T) \to \infty$<br />
+        而实验显示：能量密度在某频率处达峰值后下降。这一矛盾被称为“紫外灾难”（Ultraviolet Catastrophe），暴露了经典物理在微观领域的根本缺陷。<br />
+      </p>
+
+      <p>
+        三、普朗克的突破：量子假说的诞生（1900）<br />
+        为拟合实验数据，马克斯·普朗克（Max Planck）于1900年提出一个唯象公式（即今称普朗克公式）：$$\displaystyle u(\nu, T) = \frac{8\pi h \nu^3}{c^3} \cdot \frac{1}{e^{h\nu/(k_B T)} - 1}$$
+      </p>
+
+      <p>为从理论上导出此式，他被迫假设：腔壁谐振子的能量不能连续取值，而只能是某个最小能量单元的整数倍：$E_n = n h \nu,\quad n = 0, 1, 2, \dots$ 。其中 $h$ 是新引入的普适常数（后称普朗克常数）。这一假设违背经典物理（能量应连续），却成功解释了全部实验数据，标志着量子理论的开端。</p>
+
+      <p>四、总结：为何引入黑体辐射？</p>
+
+      <!-- | 动因类型 | 具体原因 |
+        | ---- | --------------------------------- |
+        | 实用需求 | 工业高温测温、热效率优化需要普适辐射标准 |
+        | 理论统一 | 基尔霍夫证明存在普适函数 $u(\nu, T)$，黑体是其实现载体 |
+        | 实验可行 | 空腔小孔提供接近理想的黑体辐射源 |
+        | 理论危机 | 经典物理解释失败（紫外灾难），迫使新物理诞生 | -->
+      <p>因此，黑体辐射不仅是理想化模型，更是连接实验、工程与基础物理革命的关键枢纽。</p>
+
+      <p>
+        引入黑体辐射这个物理概念的原因是，在19世纪中后期，在金属冶炼和玻璃制造等的生产过程中，需要测量熔炉或者金属的温度，水银温度计无法满足需求，而物体颜色随温度变化的规律被观察到，引起了关注和研究。之后，基于经典物理的理论，得出了两个规律。第一个是，stephan-Boltzmann law，即$M=σ*T^4$. 第二个是Wien's displacement law，即$\lambda_\text{max}*T=\text{常数}$ ， 这个常数为2.9
+        mmK。基于经典物理学理论，无法获得与实验相符的光谱能量密度与波长之间的函数关系。直到普朗克假设空腔谐振子的能量只能取离散值，才导出与实验相符的光谱能量密度与波长之间的函数关系。时间为1900年。
+      </p>
+    </section>
+
+    <section>
+      <h3>黑体辐射与物质热辐射的本质</h3>
+      <p>热辐射是指实际物体由于其内部带电粒子（主要是电子）的热运动而发射出的电磁波。所有温度高于绝对零度的物体都会发出热辐射。</p>
+
+      <p>
+        经典图理论：加速电荷辐射<br />
+        根据经典电动力学（麦克斯韦方程组），任何加速运动的带电粒子都会辐射电磁波。在热平衡状态下，物质内部的原子、分子和自由电子因热运动而不断发生碰撞和振动，导致电荷加速度变化，从而向外辐射电磁波。<br />
+        然而，经典理论（如瑞利–金斯定律）在高频（紫外）区域预测能量趋于无穷大，即所谓的“紫外灾难”（ultraviolet catastrophe），这表明经典物理无法完整描述热辐射现象。
+      </p>
+
+      <p>量子理论：能量量子化，微观粒子在不同能级之间切换时，吸收或释放电磁波。</p>
+      <p>1900年，普朗克（Max Planck）提出能量量子化假设，成功解释了黑体辐射谱：黑体腔壁中的谐振子只能以离散的能量单位发射或吸收能量，每个频率为 $\nu$ 的谐振子的能量为：$E_n = n h \nu \quad n = 0, 1, 2, \dots$ 其中 $h$ 是普朗克常数（$h \approx 6.626 \times 10^{-34}~\mathrm{J\cdot s}$）这一假设标志着量子力学的诞生。</p>
+
+      <p>
+        实际物体的热辐射：实际物体并非理想黑体，其辐射能力通常小于同温度下的黑体。引入发射率（emissivity）$\varepsilon(\nu, T)$ 描述这一差异：<br />
+        $$M_{\text{real}}(\nu, T) = \varepsilon(\nu, T) \cdot M_{\text{blackbody}}(\nu, T)$$<br />
+        其中 $0 < \varepsilon \leq 1$。 对于灰体（gray body），$\varepsilon$ 与频率无关；对于选择性辐射体，$\varepsilon$ 随频率变化。根据基尔霍夫热辐射定律，在热平衡下，物体的发射率等于其吸收率：$\varepsilon(\nu, T)=\alpha(\nu, T)$
+      </p>
+
+      <p>
+        总结：<br />
+        黑体辐射的本质是量子化的电磁场与物质热激发相互作用的结果；<br />
+        经典电动力学无法解释辐射谱分布，必须引入能量量子化；普朗克公式统一描述了全频段的黑体辐射；<br />
+        实际物质的热辐射由其微观结构（能级、电子态密度、晶格振动等）决定，并通过发射率修正黑体模型。<br />
+        黑体辐射不仅是热力学与电磁学的交汇点，更是通向量子物理的关键桥梁。
+      </p>
+    </section>
+
+    <section>
+      <h3>各向同性的均匀辐射场</h3>
+
+      <p>
+        一、严格物理定义<br />
+        各向同性的均匀辐射场（isotropic and homogeneous radiation field）通常指：在某一空间区域内任意一点 r，辐射强度 I 对所有传播方向 n<br />
+        都相同，并且与空间位置无关。用辐射强度表示为I(r, n, ν) = I(ν)
+      </p>
+
+      <p>
+        其核心含义包含两点：<br />
+        各向同性（isotropic）：在同一点处，辐射在所有方向上的强度完全一样，不存在优选方向。<br />
+        均匀性（homogeneous）：辐射场的统计性质在空间中处处相同，不随位置变化。<br />
+        这是一个"场"的性质，而不是"辐射源"的几何描述。
+      </p>
+
+      <p>
+        二、与"球形对称"的关系<br />
+        球形对称指的是：物理量仅依赖于到某个中心的径向距离 r，而与角度 (θ, φ) 无关。
+      </p>
+
+      <p>
+        二者关系如下：<br />
+        球形对称 ≠ 各向同性 ，即便辐射源是球形对称的，在空间中某一点观察到的辐射也未必各向同性。<br />
+        各向同性 ⇒ 在该点具有角向对称性，但不意味着存在几何中心。<br />
+        换句话说：球形对称是"关于某个中心"的对称性；各向同性是"关于观察点本身"的方向对称性。
+      </p>
+
+      <p>
+        三、以太阳为例的澄清<br />
+        太阳是一个近似球形对称的辐射源，但太阳产生的辐射场并不是各向同性的。
+      </p>
+
+      <p>
+        原因在于：<br />
+        1）在太阳外部空间的任意一点，辐射主要来自太阳所在方向<br />
+        2）辐射强度 I(n) 强烈依赖方向<br />
+        3）在太阳背向方向几乎没有辐射
+      </p>
+
+      <p>因此：太阳辐射场是各向异性的（anisotropic），但源是球对称的。这是一种典型的"点源或有限尺寸源辐射场"，而非各向同性辐射场。</p>
+
+      <p>
+        四、各向同性均匀辐射场的典型物理实现<br />
+        该概念通常出现在以下情形中：<br />
+        热平衡腔体中的黑体辐射：在无限大或理想封闭腔体内，经过充分多次散射与吸收-再发射后，辐射场趋于各向同性和均匀。<br />
+        宇宙微波背景辐射（CMB）的一阶近似：在大尺度上，CMB 在任意方向上的温度几乎相同，是各向同性均匀辐射场的物理实例（忽略微扰）。
+      </p>
+
+      <p>
+        五、直观类比（避免误解）<br />
+        错误类比："像太阳那样向外均匀发光"<br />
+        更准确的类比是："你身处一个完全封闭、内壁等温的巨大腔体中，从任何方向看过去都一样亮"。<br />
+        在这个情形中：没有可辨认的辐射中心 ；任意一点都是"等价的"；辐射方向分布是球面均匀的。
+      </p>
+    </section>
+
+    <section>
+      <h3>Stefan-Bolzmann定律的证明</h3>
+
+      <p>已知：对于黑体辐射，普朗克分布的谱能量密度公式$\displaystyle \rho(\lambda,T) =\frac{dE}{dVdλ}= \frac{8\pi hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$。推导辐射出射度M的数学表达式，即Stefan-Bolzmann定律。</p>
+
+      <p>第1步：先从黑体辐射的谱态能量密度公式积分，得到总能量密度$u(T)\;=\;\int_{0}^{+\infty}\rho(\lambda,T)d\lambda\;$。总能量密度u(T)的定义为：$u(T)\;=\;\frac{dE}{dV}\;$</p>
+
+      <p>第2步：求出辐射出射度M与总能量密度u(T)之间的数学关系。</p>
+
+      <p>辐射出射度的定义为：$M=\frac{dE}{dAdt}$，即单位时间内通过单位面积的能量。</p>
+
+      <p>假设该辐射场为各向同性，即辐射场内部任意一点P处，通过该点P的各个方向上的辐射强度I都相同。</p>
+
+      <p>在该辐射场内部或表面任取一个面积微元dA，统计在时间dt范围内，从内侧出发，穿过dA的光子能量。</p>
+
+      <p>用于统计通过该面积微元dA的光子能量的公式为：</p>
+
+      <p>能量=体积能量密度 * 体积，即$dE=u(T)*dV$</p>
+
+      <p>但是需要注意：这里的dV或u(T)为一种等效量。如需要使用上述公式计算某体积内部的能量，则该体积内部的能量密度需与整个辐射场的能量密度相同。</p>
+
+      <p>现在，考虑面积微元dA上，在时间段dt内，所有光子方向落在某个立体角dΩ范围内的能量，该立体角dΩ的中心线方向与dA的外法线方向呈θ角。</p>
+
+      <p>在时间段dt内，沿着属于dΩ的方向扫过面积微元dA的光子束的体积为：dV=(dA*cos(θ))*c*dt，这里之所以面积dA需要乘以方向因子cos(θ)，是因为沿着属于dΩ方向传播的光子束的截面积只有dA*cos(θ)。</p>
+
+      <p>则，在时间段dt内，沿着属于dΩ的方向，扫过面积微元dA的光子的能量为：$dE=u(T)*dV$ ？错误。因为在该体积dV内，需要统计的能量密度并非u(T)，而是：$\frac{dΩ}{4π}*u(T)$。是因为，虽然能量密度u(T)在空间上的任意位置或任意体积内是完全相同的，但是，属于dΩ方向传输的能量密度必须在方向空间进行统计，即为：$\frac{dΩ}{4π}*u(T)$。</p>
+
+      <p>则：在时间段dt范围内，属于dΩ方向传输的光子束，所有扫过面积微元dA的能量为：$dE=(\frac{dΩ}{4π}*u(T))*dV$</p>
+
+      <p>代入dV的表达式可得：$dE=\frac{dΩ}{4π}*u(T)*dA*cos(θ)*c*dt$</p>
+
+      <p>又因为：$M\;=\;\frac{dE}{dAdt}$；</p>
+
+      <p>则：单位时间、单位面积、沿着立体角dΩ传输的能量为：$dM\;=\frac{u(T)}{4π} * c* cos(θ)* dΩ \;$;</p>
+
+      <p>则在该面积微元dA处：$M\;=\; \int \frac{u}{4π} * c* cos(θ) dΩ \;$;（此处有dΩ=sin(θ)dθdφ成立）</p>
+
+      <p>则：$M\;=\; \int \frac{u}{4π} * c* cos(θ)\sin(θ) dθdφ \;$;</p>
+
+      <p>则：$M\;=\; \frac{uc}{4π} \int cos(θ)sin(θ) dθdφ \;$;</p>
+
+      <p>则：$M\;=\; \frac{uc}{4π} \int_{0}^{2π} dφ \, \int_{0}^{\frac{π}{2}} cos(θ)sin(θ) dθ \;$;（只统计穿出面积微元dA的半球方向空间）</p>
+
+      <p>则：$M\;=\;\frac{uc}{4π} * 2π * \frac{1}{2}\;$;</p>
+
+      <p>则：$M\;=\;\frac{uc}{4}\;$;</p>
+
+      <p>又因为：$u(T)\;=\;\int_{0}^{+\infty}\rho(\lambda,T)d\lambda\;$;</p>
+
+      <p>则：$M\;=\;\frac{c}{4}*\int_{0}^{+\infty}\rho(\lambda,T)d\lambda\;$;</p>
+
+      <p>代入黑体辐射的谱态密度公式$\rho(\lambda,T)\;$得：$M\;=\;\frac{c}{4}*\int_{0}^{+\infty}\frac{8\pi hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}d\lambda\;$;</p>
+
+      <p>记$t\;=\;\frac{hc}{\lambda kT}\;$;代入上式并整理得：$M\;=\;\frac{2πc(kT)^4}{(hc)^3} \int_{0}^{+\infty}\frac{t^3}{e^t-1}dt\;$</p>
+
+      <p>使用软件，对积分求解，得：$\int_{0}^{+\infty}\frac{t^3}{e^t-1}dt\,=\,\frac{π^4}{15}$，</p>
+
+      <p>则：$M\;=\;\frac{2π^5 k^4}{15 h^3c^2}\,\cdot T^4$，记$σ\;=\;\frac{2π^5 k^4}{15h^3 c^2}\,$</p>
+
+      <p>则：$M\;=\;σ \, \cdot \,T^4\;$，其中：$σ\;=\;56.7 * 10^{-9}\; Wm^{-2}K^{-4}\;$;</p>
+
+      <p>此公式即为Stefan-Bolzmann定律</p>
+
+      <div style="display: flex; justify-content: center; align-items: center">
+        <script type="text/tikz">
+          \usepackage{tikz-3dplot}
+
+          \begin{tikzpicture}[scale=1,thick,>=stealth]
+          \tdplotsetmaincoords{60}{70}
+          %设定观察角度
+          \begin{scope}[tdplot_main_coords]
+          %绘制三维直角坐标系
+          \draw[->,thin](0,0,0)--(6,0,0)node[font=\large,below]{x};
+          \draw[->,thin](0,0,0)--(0,6,0)node[font=\large,right]{y};
+          \draw[->,thin](0,0,0)--(0,0,6)node[font=\large,left]{z};
+          %设定球坐标
+          \tdplotsetcoord{O}{0}{0}{0}
+          \tdplotsetcoord{A}{4}{0}{0}
+          \tdplotsetcoord{B}{4}{90}{40}
+          \tdplotsetcoord{C}{4}{90}{50}
+          \tdplotsetcoord{D}{4}{90}{0}
+          \tdplotsetcoord{E}{4}{90}{90}
+          \tdplotsetcoord{F}{4}{40}{40}
+          \tdplotsetcoord{G}{4}{40}{50}
+          \tdplotsetcoord{H}{4}{50}{40}
+          \tdplotsetcoord{I}{4}{50}{50}
+          \tdplotsetcoord{J}{4}{45}{45}
+          \tdplotsetcoord{K}{10}{45}{45}
+          \tdplotsetcoord{S}{4}{10}{40}
+          \tdplotsetcoord{T}{4}{20}{40}
+          %绘制xy平面的圆弧
+          \begin{scope}[canvas is xy plane at z=0]
+          \draw[dotted](0,0,0)circle[radius=0.3cm];
+          \draw[->,dotted](D)arc[start angle=0,end angle=90,radius=4cm];
+          %绘制经度的方向φ
+          \draw[->,cyan](B)arc[start angle=40,end angle=50,radius=4];
+          \node[right=0.3cm] at (B) {$\color{cyan}\vec{\phi}$};
+          \end{scope}
+          %绘制Z=3.06平面上的圆弧（部分纬线）
+          \begin{scope}[canvas is xy plane at z=3.06]
+          \draw[dotted](F)arc[start angle=40,end angle=50,radius=2.57];
+          \end{scope}
+          %绘制Z=2.57平面上的圆弧（部分纬线）
+          \begin{scope}[canvas is xy plane at z=2.57]
+          \draw[dotted](H)arc[start angle=40,end angle=50,radius=3.06];
+          \end{scope}
+          %绘制40度方向的经线
+          \tdplotsetthetaplanecoords{40}
+          \begin{scope}[tdplot_rotated_coords]
+          \draw[canvas is yx plane at z=0,dotted](B)arc[start angle=0,end angle=90,radius=4cm];
+          \draw[canvas is yx plane at z=0,thin,cyan,->](S)arc[start angle=80,end angle=60,radius=4cm];
+          \node[below=0.1cm] at (T){$\color{cyan}\vec\theta$};
+          \end{scope}
+          %绘制50度方向的经线
+          \tdplotsetthetaplanecoords{50}
+          \begin{scope}[tdplot_rotated_coords]
+          \draw[canvas is yx plane at z=0,dotted](C)arc[start angle=0,end angle=90,radius=4cm];
+          \end{scope}
+          %绘制球面微元的顶点
+          \fill[cyan](F)circle[radius=1pt];
+          \fill[cyan](G)circle[radius=1pt];
+          \fill[cyan](H)circle[radius=1pt];
+          \fill[cyan](I)circle[radius=1pt];
+          \node[font=\small,left] at (F){F};
+          \node[font=\small,above] at (G){G};
+          \node[font=\small,left] at (H){H};
+          \node[font=\small,right] at (I){I};
+          %绘制球面微元的中心点J
+          \fill[red](J)circle[radius=1pt];
+          %绘制球面微元的外法线方向
+          \draw[->,thin](O)--(J)--(K)node[right]{$\vec{n}$};
+          %绘制：在时间dt范围内，沿着某个立体角dΩ，扫过球面微元FGIH的光子的体积
+          \draw[dotted](F)--++(2,2,1)coordinate(L);
+          \draw[dotted](G)--++(2,2,1)coordinate(M);
+          \draw[dotted](H)--++(2,2,1)coordinate(N);
+          \draw[dotted](I)--++(2,2,1)coordinate(O);
+          \draw[dotted](L)--(M)--(O)--(N)--cycle;
+          %绘制立体角dΩ的中心线方向
+          \coordinate (Q) at ($(J)+(2,2,1)$);
+          \coordinate (R) at ($(J)+(4,4,2)$);
+          \draw[->,thin](J)--(Q)--(R)node[right]{$\vec{d\Omega}$};
+          \end{scope}
+          \end{tikzpicture}
+        </script>
+      </div>
+
+      <p>Stefan-Bolzmann定律示意图：点F为各向同性的均匀射射场的外表面任意一点。FGIH为一个特定的球面微元。考察的对象是时间dt范围内扫过面积微元FGIH的光子的能量。在方向空间求积分的过程中会令FG和FH的长度分别趋于0。 需要注意：图形中的$\vec{\theta}$和$\vec{\phi}$只是用于绘图的球坐标的经度方向和纬度方向，不是在方向空间中求积分时用到的$\vec{\theta}$和$\vec{\phi}$。</p>
+
+      <p>备注：</p>
+
+      <p>当代表面积微元dA的法线方向选定时，立体角dΩ的原点也就确定为该面积微元dA的几何中心（法线与dA的交点）。该立体角dΩ不是只包括从该几何中心处射出的光子，而是包含从该面积微元dA内侧射出的所有落在dΩ范围内的光子？</p>
+
+      <p>
+        对于面积微元 $dA$ 上的每一个点，都有向各个方向（$4\pi$ 空间）运动的光子。我们统计的是在 $dt$ 时间内，动量方向落在 $d\Omega$ 内，且位置恰好能穿过 $dA$ 的所有光子。这些光子在空间中构成了一个倾斜的柱体，其底面积为 $dA$，斜高为 $c \cdot dt$，垂直高度为 $c \cdot \cos\theta \cdot dt$。 当我们说 $d\Omega$ 是一个锥体时，我们是在方向空间（Velocity Space）里说话。它代表了我们只挑选那些"运动方向落在该锥形范围内"的光子。但是，当我们讨论能量（或光子）在真实物理空间里的位置时，情况变了。对于 $dA$
+        上的一点 $P_1$：在 $dt$ 时间内，能穿过它的、方向落在 $d\Omega$ 内的光子，来自一条长度为 $c dt$ 的细窄锥体轨迹。对于 $dA$ 上的另一点 $P_2$：同样有一组来自 $d\Omega$ 方向的光子穿过它。对于整个面元 $dA$：由于 $dA$ 非常小，我们可以认为从 $P_1$ 穿过的 $d\Omega$ 锥体和从 $P_2$ 穿过的 $d\Omega$ 锥体是完全平行的。
+      </p>
+
+      <p>标准表述为： 考虑该辐射场的表面上能量向外传播的情况。在辐射场表面取一面积微元 dA，考虑方向落在微小立体角 dΩ内、其代表方向与 dA的外法线夹角为 θ 的辐射。在时间 dt 内，这部分辐射从面积内侧、体积 $dV = dA \cdot c\cos\theta dt$中穿过该面积向外传播，其所携带的能量为$dE = \frac{u}{4\pi} d\Omega dA c\cos\theta dt$</p>
+
+      <p>
+        错误表述： 在该辐射场表面取一个面积微元dA，在dA上取一个微小立体角dΩ。则在时间dt范围内，所有与该微小立体角dΩ的中心线平行，与面积微元dA的法向夹角为θ的光子，向辐射场外部传输的总能量为：$dE\;=\;\frac{u}{4π}*dA* c* cos(θ) *dΩ *dt\;$ (这种表述依然错误)为什么这句话在物理上是错的？立体角 (dΩ) ≠ 一条方向线，立体角是一个方向集合，与中心线平行"只对应一个方向，而连续方向空间中："严格平行"的光子集合测度为 0。因此： 不存在"所有与中心线平行的光子"这种可积分对象。角度信息必须通过
+        $d\Omega$表达，而不是"平行"。辐射理论中，唯一合法的角度限定方式是：$\text{方向}\in d\Omega$，而不是： "平行于某条线", "夹角等于 θ"
+      </p>
+
+      <p>在微积分中，当写"某一立体角 dΩ"，方向与法线夹角为 θ时， θ指的是该立体角的代表方向（中心方向）， 并且隐含使用了微分近似：$dΩ \rightarrow 0\;$，也就是说：不是说立体角内只有一个方向，而是说：当dΩ足够小时，立体角内所有方向的θ差异可以忽略到高阶小量。为什么能这样写？因为整个辐射理论：本质是角度空间的连续极限，所有基本量(I,u,M)都是：$\lim_{d\Omega\to 0} \frac{\text{能量}}{d\Omega}=0$</p>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,2246 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc 3.10" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>1900量子化学历史起源</title>
+  <style>
+
+html {
+color: #1a1a1a;
+background-color: #fdfdfd;
+}
+body {
+margin: 0 auto;
+max-width: 36em;
+padding-left: 50px;
+padding-right: 50px;
+padding-top: 50px;
+padding-bottom: 50px;
+hyphens: auto;
+overflow-wrap: break-word;
+text-rendering: optimizeLegibility;
+font-kerning: normal;
+}
+@media (max-width: 600px) {
+body {
+font-size: 0.9em;
+padding: 12px;
+}
+h1 {
+font-size: 1.8em;
+}
+}
+@media print {
+html {
+background-color: white;
+}
+body {
+background-color: transparent;
+color: black;
+font-size: 12pt;
+}
+p, h2, h3 {
+orphans: 3;
+widows: 3;
+}
+h2, h3, h4 {
+page-break-after: avoid;
+}
+}
+p {
+margin: 1em 0;
+}
+a {
+color: #1a1a1a;
+}
+a:visited {
+color: #1a1a1a;
+}
+img {
+max-width: 100%;
+}
+svg {
+height: auto;
+max-width: 100%;
+}
+h1, h2, h3, h4, h5, h6 {
+margin-top: 1.4em;
+}
+h5, h6 {
+font-size: 1em;
+font-style: italic;
+}
+h6 {
+font-weight: normal;
+}
+ol, ul {
+padding-left: 1.7em;
+margin-top: 1em;
+}
+li > ol, li > ul {
+margin-top: 0;
+}
+blockquote {
+margin: 1em 0 1em 1.7em;
+padding-left: 1em;
+border-left: 2px solid #e6e6e6;
+color: #606060;
+}
+code {
+white-space: pre-wrap;
+font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+font-size: 85%;
+margin: 0;
+hyphens: manual;
+}
+pre {
+margin: 1em 0;
+overflow: auto;
+}
+pre code {
+padding: 0;
+overflow: visible;
+overflow-wrap: normal;
+}
+.sourceCode {
+background-color: transparent;
+overflow: visible;
+}
+hr {
+border: none;
+border-top: 1px solid #1a1a1a;
+height: 1px;
+margin: 1em 0;
+}
+table {
+margin: 1em 0;
+border-collapse: collapse;
+width: 100%;
+overflow-x: auto;
+display: block;
+font-variant-numeric: lining-nums tabular-nums;
+}
+table caption {
+margin-bottom: 0.75em;
+}
+tbody {
+margin-top: 0.5em;
+border-top: 1px solid #1a1a1a;
+border-bottom: 1px solid #1a1a1a;
+}
+th {
+border-top: 1px solid #1a1a1a;
+padding: 0.25em 0.5em 0.25em 0.5em;
+}
+td {
+padding: 0.125em 0.5em 0.25em 0.5em;
+}
+header {
+margin-bottom: 4em;
+text-align: center;
+}
+#TOC li {
+list-style: none;
+}
+#TOC ul {
+padding-left: 1.3em;
+}
+#TOC > ul {
+padding-left: 0;
+}
+#TOC a:not(:hover) {
+text-decoration: none;
+}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+
+ul.task-list[class]{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+font-size: inherit;
+width: 0.8em;
+margin: 0 0.8em 0.2em -1.6em;
+vertical-align: middle;
+}
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">1900量子化学历史起源</h1>
+</header>
+<h1 id="量子化学起源历史简介">量子化学起源历史简介</h1>
+<p>1900年：普朗克提出能量量子化假说
+事件：马克斯·普朗克为解释黑体辐射实验数据，假设电磁振子的能量只能以离散单位（“量子”）发射或吸收，即
+<span class="math inline"><em>E</em> = <em>h</em><em>ν</em></span>。
+意义：标志量子理论的诞生。</p>
+<p>1905年：爱因斯坦解释光电效应
+事件：阿尔伯特·爱因斯坦提出光量子（光子）概念，认为光由粒子（光子）组成，成功解释光电效应（金属受光照释放电子的现象）。
+意义：首次将量子概念扩展到光本身，支持能量量子化。</p>
+<p>1907 &amp; 1912年：量子理论解释固体热容
+1907年：爱因斯坦用量子化振子模型解释低温下固体热容偏离经典杜隆-珀蒂定律的现象。
+1912年：彼得·德拜改进模型（德拜模型），更准确描述热容随温度变化。</p>
+<p>1911–1913年：卢瑟福与玻尔模型
+1911年：欧内斯特·卢瑟福通过α粒子散射实验提出原子核式结构模型。
+1913年：尼尔斯·玻尔结合量子化条件提出玻尔原子模型，成功解释氢原子光谱的离散谱线（如巴尔末系）。
+关键点：电子只能在特定轨道上运动，跃迁时发射/吸收特定频率的光。</p>
+<p>1916年：索末菲推广玻尔模型
+阿诺德·索末菲引入椭圆轨道和相对论修正，解释精细结构，推动原子光谱理论发展。</p>
+<p>1923–1924年：德布罗意提出物质波
+1924年：路易·德布罗意在其论文中提出波粒二象性不仅适用于光，也适用于电子等物质粒子，即
+<span class="math inline"><em>λ</em> = <em>h</em>/<em>p</em></span>。
+意义：为波动力学奠定基础。</p>
+<p>1925–1926年：量子力学正式建立 1925年：海森堡提出矩阵力学。
+1926年：薛定谔提出波动力学（薛定谔方程），并证明与矩阵力学等价。
+同年，玻恩提出波函数的概率诠释。</p>
+<p>1925年：泡利不相容原理
+沃尔夫冈·泡利提出不相容原理，解释元素周期表和原子壳层结构，对量子化学至关重要。</p>
+<p>1927年：海森堡不确定性原理 &amp; 戴维森-革末实验证实电子波动性
+海森堡提出不确定性原理。
+戴维森与革末通过电子衍射实验证实电子具有波动性，直接验证德布罗意假说。</p>
+<p>这些里程碑事件共同构成了从经典物理向量子理论过渡的基础，并为后续量子化学（如1927年海特勒-伦敦对氢分子的量子处理）的发展铺平道路。</p>
+<h3 id="一黑体辐射1900">一、黑体辐射1900</h3>
+<p>回过头来看，随着19世纪物理学的发展，理论物理其实已经徘徊在构建物质的量子力学描述的边缘。然而，真正推动这场革命的是一系列实验观测。在这些观测中，从历史上看最重要的是黑体辐射的研究。黑体辐射是指一个能无差别地吸收和发射所有频率电磁波的物体处于热平衡状态的辐射。一个密闭容器上的小孔就是一个很好的近似（见图0.1）。</p>
+<p>到19世纪末，人们已经总结出黑体辐射的两个特征，并将其归纳为两条定律。</p>
+<p>根据斯特藩-玻尔兹曼定律（Stefan–Boltzmann law），辐出度 <span class="math inline"><em>M</em></span>（即单位面积发射的功率）与温度的四次方成正比：<span class="math inline"><em>M</em> = <em>σ</em><em>T</em><sup>4</sup></span>
+，其中，斯特藩-玻尔兹曼常数 <span class="math inline"><em>σ</em></span>
+与构成黑体的材料无关，其现代值为 <span class="math inline">56.7, nW ⋅ m<sup>−2</sup> ⋅ K<sup>−4</sup></span>。因此，一块面积为
+<span class="math inline">1, cm<sup>2</sup></span> 的黑体在 <span class="math inline">1000, K</span> 时，若计入所有频率，其辐射功率约为
+<span class="math inline">6, W</span>。</p>
+<p>然而，并非所有频率（或波长，<span class="math inline"><em>λ</em> = <em>c</em>/<em>ν</em></span>）在辐射中的贡献是均等的。实验观察到，随着温度升高，辐射能量分布的峰值会向更短的波长移动。根据韦恩位移定律（Wien’s
+displacement law）：<span class="math inline"><em>λ</em><sub>max</sub><em>T</em> = 常数</span>，
+该常数等于 <span class="math inline">2.9, mm ⋅ K</span>。 <img role="img" aria-label="BlackBodyRadiation.svg#invert" src="BlackBodyRadiation.svg#invert" class="wikilink" alt="BlackBodyRadiation.svg#invert" />
+19世纪末，物理学界面临的一大挑战就是解释这两条定律。其核心在于找到一个能量密度
+<span class="math inline"><em>E</em>(<em>λ</em>)</span>（单位体积内的能量）的表达式，并将波长范围
+<span class="math inline"><em>λ</em></span> 到 <span class="math inline"><em>λ</em> + <em>d</em><em>λ</em></span>
+内辐射的贡献写作：<span class="math inline"><em>d</em><em>E</em>(<em>λ</em>) = <em>ρ</em><sub><em>R</em></sub>(<em>λ</em>)<em>d</em><em>λ</em></span>，
+其中 <span class="math inline"><em>ρ</em><sub><em>R</em></sub>(<em>λ</em>)</span>
+是波长 <span class="math inline"><em>λ</em></span> 处的谱态密度。</p>
+<p>瑞利勋爵（Lord
+Rayleigh）凭借其深厚的经典物理学功底，在詹姆斯·金斯（James
+Jeans）的少量协助下，提出了理论上的瑞利-金斯定律（Rayleigh–Jeans
+law）：<span class="math inline">$\displaystyle \rho_R(\lambda) =
+\frac{8\pi kT}{\lambda^4}$</span>， 其中 <span class="math inline"><em>k</em></span> 是玻尔兹曼常数（<span class="math inline"><em>k</em> = 1.381 × 10<sup>−23</sup>, J ⋅ K<sup>−1</sup></span>）。</p>
+<p>这个公式恰恰总结了经典物理学的失败。因为当 <span class="math inline"><em>λ</em></span> 趋近于零时，<span class="math inline"><em>ρ</em><sub><em>R</em></sub>(<em>λ</em>)</span>
+会趋向无穷大。这意味着，无论温度多低，极短波长处都应该存在无限大的能量密度。这个荒谬的结果被埃伦费斯特（Ehrenfest）称为“紫外灾难”（ultraviolet
+catastrophe）。</p>
+<p>此时，普朗克做出了他划时代的贡献。他的建议相当于提出：频率为 <span class="math inline"><em>ν</em></span> 的电磁场振荡，其能量只能以大小为
+<span class="math inline"><em>h</em><em>ν</em></span>
+的离散步长被激发，其中 <span class="math inline"><em>h</em></span>
+是一个全新的、自然界的基本常数，现在被称为普朗克常数。</p>
+<p>根据这种能量量子化的假设——即能量只能以离散的量进行转移——振荡器可能具有的能量只能是
+<span class="math inline">0, <em>h</em><em>ν</em>, 2<em>h</em><em>ν</em>, …</span>，而不能取其他任何值。经典物理学允许能量连续变化，因此即使是一个极高频率的振荡器，也可以用极小的能量被激发；这正是紫外灾难的根源，因为即使在低温下也能发射短波长辐射。</p>
+<p>量子理论的特征就在于能量（以及我们后面将看到的某些其他物理量）的离散性。对最小激发能量的需求，有效地“关闭”了那些极高频率的振荡器，从而消除了紫外灾难。</p>
+<p>当普朗克将自己的假设付诸实施时，他推导出了如今被称为普朗克分布（Planck
+distribution）的黑体辐射谱态密度公式： <span class="math inline">$\displaystyle \rho_R(\lambda) = \frac{8\pi
+hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$</span></p>
+<p>这个表达式（如图0.2所示）成功避免了紫外灾难，并且只要取 <span class="math inline"><em>h</em> = 6.626 × 10<sup>−34</sup>, J ⋅ s</span>，就能与观测到的能量分布惊人地吻合。如果说瑞利-金斯定律是经典物理学失败的象征，那么普朗克分布则是量子理论诞生的标志。它不仅开启了一个新的世纪，也开启了一个崭新的时代，因为它发表于1900年。</p>
+<p>普朗克分布的归一化形式为：<span class="math inline">$\displaystyle
+y=\frac{1}{x^5*(e^{1/x}-1)}$</span></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode tikz"><code class="sourceCode latex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[x=4cm, y=0.4cm,xscale=1,yscale=0.6]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\definecolor</span>{myblue}{RGB}{63, 117, 162}</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{fpu}</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thick](0,0)--(1.65,0)node[right,font=<span class="fu">\large</span>]{x};</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thick](0,0)--(0,23)node[above,font=<span class="fu">\large</span>]{y};</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\x</span> in {0.2,0.4, ..., 1.6}</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick](<span class="fu">\x</span>,0)--(<span class="fu">\x</span>,0.2);</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\y</span> in {2,4, ..., 22}</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick](0,<span class="fu">\y</span>)--(0.02,<span class="fu">\y</span>);</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\x</span> in {0.2, 0.4, ..., 1.6}</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[below=0.5] at (<span class="fu">\x</span>,0){<span class="fu">\pgfmathprintnumber</span>[fixed, precision=1]{<span class="fu">\x</span>}};</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\y</span> in {2, 4, ..., 22}</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[left] at (0,<span class="fu">\y</span>){<span class="fu">\y</span>};</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[xstep=0.8cm, ystep=0.8cm, loosely dotted, thin](0,0)grid(1.6,22);</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[above=0.4cm,font=<span class="fu">\large</span>] at (0.8,23){Normalized Planck distribution};</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[below=0.4cm,font=<span class="fu">\large</span>] at (0.8,0){normalized wavelength <span class="ss">$x=</span><span class="sc">\frac</span><span class="ss">{hc}{</span><span class="sc">\lambda</span><span class="ss"> kT}$</span>};</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[rotate=90,font=<span class="fu">\large</span>] at (-0.2,12){normalized  spectral  density };</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">\pgfkeys</span>{/pgf/fpu=true, /pgf/fpu/output format=fixed}</span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,myblue] plot[domain=0.05:1.6, samples=30, smooth] (<span class="fu">\x</span>, {1 / ( (<span class="fu">\x</span>^5) * (exp(1/<span class="fu">\x</span>) - 1) )});</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<h4 id="历史上引入黑体辐射概念的原因">历史上引入黑体辐射概念的原因</h4>
+<p>黑体辐射（Blackbody
+Radiation）这一概念的引入，并非出于纯粹的理论兴趣，而是源于19世纪工业革命背景下对热辐射现象的实验需求与理论解释之间的深刻矛盾。其历史动因可归纳为以下几个关键方面：</p>
+<p>一、工业实践的需求：高温测量与热效率</p>
+<p>背景：19世纪中后期，冶金、玻璃制造、蒸汽机等工业技术迅速发展，对物体（如熔炉、金属）的温度测量提出了迫切需求。
+问题：传统接触式测温（如水银温度计）在极高温度下失效，而物体颜色随温度变化的现象（如铁块加热时从暗红到白炽）提示可通过热辐射的颜色或强度间接推断温度。
+目标：建立一个普适的、与材料无关的热辐射规律，用于标准化测温与能量效率评估。
+黑体正是为了构建这样一个理想参考标准而被提出的：它不依赖具体材质，只由温度决定辐射特性。</p>
+<p>二、理论物理的挑战：经典电磁学与统计力学的失败</p>
+<p>基尔霍夫热辐射定律（1859） 古斯塔夫·基尔霍夫（Gustav
+Kirchhoff）通过热力学论证指出：在热平衡下，任意物体的发射率 <span class="math inline"><em>e</em>(<em>ν</em>, <em>T</em>)</span> 与其吸收率
+<span class="math inline"><em>a</em>(<em>ν</em>, <em>T</em>)</span>
+之比是一个普适函数，仅依赖于频率 <span class="math inline"><em>ν</em></span> 和温度 <span class="math inline"><em>T</em></span>：<span class="math inline">$\displaystyle \frac{e(\nu, T)}{a(\nu, T)} = u(\nu,
+T)$</span> ，其中 <span class="math inline"><em>u</em>(<em>ν</em>, <em>T</em>)</span>
+是空腔内辐射的能量密度。特别地，当 <span class="math inline"><em>a</em>(<em>ν</em>, <em>T</em>) = 1</span>（即完全吸收），该物体就是黑体，其发射率等于
+<span class="math inline"><em>u</em>(<em>ν</em>, <em>T</em>)</span>。因此，研究黑体辐射等价于确定这个普适函数
+<span class="math inline"><em>u</em>(<em>ν</em>, <em>T</em>)</span>。</p>
+<p>实验技术的进步：空腔辐射体的实现 物理学家（如Otto Lummer、Ernst
+Pringsheim等）设计了带小孔的加热空腔（如图）：
+小孔几乎完全吸收入射光（多次反射后被腔壁吸收）；加热后，小孔发出的辐射近似理想黑体辐射。
+这使得精确测量 <span class="math inline"><em>u</em>(<em>ν</em>, <em>T</em>)</span>
+成为可能。</p>
+<p>经典理论的崩溃：紫外灾难
+维恩公式（1896）：基于热力学和部分假设，在高频区与实验吻合，但低频区偏离。
+瑞利–金斯公式（1900/1905）：基于经典统计力学和电磁模式计数，给出：<span class="math inline">$\displaystyle u_{\text{RJ}}(\nu, T) = \frac{8\pi
+\nu^2}{c^3} k_B T$</span> ，
+此公式在低频（长波）有效，但在高频极限下预测能量密度趋于无穷：<span class="math inline">lim<sub><em>ν</em> → ∞</sub><em>u</em><sub>RJ</sub>(<em>ν</em>, <em>T</em>) → ∞</span>
+而实验显示：能量密度在某频率处达峰值后下降。这一矛盾被称为“紫外灾难”（Ultraviolet
+Catastrophe），暴露了经典物理在微观领域的根本缺陷。</p>
+<p>三、普朗克的突破：量子假说的诞生（1900）
+为拟合实验数据，马克斯·普朗克（Max
+Planck）于1900年提出一个唯象公式（即今称普朗克公式）： <span class="math inline">$\displaystyle u(\nu, T) = \frac{8\pi h \nu^3}{c^3}
+\cdot \frac{1}{e^{h\nu/(k_B T)} - 1}$</span></p>
+<p>为从理论上导出此式，他被迫假设：腔壁谐振子的能量不能连续取值，而只能是某个最小能量单元的整数倍：<span class="math inline"><em>E</em><sub><em>n</em></sub> = <em>n</em><em>h</em><em>ν</em>,  <em>n</em> = 0, 1, 2, …</span>
+。其中 <span class="math inline"><em>h</em></span>
+是新引入的普适常数（后称普朗克常数）。这一假设违背经典物理（能量应连续），却成功解释了全部实验数据，标志着量子理论的开端。</p>
+<p>四、总结：为何引入黑体辐射？</p>
+<table>
+<thead>
+<tr>
+<th>动因类型</th>
+<th>具体原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>实用需求</td>
+<td>工业高温测温、热效率优化需要普适辐射标准</td>
+</tr>
+<tr>
+<td>理论统一</td>
+<td>基尔霍夫证明存在普适函数 <span class="math inline"><em>u</em>(<em>ν</em>, <em>T</em>)</span>，黑体是其实现载体</td>
+</tr>
+<tr>
+<td>实验可行</td>
+<td>空腔小孔提供接近理想的黑体辐射源</td>
+</tr>
+<tr>
+<td>理论危机</td>
+<td>经典物理解释失败（紫外灾难），迫使新物理诞生</td>
+</tr>
+</tbody>
+</table>
+<p>因此，黑体辐射不仅是理想化模型，更是连接实验、工程与基础物理革命的关键枢纽。</p>
+<p>引入黑体辐射这个物理概念的原因是，在19世纪中后期，在金属冶炼和玻璃制造等的生产过程中，需要测量熔炉或者金属的温度，水银温度计无法满足需求，而物体颜色随温度变化的规律被观察到，引起了关注和研究。之后，基于经典物理的理论，得出了两个规律。第一个是，stephan-Bolzmann
+law，即<span class="math inline"><em>M</em> = <em>σ</em> * <em>T</em><sup>4</sup></span>.
+第二个是Wien’s displacement law，即<span class="math inline"><em>λ</em><sub>max</sub> * <em>T</em> = 常数</span>
+， 这个常数为2.9
+mmK。基于经典物理学理论，无法获得与实验相符的光谱能量密度与波长之间的函数关系。直到普朗克假设空腔谐振子的能量只能取离散值，才导出与实验相符的光谱能量密度与波长之间的函数关系。时间为1900年。</p>
+<h4 id="黑体辐射与物质热辐射的本质">黑体辐射与物质热辐射的本质</h4>
+<p>热辐射是指实际物体由于其内部带电粒子（主要是电子）的热运动而发射出的电磁波。所有温度高于绝对零度的物体都会发出热辐射。</p>
+<p>经典图理论：加速电荷辐射
+根据经典电动力学（麦克斯韦方程组），任何加速运动的带电粒子都会辐射电磁波。在热平衡状态下，物质内部的原子、分子和自由电子因热运动而不断发生碰撞和振动，导致电荷加速度变化，从而向外辐射电磁波。
+然而，经典理论（如瑞利–金斯定律）在高频（紫外）区域预测能量趋于无穷大，即所谓的“紫外灾难”（ultraviolet
+catastrophe），这表明经典物理无法完整描述热辐射现象。</p>
+<p>量子理论：能量量子化，微观粒子在不同能级之间切换时，吸收或释放电磁波。
+1900年，普朗克（Max
+Planck）提出能量量子化假设，成功解释了黑体辐射谱：黑体腔壁中的谐振子只能以离散的能量单位发射或吸收能量，每个频率为
+<span class="math inline"><em>ν</em></span> 的谐振子的能量为：<span class="math inline"><em>E</em><sub><em>n</em></sub> = <em>n</em><em>h</em><em>ν</em>,  <em>n</em> = 0, 1, 2, …</span>
+其中 <span class="math inline"><em>h</em></span> 是普朗克常数（<span class="math inline"><em>h</em> ≈ 6.626 × 10<sup>−34</sup> J ⋅ s</span>）这一假设标志着量子力学的诞生。
+实际物体的热辐射：实际物体并非理想黑体，其辐射能力通常小于同温度下的黑体。引入发射率（emissivity）<span class="math inline"><em>ε</em>(<em>ν</em>, <em>T</em>)</span>
+描述这一差异：<span class="math inline"><em>M</em><sub>real</sub>(<em>ν</em>, <em>T</em>) = <em>ε</em>(<em>ν</em>, <em>T</em>) ⋅ <em>M</em><sub>blackbody</sub>(<em>ν</em>, <em>T</em>)</span>
+其中 <span class="math inline">0 &lt; <em>ε</em> ≤ 1</span>。对于灰体（gray
+body），<span class="math inline"><em>ε</em></span>
+与频率无关；对于选择性辐射体，<span class="math inline"><em>ε</em></span>
+随频率变化。根据基尔霍夫热辐射定律，在热平衡下，物体的发射率等于其吸收率：<span class="math inline"><em>ε</em>(<em>ν</em>, <em>T</em>) = <em>α</em>(<em>ν</em>, <em>T</em>)</span></p>
+<p>总结： 黑体辐射的本质是量子化的电磁场与物质热激发相互作用的结果；
+经典电动力学无法解释辐射谱分布，必须引入能量量子化；
+普朗克公式统一描述了全频段的黑体辐射；
+实际物质的热辐射由其微观结构（能级、电子态密度、晶格振动等）决定，并通过发射率修正黑体模型。
+黑体辐射不仅是热力学与电磁学的交汇点，更是通向量子物理的关键桥梁。</p>
+<h4 id="各向同性的均匀辐射场">各向同性的均匀辐射场</h4>
+<p>一、严格物理定义<br />
+各向同性的均匀辐射场（isotropic and homogeneous radiation
+field）通常指：在某一空间区域内任意一点 r，辐射强度 I 对所有传播方向 n
+都相同，并且与空间位置无关。用辐射强度表示为I(r, n, ν) = I(ν)</p>
+<p>其核心含义包含两点：<br />
+各向同性（isotropic）：在同一点处，辐射在所有方向上的强度完全一样，不存在优选方向。<br />
+均匀性（homogeneous）：辐射场的统计性质在空间中处处相同，不随位置变化。
+这是一个“场”的性质，而不是“辐射源”的几何描述。</p>
+<p>二、与“球形对称”的关系<br />
+球形对称指的是：物理量仅依赖于到某个中心的径向距离 r，而与角度 (θ, φ)
+无关。</p>
+<p>二者关系如下：<br />
+球形对称 ≠ 各向同性
+，即便辐射源是球形对称的，在空间中某一点观察到的辐射也未必各向同性。<br />
+各向同性 ⇒ 在该点具有角向对称性，但不意味着存在几何中心。
+换句话说：球形对称是“关于某个中心”的对称性；各向同性是“关于观察点本身”的方向对称性。</p>
+<p>三、以太阳为例的澄清<br />
+太阳是一个近似球形对称的辐射源，但太阳产生的辐射场并不是各向同性的。</p>
+<p>原因在于：<br />
+1）在太阳外部空间的任意一点，辐射主要来自太阳所在方向<br />
+2）辐射强度 I(n) 强烈依赖方向<br />
+3）在太阳背向方向几乎没有辐射</p>
+<p>因此：太阳辐射场是各向异性的（anisotropic），但源是球对称的。这是一种典型的“点源或有限尺寸源辐射场”，而非各向同性辐射场。</p>
+<p>四、各向同性均匀辐射场的典型物理实现<br />
+该概念通常出现在以下情形中：
+热平衡腔体中的黑体辐射：在无限大或理想封闭腔体内，经过充分多次散射与吸收-再发射后，辐射场趋于各向同性和均匀。
+宇宙微波背景辐射（CMB）的一阶近似：在大尺度上，CMB
+在任意方向上的温度几乎相同，是各向同性均匀辐射场的物理实例（忽略微扰）。</p>
+<p>五、直观类比（避免误解）<br />
+错误类比：“像太阳那样向外均匀发光”
+更准确的类比是：“你身处一个完全封闭、内壁等温的巨大腔体中，从任何方向看过去都一样亮”。
+在这个情形中：没有可辨认的辐射中心
+；任意一点都是“等价的”；辐射方向分布是球面均匀的。</p>
+<h4 id="stefan-bolzmann定律的证明">Stefan-Bolzmann定律的证明</h4>
+<p>已知：对于黑体辐射，普朗克分布的谱能量密度公式<span class="math inline">$\displaystyle \rho(\lambda,T) =\frac{dE}{dVdλ}=
+\frac{8\pi hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} -
+1}$</span>。推导辐射出射度M的数学表达式，即Stefan-Bolzmann定律。</p>
+<p>第1步：先从黑体辐射的谱态能量密度公式积分，得到总能量密度<span class="math inline"><em>u</em>(<em>T</em>) = ∫<sub>0</sub><sup>+∞</sup><em>ρ</em>(<em>λ</em>, <em>T</em>)<em>d</em><em>λ</em> </span>。总能量密度u(T)的定义为：<span class="math inline">$u(T)\;=\;\frac{dE}{dV}\;$</span></p>
+<p>第2步：求出辐射出射度M与总能量密度u(T)之间的数学关系。</p>
+<p>辐射出射度的定义为：<span class="math inline">$M=\frac{dE}{dAdt}$</span>，即单位时间内通过单位面积的能量。</p>
+<p>假设该辐射场为各向同性，即辐射场内部任意一点P处，通过该点P的各个方向上的辐射强度I都相同。</p>
+<p>在该辐射场内部或表面任取一个面积微元dA，统计在时间dt范围内，从内侧出发，穿过dA的光子能量。</p>
+<p>用于统计通过该面积微元dA的光子能量的公式为：</p>
+<p>能量=体积能量密度 * 体积，即<span class="math inline"><em>d</em><em>E</em> = <em>u</em>(<em>T</em>) * <em>d</em><em>V</em></span></p>
+<p>但是需要注意：这里的dV或u(T)为一种等效量。如需要使用上述公式计算某体积内部的能量，则该体积内部的能量密度需与整个辐射场的能量密度相同。</p>
+<p>现在，考虑面积微元dA上，在时间段dt内，所有光子方向落在某个立体角dΩ范围内的能量，该立体角dΩ的中心线方向与dA的外法线方向呈θ角。</p>
+<p>在时间段dt内，沿着属于dΩ的方向扫过面积微元dA的光子束的体积为：dV=(dA<em>cos(θ))</em>c<em>dt，这里之所以面积dA需要乘以方向因子cos(θ)，是因为沿着属于dΩ方向传播的光子束的截面积只有dA</em>cos(θ)。</p>
+<p>则，在时间段dt内，沿着属于dΩ的方向，扫过面积微元dA的光子的能量为：<span class="math inline"><em>d</em><em>E</em> = <em>u</em>(<em>T</em>) * <em>d</em><em>V</em></span>
+？错误。因为在该体积dV内，需要统计的能量密度并非u(T)，而是：<span class="math inline">$\frac{dΩ}{4π}*u(T)$</span>。是因为，虽然能量密度u(T)在空间上的任意位置或任意体积内是完全相同的，但是，属于dΩ方向传输的能量密度必须在方向空间进行统计，即为：<span class="math inline">$\frac{dΩ}{4π}*u(T)$</span> 。</p>
+<p>则：在时间段dt范围内，属于dΩ方向传输的光子束，所有扫过面积微元dA的能量为：<span class="math inline">$dE=(\frac{dΩ}{4π}*u(T))*dV$</span></p>
+<p>代入dV的表达式可得：<span class="math inline">$dE=\frac{dΩ}{4π}*u(T)*dA*cos(θ)*c*dt$</span></p>
+<p>又因为：<span class="math inline">$M\;=\;\frac{dE}{dAdt}$</span>；</p>
+<p>则：单位时间、单位面积、沿着立体角dΩ传输的能量为：<span class="math inline">$dM\;=\frac{u(T)}{4π} * c* cos(θ)* dΩ
+\;$</span>;</p>
+<p>则在该面积微元dA处：<span class="math inline">$M\;=\; \int
+\frac{u}{4π} * c* cos(θ) dΩ \;$</span>;（此处有dΩ=sin(θ)dθdφ成立）</p>
+<p>则：<span class="math inline">$M\;=\; \int \frac{u}{4π} * c*
+cos(θ)\sin(θ) dθdφ \;$</span>;</p>
+<p>则：<span class="math inline">$M\;=\; \frac{uc}{4π} \int cos(θ)sin(θ)
+dθdφ \;$</span>;</p>
+<p>则：<span class="math inline">$M\;=\; \frac{uc}{4π} \int_{0}^{2π} dφ
+\, \int_{0}^{\frac{π}{2}} cos(θ)sin(θ) dθ
+\;$</span>;（只统计穿出面积微元dA的半球方向空间）</p>
+<p>则：<span class="math inline">$M\;=\;\frac{uc}{4π} * 2π *
+\frac{1}{2}\;$</span>;</p>
+<p>则：<span class="math inline">$M\;=\;\frac{uc}{4}\;$</span>;</p>
+<p>又因为：<span class="math inline"><em>u</em>(<em>T</em>) = ∫<sub>0</sub><sup>+∞</sup><em>ρ</em>(<em>λ</em>, <em>T</em>)<em>d</em><em>λ</em> </span>;</p>
+<p>则：<span class="math inline">$M\;=\;\frac{c}{4}*\int_{0}^{+\infty}\rho(\lambda,T)d\lambda\;$</span>;</p>
+<p>代入黑体辐射的谱态密度公式<span class="math inline"><em>ρ</em>(<em>λ</em>, <em>T</em>) </span>得：<span class="math inline">$M\;=\;\frac{c}{4}*\int_{0}^{+\infty}\frac{8\pi
+hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}d\lambda\;$</span>;</p>
+<p>记<span class="math inline">$t\;=\;\frac{hc}{\lambda
+kT}\;$</span>;代入上式并整理得：<span class="math inline">$M\;=\;\frac{2πc(kT)^4}{(hc)^3}
+\int_{0}^{+\infty}\frac{t^3}{e^t-1}dt\;$</span></p>
+<p>使用软件，对积分求解，得：<span class="math inline">$\int_{0}^{+\infty}\frac{t^3}{e^t-1}dt\,=\,\frac{π^4}{15}$</span>，</p>
+<p>则：<span class="math inline">$M\;=\;\frac{2π^5  k^4}{15
+h^3c^2}\,\cdot T^4$</span>，记<span class="math inline">$σ\;=\;\frac{2π^5 k^4}{15h^3 c^2}\,$</span></p>
+<p>则：<span class="math inline"><em>M</em> = <em>σ</em> ⋅ <em>T</em><sup>4</sup> </span>，其中：<span class="math inline"><em>σ</em> = 56.7 * 10<sup>−9</sup> <em>W</em><em>m</em><sup>−2</sup><em>K</em><sup>−4</sup> </span>;</p>
+<p>此公式即为Stefan-Bolzmann定律</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode tikz"><code class="sourceCode latex"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">\usepackage</span>{<span class="ex">tikz-3dplot</span>}</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[scale=1,thick,&gt;=stealth]</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetmaincoords</span>{60}{70}</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">%设定观察角度</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}[tdplot_main_coords]</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制三维直角坐标系</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thin](0,0,0)--(6,0,0)node[font=<span class="fu">\large</span>,below]{x};</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thin](0,0,0)--(0,6,0)node[font=<span class="fu">\large</span>,right]{y};</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thin](0,0,0)--(0,0,6)node[font=<span class="fu">\large</span>,left]{z};</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">%设定球坐标</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{O}{0}{0}{0}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{A}{4}{0}{0}</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{B}{4}{90}{40}</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{C}{4}{90}{50}</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{D}{4}{90}{0}</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{E}{4}{90}{90}</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{F}{4}{40}{40}</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{G}{4}{40}{50}</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{H}{4}{50}{40}</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{I}{4}{50}{50}</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{J}{4}{45}{45}</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{K}{10}{45}{45}</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{S}{4}{10}{40}</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetcoord</span>{T}{4}{20}{40}</span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制xy平面的圆弧</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}[canvas is xy plane at z=0]</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](0,0,0)circle[radius=0.3cm];</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,dotted](D)arc[start angle=0,end angle=90,radius=4cm];</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制经度的方向φ</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,cyan](B)arc[start angle=40,end angle=50,radius=4];</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[right=0.3cm] at (B) {<span class="ss">$</span><span class="sc">\color</span><span class="ss">{cyan}</span><span class="sc">\vec</span><span class="ss">{</span><span class="sc">\phi</span><span class="ss">}$</span>};</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制Z=3.06平面上的圆弧（部分纬线）</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}[canvas is xy plane at z=3.06]</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](F)arc[start angle=40,end angle=50,radius=2.57];</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制Z=2.57平面上的圆弧（部分纬线）</span></span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}[canvas is xy plane at z=2.57]</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](H)arc[start angle=40,end angle=50,radius=3.06];</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制40度方向的经线</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetthetaplanecoords</span>{40}</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}[tdplot_rotated_coords]</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[canvas is yx plane at z=0,dotted](B)arc[start angle=0,end angle=90,radius=4cm];</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[canvas is yx plane at z=0,thin,cyan,-&gt;](S)arc[start angle=80,end angle=60,radius=4cm];</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[below=0.1cm] at (T){<span class="ss">$</span><span class="sc">\color</span><span class="ss">{cyan}</span><span class="sc">\vec\theta</span><span class="ss">$</span>};</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制50度方向的经线</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a><span class="fu">\tdplotsetthetaplanecoords</span>{50}</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}[tdplot_rotated_coords]</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[canvas is yx plane at z=0,dotted](C)arc[start angle=0,end angle=90,radius=4cm];</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制球面微元的顶点</span></span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a><span class="fu">\fill</span>[cyan](F)circle[radius=1pt];</span>
+<span id="cb2-56"><a href="#cb2-56" aria-hidden="true" tabindex="-1"></a><span class="fu">\fill</span>[cyan](G)circle[radius=1pt];</span>
+<span id="cb2-57"><a href="#cb2-57" aria-hidden="true" tabindex="-1"></a><span class="fu">\fill</span>[cyan](H)circle[radius=1pt];</span>
+<span id="cb2-58"><a href="#cb2-58" aria-hidden="true" tabindex="-1"></a><span class="fu">\fill</span>[cyan](I)circle[radius=1pt];</span>
+<span id="cb2-59"><a href="#cb2-59" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[font=<span class="fu">\small</span>,left] at (F){F};</span>
+<span id="cb2-60"><a href="#cb2-60" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[font=<span class="fu">\small</span>,above] at (G){G};</span>
+<span id="cb2-61"><a href="#cb2-61" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[font=<span class="fu">\small</span>,left] at (H){H};</span>
+<span id="cb2-62"><a href="#cb2-62" aria-hidden="true" tabindex="-1"></a><span class="fu">\node</span>[font=<span class="fu">\small</span>,right] at (I){I};</span>
+<span id="cb2-63"><a href="#cb2-63" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制球面微元的中心点J</span></span>
+<span id="cb2-64"><a href="#cb2-64" aria-hidden="true" tabindex="-1"></a><span class="fu">\fill</span>[red](J)circle[radius=1pt];</span>
+<span id="cb2-65"><a href="#cb2-65" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制球面微元的外法线方向</span></span>
+<span id="cb2-66"><a href="#cb2-66" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thin](O)--(J)--(K)node[right]{<span class="ss">$</span><span class="sc">\vec</span><span class="ss">{n}$</span>};</span>
+<span id="cb2-67"><a href="#cb2-67" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制：在时间dt范围内，沿着某个立体角dΩ，扫过球面微元FGIH的光子的体积</span></span>
+<span id="cb2-68"><a href="#cb2-68" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](F)--++(2,2,1)coordinate(L);</span>
+<span id="cb2-69"><a href="#cb2-69" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](G)--++(2,2,1)coordinate(M);</span>
+<span id="cb2-70"><a href="#cb2-70" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](H)--++(2,2,1)coordinate(N);</span>
+<span id="cb2-71"><a href="#cb2-71" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](I)--++(2,2,1)coordinate(O);</span>
+<span id="cb2-72"><a href="#cb2-72" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted](L)--(M)--(O)--(N)--cycle;</span>
+<span id="cb2-73"><a href="#cb2-73" aria-hidden="true" tabindex="-1"></a><span class="co">%绘制立体角dΩ的中心线方向</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-hidden="true" tabindex="-1"></a><span class="fu">\coordinate</span> (Q) at (<span class="ss">$(J)+(2,2,1)$</span>);</span>
+<span id="cb2-75"><a href="#cb2-75" aria-hidden="true" tabindex="-1"></a><span class="fu">\coordinate</span> (R) at (<span class="ss">$(J)+(4,4,2)$</span>);</span>
+<span id="cb2-76"><a href="#cb2-76" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thin](J)--(Q)--(R)node[right]{<span class="ss">$</span><span class="sc">\vec</span><span class="ss">{d</span><span class="sc">\Omega</span><span class="ss">}$</span>};</span>
+<span id="cb2-77"><a href="#cb2-77" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb2-78"><a href="#cb2-78" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb2-79"><a href="#cb2-79" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<p>Stefan-Bolzmann定律示意图：点F为各向同性的均匀射射场的外表面任意一点。FGIH为一个特定的球面微元。考察的对象是时间dt范围内扫过面积微元FGIH的光子的能量。在方向空间求积分的过程中会令FG和FH的长度分别趋于0。
+需要注意：图形中的<span class="math inline"><em>θ⃗</em></span>和<span class="math inline"><em>ϕ⃗</em></span>只是用于绘图的球坐标的经度方向和纬度方向，不是在方向空间中求积分时用到的<span class="math inline"><em>θ⃗</em></span>和<span class="math inline"><em>ϕ⃗</em></span>。</p>
+<p>备注：</p>
+<blockquote>
+<p>当代表面积微元dA的法线方向选定时，立体角dΩ的原点也就确定为该面积微元dA的几何中心（法线与dA的交点）。该立体角dΩ不是只包括从该几何中心处射出的光子，而是包含从该面积微元dA内侧射出的所有落在dΩ范围内的光子？</p>
+</blockquote>
+<blockquote>
+<p>对于面积微元 <span class="math inline"><em>d</em><em>A</em></span>
+上的每一个点，都有向各个方向（<span class="math inline">4<em>π</em></span> 空间）运动的光子。我们统计的是在
+<span class="math inline"><em>d</em><em>t</em></span>
+时间内，动量方向落在 <span class="math inline"><em>d</em><em>Ω</em></span> 内，且位置恰好能穿过
+<span class="math inline"><em>d</em><em>A</em></span>
+的所有光子。这些光子在空间中构成了一个倾斜的柱体，其底面积为 <span class="math inline"><em>d</em><em>A</em></span>，斜高为 <span class="math inline"><em>c</em> ⋅ <em>d</em><em>t</em></span>，垂直高度为
+<span class="math inline"><em>c</em> ⋅ cos <em>θ</em> ⋅ <em>d</em><em>t</em></span>。
+当我们说 <span class="math inline"><em>d</em><em>Ω</em></span>
+是一个锥体时，我们是在方向空间（Velocity
+Space）里说话。它代表了我们只挑选那些“运动方向落在该锥形范围内”的光子。但是，当我们讨论能量（或光子）在真实物理空间里的位置时，情况变了。对于
+<span class="math inline"><em>d</em><em>A</em></span> 上的一点 <span class="math inline"><em>P</em><sub>1</sub></span>：在 <span class="math inline"><em>d</em><em>t</em></span>
+时间内，能穿过它的、方向落在 <span class="math inline"><em>d</em><em>Ω</em></span> 内的光子，来自一条长度为
+<span class="math inline"><em>c</em><em>d</em><em>t</em></span>
+的细窄锥体轨迹。对于 <span class="math inline"><em>d</em><em>A</em></span> 上的另一点 <span class="math inline"><em>P</em><sub>2</sub></span>：同样有一组来自 <span class="math inline"><em>d</em><em>Ω</em></span>
+方向的光子穿过它。对于整个面元 <span class="math inline"><em>d</em><em>A</em></span>：由于 <span class="math inline"><em>d</em><em>A</em></span> 非常小，我们可以认为从
+<span class="math inline"><em>P</em><sub>1</sub></span> 穿过的 <span class="math inline"><em>d</em><em>Ω</em></span> 锥体和从 <span class="math inline"><em>P</em><sub>2</sub></span> 穿过的 <span class="math inline"><em>d</em><em>Ω</em></span> 锥体是完全平行的。</p>
+</blockquote>
+<blockquote>
+<p>标准表述为：
+考虑该辐射场的表面上能量向外传播的情况。在辐射场表面取一面积微元
+dA，考虑方向落在微小立体角 dΩ内、其代表方向与 dA的外法线夹角为 θ
+的辐射。在时间 dt 内，这部分辐射从面积内侧、体积 <span class="math inline"><em>d</em><em>V</em> = <em>d</em><em>A</em> ⋅ <em>c</em>cos <em>θ</em><em>d</em><em>t</em></span>中穿过该面积向外传播，其所携带的能量为<span class="math inline">$dE  = \frac{u}{4\pi} d\Omega dA c\cos\theta
+dt$</span></p>
+</blockquote>
+<blockquote>
+<p>错误表述：
+在该辐射场表面取一个面积微元dA，在dA上取一个微小立体角dΩ。则在时间dt范围内，所有与该微小立体角dΩ的中心线平行，与面积微元dA的法向夹角为θ的光子，向辐射场外部传输的总能量为：<span class="math inline">$dE\;=\;\frac{u}{4π}*dA* c* cos(θ) *dΩ *dt\;$</span>
+(这种表述依然错误)为什么这句话在物理上是错的？立体角 (dΩ) ≠
+一条方向线，立体角是一个方向集合，与中心线平行”只对应一个方向，而连续方向空间中：“严格平行”的光子集合测度为
+0。因此： 不存在“所有与中心线平行的光子”这种可积分对象。角度信息必须通过
+<span class="math inline"><em>d</em><em>Ω</em></span>表达，而不是“平行”。辐射理论中，唯一合法的角度限定方式是：<span class="math inline">方向 ∈ <em>d</em><em>Ω</em></span>，而不是：
+“平行于某条线”, “夹角等于 θ”</p>
+</blockquote>
+<blockquote>
+<p>在微积分中，当写“某一立体角 dΩ”，方向与法线夹角为 θ时，
+θ指的是该立体角的代表方向（中心方向）， 并且隐含使用了微分近似：<span class="math inline"><em>d</em><em>Ω</em> → 0 </span>，也就是说：不是说立体角内只有一个方向，而是说：当dΩ足够小时，立体角内所有方向的θ差异可以忽略到高阶小量。为什么能这样写？因为整个辐射理论：本质是角度空间的连续极限，所有基本量(I,u,M)都是：<span class="math inline">$\lim_{d\Omega\to
+0}  \frac{\text{能量}}{d\Omega}=0$</span></p>
+</blockquote>
+<h4 id="辐射出射度与辐射强度的关系">辐射出射度与辐射强度的关系</h4>
+<p>以处于热平衡状态的带孔空腔为例，假设空腔内部是各向同性的均匀辐射场，推导小孔处辐射出射度与辐射强度的数学关系。</p>
+<p>辐射强度定义为：在空间某一点处，沿某一给定传播方向
+n，单位时间内，通过垂直于该方向的单位面积、落入单位立体角内的辐射能量。</p>
+<p><span class="math inline">$I(r,θ,φ,\lambda,T)=\frac{dE}{dA\cos(θ)dΩdtd\lambda}\;$</span>
+，其中r为该点的位置坐标， 而(θ, φ)
+定义在“方向空间”，是关注的光线传播方向。</p>
+<p>因为空腔内部是各向同性的均匀的辐射场，则在该空腔的表面小孔处。有：<span class="math inline"><em>I</em>(<em>r</em>, <em>θ</em>, <em>φ</em>, <em>λ</em>, <em>T</em>) = <em>I</em>(<em>λ</em>, <em>T</em>) </span>，即辐射强度与光线方向坐标(θ,φ)无关，而仅与自变量<span class="math inline">(<em>λ</em>, <em>T</em>)</span>有关？</p>
+<p>辐射出射度的定义为：<span class="math inline">$M\;=\;\frac{dE}{dAdt}\;$</span>，这里的M是对方向角和波长积分后的。</p>
+<p>则：<span class="math inline"><em>M</em> = ∫ <em>I</em>(<em>λ</em>)<em>c</em><em>o</em><em>s</em>(<em>θ</em>)<em>d</em><em>Ω</em><em>d</em><em>λ</em> </span>;</p>
+<p>则：<span class="math inline"><em>M</em> = ∫ <em>I</em>(<em>λ</em>)<em>c</em><em>o</em><em>s</em>(<em>θ</em>)sin (<em>θ</em>)<em>d</em><em>θ</em><em>d</em><em>φ</em><em>d</em><em>λ</em> </span>;</p>
+<p>则：<span class="math inline"><em>M</em> = ∫ <em>c</em><em>o</em><em>s</em>(<em>θ</em>)<em>s</em><em>i</em><em>n</em>(<em>θ</em>) (∫ <em>I</em>(<em>λ</em>)<em>d</em><em>λ</em>)<em>d</em><em>θ</em><em>d</em><em>φ</em> </span>;</p>
+<p><span class="math inline"><em>I</em>(<em>λ</em>)</span>对<span class="math inline"><em>λ</em></span>积分后，记为<span class="math inline"><em>I</em><sub><em>C</em></sub></span>，与积分变量(θ,φ)无关。</p>
+<p>则：<span class="math inline"><em>M</em> = <em>I</em><sub><em>C</em></sub>∫<em>c</em><em>o</em><em>s</em>(<em>θ</em>)<em>s</em><em>i</em><em>n</em>(<em>θ</em>)<em>d</em><em>θ</em><em>d</em><em>φ</em> </span>;</p>
+<p>则：<span class="math inline">$M\;=\;I_C \int_{0}^{2π}dφ
+\int_{0}{\frac{π}{2}}cos(θ)sin(θ)dθ\;$</span>;</p>
+<p>则：<span class="math inline">$M\;=\;I_C*2π*\frac{1}{2}\;$</span>;</p>
+<p>则：<span class="math inline"><em>M</em> = <em>π</em> * <em>I</em><sub><em>C</em></sub> </span>;</p>
+<p>辐射出射度（radiant exitance）的物理含义</p>
+<p>一、严格定义（标准定义）</p>
+<p>辐射出射度 M 定义为：在某一表面元 dA
+上，单位时间内，从该表面向其外侧半空间发射出去的总辐射能量所对应的功率，除以该表面元的面积。</p>
+<p>数学上定义为：<span class="math inline"><em>M</em> = <em>d</em><em>Φ</em><sub><em>e</em></sub><em>m</em><em>i</em><em>t</em>/<em>d</em><em>A</em></span>
+，其中 <span class="math inline"><em>d</em><em>Φ</em><sub><em>e</em><em>m</em><em>i</em><em>t</em></sub></span>是从面积元
+<span class="math inline"><em>d</em><em>A</em></span>
+发射到外侧半空间（2π 立体角）内的总辐射功率。其国际单位制单位为<span class="math inline"><em>W</em><em>m</em><sup>−2</sup></span></p>
+<p>需要强调三点：<br />
+1）是“发射出去的”辐射，不包括入射或反射<br />
+2）是对整个外侧半空间积分后的总量
+3）是面密度量，与具体方向无关（方向信息已被积分掉）。辐射出射度不是一个方向分辨的量。所有方向的信息已经通过对立体角的积分被“压缩”掉了。因此，M
+不能回答“朝哪个方向辐射更强”，只能回答“这个表面总体辐射有多强”。</p>
+<p>二、与其他常见辐射量的区分</p>
+<p>1）辐射能量密度 u：定义在空间点，描述单位体积内储存的辐射能量，单位
+J·m⁻³</p>
+<p>2）辐射通量Φ：总功率，单位 W，不含面积信息</p>
+<p>3）辐射出射度 M：表面发射能力的面密度描述，单位 W·m⁻²
+在热辐射问题中，黑体的斯特藩–玻尔兹曼定律正是对辐射出射度的定律描述：<span class="math inline"><em>M</em> = <em>σ</em><em>T</em><sup>4</sup></span></p>
+<p>4）辐照度 E：与 M
+形式相同，但描述的是“入射到表面上的辐射”，而不是“表面发射的辐射”</p>
+<p>三、小结（概念压缩）</p>
+<p>一句话概括：辐射出射度是一个表面量，表示单位面积表面在单位时间内向外侧半空间辐射出去的总功率；它等于方向分辨辐射强度在半空间内、按
+cosθ 权重积分后的结果。</p>
+<h5 id="韦恩位移定律的证明">韦恩位移定律的证明</h5>
+<p>求出给定温度下普朗克分布取最大值时所对应的波长，并证明在短波长极限下，该表达式可简化为维恩位移定律。请用基本物理常数表示该定律中的常数。（此常数被称为第二辐射常数
+<span class="math inline"><em>c</em><sub>2</sub></span>。）</p>
+<p>普朗克分布（Planck distribution）的黑体辐射谱态密度公式为：<span class="math inline">$\displaystyle \rho(\lambda,T) = \frac{8\pi
+hc}{\lambda^5} \frac{1}{e^{hc/\lambda kT} - 1}$</span>，</p>
+<p>定义域为：<span class="math inline">   <em>T</em> &gt; 0, <em>且</em> <em>λ</em> &gt; 0</span></p>
+<p>该表达式中有两个自变量，为确定函数最大值所对应波长的表达式，需进行变量代换。</p>
+<p>记<span class="math inline">$t=\frac{hc}{\lambda\,kT}\;定义域为：t&gt;0\quad\;$</span>,代入普朗克分布的黑体辐射谱态密度公式，并整理得：</p>
+<p><span class="math inline">$\rho(t,T)=\frac{8π(kT)^5}{(hc)^4}*\frac{t^5}{e^t-1}\quad$</span>
+定义域为：<span class="math inline"><em>t</em> &gt; 0<em>且</em><em>T</em> &gt; 0</span></p>
+<p><span class="math inline"><em>k</em><sub><em>B</em></sub> = 1.381 * 10<sup>−23</sup> <em>J</em><em>K</em><sup>−1</sup></span>，T的单位为K</p>
+<p><span class="math inline"><em>h</em> = 6.626 * 10<sup>−34</sup><em>J</em><em>s</em></span>，<span class="math inline"><em>c</em> = 3.0 * 10<sup>8</sup> <em>m</em>/<em>s</em></span></p>
+<p>则：<span class="math inline"><em>k</em><sub><em>B</em></sub><em>T</em></span>的单位为：J，<span class="math inline"><em>h</em><em>c</em></span>的单位为：<span class="math inline"><em>J</em><em>m</em></span>，又因为<span class="math inline"><em>ρ</em>(<em>t</em>, <em>T</em>)</span>的单位为<span class="math inline"><em>J</em><em>m</em><sup>−4</sup></span></p>
+<p>则<span class="math inline"><em>ρ</em>(<em>t</em>, <em>T</em>)</span>的表达式可归一化为如下无量纲的形式：<span class="math inline">$y(t)=\frac{t^5}{e^t-1}$</span></p>
+<p>为求出y(t)的最大值，现对y(t)求导，得：<span class="math inline">$y&#39;(t)=\frac{t^4(5e^t-te^t-5)}{(e^t-1)^2}$</span>，定义域为：<span class="math inline"><em>t</em> &gt; 0</span></p>
+<p>记：<span class="math inline"><em>g</em>(<em>t</em>) = 5<em>e</em><sup><em>t</em></sup> − <em>t</em><em>e</em><sup><em>t</em></sup> − 5</span></p>
+<p>令<span class="math inline"><em>y</em><sup>′</sup>(<em>t</em>) = 0</span>，得方程：<span class="math inline"><em>g</em>(<em>t</em>) = 0</span>即：<span class="math inline">5<em>e</em><sup><em>t</em></sup> − <em>t</em><em>e</em><sup><em>t</em></sup> − 5 = 0</span></p>
+<p>为求得零点，先对g(t)求导，得<span class="math inline"><em>g</em><sup>′</sup>(<em>t</em>) = (4 − <em>t</em>)<em>e</em><sup><em>t</em></sup></span></p>
+<p>易知g(t)在(0,4)区间内递增，在<span class="math inline">(4, +∞)</span>内递减，</p>
+<p>g(0)=0(非定义区间)，<span class="math inline"><em>g</em>(4) = <em>e</em><sup>4</sup> − 5 &gt; 0</span>；<span class="math inline">lim<sub><em>t</em> → +∞</sub><em>g</em>(<em>t</em>) = −∞</span></p>
+<p>则必有一个实数解位于<span class="math inline">(4, +∞)</span>区间，但无法获得解析表达式，</p>
+<p>经数值求解得唯一近似的实数解为：<span class="math inline"><em>t</em><sub>0</sub> = 4.96511</span>，</p>
+<p>则在<span class="math inline">(0, <em>t</em><sub>0</sub>)</span>内<span class="math inline"><em>y</em><sup>′</sup>(<em>t</em>) &gt; 0</span>，在<span class="math inline">(<em>t</em><sub>0</sub>, +∞)</span>内<span class="math inline"><em>y</em><sup>′</sup>(<em>t</em>) &lt; 0</span>，则<span class="math inline"><em>t</em><sub>0</sub></span>即为<span class="math inline"><em>y</em>(<em>t</em>)</span>的最大值点，</p>
+<p>将<span class="math inline"><em>t</em><sub>0</sub></span>代入<span class="math inline">$t=\frac{hc}{\lambda\,kT}$</span>，得：<span class="math inline">$\lambda_{max}=\frac{hc}{t_0kT}$</span>，</p>
+<p>上式等价于：<span class="math inline">$\lambda_{max}T=\frac{hc}{t_0k}$</span></p>
+<p>即：<span class="math inline"><em>λ</em><sub><em>m</em><em>a</em><em>x</em></sub><em>T</em> = 2.899 <em>m</em><em>m</em><em>K</em></span></p>
+<p>该式成立无需任何附加条件，并不需要在短波极限条件下才成立。</p>
+<p>常数<span class="math inline">$\displaystyle
+c_2=\frac{hc}{t_0k_B}$</span></p>
+<h3 id="二光电效应1905与康普顿散射实验1923">二、光电效应1905与康普顿散射实验1923</h3>
+<p>在1905-1906年那段成果极为丰硕的时期，爱因斯坦不仅提出了他的热容理论和狭义相对论，还抽时间对现代物理学做出了另一项根本性贡献。他的成就是将普朗克的量子假说与光电效应（photoelectric
+effect）现象联系起来。光电效应是指金属暴露在紫外辐射下时会发射电子。</p>
+<p>该效应令人费解的特征在于：
+无论辐射强度多低，只要照射上去，电子的发射就是瞬时的。
+无论辐射强度多高，只要其频率未超过某个阈值（该阈值是每种金属元素的典型特征），就不会有任何电子发射。
+此外，已知被击出电子的动能随入射辐射频率线性变化。</p>
+<p>爱因斯坦指出，如果假设电磁场本身是量子化的，并且由能量大小为 <span class="math inline"><em>h</em><em>ν</em></span>
+的“能量包”组成，那么所有这些观测结果都能得到完美解释。这些“能量包”后来被G.N.路易斯（G.N.
+Lewis）命名为光子（photons），我们从此以后将使用这个术语。</p>
+<p>爱因斯坦将光电效应视为一次碰撞的结果：一个能量为 <span class="math inline"><em>h</em><em>ν</em></span>
+的入射“抛射体”（光子）与深埋在金属中的一个电子发生碰撞。这个图像解释了效应的瞬时性，因为即使只有一个光子，也能参与一次碰撞。它也解释了频率阈值的存在，因为在发生光致发射之前，一次碰撞必须提供一个最小能量（通常记为
+<span class="math inline"><em>Φ</em></span>，称为该金属的“功函数”，类似于原子的电离能）；因此，只有满足
+<span class="math inline"><em>h</em><em>ν</em> &gt; <em>Φ</em></span>
+的辐射才能成功激发出电子。</p>
+<p>被发射光电子的动能 <span class="math inline"><em>E</em><sub><em>k</em></sub></span>
+与辐射频率的线性依赖关系，是能量守恒定律的一个简单推论：<span class="math inline"><em>E</em><sub><em>k</em></sub> = <em>h</em><em>ν</em> − <em>Φ</em></span>
+如果光子确实具有类似粒子的特性，那么它们就应该拥有线性动量 <span class="math inline"><em>p</em></span>。相对论中联系粒子能量、质量和动量的表达式为：<span class="math inline"><em>E</em><sup>2</sup> = <em>m</em><sup>2</sup><em>c</em><sup>4</sup> + <em>p</em><sup>2</sup><em>c</em><sup>2</sup></span></p>
+<p>特殊情况验证 静止粒子（(p = 0)）： <span class="math inline"><em>E</em> = <em>m</em><em>c</em><sup>2</sup></span>
+（质能方程） 无质量粒子（如光子，(m = 0)）： <span class="math inline">$E = p c =\frac{hc}{\lambda}=h\nu$</span>
+（与电磁波/光子的能量动量关系一致）</p>
+<p>如果辐射照射到电子上，这种线性动量应该是可探测的，因为在碰撞过程中动量的部分转移应该表现为光子波长的变化。1923年，A.H.康普顿（A.H.
+Compton）用X射线轰击石墨靶中的电子进行了这项实验，发现实验结果符合以下公式：当辐射被散射角度
+<span class="math inline"><em>θ</em></span> 散射时，其波长偏移 <span class="math inline"><em>Δ</em><em>λ</em> = <em>λ</em><sub><em>f</em></sub> − <em>λ</em><sub><em>i</em></sub></span>
+为：<span class="math inline">$\displaystyle \Delta\lambda = 2\lambda_C
+\sin^2\left(\frac{\theta}{2}\right)$</span>， 其中 <span class="math inline"><em>λ</em><sub><em>C</em></sub> = <em>h</em>/<em>m</em><sub><em>e</em></sub><em>c</em></span>
+被称为电子的康普顿波长（<span class="math inline"><em>λ</em><sub><em>C</em></sub> = 2.426, pm</span>）。</p>
+<p>这个公式正是基于“光子确实具有线性动量 <span class="math inline"><em>h</em>/<em>λ</em></span>”以及“散射事件就像两个粒子之间的碰撞”这一假设推导出来的（见习题0.12）。因此，几乎没有疑问，电磁辐射确实具有在经典物理学中被认为是粒子才具备的性质。</p>
+<h4 id="康普顿效应公式的证明">康普顿效应公式的证明</h4>
+<p>基于能量和线性动量守恒定律，推导康普顿效应公式。</p>
+<blockquote>
+<p>提示：使用相对论表达式。初始时，电子静止，能量为 <span class="math inline"><em>m</em><sub><em>e</em></sub><em>c</em><sup>2</sup></span>。当它以动量
+<span class="math inline"><em>p</em></span> 运动时，其能量为 <span class="math inline">(<em>p</em><sup>2</sup><em>c</em><sup>2</sup> + <em>m</em><sub><em>e</em></sub><sup>2</sup><em>c</em><sup>4</sup>)<sup>1/2</sup></span>。光子初始动量为
+<span class="math inline"><em>h</em>/<em>λ</em><sub><em>i</em></sub></span>，能量为
+<span class="math inline"><em>h</em><em>ν</em><sub><em>i</em></sub></span>，它撞击静止的电子，被偏转角度
+<span class="math inline"><em>θ</em></span> 后，以动量 <span class="math inline"><em>h</em>/<em>λ</em><sub><em>f</em></sub></span>
+和能量 <span class="math inline"><em>h</em><em>ν</em><sub><em>f</em></sub></span>
+射出。电子初始时静止（<span class="math inline"><em>p</em> = 0</span>），碰撞后以角度 <span class="math inline"><em>φ</em></span>
+相对于入射光子方向飞出。分别对平行和垂直于初始动量方向的两个分量应用动量守恒，并应用能量守恒。先消去
+<span class="math inline"><em>φ</em></span>，再消去 <span class="math inline"><em>p</em></span>，最终得到 <span class="math inline"><em>Δ</em><em>λ</em></span> 的表达式。</p>
+</blockquote>
+<p>已知碳原子的电离能数据如下：</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr>
+<th>碳原子的<br>电离能(eV)</th>
+<th>一阶</th>
+<th>二阶</th>
+<th>三阶</th>
+<th>四阶</th>
+<th>五阶</th>
+<th>六阶</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>11.260</td>
+<td>24.383</td>
+<td>47.888</td>
+<td>64.494</td>
+<td>392.087</td>
+<td>489.993</td>
+</tr>
+</tbody>
+</table>
+<p>相对论中联系能量、质量和动量的关系式为：<span class="math inline"><em>E</em><sup>2</sup> = <em>m</em><sup>2</sup><em>c</em><sup>4</sup> + <em>p</em><sup>2</sup><em>c</em><sup>2</sup></span></p>
+<p>1923年，A.H.康普顿（A.H.
+Compton）用X射线轰击石墨靶中的电子进行了这项实验。</p>
+<p>假设1：把入射X射线与被轰击的电子视为系统，该系统不与外部发生能量交换，即系统的能量守恒。</p>
+<p>假设2：把入射X射线与被轰击的电子视为系统，该系统受到外部的合外力为零，即系统的动量守恒。</p>
+<p>由动量守恒的假设，可知入射光子的动量、散射光子的动量和反冲电子的动量必定在同一平面内，其位置和方向关系如图所示。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode tikz"><code class="sourceCode latex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{calc}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{angles,quotes}</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[&gt;=stealth]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thin](-1,0)--(7,0)node[font=<span class="fu">\large</span>,right]{x};</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thin](0,-2)--(0,2)node[font=<span class="fu">\large</span>,above]{y};</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">%\coordinate (O) at (0,0);</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">%\coordinate (A) at (0:6);</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co">%\coordinate (B) at (30:4);</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thin](0:6)coordinate(A)--(0,0)coordinate(O)--(20:5)coordinate(B)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>pic[&quot;<span class="ss">$</span><span class="sc">\theta</span><span class="ss">$</span>&quot;, -&gt;, draw, thick, blue!50, angle radius=1cm,angle eccentricity=1.2]{angle=A--O--B};</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\coordinate</span> (C) at (<span class="ss">$(A)-(B)$</span>);</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thick](O)--(A)node[font=<span class="fu">\large</span>,below]{<span class="ss">$</span><span class="sc">\vec</span><span class="ss">{P}_{Incident </span><span class="sc">\;</span><span class="ss"> photon}$</span>};</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thick](O)--(B)node[font=<span class="fu">\large</span>,above]{<span class="ss">$</span><span class="sc">\vec</span><span class="ss">{P}_{Scattered </span><span class="sc">\;</span><span class="ss"> photon}$</span>};</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[-&gt;,thick](O)--(C)node[font=<span class="fu">\large</span>,below]{<span class="ss">$</span><span class="sc">\vec</span><span class="ss">{P}_{Recoil </span><span class="sc">\;</span><span class="ss"> electron}$</span>};</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[dotted,thick,gray](B)--(A)--(C);</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<p>根据能量守恒，得：<span class="math inline"><em>h</em><em>ν</em><sub><em>i</em></sub> + <em>E</em><sub><em>e</em><em>i</em></sub> = <em>h</em><em>ν</em><sub><em>f</em></sub> + <em>E</em><sub><em>e</em><em>f</em></sub></span>
+，其中：<span class="math inline"><em>E</em><sub><em>e</em><em>i</em></sub> = <em>m</em><sub><em>e</em></sub><em>c</em><sup>2</sup></span>
+，<span class="math inline">$E_{ef}= \sqrt{ m_{e}^2c^4+p_{ef}^2c^2
+}$</span></p>
+<p>则：<span class="math inline">$\displaystyle hν_{i} +
+m_{e}c^2=hν_{f}+ \sqrt{ m_{e}^2c^4+p_{ef}^2c^2 } \qquad
+\text{①}$</span></p>
+<p>根据动量守恒：</p>
+<p>在x轴方向：<span class="math inline">$\displaystyle
+\frac{h}{\lambda_{i}}= \frac{h}{\lambda_{f}}\cos(\theta) + p_{ef}\cos(φ)
+\qquad \text{②}$</span></p>
+<p>在y轴方向：<span class="math inline">$\displaystyle 0=
+\frac{h}{\lambda_{f}}\sin(\theta) + p_{ef}\sin(φ) \qquad
+\text{③}$</span></p>
+<p>联立2式和3式得：<span class="math inline">$\displaystyle
+p_{ef}^2=\frac{h^2}{\lambda_{i}^2} -
+\frac{2h^2\cos(\theta)}{\lambda_{i}\lambda_{f}}+\frac{h^2}{\lambda_{f}^2}
+\qquad \text{④}$</span></p>
+<p>整理得：<span class="math inline">$\displaystyle
+p_{ef}^2=\frac{h^2ν_{i}^2}{c^2} -
+\frac{2h^2\cos(\theta)ν_{i}ν_{f}}{c^2}+\frac{h^2ν_{f}^2}{c^2} \qquad
+\text{⑤}$</span></p>
+<p>将5式代入1式，并整理得：<span class="math inline"><em>m</em><sub><em>e</em></sub><em>c</em><sup>2</sup>(<em>ν</em><sub><em>i</em></sub> − <em>ν</em><sub><em>f</em></sub>) = <em>h</em><em>ν</em><sub><em>i</em></sub><em>ν</em><sub><em>f</em></sub>(1 − cos (<em>θ</em>))   ⑥</span></p>
+<p>化简得：<span class="math inline">$\displaystyle \lambda_{f} -
+\lambda_{i}= \frac{h}{m_{e}c}(1-\cos(\theta))$</span></p>
+<p>即：<span class="math inline">$\displaystyle Δλ=2λ_{C} \sin ^2 \left(
+\frac{\theta}{2} \right) \qquad$</span> 其中：<span class="math inline">$\displaystyle λ_{C}= \frac{h}{m_{e}c}$</span>
+称为电子的康普顿波长。</p>
+<h4 id="x射线与物质的交互作用">X射线与物质的交互作用</h4>
+<p>X射线是一种高能电磁辐射，具有以下主要特征： 波长短：范围约为 <span class="math inline">0.01 ∼ 10</span>
+nm（介于紫外线和γ射线之间），典型诊断X射线波长在 <span class="math inline">0.01 ∼ 0.1</span> nm。 能量高：光子能量在 <span class="math inline">0.1 ∼ 100</span> keV（诊断范围通常 <span class="math inline">10 ∼ 150</span> keV）。
+穿透能力强：能穿过软组织，但被密度高的物质（如骨骼、金属）吸收或散射。
+粒子性和波动性：既表现为波（衍射、干涉），又表现为粒子（光子，与物质交互时交换能量）。
+其他性质：不可见、无电荷、无质量、直线传播、能引起荧光、感光和电离等效应。</p>
+<p>这些特征决定了X射线与物质的交互方式，主要表现为能量转移，导致射线强度衰减（指数衰减定律：<span class="math inline"><em>I</em> = <em>I</em><sub>0</sub><em>e</em><sup>−<em>μ</em><em>x</em></sup></span>，其中
+<span class="math inline"><em>μ</em></span> 为线性衰减系数，<span class="math inline"><em>x</em></span> 为厚度）。</p>
+<figure>
+<img role="img" aria-label="X射线的穿透性.png#invert" src="X射线的穿透性.png#invert" class="wikilink" alt="X射线的穿透性.png#invert" />
+<figcaption aria-hidden="true">X射线的穿透性.png#invert</figcaption>
+</figure>
+<p>上图显示了不同机制对X射线衰减的贡献随能量变化：低能量时光电效应主导，中能量时康普顿散射主导，高能量时电子对产生主导。</p>
+<p>X射线与物质的主要交互作用</p>
+<p>X射线作为高能光子与物质原子交互，主要有以下机制（诊断能量范围&lt;150
+keV，主要为前三种）：</p>
+<p>相干散射（Coherent/Rayleigh Scattering）：
+X射线与原子紧束缚电子弹性散射，方向改变但能量不变（波长不变）。
+占比小（诊断中&lt;10%），主要在低能量和高原子序数物质。
+由于短波长特性，易发生干涉，用于X射线衍射分析晶体结构。</p>
+<p>光电效应（Photoelectric Effect）：
+X射线光子将全部能量转移给内壳层电子（通常K壳层），电子被击出（光电子），光子消失。
+随后，外层电子跃迁填补空穴，释放特征X射线或俄歇电子。
+概率正比于原子序数Z的3~5次方（<span class="math inline"> ∝ <em>Z</em><sup>3</sup> ∼ <em>Z</em><sup>5</sup></span>），反比于能量E的3次方（<span class="math inline"> ∝ 1/<em>E</em><sup>3</sup></span>）。
+主导低能量和高Z物质（如骨骼吸收多于软组织），是医学成像对比度的主要来源。
+高穿透性与能量相关：能量越高，越难完全吸收。</p>
+<p>康普顿散射（Compton Scattering，非相干散射）：
+X射线与外壳层松散电子非弹性碰撞，光子转移部分能量给电子（反冲电子），自身散射并降低能量（波长增加）。
+概率与电子密度相关（约正比于Z），在中能量范围主导。
+产生散射辐射，降低图像对比度，是诊断X射线中主要交互（约60%）。
+高能量特征使散射更向前方向。</p>
+<p>电子对产生（Pair Production）： 高能量（&gt;1.02
+MeV）光子在原子核场中转化为电子-正电子对。
+诊断范围不显著，仅高能X射线或γ射线。</p>
+<p>这些交互导致X射线衰减、图像形成（差别吸收）和潜在生物损伤（电离）。在医学中，利用穿透性和吸收差异实现成像；在材料科学中，利用散射和荧光进行结构分析。</p>
+<h3 id="三固体热容1907">三、固体热容1907</h3>
+<p>1819年，科学看起来有着一种欺骗性的简洁。例如，法国科学家杜隆（Dulong）和珀蒂（Petit）能够提出他们的定律：“所有简单物质的原子都具有完全相同的热容”，其值约为
+<span class="math inline">25, J ⋅ K<sup>−1</sup> ⋅ mol<sup>−1</sup></span>（以现代单位计）。
+然而，杜隆和珀蒂相当原始的观测是在室温下进行的。当测量扩展到更低的温度和更广泛的材料时，对他们和经典物理学而言都是不幸的。人们发现，所有元素的热容都低于杜隆-珀蒂定律的预测值，并且当
+<span class="math inline"><em>T</em> → 0</span> 时，热容值趋向于零。
+用经典物理学很容易解释杜隆-珀蒂定律：假设每个原子在三维空间中都像一个经典的振荡子。计算表明，单原子固体的摩尔定容热容
+<span class="math inline"><em>C</em><sub><em>V</em>, <em>m</em></sub></span>
+应等于 <span class="math inline">3<em>R</em> = 24.94, J ⋅ K<sup>−1</sup> ⋅ mol<sup>−1</sup></span>，其中
+<span class="math inline"><em>R</em></span> 是气体常数（<span class="math inline"><em>R</em> = <em>N</em><sub><em>A</em></sub><em>k</em></span>，<span class="math inline"><em>N</em><sub><em>A</em></sub></span>
+为阿伏伽德罗常数）。</p>
+<p>爱因斯坦认识到，这个问题与黑体辐射问题有相似之处。如果每个原子振荡子都需要一个特定的最小能量才能被有效激发，从而对热容做出贡献，那么在低温下，一些振荡子就会处于“休眠”状态，导致热容小于预期值。
+他将普朗克对电磁振荡子的建议应用到了固体中的物质原子振荡子上，并推导出以下表达式：<span class="math inline">$\displaystyle  C_{V,m}(T) = 3R f_E(T), \quad
+\text{其中} \quad f_E(T) = \left( \frac{\theta_E}{T} \right)^2
+\frac{e^{\theta_E / T}}{(e^{\theta_E / T} - 1)^2} \tag{0.6a}$</span>
+这里的爱因斯坦温度 <span class="math inline"><em>θ</em><sub><em>E</em></sub></span>
+与原子振荡频率的关系为 <span class="math inline"><em>θ</em><sub><em>E</em></sub> = <em>h</em><em>ν</em>/<em>k</em></span>。</p>
+<p>函数 <span class="math inline"><em>C</em><sub><em>m</em></sub>(<em>T</em>)/3<em>R</em></span>（如图所示）能合理地拟合实验热容数据，但在极低温度下除外。这可以追溯到爱因斯坦的一个假设，即所有原子都以相同的频率振荡。后来，德拜（Debye）去掉了这一限制，得到了：<span class="math inline">$\displaystyle C_{V,m}(T) = 3R f_D(T), \quad
+\text{其中} \quad f_D(T) = 3 \left( \frac{T}{\theta_D} \right)^3
+\int_0^{\theta_D/T} \frac{x^4 e^x}{(e^x - 1)^2} dx \tag{0.6b}$</span>
+这里的德拜温度 <span class="math inline"><em>θ</em><sub><em>D</em></sub></span>
+与固体所能支持的最大振荡频率相关。这个表达式与实验热容数据吻合得非常好。</p>
+<p>爱因斯坦贡献的重要性在于，它补充了普朗克的工作。普朗克证明了辐射的能量是量子化的；爱因斯坦则证明了物质本身也是量子化的。量子化似乎是普遍存在的。尽管他们两人都无法为这种量子化的具体形式（即振荡子能量以
+<span class="math inline"><em>h</em><em>ν</em></span>
+为步长激发）提供根本性的理由，但这个问题我们将在本书后续内容中解决。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode tikz"><code class="sourceCode latex"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{fpu}</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\definecolor</span>{myblue}{RGB}{40, 110, 200}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\definecolor</span>{mygreen}{RGB}{60, 180, 90}</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[xscale=2,yscale=6,&gt;=stealth]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [-&gt;,thin](0,0)--(3.1,0)node[right=0.05cm,font=<span class="fu">\large</span>]{<span class="ss">$</span><span class="sc">\frac</span><span class="ss">{T}{</span><span class="sc">\theta</span><span class="ss">}$</span>};</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [-&gt;,thin](0,0)--(0,1.15)node[left=0.1cm,font=<span class="fu">\large</span>]{<span class="ss">$</span><span class="sc">\frac</span><span class="ss">{C_m}{3R}$</span>};</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[xstep=0.2,ystep=0.1,dotted,gray](0,0)grid(3,1);</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\x</span> in{1,2,3}</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [thin](<span class="fu">\x</span>,0)--(<span class="fu">\x</span>,0.03)node[below=0.2cm,font=<span class="fu">\small</span>]{<span class="fu">\x</span>};</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\y</span> in{0.2,0.4,...,1}</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [thin](0,<span class="fu">\y</span>)--(0.03,<span class="fu">\y</span>)node[left=0.2cm,font=<span class="fu">\small</span>]{<span class="fu">\pgfmathprintnumber</span>[fixed,precision=1]<span class="fu">\y</span>};</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,myblue] plot[smooth] coordinates{(0.0500, 0.0097) (0.2053, 0.3841) (0.3605, 0.7005) (0.5158, 0.8346) (0.6711, 0.8972) (0.8263, 0.9304) (0.9816, 0.9500) (1.1368, 0.9624) (1.2921, 0.9707) (1.4474, 0.9765) (1.6026, 0.9808) (1.7579, 0.9840) (1.9132, 0.9865) (2.0684, 0.9884) (2.2237, 0.9900) (2.3789, 0.9912) (2.5342, 0.9923) (2.6895, 0.9931) (2.8447, 0.9938) (3.0000, 0.9945)};</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\pgfkeys</span>{/pgf/fpu=true,/pgf/fpu/output format=fixed}</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,mygreen] plot[domain=0.05:3,samples=30,smooth](<span class="fu">\x</span>,{exp(1/<span class="fu">\x</span>)/((<span class="fu">\x</span>^2)*((exp(1/<span class="fu">\x</span>)-1)^2)});</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,myblue](2,0.8)--(2.2,0.8)node[right=0.1cm,font=<span class="fu">\small</span>]{<span class="ss">$Debye$</span>};</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,mygreen](2,0.7)--(2.2,0.7)node[right=0.1cm,font=<span class="fu">\small</span>]{<span class="ss">$Einstein$</span>};</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<h4 id="爱因斯坦热容公式的证明">1. 爱因斯坦热容公式的证明</h4>
+<p>推导爱因斯坦关于谐振子集合热容的公式。为此，请使用量子力学的结果：一个力常数为
+<span class="math inline"><em>k</em><sub><em>f</em></sub></span>、质量为
+<span class="math inline"><em>m</em></span> 的谐振子，其能量只能取 <span class="math inline">$(n + \dfrac{1}{2})h\nu$</span> 这些值，其中 <span class="math inline">$\nu =
+\dfrac{1}{2\pi}\sqrt{\dfrac{k_f}{m}}$</span>，且 <span class="math inline"><em>n</em> = 0, 1, 2, …</span>。
+提示：通过将这些能量代入玻尔兹曼分布来计算振子集合的平均能量 <span class="math inline">⟨<em>E</em>⟩</span>，然后计算热容 <span class="math inline">$C = \dfrac{d\langle E \rangle}{dT}$</span>。</p>
+<p>玻尔兹曼分布的基本形式：对于一个处于温度 <span class="math inline"><em>T</em></span> 的热平衡系统，其微观状态 <span class="math inline"><em>i</em></span> 具有能量 <span class="math inline"><em>E</em><sub><em>i</em></sub></span>，则该状态被占据的概率
+<span class="math inline"><em>P</em><sub><em>i</em></sub></span>
+为：<span class="math inline">$P_i = \dfrac{e^{-E_i / (k_B
+T)}}{Z}$</span></p>
+<p>其中：<span class="math inline"><em>Z</em></span>
+是配分函数（partition function），用于归一化概率：<span class="math inline"><em>Z</em> = ∑<sub><em>j</em></sub><em>e</em><sup>−<em>E</em><sub><em>j</em></sub>/(<em>k</em><sub><em>B</em></sub><em>T</em>)</sup></span>
+。注意：求和是对系统所有可能的微观状态 <span class="math inline"><em>j</em></span> 进行。</p>
+<p>平均能量：<span class="math inline">$\displaystyle \langle E
+\rangle=\sum_{i=0}^{i=n}E_i*P_i$</span></p>
+<p>其中：<span class="math inline">$E_i=\left( i+\frac{1}{2} \right)*hν
+\quad$</span> ， <span class="math inline">$\nu = \dfrac{1}{2\pi }\sqrt{
+\dfrac{k_f}{m} }\quad$</span>，且 <span class="math inline"><em>i</em> = 0, 1, 2, …, <em>n</em></span></p>
+<p>而：<span class="math inline">$P_i=\dfrac{e^{-E_i / (k_B
+T)}}{Z}\quad$</span> ，其中： <span class="math inline">$\displaystyle Z
+= \sum_{i=0}^{i=n} e^{-E_i / (k_B T)} \quad$</span></p>
+<p>注意到：将<span class="math inline"><em>E</em><sub><em>i</em></sub></span>的表达式代入等式后会有一个“底数”经常出现。记：<span class="math inline">$x=e^{\frac{-hν}{k_BT}}$</span></p>
+<p>则：<span class="math inline">$P_i=\frac{x^{i+1/2}}{Z}\quad$</span>
+，其中：<span class="math inline">$Z=\sum_{i=0}^{i=n}x^{i+1/2}\quad$</span> ，且 <span class="math inline"><em>i</em> = 0, 1, 2, …, <em>n</em></span></p>
+<p>记：<span class="math inline"><em>a</em><sub><em>i</em></sub> = <em>x</em><sup><em>i</em> + 1/2</sup>  </span>
+，且 <span class="math inline"><em>i</em> = 0, 1, 2, …, <em>n</em></span>
+，注意到这是一个等比数列</p>
+<p>则：<span class="math inline">$\displaystyle
+Z=\sum_{i=0}^{i=n}x^{i+1/2}=\frac{x^{1/2}*(1-x^{n+1})}{1-x}\qquad i = 0,
+1, 2, \dots ,n$</span> 将上式代入：<span class="math inline">$\displaystyle \langle E
+\rangle=\sum_{i=0}^{i=n}E_i*P_i$</span> ，得： <span class="math inline">$\displaystyle \langle E
+\rangle=\sum_{i=0}^{i=n}(i+1/2)*hν* \frac{(1-x)*x^i}{1-x^{n+1}}\qquad i
+= 0, 1, 2, \dots ,n$</span></p>
+<p><span class="math inline">$\displaystyle \langle E \rangle=hν*
+\frac{1-x}{1-x^{n+1}}\sum_{i=0}^{i=n}(i+1/2)*x^i \qquad i = 0, 1, 2,
+\dots ,n$</span></p>
+<p>记：<span class="math inline"><em>b</em><sub><em>i</em></sub> = (<em>i</em> + 1/2) * <em>x</em><sup><em>i</em></sup>   <em>i</em> = 0, 1, 2, …, <em>n</em></span>
+，其中x为常数</p>
+<p>则：<span class="math inline"><em>b</em><sub><em>i</em></sub> = 1/2 * <em>x</em><sup><em>i</em></sup> + <em>i</em> * <em>x</em><sup><em>i</em></sup>   <em>i</em> = 0, 1, 2, …, <em>n</em></span>
+，即：<span class="math inline"><em>b</em><sub><em>i</em></sub></span>可以分成两项之和。</p>
+<p>记：<span class="math inline"><em>c</em><sub><em>i</em></sub> = <em>i</em> * <em>x</em><sup><em>i</em></sup>   <em>i</em> = 0, 1, 2, …, <em>n</em></span></p>
+<p>则，几何级数<span class="math inline">$S_n=\sum_{i=0}^{i=n}i*x^i
+\qquad i = 0, 1, 2, \dots ,n$</span></p>
+<p>当n=0时，<span class="math inline"><em>S</em><sub><em>n</em></sub> = 0</span></p>
+<p>当<span class="math inline"><em>n</em> ≥ 1</span>时，<span class="math inline"><em>S</em><sub><em>n</em></sub> = ?</span></p>
+<p>考察：<span class="math inline"><em>d</em><sub><em>i</em></sub> = <em>x</em><sup><em>i</em></sup>   <em>i</em> = 0, 1, 2, …, <em>n</em></span></p>
+<p>则，几何级数<span class="math inline">$\displaystyle
+G_n=\sum_{i=0}^{i=n}x^i \qquad i = 0, 1, 2, \dots ,n$</span></p>
+<p>当n=0时，<span class="math inline"><em>G</em><sub><em>n</em></sub> = 1</span></p>
+<p>当<span class="math inline"><em>n</em> ≥ 1</span>时，等式两边同时对x求导，得：<span class="math inline">$\displaystyle G&#39;_n(x)=\sum_{i=0}^{i=n}i *x^{i-1}
+\qquad i = 0, 1, 2, \dots ,n$</span></p>
+<p>等式两边同时乘以x得：<span class="math inline">$\displaystyle
+xG&#39;_n(x)=\sum_{i=0}^{i=n}i *x^{i} \qquad i =0, 1, 2, \dots
+,n$</span></p>
+<p>即：当<span class="math inline"><em>n</em> ≥ 1</span>时：<span class="math inline"><em>S</em><sub><em>n</em></sub>(<em>x</em>) = <em>x</em><em>G</em><sub><em>n</em></sub><sup>′</sup>(<em>x</em>)</span></p>
+<p>又因为：</p>
+<p><span class="math display">$$G_n(x)=
+\begin{cases}
+1 &amp; \text{if}\; n=0\\
+\frac{1-x^{n+1}}{1-x} &amp; \text{if}\; n \geq 1
+\end{cases}$$</span></p>
+<p>则，当<span class="math inline"><em>n</em> ≥ 1</span>时：<span class="math inline">$\displaystyle
+G&#39;_n(x)=\frac{n*x^{n+1}-(n+1)x^n+1}{(1-x)^2}$</span></p>
+<p>则： <span class="math display">$$S_n(x)=
+\begin{cases}
+0 &amp; \text{if} \;n=0\\
+\frac{nx^{n+2}-(n+1)x^{n+1}+x}{(1-x)^2} &amp; \text{if}\; n \geq 1
+\end{cases}$$</span></p>
+<p>注意到数列<span class="math inline"><em>b</em><sub><em>i</em></sub></span>的几何级数为：<span class="math inline">$\displaystyle
+B_n(x)=\frac{1}{2}*\sum_{i=0}^{i=n}x^i +
+\sum_{i=0}^{i=n}i*x^i$</span></p>
+<p>即：<span class="math inline">$B_n(x)=\frac{1}{2}*G_n(x)+S_n(x)$</span></p>
+<p>即： <span class="math display">$$B_n(x)=
+\begin{cases}
+\frac{1}{2} &amp; \text{if} \;n=0\\
+\\
+\frac{1+x-(2n+3)x^{n+1}+(2n+1)x^{n+2}}{2(1-x)^2} &amp; \text{if}\; n
+\geq 1
+\end{cases}$$</span></p>
+<p>又因为：<span class="math inline">$\displaystyle \langle E
+\rangle=hν* \frac{1-x}{1-x^{n+1}}\sum_{i=0}^{i=n}(i+1/2)*x^i \qquad i =
+0, 1, 2, \dots ,n\qquad \text{其中：} x=e^{\frac{-hν}{k_BT}}$</span></p>
+<p>则： <span class="math display">$$\langle E \rangle=
+\begin{cases}
+\frac{1}{2}hν* \frac{1-x}{1-x^{n+1}}=\frac{1}{2}hν &amp; \text{if}
+\;n=0\\
+\\
+\frac{1}{2}hν*\frac{1+x-(2n+3)x^{n+1}+(2n+1)x^{n+2}}{(1-x)(1-x^{n+1})}
+&amp; \text{if}\; n \geq 1
+\end{cases}$$</span></p>
+<p>可以合并表示为：<span class="math inline">$\displaystyle \langle E
+\rangle=\frac{1}{2}hν*\frac{1+x-(2n+3)x^{n+1}+(2n+1)x^{n+2}}{(1-x)(1-x^{n+1})}
+\qquad n = 0, 1, 2, \dots$</span></p>
+<p>又因为：<span class="math inline">$\displaystyle \frac{d\langle E
+\rangle}{dT}=\frac{d\langle E \rangle}{dx}*\frac{dx}{dT}$</span>
+，发现<span class="math inline">⟨<em>E</em>⟩</span>的表达式很难被求导，过程太复杂。</p>
+<blockquote>
+<p>爱因斯坦模型的核心假设只有两条：固体中每个原子都在平衡位置附近做独立的小振幅振动，每个振动等效为一个频率相同的量子简谐振子。注意这里的关键词是：独立、简谐、小振动。“位移足够小”，这个假设是为了使得势能可以近似为二次形式，这只限定了势能的形状，不是为了给势能设定上限。</p>
+</blockquote>
+<blockquote>
+<p>量子简谐振子的能级结构本身就没有上限：这是最根本的一点。
+在量子力学中，一维简谐振子的哈密顿量是：<span class="math inline"><em>H</em> = <em>p</em>²/(2<em>m</em>) + (1/2)<em>k</em><sub><em>f</em></sub><em>x</em>²</span>
+，求解定态薛定谔方程， 得到能谱：<span class="math inline"><em>E</em><sub><em>n</em></sub> = (<em>n</em> + 1/2)<em>h</em><em>ν</em>  <em>n</em> = 0, 1, 2, …</span>
+，这里的“n
+可以无限大”不是一种近似，而是一个严格的数学结论，源自以下事实：势能
+<span class="math inline"><em>V</em>(<em>x</em>) = (1/2)<em>k</em><sub><em>f</em></sub><em>x</em><sup>2</sup></span>
+在 |x| → ∞
+时无界增大，对应的本征方程存在无穷多个正交本征解，每一个本征解对应一个离散能级，只要势能是抛物型且不被截断，量子谐振子的本征态必然是无限多的。因此，从量子力学出发，“单个振子最多只能激发到第
+n 级”这一说法本身就是不成立的。</p>
+</blockquote>
+<p>根据以上两点引用，令<span class="math inline"><em>n</em> → +∞</span>，得：<span class="math inline">⟨<em>E</em>⟩ = ?</span> <span class="math inline">⟨<em>E</em>⟩</span>的表达式无法被简化，因为无法确定x是否小于1？错误，e的指数项为负数，所以0&lt;x&lt;1。</p>
+<p>则，令<span class="math inline"><em>n</em> → +∞</span>
+，需要证明：<span class="math inline">lim<sub><em>n</em> → ∞</sub>(<em>a</em><em>n</em> + <em>b</em>)<em>x</em><sup><em>n</em> + <em>c</em></sup> = 0   <em>其</em><em>中</em>：0 &lt; <em>x</em> &lt; 1</span></p>
+<p>化简得：<span class="math inline">lim<sub><em>n</em> → ∞</sub>(<em>a</em><em>n</em> + <em>b</em>)<em>x</em><sup><em>n</em> + <em>c</em></sup> = lim<sub><em>n</em> → ∞</sub>(<em>a</em><em>x</em><sup><em>c</em></sup><em>n</em><em>x</em><sup><em>n</em></sup> + <em>b</em><em>x</em><sup><em>c</em></sup><em>x</em><sup><em>n</em></sup>)</span></p>
+<p>化简得：<span class="math inline">$\displaystyle \lim_{n \to
+\infty}(an+b)x^{n+c}=ax^c \lim_{n \to \infty}\frac{n}{(\frac{1}{x})^n}
+\quad + \quad 0 \quad$</span></p>
+<p>使用洛必达法则，得：<span class="math inline">$\displaystyle \lim_{n
+\to \infty}(an+b)x^{n+c}=ax^c \lim_{n \to
+\infty}\frac{1}{(\frac{1}{x})^n \cdot \ln n}$</span></p>
+<p>化简得：<span class="math inline">$\displaystyle \lim_{n \to
+\infty}(an+b)x^{n+c}=ax^c \lim_{n \to \infty}\frac{x^n}{\ln
+n}$</span></p>
+<p>化简得：<span class="math inline">lim<sub><em>n</em> → ∞</sub>(<em>a</em><em>n</em> + <em>b</em>)<em>x</em><sup><em>n</em> + <em>c</em></sup> = 0</span></p>
+<p>则，令<span class="math inline"><em>n</em> → +∞</span>，得：<span class="math inline">$\langle E \rangle=\frac{hν}{2}* \frac{1+x}{1-x}
+\quad$</span></p>
+<p>又因为：<span class="math inline">$\frac{d\langle E
+\rangle}{dT}=\frac{d\langle E \rangle}{dx}*\frac{dx}{dT}$</span></p>
+<p>而：<span class="math inline">$\frac{d\langle E
+\rangle}{dx}=\frac{hν}{(1-x)^2} \quad$</span> ， <span class="math inline">$\frac{dx}{dT}=\frac{hν}{k_BT^2}*e^{-\frac{hν}{k_BT}}$</span></p>
+<p>则：<span class="math inline">$\frac{d\langle E
+\rangle}{dT}=\frac{h^2ν^2}{k_BT^2}*\frac{x}{(1-x)^2} \qquad$</span> 其中
+<span class="math inline"><em>ν</em> = (1/2<em>π</em>)(<em>k</em><sub><em>f</em></sub>/<em>m</em>)<sup>1/2</sup>   </span>
+代入：<span class="math inline">$x=e^{-\frac{hν}{k_BT}}
+\qquad$</span></p>
+<p>又因为，热容：<span class="math inline">$C=\frac{d\langle E
+\rangle}{dT}$</span></p>
+<p>则：<span class="math inline">$\displaystyle C=\frac{d\langle E
+\rangle}{dT}=\frac{h^2ν^2}{k_BT^2}*\frac{e^{-\frac{hν}{k_BT}}}{(1-e^{-\frac{hν}{k_BT}})^2}
+\qquad$</span></p>
+<p>即：<span class="math inline">$\displaystyle C=\frac{d\langle E
+\rangle}{dT}=\frac{h^2ν^2}{k_BT^2}*\frac{e^{\frac{hν}{k_BT}}}{(e^{\frac{hν}{k_BT}}-1)^2}
+\qquad$</span></p>
+<p>记：<span class="math inline">$θ_E=\frac{hν}{k_B}$</span>
+，则上式可表示为：</p>
+<p><span class="math inline">$\displaystyle
+C=k_B*\frac{θ_E^2}{T^2}*\frac{e^{\frac{θ_E}{T}}}{(e^{\frac{θ_E}{T}}-1)^2}
+\qquad$</span></p>
+<p>等式两边同时乘以阿伏伽德罗常数，得：</p>
+<p><span class="math inline">$\displaystyle
+摩尔热容：C_{m}=R*(\frac{θ_E}{T})^2*\frac{e^{\frac{θ_E}{T}}}{(e^{\frac{θ_E}{T}}-1)^2}
+\qquad 其中: \quad \nu = (1/2\pi)(k_f/m)^{1/2} \qquad$</span></p>
+<p>这就是爱因斯坦的热容公式？
+答：这是单个一维振子的情况，如果是三维固体（每个原子 3
+个独立振子），那么等式右边的系数即为3R。</p>
+<p>爱因斯坦模型的本质在于：
+用量子简谐振子的配分函数，取代经典等分定理，从而引入温度依赖的自由度冻结效应。</p>
+<h4 id="爱因斯坦热容函数的近似">2. 爱因斯坦热容函数的近似</h4>
+<p>求出爱因斯坦热容函数在 (a) 低温和 (b) 高温下的近似形式。</p>
+<p>三维固体的爱因斯坦热容公式为：<span class="math inline">$\displaystyle
+摩尔热容：C_{m}=3R*(\frac{θ_E}{T})^2*\frac{e^{\frac{θ_E}{T}}}{(e^{\frac{θ_E}{T}}-1)^2}$</span>
+记：<span class="math inline">$x=\frac{\theta_{E}}{T}$</span>
+，则：<span class="math inline">$\displaystyle
+C_{m}=3R*{\frac{x^2e^x}{(e^x-1)^2}}$</span></p>
+<p>当T很小时，<span class="math inline"><em>x</em></span> 很大，<span class="math inline">$\displaystyle \frac{e^x}{(e^x-1)^2} \sim
+e^{-x}$</span>
+(这里需要注意，需要通过把分式的某一部分作为整体因子，寻找等价无穷大，如果单独把分子和分母拆开近似，可能会出现错误)</p>
+<p>则：<span class="math inline"><em>C</em><sub><em>m</em></sub> = 3<em>R</em> * <em>x</em><sup>2</sup> * <em>e</em><sup>−<em>x</em></sup></span></p>
+<p>即：<span class="math inline">$C_{m}=3R*\left( \frac{\theta_{E}}{T}
+\right)^2*e^{-\frac{\theta_{E}}{T}}$</span> 这就是<span class="math inline"><em>C</em><sub><em>m</em></sub></span>在低温下的近似方程</p>
+<p>当T很大时，<span class="math inline"><em>x</em></span>
+很小，对于因子<span class="math inline">$\left( \frac{x}{e^x-1}
+\right)$</span>可做如下近似。</p>
+<p>记：<span class="math inline">$\displaystyle
+f(x)=\frac{x}{e^x-1}$</span></p>
+<p>因为：<span class="math inline">$\displaystyle
+e^x=1+x+\frac{1}{2}x^2+\frac{1}{3!}x^3+\frac{1}{4!}x^4+\dots\quad=\sum_{i=0}^{n}\frac{x^i}{i!}
+\quad$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+f(x)=\frac{x}{e^x-1}=\frac{x}{x+\frac{1}{2}x^2+\frac{1}{3!}x^3+\frac{1}{4!}x^4+\dots}$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+f(x)=\frac{1}{1+\frac{1}{2!}x+\frac{1}{3!}x^2+\frac{1}{4!}x^3+\dots}$</span></p>
+<p>假设该式可由某个多项式g(x)表示：<span class="math inline"><em>g</em>(<em>x</em>) = <em>a</em><sub>0</sub> + <em>a</em><sub>1</sub><em>x</em> + <em>a</em><sub>2</sub><em>x</em><sup>2</sup> + <em>a</em><sub>3</sub><em>x</em><sup>3</sup> + … + <em>a</em><sub><em>n</em></sub><em>x</em><sup><em>n</em></sup></span></p>
+<p>则：<span class="math inline">$\displaystyle
+(1+\frac{1}{2!}x+\frac{1}{3!}x^2+\frac{1}{4!}x^3+\dots)*(a_0+a_1x+a_2x^2
++a_3x^3+\dots+a_nx^n)=1$</span></p>
+<p>则，根据等式两边各项的系数相等，可得如下方程组：</p>
+<p><span class="math inline"><em>a</em><sub>0</sub> = 1</span> <span class="math inline">$a_1x+\frac{a_0}{2!}x=0$</span> <span class="math inline">$a_{2}x^2+\frac{a_{1}}{2!}x^2+\frac{a_{0}}{3!}x^2=0$</span>
+<span class="math inline">$a_{3}x^3+\frac{a_{2}}{2!}x^3+\frac{a_{1}}{3!}x^3+\frac{a_{0}}{4!}x^3=0$</span>
+……</p>
+<p>解得：<span class="math inline"><em>a</em><sub>0</sub> = 1</span>
+，<span class="math inline">$a_{1}=-\frac{1}{2!}$</span> ，<span class="math inline">$a_{2}=\frac{1}{12}$</span> ，<span class="math inline"><em>a</em><sub>3</sub> = 0</span></p>
+<p>则，<span class="math inline">$f(x)=1-\frac{1}{2}x+\frac{1}{12}x^2+\dots$</span></p>
+<p>又因为此处的<span class="math inline"><em>x</em></span>只能取很小的值</p>
+<p>则：<span class="math inline">$f(x)=1-\frac{1}{2}x+\frac{1}{12}x^2+O(x^3)$</span></p>
+<p>则：<span class="math inline">${f(x)}^2=1-x+\frac{5}{12}x^2-\frac{1}{12}x^3+O(x^3)$</span></p>
+<p>又：<span class="math inline">$\displaystyle
+C_{m}=3R*(\frac{x}{e^x-1})^2*e^x$</span></p>
+<p>则：<span class="math inline"><em>C</em><sub><em>m</em></sub> = 3<em>R</em> * <em>f</em>(<em>x</em>)<sup>2</sup> * <em>e</em><sup><em>x</em></sup></span></p>
+<p>则：<span class="math inline">$C_{m}=3R*(1-x+\frac{5}{12}x^2-\frac{1}{12}x^3+O(x^3))*(1+x+\frac{1}{2}x^2+\frac{1}{3!}x^3+O(x^3))$</span></p>
+<p>化简得：<span class="math inline">$C_{m}=3R*\left(
+1-\frac{1}{12}x^2+O(x^3) \right)$</span></p>
+<p>即：<span class="math inline">$C_{m}=3R*\left( 1-\frac{1}{12}\left(
+\frac{{\theta_{E}}}{T} \right)^2 +O( ( \frac{\theta_{E}}{T})^3)
+\right)$</span></p>
+<p>这就是<span class="math inline"><em>C</em><sub><em>m</em></sub></span>在高温下的近似函数</p>
+<p>问题：泰勒展开，分子和分母分别需要展开至多少阶？
+严格回答是：不是“要展开到几阶”，而是“不应该先分别展开再相除”。
+原因是：当分子与分母在展开点具有相同阶的零点时，单独对分子、分母截断后再相除，会破坏渐近展开的正确性。
+正确原则是：先代数重组，使极限行为显式化，然后在形式上做整体渐近展开，如使用
+<span class="math inline">$\displaystyle \frac{e^x}{(e^x-1)^2} \sim
+e^{-x}$</span></p>
+<h4 id="徳拜热容函数的高低温极限">3. 徳拜热容函数的高低温极限</h4>
+<h5 id="徳拜热容函数的低温极限">徳拜热容函数的低温极限</h5>
+<p>归一化德拜热容函数定义为 <span class="math inline">$\displaystyle
+D(x) = 3 x^3 \int_0^{1/x} \frac{t^4 e^t}{(e^t - 1)^2} \, dt$</span>
+其中： <span class="math inline">$\displaystyle
+x=\dfrac{T}{\theta_{D}}$</span> 求证：<span class="math inline">lim<sub><em>x</em> → 0+</sub><em>D</em>(<em>x</em>) = 0</span></p>
+<p>因为：<span class="math inline">$\displaystyle \lim_{x \to
+0+}D(x)=\lim_{x \to 0+}3 x^3 \int_0^{1/x} \frac{t^4 e^t}{(e^t - 1)^2} \,
+dt$</span></p>
+<p>记：<span class="math inline">$\displaystyle I=\int_0^{+\infty}
+\frac{t^4 e^t}{(e^t - 1)^2} \, dt$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+I=-\int_{0}^{+\infty}t^4d(\frac{1}{e^t-1})$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+I=-\left(\left[t^4*\frac{1}{e^t-1}\right]_{0}^{+\infty}-\int_{0}^{+\infty}\frac{4t^3}{e^t-1}dt\right)$</span></p>
+<p>则：<span class="math inline">$\displaystyle I=\lim_{t \to
+0}\frac{t^4}{e^t-1}-\lim_{t \to
+\infty}\frac{t^4}{e^t-1}+\int_{0}^{+\infty}\frac{4t^3}{e^t-1}dt$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+I=4\int_{0}^{+\infty}\frac{t^3}{e^t-1}dt$</span></p>
+<p>求解积分：<span class="math inline">$\displaystyle
+T=\int_{0}^{+\infty}\frac{t^{n-1}}{e^t-1}dt$</span> 其中n为正整数。</p>
+<p>可证明等式：<span class="math inline">$\displaystyle
+\sum_{k=0}^{\infty} e^{-kt}=\lim_{ n \to \infty
+}\dfrac{1-e^{-nt}}{1-e^{-t}}=\dfrac{1}{1-e^{-t}}$</span>
+应用等比数列求和公式即可证明。</p>
+<p>可证明等式：<span class="math inline">$\displaystyle
+\sum_{k=1}^{\infty}e^{-kt}=\lim_{n \to
+\infty}\frac{e^{-t}(1-e^{-nt})}{1-e^{-t}}=\frac{e^{-t}}{1-e^{-t}}=\frac{1}{e^t-1}$</span>
+应用等比数列求和公式即可证明。</p>
+<p>则：<span class="math inline">$\displaystyle
+T=\int_{0}^{+\infty}\frac{t^{n-1}}{e^t-1}dt=\int_{0}^{+\infty}t^{n-1}*\sum_{k=1}^{\infty}e^{-kt}dt$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+T=\sum_{k=1}^{\infty}\int_{0}^{+\infty}t^{n-1}e^{-kt}dt$</span></p>
+<p>变量代换，令<span class="math inline"><em>x</em> = <em>k</em><em>t</em></span>，则<span class="math inline">$t=\dfrac{x}{k}$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+T=\sum_{k=1}^{\infty}\int_{0}^{+\infty}\frac{1}{k}\frac{x^{n-1}}{k^{n-1}}e^{-x}dx$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+T=\sum_{k=1}^{\infty}\frac{1}{k^n}*\int_{0}^{+\infty}x^{n-1}e^{-x}dx$</span></p>
+<p>记：<span class="math inline">$\displaystyle
+\zeta(n)=\sum_{k=1}^{\infty}\frac{1}{k^n}$</span></p>
+<p>记：<span class="math inline"><em>Γ</em>(<em>n</em>) = ∫<sub>0</sub><sup>+∞</sup><em>x</em><sup><em>n</em> − 1</sup><em>e</em><sup>−<em>x</em></sup><em>d</em><em>x</em></span>
+其中n为正整数。</p>
+<p>这是一个经典的Gamma函数。对于正整数 <span class="math inline"><em>n</em></span>，积分结果为：<span class="math inline"><em>Γ</em>(<em>n</em>) = (<em>n</em> − 1)!</span></p>
+<p>对于 <span class="math inline">$\displaystyle
+\zeta(n&#39;)=\sum_{k=1}^{\infty}\frac{1}{k^{n&#39;}}$</span>，这是黎曼 <span class="math inline"><em>ζ</em></span>
+函数在整数点的取值问题。其“解”取决于 <span class="math inline"><em>n</em><sup>′</sup></span> 的取值：</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 64%" />
+</colgroup>
+<thead>
+<tr>
+<th>n’ 的值</th>
+<th>级数名称/类型</th>
+<th>结果 (封闭形式或性质)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="math inline"><em>n</em><sup>′</sup> = 1</span></td>
+<td>调和级数</td>
+<td>发散 (<span class="math inline">∞</span>)</td>
+</tr>
+<tr>
+<td><span class="math inline"><em>n</em><sup>′</sup> = 2</span></td>
+<td>巴塞尔问题</td>
+<td><span class="math inline">$\displaystyle
+\frac{\pi^2}{6}$</span></td>
+</tr>
+<tr>
+<td><span class="math inline"><em>n</em><sup>′</sup> = 3</span></td>
+<td>阿佩里常数</td>
+<td>约 <span class="math inline">1.202</span>，已证为无理数，无已知闭式解</td>
+</tr>
+<tr>
+<td><span class="math inline"><em>n</em><sup>′</sup> = 4</span></td>
+<td>-</td>
+<td><span class="math inline">$\displaystyle
+\frac{\pi^4}{90}$</span></td>
+</tr>
+<tr>
+<td><span class="math inline"><em>n</em><sup>′</sup> = 2<em>m</em></span></td>
+<td>偶数</td>
+<td>与 <span class="math inline"><em>π</em><sup>2<em>m</em></sup></span>
+和伯努利数有关</td>
+</tr>
+<tr>
+<td><span class="math inline"><em>n</em><sup>′</sup> = 2<em>m</em> + 1</span></td>
+<td>奇数 (<span class="math inline"> &gt; 1</span>)</td>
+<td>无已知封闭公式</td>
+</tr>
+</tbody>
+</table>
+<p>因为：<span class="math inline">$\displaystyle
+I=4\int_{0}^{+\infty}\frac{t^3}{e^t-1}dt$</span> ，对应：n=4。</p>
+<p>则：<span class="math inline"><em>T</em> = <em>ζ</em>(4) * <em>Γ</em>(4)</span></p>
+<p>则：<span class="math inline">$\displaystyle
+I=4*\zeta(4)*\Gamma(4)=\frac{4\pi^4}{15}$</span></p>
+<p>求解目标为：<span class="math inline">$\displaystyle \lim_{x \to
+0+}D(x)=\lim_{x \to 0+}3 x^3 \int_0^{1/x} \frac{t^4 e^t}{(e^t - 1)^2} \,
+dt$</span></p>
+<p>则：<span class="math inline">lim<sub><em>x</em> → 0+</sub><em>D</em>(<em>x</em>) = lim<sub><em>x</em> → 0+</sub>3<em>x</em><sup>3</sup> * <em>I</em> = 0</span></p>
+<p>证毕。</p>
+<h5 id="徳拜热容函数的高温极限">徳拜热容函数的高温极限</h5>
+<p>归一化德拜热容函数定义为 <span class="math inline">$\displaystyle
+D(x) = 3 x^3 \int_0^{1/x} \frac{t^4 e^t}{(e^t - 1)^2} \, dt$</span>
+其中： <span class="math inline">$\displaystyle
+x=\dfrac{T}{\theta_{D}}$</span> 求证：<span class="math inline">lim<sub><em>x</em> → +∞</sub><em>D</em>(<em>x</em>) = 1</span></p>
+<p>记：<span class="math inline">$\displaystyle
+I=\int_{0}^{\dfrac{1}{x}}\frac{t^4e^t}{(e^t-1)^2}dt$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+I=\int_{0}^{\dfrac{1}{x}} \dfrac{t^4e^t}{(e^t-1)^2}dt$</span></p>
+<p>则： <span class="math inline">$\displaystyle
+I=-\int_{0}^{\dfrac{1}{x}} t^4d(\dfrac{1}{e^t-1})$</span></p>
+<p>则： <span class="math inline">$\displaystyle
+I=-\left[\dfrac{t^4}{e^t-1}
+\right]_{0}^{\dfrac{1}{x}}+\int_{0}^{\dfrac{1}{x}}
+\dfrac{4t^3}{e^t-1}dt$</span></p>
+<p>则： <span class="math inline">$\displaystyle I=-\dfrac{1}{x^4\left(
+e^{\frac{1}{x}}-1 \right)}+4\int_{0}^{\dfrac{1}{x}}
+\dfrac{t^3}{e^t-1}dt$</span></p>
+<p>则： <span class="math inline">$\displaystyle
+D(x)=3x^3*I=-\dfrac{3}{x\left( e^{\frac{1}{x}}-1
+\right)}+12x^3\int_{0}^{\dfrac{1}{x}} \dfrac{t^3}{e^t-1}dt$</span></p>
+<p>整理得： <span class="math inline">$\displaystyle
+D(x)=-3\dfrac{\dfrac{1}{x}}{( e^{\frac{1}{x}}-1
+)}+12x^3\int_{0}^{\dfrac{1}{x}} \dfrac{t^3}{e^t-1}dt$</span></p>
+<p>进行变量代换，令 <span class="math inline">$\displaystyle
+y=\dfrac{1}{x}$</span> ，当 <span class="math inline"><em>x</em> → +∞</span> 时， <span class="math inline"><em>y</em> → 0+</span></p>
+<p>则： <span class="math inline">$\displaystyle D(y)=-3
+\dfrac{y}{e^y-1}+ \dfrac{12}{y^3}\int_{0}^{y}
+\dfrac{t^3}{e^t-1}dt$</span></p>
+<p>则： <span class="math inline">$\displaystyle D(y)=-3
+\dfrac{y}{e^y-1}+ 12\dfrac{\int_{0}^{y}
+\dfrac{t^3}{e^t-1}dt}{y^3}$</span></p>
+<p>则： <span class="math inline">lim<sub><em>x</em> → +∞</sub><em>D</em>(<em>x</em>) = lim<sub><em>y</em> → 0+</sub><em>D</em>(<em>y</em>)</span></p>
+<p>则： <span class="math inline">$\displaystyle \lim_{ y \to 0+
+}D(y)=\lim_{ y \to 0+ } -3 \dfrac{y}{e^y-1}+ 12\lim_{ y \to 0+
+}\dfrac{\int_{0}^{y} \dfrac{t^3}{e^t-1}dt}{y^3}$</span></p>
+<p>则： <span class="math inline">$\displaystyle \lim_{ y \to 0+ }D(y)=
+-3 + 12\lim_{ y \to 0+ }\dfrac{\int_{0}^{y}
+\dfrac{t^3}{e^t-1}dt}{y^3}$</span></p>
+<p>需要证明： <span class="math inline">$\displaystyle \lim_{ y \to 0+ }
+\int_{0}^{y} \dfrac{t^3}{e^t-1}dt=0$</span></p>
+<p>记： <span class="math inline">$\displaystyle
+f(t)=\dfrac{t^3}{e^t-1}$</span></p>
+<p>因为： <span class="math inline">$\displaystyle \lim_{ t \to 0 }
+f(t)= \lim_{ t \to 0 } \dfrac{t^3}{e^t-1}=0$</span></p>
+<p>又因为： <span class="math inline">$\displaystyle \lim_{ t \to
++\infty } f(t)= \lim_{ t \to +\infty } \dfrac{t^3}{e^t-1}=0$</span></p>
+<p>又因为 <span class="math inline"><em>f</em>(<em>t</em>)</span>在<span class="math inline">(0, +∞)</span>上连续，不存在间断点。</p>
+<p>则： <span class="math inline"><em>f</em>(<em>t</em>)</span>在<span class="math inline">(0, +∞)</span>区间内是有界函数，则必定有：<span class="math inline">lim<sub><em>y</em> → 0+</sub>∫<sub>0</sub><sup><em>y</em></sup><em>f</em>(<em>t</em>)<em>d</em><em>t</em> = 0</span>
+???证明是否正确和严谨？</p>
+<p>使用洛必达法则： <span class="math inline">$\displaystyle \lim_{ y
+\to 0+ }D(y)= -3 + 12\lim_{ y \to 0+
+}\dfrac{\dfrac{y^3}{e^y-1}}{3y^2}$</span></p>
+<p>化简得： <span class="math inline">$\displaystyle \lim_{ y \to 0+
+}D(y)= -3 + 12\lim_{ y \to 0+ }\dfrac{y}{3(e^y-1)}$</span></p>
+<p>继续使用洛必达法则：<span class="math inline">$\displaystyle \lim_{ y
+\to 0+ }D(y)= -3 + 12* \dfrac{1}{3}=1$</span></p>
+<p>则： <span class="math inline">lim<sub><em>x</em> → +∞</sub><em>D</em>(<em>x</em>) = lim<sub><em>y</em> → 0+</sub><em>D</em>(<em>y</em>) = 1</span></p>
+<p>等比数列的求和公式如下： 当公比 <span class="math inline"><em>r</em> ≠ 1</span> 时，前 <span class="math inline"><em>n</em></span> 项和为：<span class="math inline">$\displaystyle S_n = a_1 \frac{1 - r^n}{1 -
+r}$</span> ，其中：<span class="math inline"><em>a</em><sub>1</sub></span> 是首项，<span class="math inline"><em>r</em></span> 是公比，<span class="math inline"><em>n</em></span> 是项数。 当公比 <span class="math inline"><em>r</em> = 1</span> 时，所有项都相等，前 <span class="math inline"><em>n</em></span> 项和为：<span class="math inline"><em>S</em><sub><em>n</em></sub> = <em>n</em><em>a</em><sub>1</sub></span></p>
+<h4 id="数值积分求解德拜热容函数的坐标点">4.
+数值积分求解德拜热容函数的坐标点</h4>
+<h5 id="归一化徳拜热容函数的性质">归一化徳拜热容函数的性质</h5>
+<p>归一化德拜热容函数定义为 <span class="math inline">$\displaystyle
+D(x) = 3 x^3 \int_0^{1/x} \frac{t^4 e^t}{(e^t - 1)^2} \, dt$</span>
+其中： <span class="math inline">$\displaystyle
+x=\dfrac{T}{\theta_{D}}$</span> ，<span class="math inline"><em>T</em></span> 是温度，<span class="math inline"><em>θ</em><sub><em>D</em></sub></span> 是德拜温度。
+因为被积函数 <span class="math inline">$\displaystyle
+f(t)=\dfrac{t^4e^t}{(e^t-1)^2}$</span> 在区间 <span class="math inline">(0, +∞)</span>上是连续的，则：在区间 <span class="math inline">(0, +∞)</span>上必定存在它的原函数 <span class="math inline"><em>F</em>(<em>t</em>)</span> ，而且 <span class="math inline"><em>F</em>(<em>t</em>)</span>
+在该区间上也是连续的且可导的。 <span class="math inline">⇒  </span>
+<span class="math inline"><em>D</em>(<em>x</em>)</span>在<span class="math inline">(0, +∞)</span>上也是连续且可导的。</p>
+<p>可证明：<span class="math inline">lim<sub><em>x</em> → 0+</sub><em>D</em>(<em>x</em>) = 0</span>
+，<span class="math inline">lim<sub><em>x</em> → +∞</sub><em>D</em>(<em>x</em>) = 1</span>
+，则：D(x)在<span class="math inline">(0, +∞)</span>上是连续可导的有界函数。</p>
+<p>需要绘制D(x)在<span class="math inline">(0, +∞)</span>上的函数曲线。由于D(x)是一个带变限积分的函数，而且绘图区域是一个无穷区间，先绘制被积函数在定义域上的函数曲线，如下图所示。
+因为<span class="math inline"><em>D</em>(<em>x</em>)</span>有一条渐近线<span class="math inline"><em>y</em> = 1</span>，在确定<span class="math inline"><em>D</em>(<em>x</em>)</span>的绘图区域时，需要表现出渐进性质。根据被积函数的图形，可以将绘图区域设置为<span class="math inline">(0.05, 5)</span>。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode tikz"><code class="sourceCode latex"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{fpu}</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\definecolor</span>{mygreen}{RGB}{60, 180, 90}</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[xscale=0.5,yscale=1,&gt;=stealth]</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [-&gt;,thin](-1,0)--(12.8,0)node[right]{t};</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [-&gt;,thin](0,-1)--(0,5.8)node[left]{f(t)};</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[xstep=1,ystep=1,dotted,gray](0,0)grid(12,5);</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [thin](12,0)--(12,0.1)node[below=0.2cm,font=<span class="fu">\large</span>]{12};</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [thin](0,5)--(0.1,5)node[left=0.2cm,font=<span class="fu">\large</span>]{5};</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\pgfkeys</span>{/pgf/fpu=true,/pgf/fpu/output format=fixed}</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thin,mygreen] plot[domain=0.1:12,samples=30,smooth](<span class="fu">\x</span>,{((pow(<span class="fu">\x</span>,4)*exp(<span class="fu">\x</span>))/((exp(<span class="fu">\x</span>)-1)^2)});</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thin,mygreen](6,5)--(7,5)node[right=0.1cm,font=<span class="fu">\large</span>]{<span class="ss">$</span><span class="sc">\displaystyle</span><span class="ss"> f(t)=</span><span class="sc">\frac</span><span class="ss">{t^4e^t}{(e^t-1)^2}$</span>};</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<p>归一化德拜热容函数定义为 <span class="math inline">$\displaystyle
+D(x) = 3 x^3 \int_0^{1/x} \frac{t^4 e^t}{(e^t - 1)^2} \, dt$</span>
+其中： <span class="math inline">$\displaystyle
+x=\dfrac{T}{\theta_{D}}$</span>
+我现在需要在Obsidian中使用tikz代码绘制该函数的函数曲线，由于这个函数的表达式中带有变限积分，需要先使用数值积分输出它的坐标点<span class="math inline">(<em>x</em>, <em>D</em>(<em>x</em>))</span>。请帮我编写一段Python代码，目标是输出它的坐标点，自变量x的范围限制在(0.05,5)。请对求解思路或步骤进行详细解释，包括选择的数值积分方法。我从未使用过Python，请对代码进行详细注释。我的Obsidian中使用了Execute
+Code插件，可以运行python代码。python代码必须是全英文，不能出现中文字符。</p>
+<h5 id="求解思路与数值积分方法">求解思路与数值积分方法</h5>
+<p>为了得到精确的曲线，我们需要完成以下步骤：
+定义被积函数：我们需要定义积分内部的函数 <span class="math inline">$\displaystyle f(t) = \frac{t^4 e^t}{(e^t -
+1)^2}$</span>。 注意奇点：当 <span class="math inline"><em>t</em> = 0</span> 时，分母为
+0。但在数学上，该函数的极限是 0（因为分子 <span class="math inline"><em>t</em><sup>4</sup></span> 收敛速度比分母 <span class="math inline">(<em>e</em><sup><em>t</em></sup> − 1)<sup>2</sup> ≈ <em>t</em><sup>2</sup></span>
+更快）。我们在代码中需要处理这个除以零的临界情况。
+确定积分区间：对于每一个自变量 <span class="math inline"><em>x</em></span>，积分的上限是 <span class="math inline">1/<em>x</em></span>。当 <span class="math inline"><em>x</em> = 0.05</span> 时，上限是 <span class="math inline">20</span>。当 <span class="math inline"><em>x</em> = 5</span> 时，上限是 <span class="math inline">0.2</span>。 选择数值积分方法：我们将使用 Gaussian
+Quadrature (高斯求积法)。 在 Python 的科学计算库 <code>scipy</code>
+中，函数 <code>quad</code>
+是处理此类定积分的标准工具。它非常精准，会自动调整步长以保证误差最小，非常适合处理这种物理函数的积分。
+生成坐标点：我们将从 <span class="math inline"><em>x</em> = 0.05</span>
+到 <span class="math inline"><em>x</em> = 5</span>
+生成一系列密集的点（例如 100 个点），逐个计算积分值，最终输出符合 TikZ
+格式的坐标对。</p>
+<h5 id="python-代码">Python 代码</h5>
+<pre class="run-python"><code>import numpy as np
+from scipy.integrate import quad
+# ==========================================
+# Configuration
+# ==========================================
+# Start of x range
+x_start = 0.05
+# End of x range
+x_end = 3.0
+# Number of points to calculate (more points = smoother curve)
+num_points = 20
+
+# Function Definitions
+def integrand(t):
+    &quot;&quot;&quot;
+    The function inside the integral: (t^4 * e^t) / (e^t - 1)^2
+    &quot;&quot;&quot;
+    # Prevent division by zero error when t is extremely close to 0.
+    # Mathematically, the limit of this function as t -&gt; 0 is 0.
+    if t &lt; 1e-10:
+        return 0.0
+    
+    try:
+        # Calculate the numerator and denominator
+        numerator = (t**4) * np.exp(t)
+        denominator = (np.exp(t) - 1)**2
+        return numerator / denominator
+    except OverflowError:
+        # Handle cases where exp(t) might be too large (though unlikely in this range)
+        return 0.0
+
+def debye_function(x):
+    &quot;&quot;&quot;
+    Calculates D(x) = 3 * x^3 * Integral from 0 to 1/x
+    &quot;&quot;&quot;
+    # 1. Calculate the integration coefficient: 3 * x^3
+    coef = 3 * (x**3)
+    # 2. Determine the upper limit of integration: 1/x
+    upper_limit = 1.0 / x
+    # 3. Perform the definite integral using Gaussian quadrature (quad)
+    # quad returns a tuple (value, error), we only need the value [0]
+    integral_result, _ = quad(integrand, 0, upper_limit)
+    # 4. Return the final result
+    return coef * integral_result
+
+# ==========================================
+# Main Execution &amp; Output
+# ==========================================
+
+# Generate a list of x values linearly spaced between x_start and x_end
+x_values = np.linspace(x_start, x_end, num_points)
+# Prepare the string variable to store coordinates for TikZ
+tikz_coordinates = &quot;&quot;
+
+print(&quot;Calculating coordinates... Please wait.\n&quot;)
+print(&quot;--- Copy the line below for your TikZ code ---&quot;)
+print(&quot;&quot;)
+# Loop through each x, calculate y, and format it
+for x in x_values:
+    y = debye_function(x)
+    # Format as (x, y) with 4 decimal places
+    tikz_coordinates += f&quot;({x:.4f}, {y:.4f}) &quot;
+
+# Print the final result in one block
+print(tikz_coordinates)
+print(&quot;&quot;)
+print(&quot;use \\draw plot coordinates{...} in tikz&quot;)</code></pre>
+<h5 id="绘制einsteindebye热容曲线">绘制EinsteinDebye热容曲线</h5>
+<p>归一化德拜热容函数定义为 <span class="math inline">$\displaystyle
+D(x) = 3 x^3 \int_0^{1/x} \frac{t^4 e^t}{(e^t - 1)^2} \, dt$</span>
+其中： <span class="math inline">$\displaystyle
+x=\dfrac{T}{\theta_{D}}$</span> 三维固体的爱因斯坦热容公式为：<span class="math inline">$\displaystyle
+摩尔热容：C_{m}=3R*(\frac{θ_E}{T})^2*\frac{e^{\frac{θ_E}{T}}}{(e^{\frac{θ_E}{T}}-1)^2}$</span>
+记：<span class="math inline">$\displaystyle
+x=\frac{T}{\theta_{E}}$</span> ，则：<span class="math inline">$\displaystyle
+C_{m}=3R*{\frac{e^{1/x}}{x^2(e^{1/x}-1)^2}}$</span> ，则它的归一化形式为
+<span class="math inline">$\displaystyle
+y=\frac{e^{1/x}}{x^2(e^{1/x}-1)^2}$</span></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode tikz"><code class="sourceCode latex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">\usetikzlibrary</span>{fpu}</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">document</span>}</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">\definecolor</span>{myblue}{RGB}{40, 110, 200}</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">\definecolor</span>{mygreen}{RGB}{60, 180, 90}</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">tikzpicture</span>}[xscale=2,yscale=6,&gt;=stealth]</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [-&gt;,thin](0,0)--(3.1,0)node[right=0.05cm,font=<span class="fu">\large</span>]{<span class="ss">$</span><span class="sc">\frac</span><span class="ss">{T}{</span><span class="sc">\theta</span><span class="ss">}$</span>};</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [-&gt;,thin](0,0)--(0,1.15)node[left=0.1cm,font=<span class="fu">\large</span>]{<span class="ss">$</span><span class="sc">\frac</span><span class="ss">{C_m}{3R}$</span>};</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[xstep=0.2,ystep=0.1,dotted,gray](0,0)grid(3,1);</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\x</span> in{1,2,3}</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [thin](<span class="fu">\x</span>,0)--(<span class="fu">\x</span>,0.03)node[below=0.2cm,font=<span class="fu">\small</span>]{<span class="fu">\x</span>};</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="fu">\foreach</span> <span class="fu">\y</span> in{0.2,0.4,...,1}</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span> [thin](0,<span class="fu">\y</span>)--(0.03,<span class="fu">\y</span>)node[left=0.2cm,font=<span class="fu">\small</span>]{<span class="fu">\pgfmathprintnumber</span>[fixed,precision=1]<span class="fu">\y</span>};</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,myblue] plot[smooth] coordinates{(0.0500, 0.0097) (0.2053, 0.3841) (0.3605, 0.7005) (0.5158, 0.8346) (0.6711, 0.8972) (0.8263, 0.9304) (0.9816, 0.9500) (1.1368, 0.9624) (1.2921, 0.9707) (1.4474, 0.9765) (1.6026, 0.9808) (1.7579, 0.9840) (1.9132, 0.9865) (2.0684, 0.9884) (2.2237, 0.9900) (2.3789, 0.9912) (2.5342, 0.9923) (2.6895, 0.9931) (2.8447, 0.9938) (3.0000, 0.9945)};</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="kw">\begin</span>{<span class="ex">scope</span>}</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="fu">\pgfkeys</span>{/pgf/fpu=true,/pgf/fpu/output format=fixed}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,mygreen] plot[domain=0.05:3,samples=30,smooth](<span class="fu">\x</span>,{exp(1/<span class="fu">\x</span>)/((<span class="fu">\x</span>^2)*((exp(1/<span class="fu">\x</span>)-1)^2)});</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">scope</span>}</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,myblue](2,0.8)--(2.2,0.8)node[right=0.1cm,font=<span class="fu">\small</span>]{<span class="ss">$Debye$</span>};</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a><span class="fu">\draw</span>[thick,mygreen](2,0.7)--(2.2,0.7)node[right=0.1cm,font=<span class="fu">\small</span>]{<span class="ss">$Einstein$</span>};</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">tikzpicture</span>}</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="kw">\end</span>{<span class="ex">document</span>}</span></code></pre></div>
+<h4 id="物质热容的本质">5. 物质热容的本质</h4>
+<p>物质热容的本质源于其内部微观自由度对能量的储存能力。从统计物理和热力学的角度来看，热容（heat
+capacity）描述的是物质在温度变化时吸收或释放热量的能力，其微观本质可以从以下几个方面理解：</p>
+<p>能量均分定理与自由度：根据经典统计力学中的能量均分定理，在热平衡状态下，每个独立的二次自由度（如平动、转动、振动）平均分配
+<span class="math inline">$\frac{1}{2}k_{\mathrm{B}}T$</span>
+的能量（<span class="math inline"><em>k</em><sub>B</sub></span>
+为玻尔兹曼常数，<span class="math inline"><em>T</em></span>
+为温度）。</p>
+<p>单原子理想气体：只有3个平动自由度 → 每摩尔热容 <span class="math inline">$C_V = \frac{3}{2}R$</span>。
+双原子分子：在常温下有3个平动 + 2个转动自由度（振动自由度通常被“冻结”）→
+<span class="math inline">$C_V = \frac{5}{2}R$</span>。
+固体（爱因斯坦/德拜模型）：原子在晶格中振动，每个原子有3个振动自由度（动能+势能各占
+<span class="math inline">$\frac{1}{2}k_{\mathrm{B}}T$</span>）→
+高温下每摩尔热容趋近于 <span class="math inline">3<em>R</em></span>（杜隆–珀蒂定律）。</p>
+<p>因此，热容大小反映了系统可激发的微观自由度数量。</p>
+<p>量子效应的影响：在低温下，经典能量均分定理失效，必须考虑量子化：</p>
+<p>振动自由度：振动能级间距较大（<span class="math inline">ℏ<em>ω</em></span>），当 <span class="math inline"><em>k</em><sub>B</sub><em>T</em> ≪ ℏ<em>ω</em></span>
+时，振动模式无法被激发，对热容无贡献。
+电子热容：在金属中，费米面附近的电子可贡献热容，但通常远小于晶格振动（声子）的贡献，除非在极低温下（此时电子热容
+<span class="math inline"> ∝ <em>T</em></span>，而声子热容 <span class="math inline"> ∝ <em>T</em><sup>3</sup></span>）。这解释了为什么热容随温度变化：温度决定了哪些自由度被“激活”。</p>
+<p>相变与结构变化：在相变点（如熔化、磁有序转变等），物质的微观结构发生突变，自由度数目改变，导致热容出现异常（如λ型峰或跳跃）。例如：超导体在临界温度处电子配对导致热容突变；水在冰→液态转变时氢键网络重组，影响热容。</p>
+<p>热容的宏观定义与微观联系：宏观上，定容热容定义为：<span class="math inline">$\displaystyle C_V = \left( \frac{\partial
+U}{\partial T} \right)_V$</span> ， 其中 <span class="math inline"><em>U</em></span> 是内能。从统计力学看，<span class="math inline"><em>U</em></span>
+是所有微观状态能量按玻尔兹曼分布的平均值，因此 <span class="math inline"><em>C</em><sub><em>V</em></sub></span>
+实质上是系统内能对温度的敏感度，而这种敏感度由系统的能级结构和可及自由度决定。</p>
+<p>总结：物质热容的本质是其微观粒子（原子、分子、电子等）在不同温度下通过各种自由度（平动、转动、振动、自旋、电子激发等）储存热能的能力。
+热容的大小和温度依赖性直接反映了物质内部自由度的种类、数量及其量子化特性。</p>
+<h4 id="能量均分定理与自由度">6. 能量均分定理与自由度</h4>
+<p>一、什么是自由度（Degrees of Freedom）？</p>
+<p>在统计力学和热力学中，自由度是指描述一个系统微观状态所需的独立坐标或动量变量的数量。对于一个由粒子组成的系统，自由度可分为以下几类：</p>
+<p>平动自由度（Translational）：描述质心在空间中的运动。单个粒子在三维空间中有
+3 个平动自由度（沿 x, y, z 方向）。</p>
+<p>转动自由度（Rotational）：描述刚体绕质心的旋转。 单原子分子（如
+He）：0 个转动自由度（可视为点粒子）。 双原子/线型多原子分子（如
+N₂、CO₂）：2 个转动自由度（绕两个垂直于分子轴的轴旋转）。
+非线型多原子分子（如 H₂O、CH₄）：3 个转动自由度。</p>
+<p>振动自由度（Vibrational）：描述原子间相对位置的变化（键长、键角振荡）。</p>
+<p>对于 N 个原子组成的分子： 总自由度 = <span class="math inline">3<em>N</em></span> 平动自由度 = 3 转动自由度 =
+2（线型）或 3（非线型） 振动自由度 = <span class="math inline">3<em>N</em> − 5</span>（线型）或 <span class="math inline">3<em>N</em> − 6</span>（非线型）
+每个振动模式包含动能和势能两部分，因此每个振动自由度贡献 2
+个二次项。</p>
+<blockquote>
+<p>注意：在经典统计力学中，只有当能量表达式中某变量以二次形式出现时，才适用能量均分定理。</p>
+</blockquote>
+<p>二、能量均分定理（Equipartition Theorem）</p>
+<p>基本表述：在热平衡状态下，对于一个处于温度为 <span class="math inline"><em>T</em></span>
+的经典系统，每一个在哈密顿量中以平方形式出现的独立自由度，平均具有 <span class="math inline">$\frac{1}{2} k_{\mathrm{B}} T$</span> 的能量。
+数学形式：若系统的哈密顿量 <span class="math inline"><em>H</em></span>
+中包含一项形如 <span class="math inline"><em>α</em><em>x</em><sup>2</sup></span>（其中 <span class="math inline"><em>x</em></span> 是某个广义坐标或动量，<span class="math inline"><em>α</em></span> 为常数），
+则该自由度对系统平均能量的贡献为：<span class="math inline">$\displaystyle \left\langle \frac{1}{2} \alpha x^2
+\right\rangle = \frac{1}{2} k_{\mathrm{B}} T$</span></p>
+<p>例如： 动能项：<span class="math inline">$\frac{p_x^2}{2m}
+\Rightarrow \left\langle \frac{p_x^2}{2m} \right\rangle = \frac{1}{2}
+k_{\mathrm{B}} T$</span> 谐振子势能：<span class="math inline">$\frac{1}{2} k x^2 \Rightarrow \left\langle
+\frac{1}{2} k x^2 \right\rangle = \frac{1}{2} k_{\mathrm{B}} T$</span>
+因此，一个一维谐振子（含动能+势能）总平均能量为 <span class="math inline"><em>k</em><sub>B</sub><em>T</em></span>。</p>
+<p>三、应用举例</p>
+<p>例1：单原子理想气体（如 He, Ar） 自由度：仅 3 个平动（<span class="math inline"><em>v</em><sub><em>x</em></sub>, <em>v</em><sub><em>y</em></sub>, <em>v</em><sub><em>z</em></sub></span>）
+每个方向动能：<span class="math inline">$\frac{1}{2} m v_i^2$</span> →
+贡献 <span class="math inline">$\frac{1}{2} k_{\mathrm{B}} T$</span>
+总平均动能：<span class="math inline">$\frac{3}{2} k_{\mathrm{B}}
+T$</span> 摩尔定容热容：<span class="math inline">$C_V = \frac{3}{2}
+R$</span>（<span class="math inline"><em>R</em> = <em>N</em><sub><em>A</em></sub><em>k</em><sub>B</sub></span>）</p>
+<p>例2：双原子理想气体（如 N₂, O₂）— 常温下 平动：3 个 → <span class="math inline">$\frac{3}{2} k_{\mathrm{B}} T$</span> 转动：2
+个（绕垂直轴）→ <span class="math inline">$2 \times \frac{1}{2}
+k_{\mathrm{B}} T = k_{\mathrm{B}} T$</span>
+振动：通常被“冻结”（因能级间距大，<span class="math inline"><em>k</em><sub>B</sub><em>T</em> ≪ ℏ<em>ω</em></span>）
+总平均能量 ≈ <span class="math inline">$\frac{5}{2} k_{\mathrm{B}}
+T$</span> <span class="math inline">$C_V = \frac{5}{2} R$</span></p>
+<blockquote>
+<p>若温度很高（如 &gt; 2000 K），振动被激发，则再加 <span class="math inline"><em>k</em><sub>B</sub><em>T</em></span>（动能+势能），总能量
+= <span class="math inline">$\frac{7}{2} k_{\mathrm{B}} T$</span>，<span class="math inline">$C_V = \frac{7}{2} R$</span></p>
+</blockquote>
+<p>例3：固体（爱因斯坦模型） 每个原子视为三维独立谐振子 每个方向：动能 +
+势能 → 各 <span class="math inline">$\frac{1}{2} k_{\mathrm{B}}
+T$</span> → 共 <span class="math inline"><em>k</em><sub>B</sub><em>T</em></span> 每维 3 维 →
+每原子平均能量 = <span class="math inline">3<em>k</em><sub>B</sub><em>T</em></span> 1
+摩尔固体（<span class="math inline"><em>N</em><sub><em>A</em></sub></span> 个原子）→
+内能 <span class="math inline"><em>U</em> = 3<em>R</em><em>T</em></span>
+<span class="math inline"><em>C</em><sub><em>V</em></sub> = 3<em>R</em> ≈ 25, J/mol·K</span>
+→ 杜隆–珀蒂定律（Dulong–Petit law）</p>
+<p>室温下常见物质的热容数据</p>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 5%" />
+<col style="width: 6%" />
+<col style="width: 11%" />
+<col style="width: 12%" />
+</colgroup>
+<thead>
+<tr>
+<th>物质（单质/化合物）</th>
+<th>硅 (Si)</th>
+<th>铝 (Al)</th>
+<th>铁 (Fe)</th>
+<th>钙 (Ca)</th>
+<th>钠 (Na)</th>
+<th>钾 (K)</th>
+<th>镁 (Mg)</th>
+<th>氯化钠 (NaCl)</th>
+<th>碳酸钙 (CaCO₃)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>摩尔热容 <br>(J·mol⁻¹·K⁻¹，25 °C)</td>
+<td>19.789</td>
+<td>24.20</td>
+<td>25.10</td>
+<td>25.929</td>
+<td>28.23</td>
+<td>29.60</td>
+<td>24.87</td>
+<td>50.5</td>
+<td>81.88</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>注：以上数据为常压、室温（约
+25 °C）下的近似值，来源于标准热力学数据表（如 CRC Handbook、NIST
+Chemistry WebBook 等）。不同来源可能存在微小差异。</p>
+</blockquote>
+<p>四、能量均分定理的适用条件</p>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 93%" />
+</colgroup>
+<thead>
+<tr>
+<th>条件</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>经典极限</td>
+<td>系统必须满足 <span class="math inline"><em>k</em><sub>B</sub><em>T</em> ≫ <em>Δ</em><em>E</em></span>，其中
+<span class="math inline"><em>Δ</em><em>E</em></span>
+是相邻量子能级间距。否则量子效应显著，定理失效。</td>
+</tr>
+<tr>
+<td>热平衡</td>
+<td>系统需处于热力学平衡态。</td>
+</tr>
+<tr>
+<td>二次项存在</td>
+<td>仅适用于哈密顿量中以平方形式出现的变量（如 <span class="math inline"><em>x</em><sup>2</sup>, <em>p</em><sup>2</sup></span>）。</td>
+</tr>
+<tr>
+<td>遍历性</td>
+<td>系统需能遍历所有可能的微观状态（ergodic hypothesis）。</td>
+</tr>
+</tbody>
+</table>
+<p>五、量子修正与低温行为</p>
+<p>在低温下，量子效应不可忽略： 振动自由度：谐振子能级为 <span class="math inline">$E_n = \hbar \omega (n + \frac{1}{2})$</span>。当
+<span class="math inline"><em>k</em><sub>B</sub><em>T</em> ≪ ℏ<em>ω</em></span>
+时，几乎全部粒子处于基态，无法吸收热能 → 振动对热容无贡献。
+电子自由度：在金属中，只有费米面附近 <span class="math inline"><em>k</em><sub>B</sub><em>T</em></span>
+范围内的电子可被激发，电子热容 <span class="math inline"><em>C</em><sub><em>e</em></sub> ∝ <em>T</em></span>，远小于经典预测。
+声子（晶格振动）：德拜模型指出，低温下固体热容 <span class="math inline"><em>C</em><sub><em>V</em></sub> ∝ <em>T</em><sup>3</sup></span>，而非经典的常数
+<span class="math inline">3<em>R</em></span>。
+正是由于能量均分定理在低温下的失效，推动了量子力学的发展（如普朗克黑体辐射、爱因斯坦固体模型）。</p>
+<p>六、总结</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 85%" />
+</colgroup>
+<thead>
+<tr>
+<th>概念</th>
+<th>核心要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>自由度</td>
+<td>描述系统微观状态所需的独立变量数，分为平动、转动、振动等。</td>
+</tr>
+<tr>
+<td>能量均分定理</td>
+<td>每个二次自由度平均分配 <span class="math inline">$\frac{1}{2}
+k_{\mathrm{B}} T$</span> 能量。</td>
+</tr>
+<tr>
+<td>热容来源</td>
+<td>热容正比于活跃的自由度数量。</td>
+</tr>
+<tr>
+<td>经典 vs 量子</td>
+<td>高温 → 经典均分成立；低温 → 量子冻结某些自由度。</td>
+</tr>
+<tr>
+<td>历史意义</td>
+<td>“紫外灾难”和低温热容异常暴露了经典物理局限，催生量子理论。</td>
+</tr>
+</tbody>
+</table>
+<p>如果你希望深入探讨某一类系统（如非谐振子、磁性系统、二维材料）中的自由度与热容，或者想了解如何从配分函数推导能量均分定理，也可以继续提问！</p>
+<h4 id="爱因斯坦固体的摩尔熵">7. 爱因斯坦固体的摩尔熵</h4>
+<p>计算爱因斯坦固体在 <span class="math inline"><em>T</em> = <em>θ</em><sub><em>E</em></sub></span>
+时的摩尔熵，详细解释这个摩尔熵的含义。 提示：熵的表达式为 <span class="math inline"><em>S</em>(<em>T</em>) = ∫<sub>0</sub><sup><em>T</em></sup>(<em>c</em><sub><em>V</em></sub>/<em>T</em>)<em>d</em><em>T</em></span>。请对该积分进行数值计算。</p>
+<p>热力学中，熵的微分定义为 <span class="math inline">$\mathrm
+dS=\frac{\delta Q_{\mathrm{rev}}}{T}$</span>，其中 <span class="math inline"><em>δ</em><em>Q</em><sub>rev</sub></span>
+是可逆过程中的热量交换。当体系在恒定体积 <span class="math inline"><em>V</em></span> 下缓慢、可逆地升温时，有 <span class="math inline"><em>δ</em><em>Q</em><sub>rev</sub> = <em>C</em><sub><em>V</em></sub>d<em>T</em></span>，于是得到
+<span class="math inline">$\mathrm dS=\frac{C_V}{T},\mathrm
+dT$</span>。对温度从 <span class="math inline">0</span> 积分到 <span class="math inline"><em>T</em></span>，就得到你写出的公式。因此，这个公式成立需要几个隐含条件：过程是可逆的，体积保持不变，并且体系在
+<span class="math inline"><em>T</em> = 0</span>
+处的熵被取为零或作为参考点。这一点通常结合热力学第三定律来理解，即理想晶体在绝对零度时
+<span class="math inline"><em>S</em>(0) = 0</span>。</p>
+<p>三维固体的爱因斯坦热容公式为：<span class="math inline">$\displaystyle
+摩尔定容热容：c_{V}=3R*(\frac{θ_E}{T})^2*\frac{e^{\frac{θ_E}{T}}}{(e^{\frac{θ_E}{T}}-1)^2}$</span>
+又因为：<span class="math inline">$\displaystyle S(T) = \int_0^T
+\frac{c_V}{T} dT&#39;=\int_0^T \frac{1}{T}*
+3R*(\frac{θ_E}{T})^2*\frac{e^{\frac{θ_E}{T}}}{(e^{\frac{θ_E}{T}}-1)^2}dT$</span></p>
+<p>记：<span class="math inline">$x= \dfrac{θ_{E}}{T}$</span>，则：<span class="math inline">$T= \dfrac{θ_{E}}{x}$</span> ，<span class="math inline">$dT=- \dfrac{θ_{E}}{x^2}dx$</span></p>
+<p>则：<span class="math inline">$\displaystyle S(T)=3R
+\int_{+\infty}^{\frac{θ_{E}}{T}} \frac{1}{T}*x^2*
+\frac{e^x}{(e^x-1)^2}\left( - \frac{θ_{E}}{x^2} \right)dx$</span></p>
+<p>则：<span class="math inline">$\displaystyle S(T)=3R
+\int_{\frac{θ_{E}}{T}}^{+\infty} \frac{xe^x}{(e^x-1)^2}dx$</span></p>
+<p>当：<span class="math inline"><em>T</em> = <em>θ</em><sub><em>E</em></sub></span>时，<span class="math inline">$\displaystyle S(T)=3R \int_{1}^{+\infty}
+\frac{xe^x}{(e^x-1)^2}dx$</span></p>
+<p>因为：<span class="math inline">$\displaystyle \int_{1}^{+\infty}
+\frac{xe^x}{(e^x-1)^2}dx=-\int_{1}^{+\infty} x
+d{\frac{1}{e^x-1}}$</span></p>
+<p>则：<span class="math inline">$\displaystyle \int_{1}^{+\infty}
+\frac{xe^x}{(e^x-1)^2}dx= -
+\left[\frac{x}{e^x-1}\right]_{1}^{+\infty}+\int_{1}^{+\infty}{\frac{1}{e^x-1}}dx$</span></p>
+<p>则：<span class="math inline">$\displaystyle \int_{1}^{+\infty}
+\frac{xe^x}{(e^x-1)^2}dx= - \left[ 0- \frac{1}{e-1}
+\right]+\int_{1}^{+\infty}{\frac{1}{e^x-1}}dx$</span></p>
+<p>则：<span class="math inline">$\displaystyle \int_{1}^{+\infty}
+\frac{xe^x}{(e^x-1)^2}dx=
+\frac{1}{e-1}+\int_{1}^{+\infty}{\frac{1}{e^x-1}}dx$</span></p>
+<p>记：<span class="math inline"><em>t</em> = <em>e</em><sup><em>x</em></sup> − 1</span>，则：<span class="math inline"><em>x</em> = ln (<em>t</em> + 1)</span></p>
+<p>则：<span class="math inline">$\displaystyle
+\int_{1}^{+\infty}{\frac{1}{e^x-1}}dx= \int_{e-1}^{+\infty}
+\frac{1}{t*(t+1)}dt$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+\int_{1}^{+\infty}{\frac{1}{e^x-1}}dx= \int_{e-1}^{+\infty} (\frac{1}{t}
+- \frac{1}{t+1})dt$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+\int_{1}^{+\infty}{\frac{1}{e^x-1}}dx=
+\left[  \ln(\frac{t}{t+1})   \right]_{e-1}^{+\infty}$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+\int_{1}^{+\infty}{\frac{1}{e^x-1}}dx= 0 - (\ln(e-1)-1)= 1 -
+\ln(e-1)$</span></p>
+<p>则：<span class="math inline">$\displaystyle \int_{1}^{+\infty}
+\frac{xe^x}{(e^x-1)^2}dx= \frac{1}{e-1}+1 - \ln(e-1)$</span></p>
+<p>又因为：<span class="math inline">$\displaystyle S(T)=3R
+\int_{1}^{+\infty} \frac{xe^x}{(e^x-1)^2}dx$</span></p>
+<p>则：<span class="math inline">$\displaystyle S(T)=3R*(\frac{1}{e-1}+1
+- \ln(e-1))$</span></p>
+<p>则：<span class="math inline"><em>S</em>(<em>T</em>) ≈ 3.122<em>R</em> ≈ 25.96 <em>J</em><em>m</em><em>o</em><em>l</em><sup>−1</sup><em>K</em><sup>−1</sup></span></p>
+<p>摩尔熵的含义</p>
+<p>一、这个摩尔熵在热力学层面的含义
+你得到的是爱因斯坦固体在定容、可逆升温条件下，从 <span class="math inline"><em>T</em> = 0</span> 加热到 <span class="math inline"><em>T</em> = <em>θ</em><sub><em>E</em></sub></span>
+时，每摩尔晶体所“积累”的熵增 <span class="math inline">$S_m(\theta_E)=3R\left(\frac{1}{e-1}+1-\ln(e-1)\right)\approx
+25.96\ \mathrm{J,mol^{-1}K^{-1}}$</span>。</p>
+<p>在热力学意义上，熵是一个状态函数，衡量的是体系在给定宏观约束（这里是定容）下，可实现的微观状态数的对数。</p>
+<p>这个摩尔熵可以理解为：</p>
+<p>1）它不是“绝对混乱度”，而是相对于 <span class="math inline"><em>T</em> = 0</span> 的参考值 你已经明确使用了
+<span class="math inline"><em>S</em>(0) = 0</span>
+作为基准，这等价于假定理想晶体在绝对零度时只有一个可实现的微观态（第三定律）。因此<br />
+<span class="math inline"><em>S</em><sub><em>m</em></sub>(<em>θ</em><sub><em>E</em></sub>)</span>
+表示的是从完全冻结的晶格振动状态，到 <span class="math inline"><em>T</em> = <em>θ</em><sub><em>E</em></sub></span>
+时，晶格热振动所引入的额外微观态数所对应的熵增。</p>
+<p>2）“摩尔熵”意味着：每摩尔原子所对应的晶格振动自由度的总体贡献
+在爱因斯坦模型中，每个原子被视为 3
+个相互独立、频率相同的量子简谐振子。因此，<span class="math inline"><em>S</em><sub><em>m</em></sub> = <em>N</em><sub><em>A</em></sub>×</span>（单原子
+3 个振子的平均熵贡献）。<br />
+你得到的 <span class="math inline">3<em>R</em></span> 作为整体因子，正是
+<span class="math inline">3<em>N</em><sub><em>A</em></sub><em>k</em><sub><em>B</em></sub></span>
+的体现。</p>
+<p>3）该数值描述的是“振动无序性”，而非位置或成分无序<br />
+这里的熵完全来自声子（或等价地：量子化晶格振动）的占据方式，而不是原子在空间中的排列混乱。晶体仍然是高度有序的周期结构，但其振动量子在不同能级上的分布方式变得更加多样。</p>
+<p>二、与高温极限的对比有助于理解其大小 在 <span class="math inline"><em>T</em> ≫ <em>θ</em><sub><em>E</em></sub></span>
+时，爱因斯坦固体的熵近似为<span class="math inline">$S_m \approx
+3R\left[\ln\left(\frac{T}{\theta_E}\right)+1\right]$</span>。 当 <span class="math inline"><em>T</em> = <em>θ</em><sub><em>E</em></sub></span>
+时，这一表达式给出<span class="math inline"><em>S</em><sub><em>m</em></sub> ≈ 3<em>R</em></span>，与你精确计算得到的
+<span class="math inline">3.122<em>R</em></span> 非常接近。这说明 <span class="math inline"><em>T</em> = <em>θ</em><sub><em>E</em></sub></span>
+正好是量子振动向经典振动过渡的温度尺度，其熵已达到“每自由度约 <span class="math inline"><em>k</em><sub><em>B</em></sub></span>”的水平。</p>
+<p>三、小结
+你算出的摩尔熵可以这样概括理解：在爱因斯坦模型下，当温度升至特征温度
+<span class="math inline"><em>θ</em><sub><em>E</em></sub></span>
+时，每摩尔晶体因晶格振动被激活而获得的热力学熵；等价地，它衡量的是此时声子占据方式所对应的微观状态空间的对数规模。</p>
+<p>从数量级、数学形式和物理解释三个层面看，这个结果都是完全合理且具有清晰物理意义的。</p>
+<h3 id="四原子光谱">四、原子光谱</h3>
+<p>原子光谱是指原子中的电子在不同能级之间跃迁时，吸收或发射特定波长的光而形成的光谱。它表现为不连续的线状谱（特征谱线），每种元素都有独特的谱线分布，如氢原子光谱的巴耳末系列。</p>
+<p>原理：原子电子处于分立能级。电子从低能级吸收能量跃迁到高能级产生吸收光谱；从高能级返回低能级发射光子产生发射光谱。能量差决定光波长，符合玻尔频率条件：<span class="math inline"><em>Δ</em><em>E</em> = <em>h</em><em>ν</em></span>，其中<span class="math inline"><em>h</em></span>为普朗克常量，<span class="math inline"><em>ν</em></span>为频率。</p>
+<p>应用：原子光谱是元素定性与定量分析的重要工具，灵敏度高，可检测痕量元素。广泛用于光谱分析（如发现新元素铷、铯）、材料纯度检验、环境监测、天体化学组成研究及微量金属检测等领域。</p>
+<p>实验上：气态原子在放电或加热条件下会发射特定波长的光，形成发射光谱；当连续光通过原子蒸气时，原子选择性吸收某些波长，形成吸收光谱。两者在波长位置上一一对应，反映原子内部的能级结构。</p>
+<p>类型：主要包括原子发射光谱（AES，如ICP-OES）、原子吸收光谱（AAS）、原子荧光光谱（AFS）。这些技术基于激发、吸收或荧光过程。</p>
+<p>经典物理无法解释原子光谱的离散性。玻尔模型首次引入量子化假设，认为电子只能处在若干离散轨道上，其能量为
+<span class="math inline">$\displaystyle E_n=-\frac{m_e e^4}{2\hbar^2
+n^2}$</span>。当电子在不同能级间跃迁时，辐射或吸收光子的能量满足 <span class="math inline"><em>h</em><em>ν</em> = <em>E</em><sub><em>i</em></sub> − <em>E</em><sub><em>f</em></sub></span>，从而解释了氢原子光谱的里德伯公式。尽管玻尔模型只适用于类氢原子，但它揭示了能级量子化的核心思想。</p>
+<p>在现代量子力学中，原子光谱由电子在原子势场中的定态解决定。薛定谔方程给出能级本征值，而精细结构、超精细结构以及外磁场和电场作用下的塞曼效应、斯塔克效应，则进一步导致谱线分裂。原子光谱不仅是研究原子结构的关键工具，也广泛应用于元素分析、天体物理和精密计量（如原子钟）。</p>
+<h5 id="玻尔氢原子模型1913">玻尔氢原子模型1913</h5>
+<p>一、背景与动机</p>
+<p>1913年，丹麦物理学家尼尔斯·玻尔（Niels
+Bohr）在卢瑟福的核式原子模型基础上，结合普朗克的量子概念和氢原子光谱的实验规律（如巴尔末公式），提出了著名的玻尔原子模型。这一模型首次成功解释了氢原子光谱的离散谱线（特别是巴尔末系），标志着量子理论在原子结构研究中的重大突破。</p>
+<p>卢瑟福模型的问题：1911年卢瑟福通过α粒子散射实验提出原子具有一个带正电的微小核，电子绕核运动。但经典电磁理论预言，加速运动的电子会不断辐射能量，轨道半径逐渐减小，最终坠入原子核，原子不稳定；同时应发出连续光谱，与实验中观察到的离散线状光谱矛盾。</p>
+<p>氢原子光谱的经验规律：1885年巴尔末发现氢原子可见光区谱线波长满足：<span class="math inline">$\displaystyle \frac{1}{\lambda} = R \left(
+\frac{1}{2^2} - \frac{1}{n^2} \right), \quad n = 3,4,5,\dots$</span>
+其中 <span class="math inline"><em>R</em></span>
+是里德伯常量。这暗示能级存在某种量子化结构。</p>
+<p>二、玻尔模型的三大基本假设（1913年）</p>
+<p>定态假设（Stationary States）<br />
+电子只能在某些特定的稳定轨道上绕核运动，这些轨道称为“定态”。在定态中，电子不辐射电磁波，因此原子是稳定的。</p>
+<p>角动量量子化条件（Quantization Condition）<br />
+电子轨道角动量 L必须是 <span class="math inline">ℏ = <em>h</em>/2<em>π</em></span>的整数倍：<span class="math inline"><em>L</em> = <em>m</em><sub><em>e</em></sub><em>v</em><em>r</em> = <em>n</em>ℏ,  <em>n</em> = 1, 2, 3, …</span>
+这是玻尔引入的核心量子化条件，将经典轨道与量子数联系起来。</p>
+<p>频率条件（跃迁假设）<br />
+当电子从一个能量为 <span class="math inline"><em>E</em><sub><em>i</em></sub></span>
+的定态跃迁到另一个能量为 <span class="math inline"><em>E</em><sub><em>f</em></sub></span>
+的定态时，会吸收或发射一个光子，其频率 <span class="math inline"><em>ν</em></span>满足：<span class="math inline"><em>h</em><em>ν</em> = |<em>E</em><sub><em>i</em></sub> − <em>E</em><sub><em>f</em></sub>|</span>
+，这直接联系了光谱线频率与能级差。</p>
+<p>三、玻尔模型对氢原子的定量处理</p>
+<p>根据玻尔的假设，推导氢原子中电子的允许能级和可能的光谱线。</p>
+<p>静电力：<span class="math inline">$\displaystyle \vec{F_{e}}=-
+\frac{ke^2}{r^2}$</span> ，其中<span class="math inline">$\displaystyle
+k= \frac{1}{4πε_{0}}$</span>
+，以原子核质心所在位置为原点，正方向指向电子所在方向，静电力中的负号表示电子受到原子核的吸引力。</p>
+<p>做匀速圆周运动需要提供的向心力：<span class="math inline">$\displaystyle F_{向}= \frac{mv^2}{r}$</span></p>
+<p>角动量定义为：<span class="math inline"><em>L⃗</em> = <em>r⃗</em> × <em>m</em><em>v⃗</em></span>
+角动量的模长为<span class="math inline">||<em>L⃗</em>|| = <em>r</em><em>m</em><em>v</em>sin 90° = <em>r</em><em>m</em><em>v</em></span></p>
+<p>根据假设可得如下方程组： <span class="math inline">$\displaystyle
+\frac{ke^2}{r^2}= \frac{mv^2}{r} \quad \text{①}$</span> <span class="math inline"><em>r</em><em>m</em><em>v</em> = <em>n</em>ℏ  ②</span></p>
+<p>由2式得：<span class="math inline">$\displaystyle v=
+\frac{n\hbar}{mr} \quad \text{③}$</span> 将3式代入1式，并整理得：<span class="math inline">$\displaystyle r= \frac{n^2\hbar^2}{mke^2} \quad
+\text{④}$</span> 把4式回代入3式得：<span class="math inline">$\displaystyle v= \frac{ke^2}{n\hbar} \quad
+\text{⑤}$</span></p>
+<p>电子总能量为：<span class="math inline"><em>E</em><sub><em>总</em></sub> = <em>E</em><sub><em>K</em></sub> + <em>E</em><sub><em>P</em></sub></span>
+对于<span class="math inline"><em>E</em><sub><em>P</em></sub></span>的计算，以原子核质心所在位置为原点，正方向指向电子所在方向，静电力中的负号表示电子受到原子核的吸引力。以无穷远处为零势能面。
+计算静电力所作的功：<span class="math inline">$\displaystyle W=
+\int_{+\infty}^{r} \vec{F} _{e}dr \; = \int_{+\infty}^{r} -
+\frac{ke^2}{r^2}dr= \;ke^2 \left[ \frac{1}{r}\right]_{+\infty}^{r}=
+\frac{ke^2}{r}$</span><br />
+则：<span class="math inline"><em>Δ</em><em>E</em> = <em>E</em><sub><em>P</em></sub> − 0 = −<em>W</em></span>
+则：<span class="math inline">$\displaystyle E_{P}= -W=
+-\frac{ke^2}{r}$</span> 则：<span class="math inline">$\displaystyle
+E_{总}= \frac{mv^2}{2}  -\frac{ke^2}{r} \quad \text{⑥}$</span></p>
+<p>将4式和5式代入6式，并整理得：<span class="math inline">$\displaystyle
+E_{总}= -\frac{mk^2e^4}{2n^2\hbar^2}$</span> ，其中：<span class="math inline">$\displaystyle k= \frac{1}{4πε_{0}}$</span>，<span class="math inline">$\displaystyle \hbar= \frac{h}{2π}$</span></p>
+<p>整理得：<span class="math inline">$\displaystyle E_{总}= -
+\frac{m_{e}e^4}{8ε_{0}^2h^2} \frac{1}{n^2} = - \frac{13.6 \; eV}{n^2}
+\quad  其中：n=1, 2, 3, 4, \dots$</span></p>
+<p>假设电子从高能级<span class="math inline"><em>n</em><sub><em>i</em></sub></span>(外层轨道)跃迁到低能级<span class="math inline"><em>n</em><sub><em>f</em></sub></span>(内层轨道)，此过程释放的能量为：<span class="math inline"><em>Δ</em><em>E</em> = <em>E</em><sub><em>n</em><sub><em>i</em></sub></sub> − <em>E</em><sub><em>n</em><sub><em>f</em></sub></sub></span>
+又因为：<span class="math inline">$\displaystyle \Delta E= hν =
+\frac{hc}{λ}$</span></p>
+<p>得光谱线频率/波数：<span class="math inline">$\displaystyle
+\frac{1}{λ}= \frac{m_{e}e^4}{8ε_{0}^2h^3c}(\frac{1}{n_{f}^2}-
+\frac{1}{n_{i}^2})$</span></p>
+<p>结论：</p>
+<p>能级公式：<span class="math inline">$\displaystyle E_{总}= -
+\frac{m_{e}e^4}{8ε_{0}^2h^2} \frac{1}{n^2} = - \frac{13.6 \; eV}{n^2}
+\quad  其中：n=1, 2, 3, 4, \dots$</span></p>
+<p>允许轨道半径为：<span class="math inline">$\displaystyle r_{n}=
+\frac{ε_{0}h^2}{πm_{e}e^2}n^2= a_{0}n^2$</span> ，其中：<span class="math inline"><em>a</em><sub>0</sub> ≈ 0.529<em>Å</em></span>
+是玻尔半径，对应n=1的基态轨道。</p>
+<p>光谱线频率/波数：<span class="math inline">$\displaystyle
+\frac{1}{λ}=  \frac{m_{e}e^4}{8ε_{0}^2h^3c}(\frac{1}{n_{f}^2}-
+\frac{1}{n_{i}^2})=  R(\frac{1}{n_{f}^2}- \frac{1}{n_{i}^2})
+\quad$</span> 其中<span class="math inline"><em>R</em> = 1.097 * 10<sup>5</sup> <em>c</em><em>m</em><sup>−1</sup></span>
+为里德伯常数。</p>
+<p>巴尔末系对应 <span class="math inline"><em>n</em><sub><em>f</em></sub> = 2</span> ，莱曼系
+<span class="math inline"><em>n</em><sub><em>f</em></sub> = 1</span>
+，帕邢系 <span class="math inline"><em>n</em><sub><em>f</em></sub> = 3</span>，等。</p>
+<p>四、意义与局限</p>
+<p>成功之处：首次从理论上推导出氢原子光谱的经验公式；引入量子化概念到原子结构，解释了原子稳定性；为后来量子力学的发展（如索末菲推广、薛定谔方程）奠定基础。</p>
+<p>局限性：仅适用于单电子体系（H、He⁺、Li²⁺等）；无法解释谱线强度、精细结构、塞曼效应等；本质上仍是“半经典”模型（轨道概念
++ 人为量子化）。</p>
+<p>总结：玻尔通过引入量子化角动量和定态跃迁的概念，在1913年构建了一个革命性的原子模型，成功解释了氢原子光谱的离散性，尤其是巴尔末系。尽管后来被更完备的量子力学所取代，但玻尔模型是通向现代原子理论的关键桥梁，也体现了“对应原理”和“旧量子论”的典型思想。</p>
+<h3 id="五物质的波粒二象性1924">五、物质的波粒二象性1924</h3>
+<p>一、波粒二象性的基本概念</p>
+<p>波粒二象性是指微观粒子（如光子、电子、质子等）在不同实验条件下，既表现出粒子性，又表现出波动性的基本物理特征。这一性质并非经典物理中“波”和“粒子”的简单叠加，而是量子对象所固有的统一属性。</p>
+<p>在经典物理中：粒子具有确定的位置和动量，轨迹可预测；波具有空间延展性，可发生干涉和衍射。
+量子力学表明，上述区分在微观尺度上不再成立，任何微观对象都必须同时用粒子和波的概念来描述。</p>
+<p>二、光的波粒二象性</p>
+<p>光的波动性 光的波动性在 19
+世纪已通过多种实验确立，其中最典型的是干涉和衍射实验。以双缝干涉为例，若光具有波动性，则在屏幕上应出现明暗相间的干涉条纹。实验结果与波动理论预测一致，说明光可用波来描述，其特征量包括波长
+<span class="math inline"><em>λ</em></span>、频率 <span class="math inline"><em>ν</em></span>
+和相位。经典电磁理论中，光被视为电磁波，其能量连续分布。</p>
+<p>光的粒子性 光的粒子性由一系列实验揭示，其中最关键的是光电效应。</p>
+<p>光电效应实验表明： 只有当入射光频率 <span class="math inline"><em>ν</em></span> 大于某一阈值频率 <span class="math inline"><em>ν</em><sub>0</sub></span>
+时，才能产生光电子；光电子的最大动能与光的频率成正比，而与光强无关。</p>
+<p>爱因斯坦提出光量子假设，认为光由离散的能量单元组成，其能量为<span class="math inline"><em>E</em> = <em>h</em><em>ν</em></span> ，其中
+<span class="math inline"><em>h</em></span> 为普朗克常数。
+该公式无法从经典波动理论推出，明确表明光具有粒子性（光子）。能量量子化。</p>
+<p>三、物质波的提出：德布罗意假设</p>
+<p>德布罗意关系
+在光的波粒二象性基础上，德布罗意提出一个对称性的假设：既然波（光）具有粒子性，那么粒子也应具有波动性。他给出了粒子波长与其动量之间的关系：<span class="math inline">$\displaystyle \lambda = \frac{h}{p}$</span>
+，其中： <span class="math inline"><em>λ</em></span> 为德布罗意波长；
+<span class="math inline"><em>p</em></span>
+为粒子的线动量。对于非相对论情形，若粒子质量为 <span class="math inline"><em>m</em></span>、速度为 <span class="math inline"><em>v</em></span>，则<span class="math inline"><em>p</em> = <em>m</em><em>v</em></span> ，从而<span class="math inline">$\displaystyle \lambda = \frac{h}{mv}$</span>
+，这一关系是量子力学的基本出发点之一。</p>
+<p>物质波的实验验证</p>
+<p>戴维森–革末实验（1927）
+戴维森（Davisson）与革末（Germer）将一束低能电子入射到镍单晶表面，观察到衍射图样，其角度分布符合布拉格定律：
+<span class="math inline">2<em>d</em>sin <em>θ</em> = <em>n</em><em>λ</em></span>
+，其中 <span class="math inline"><em>d</em></span> 为晶面间距，<span class="math inline"><em>θ</em></span> 为掠射角，<span class="math inline"><em>n</em></span> 为衍射级次。通过测量 <span class="math inline"><em>θ</em></span>
+并代入德布罗意波长，结果与理论高度一致，首次直接证实电子具有波动性。</p>
+<p>G.P. 汤姆孙电子衍射实验（1927） G.P.
+汤姆孙使高能电子穿过金属多晶薄膜，观察到同心圆环状衍射图样，与X射线通过多晶样品产生的德拜–谢乐环类似。这进一步支持电子具有波动性，并验证了德布罗意公式在高能情形下的适用性。</p>
+<p>中子与原子干涉实验 后续实验将波粒二象性推广至更重粒子：
+中子干涉实验（1970s）：利用完美硅晶体对热中子进行分束与干涉，观测到清晰的干涉条纹。
+原子干涉实验（1990s）：使用激光冷却的钠原子或氦原子束，在光栅上产生衍射，测得的波长同样符合
+<span class="math inline"><em>λ</em> = <em>h</em>/<em>p</em></span>。</p>
+<p>这些实验表明，所有物质粒子均具有波动性，其可观测程度取决于德布罗意波长相对于系统尺度的大小。</p>
+<p>双缝干涉实验（电子版本） 最直观体现波粒二象性的实验是电子双缝干涉：
+单个电子逐个通过双缝后，在探测屏上累积形成干涉条纹；
+若试图测量电子通过哪条缝，则干涉图样消失，呈现粒子性行为。</p>
+<p>该实验揭示了互补原理：波动性与粒子性不可同时观测，取决于测量方式。</p>
+<p>四、波粒二象性的数学表述</p>
+<p>波函数的引入
+在量子力学中，微观粒子的波动性不再用经典波描述，而是用波函数 <span class="math inline"><em>ψ</em>(<strong>r</strong>, <em>t</em>)</span>
+描述。 波函数满足薛定谔方程，其时间依赖形式为：<span class="math inline">$\displaystyle i\hbar \frac{\partial
+\psi(\mathbf{r},t)}{\partial t}=\left[  -\frac{\hbar^2}{2m}\nabla^2 +
+V(\mathbf{r},t)  \right] \psi(\mathbf{r},t)$</span> 其中：<span class="math inline">$\hbar = \frac{h}{2\pi}$</span> ； <span class="math inline"><em>V</em>(<strong>r</strong>, <em>t</em>)</span>
+为势能函数。</p>
+<p>概率解释（Born 解释） 波函数本身并不直接对应可观测量，其物理意义由
+Born 给出：<span class="math inline">|<em>ψ</em>(<strong>r</strong>, <em>t</em>)|<sup>2</sup><em>d</em><em>τ</em></span>
+，表示粒子在时刻 <span class="math inline"><em>t</em></span> 出现在体元
+<span class="math inline"><em>d</em><em>τ</em></span>
+内的概率。因此：波函数体现波动性（连续分布、干涉叠加）；概率的离散测量结果体现粒子性。</p>
+<p>五、海森堡不确定性原理</p>
+<p>波粒二象性直接导致了经典力学确定论的崩溃。由于粒子具有波动性，我们无法同时精确测量其位置
+<span class="math inline"><em>x</em></span> 和动量 <span class="math inline"><em>p</em><sub><em>x</em></sub></span>。根据傅里叶分析，一个局域化的波包（代表粒子位置明确）必然由许多不同波长的平面波叠加而成（代表动量不确定）。两者满足：<span class="math inline">$\displaystyle \Delta x \cdot \Delta p_x \ge
+\frac{\hbar}{2}$</span>
+，注意：这不是由于测量仪器的精度限制，而是微观物质波粒二象性所固有的本征属性。</p>
+<p>总结：互补原理 尼尔斯·玻尔提出了互补原理（Complementarity
+Principle）：波动性和粒子性是同一客体在不同实验条件下的表现。在某一个实验中，我们观测到波的特征（如衍射），就无法观测到其粒子的特征（如精确轨迹）；反之亦然。</p>
+<p>在随后的量子化学研究中，我们将使用薛定谔方程来求解体系的波函数，从而计算出原子和分子的电子结构、能量水平及化学性质。</p>
+<h3 id="练习题-exercises">练习题 (Exercises)</h3>
+<p><strong>0.1 计算以下运动被激发时所涉及的量子大小： (a) 周期为 <span class="math inline">1.0, fs</span> 的电子运动； (b) 周期为 <span class="math inline">10, fs</span> 的分子振动； (c) 周期为 <span class="math inline">1.0, s</span> 的单摆。</strong></p>
+<p>因为：<span class="math inline">$\nu=\frac{1}{T}\qquad$</span> <span class="math inline"><em>E</em> = <em>h</em><em>ν</em>   </span> <span class="math inline">$E=\frac{h}{T}\qquad$</span></p>
+<p>已知：<span class="math inline"><em>h</em> = 6.626 * 10<sup>−34</sup> Js   </span>
+<span class="math inline">1<em>f</em><em>s</em> = 1 * 10<sup>−15</sup> s   </span>
+<span class="math inline">1eV = 1.602 * 10<sup>−19</sup> J</span></p>
+<p>计算得：<span class="math inline"><em>E</em><sub><em>a</em></sub> = 4.14 eV   </span>
+<span class="math inline"><em>E</em><sub><em>b</em></sub> = 0.414 eV   </span>
+<span class="math inline"><em>E</em><sub><em>c</em></sub> = 4.14 * 10<sup>−15</sup> eV  </span></p>
+<p>物理意义： (a) 电子运动周期 <span class="math inline">1 fs</span>，量子能量在可见光/紫外区域，对应原子外层电子跃迁。
+(b) 分子振动周期 <span class="math inline">10 fs</span>，量子能量对应红外振动光谱。 (c)
+单摆的能量量子极小约为 <span class="math inline">10<sup>−15</sup> eV</span>，远小于热扰动，室温下
+<span class="math inline"><em>k</em><sub><em>B</em></sub><em>T</em> ≈ 0.025 eV</span>，因此宏观物体的量子化效应可忽略，表现为经典行为。</p>
+<p><strong>0.2 太阳发射能量的峰值出现在约 <span class="math inline">480, nm</span>
+处。假设太阳可被视为黑体辐射源，据此估算其表面温度。</strong></p>
+<p>根据Wien’s displacement Law，<span class="math inline"><em>λ</em><sub><em>m</em><em>a</em><em>x</em></sub>⋅ T  = 2.9 mm⋅ <em>K</em></span>
+解得：<span class="math inline"><em>T</em> ≈ 6042 <em>K</em></span>
+这与实际公认值（约 5778
+K）比较接近；差异主要源于题目中给出的峰值波长（480
+nm）略偏蓝（真实太阳辐射峰值在约 502 nm
+左右），但作为估算题是合理的。</p>
+<p><strong>0.3 某未知金属在室温下的比热容为 <span class="math inline">0.91, J ⋅ K<sup>−1</sup> ⋅ g<sup>−1</sup></span>。利用杜隆-珀蒂定律（Dulong
+and Petit’s law）来鉴别该金属。</strong></p>
+<p>根据Dulong and Petit’s law，固体金属单质在室温下的摩尔热容<span class="math inline"><em>C</em><sub><em>v</em>, <em>m</em><em>o</em><em>l</em><em>a</em><em>r</em></sub> ≈ 3<em>R</em></span>，其中<span class="math inline"><em>R</em> ≈ 8.314 <em>J</em><em>m</em><em>o</em><em>l</em><sup>−1</sup><em>K</em><sup>−1</sup> </span>为理想气体常数。
+已知<span class="math inline"><em>C</em><sub><em>v</em>, <em>m</em><em>a</em><em>s</em><em>s</em></sub> ≈ 0.91 <em>J</em> ⋅ <em>g</em><sup>−1</sup> ⋅ <em>K</em><sup>−1</sup> </span>，则相对原子质量为<span class="math inline">$\displaystyle
+M=\frac{C_{v,molar}}{C_{v,mass}}\;=\;27.40\;g\cdot mol^{-1}$</span>
+结论：金属Al的摩尔质量为<span class="math inline"><em>M</em>(Al) = 26.982 <em>g</em> ⋅ <em>m</em><em>o</em><em>l</em><sup>−1</sup></span>，推测为Al金属。</p>
+<p><strong>0.4 计算 <span class="math inline">1.00, mol</span>
+光子的能量，其波长分别为： (a) <span class="math inline">510, nm</span>（绿光）； (b) <span class="math inline">100, m</span>（无线电波）； (c) <span class="math inline">130, pm</span>（X射线）。</strong>
+单个光子的能量公式为：<span class="math inline">$E\;=h\cdot\nu\,=\frac{hc}{\lambda}\;$</span>，据此计算得：</p>
+<table>
+<colgroup>
+<col style="width: 3%" />
+<col style="width: 10%" />
+<col style="width: 27%" />
+<col style="width: 25%" />
+<col style="width: 35%" />
+</colgroup>
+<thead>
+<tr>
+<th></th>
+<th>波长</th>
+<th>单个光子能量</th>
+<th>单个光子能量</th>
+<th>1.00mol光子的能量</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a)</td>
+<td>510nm(绿光)</td>
+<td><span class="math inline">3.90 × 10<sup>−19</sup> <em>J</em></span></td>
+<td><span class="math inline">2.43 <em>e</em><em>V</em></span></td>
+<td><span class="math inline">2.35× 10<sup>2</sup> <em>K</em><em>J</em> <em>m</em><em>o</em><em>l</em><sup>−1</sup></span></td>
+</tr>
+<tr>
+<td>(b)</td>
+<td>100m(无线电波)</td>
+<td><span class="math inline">1.99  × 10<sup>−27</sup> <em>J</em></span></td>
+<td><span class="math inline">1.24× 10<sup>−8</sup> <em>e</em><em>V</em></span></td>
+<td><span class="math inline">1.20× 10<sup>−6</sup> <em>K</em><em>J</em> <em>m</em><em>o</em><em>l</em><sup>−1</sup></span></td>
+</tr>
+<tr>
+<td>(c)</td>
+<td>130pm(X射线)</td>
+<td><span class="math inline">1.529  × 10<sup>−15</sup> <em>J</em></span></td>
+<td><span class="math inline">9.54× 10<sup>3</sup> <em>e</em><em>V</em></span></td>
+<td><span class="math inline">9.20× 10<sup>5</sup> <em>K</em><em>J</em> <em>m</em><em>o</em><em>l</em><sup>−1</sup></span></td>
+</tr>
+</tbody>
+</table>
+<p>(a)：可见光（约100–300 kJ/mol) →
+能激发分子电子跃迁，参与光化学、光催化。 (b)：无线电波（约10⁻⁶ kJ/mol）→
+能量极低，无法引发化学反应。只能引起宏观振荡，不影响化学键。 (c)：X
+射线（约10⁶ kJ/mol）→ 能量远超化学键能，约<span class="math inline">10<sup>2</sup> ∼ 10<sup>3</sup> <em>k</em><em>J</em>/<em>m</em><em>o</em><em>l</em></span>，具有电离能力。可直接破坏电子结构，导致材料辐照损伤。</p>
+<p><strong>0.5 当波长为 <span class="math inline">25.878, pm</span>
+的X射线轰击石墨靶时，计算被散射角为 <span class="math inline">60<sup>∘</sup></span> 的辐射的波长。</strong></p>
+<p><strong>0.6 计算从洁净的钾表面（功函数 <span class="math inline"><em>Φ</em> = 2.3, eV</span>）被以下波长的光照射后发射出的电子的速度：
+(a) <span class="math inline">300 nm</span>； (b) <span class="math inline">600 nm</span>。</strong></p>
+<p><span class="math inline"><em>E</em><sub><em>k</em></sub>= <em>h</em><em>ν</em>  − <em>Φ</em></span></p>
+<p><span class="math inline">$E_k=\,\frac{m_ev^2}{2}$</span></p>
+<p><span class="math inline">$\displaystyle \Rightarrow\quad v=\,\sqrt{
+\frac{2(\frac{hc}{\lambda}-Φ)}{m_e}}$</span></p>
+<p><span class="math inline">⇒  <em>v</em><sub><em>a</em></sub>= 804 <em>K</em><em>m</em>⋅ <em>s</em><sup>−1</sup></span></p>
+<p><span class="math inline"><em>h</em><em>ν</em><sub><em>b</em></sub> = 2.068 <em>e</em><em>V</em> &lt; <em>功</em><em>函</em><em>数</em> <em>Φ</em>  </span>，因此，600nm波长的光，照射钾金属表面，无电子发射</p>
+<p><strong>0.7 计算氢原子巴耳末系（Balmer
+series）光谱线中波数最高和最低的值。对应的波长分别是多少？</strong></p>
+<p>Rydberg公式为：<span class="math inline">$\displaystyle  \tilde{\nu}=\frac{1}{\lambda}\,=\,R_H*(\frac{1}{n_i^2}-\frac{1}{n_f^2})\quad\,n_f&gt;n_i$</span></p>
+<p>其中：<span class="math inline"><em>R</em><sub><em>H</em></sub> = 1.097 * 10<sup>7</sup> <em>m</em><sup>−1</sup></span></p>
+<p>Balmer 系是氢原子光谱中可见光区域的一组谱线，对应电子从 <span class="math inline"><em>n</em><sub><em>f</em></sub> = 3, 4, 5, …</span>跃迁到
+<span class="math inline"><em>n</em><sub><em>i</em></sub> = 2</span>
+的过程</p>
+<p>最高波数为：<span class="math inline">$\displaystyle
+\tilde{\nu}_{max}=lim_{n_f \to
++\infty}R_H*(\frac{1}{4}-\frac{1}{n_f^2})=2.742*10^4\;cm^{-1}$</span></p>
+<p>对应的最短波长为：<span class="math inline">$\displaystyle
+\lambda_{min}=\frac{1}{\tilde{\nu}_{max}}=365\;nm$</span></p>
+<p>最低波数为：<span class="math inline"><em>ν̃</em><sub><em>m</em><em>i</em><em>n</em></sub> = <em>ν̃</em>(<em>n</em><sub><em>f</em></sub> = 3)  = 1.524 * 10<sup>4</sup> <em>c</em><em>m</em><sup>−1</sup></span></p>
+<p>对应的最长波长为：<span class="math inline">$\displaystyle
+\lambda_{max}=\frac{1}{\tilde{\nu}_{min}}=656\;nm$</span></p>
+<p><strong>0.8
+计算氢原子中电子两个最低能级的能量（单位为焦耳和电子伏特）。</strong></p>
+<p>根据玻尔的氢原子模型，电子能级的能量公式为：<span class="math inline">$\displaystyle
+E_n=\;-\frac{m_ee^4}{8ξ_0^2h^2}*\frac{1}{n^2}=-\frac{13.6\,eV}{n^2}$</span>
+两个最低能级为：<span class="math inline"><em>E</em><sub>1</sub>=  − 13.6 <em>e</em><em>V</em>    <em>E</em><sub>2</sub>=  − 3.4 <em>e</em><em>V</em> </span></p>
+<p><strong>0.9 计算一个质量为 <span class="math inline">57, g</span>、以
+<span class="math inline">80, km ⋅ h<sup>−1</sup></span>
+速度飞行的网球的德布罗意波长。</strong></p>
+<p>德布罗意波长为：<span class="math inline">$\lambda=\frac{h}{p}=\frac{h}{mv}=5.23*10^{-34}\;m\;$</span>
+这个波长极其微小，远远小于原子核的尺寸（约<span class="math inline">10<sup>−15</sup> <em>m</em></span>
+），因此对于像网球这样的宏观物体，其波动性完全可以忽略不计，经典力学足以描述其运动。</p>
+<p><strong>0.10
+列表对比范德华力、氢键、金属键、共价键、离子键的能量范围</strong></p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 33%" />
+<col style="width: 15%" />
+<col style="width: 18%" />
+</colgroup>
+<thead>
+<tr>
+<th>相互作用类型</th>
+<th>典型能量范围（<span class="math inline"><em>K</em><em>J</em><em>m</em><em>o</em><em>l</em><sup>−1</sup></span>）</th>
+<th>数量级特征</th>
+<th>典型实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>范德华力（Van der Waals）</td>
+<td>0.1 – 10</td>
+<td>最弱，非定向</td>
+<td>稀有气体凝聚、分子晶体</td>
+</tr>
+<tr>
+<td>├─ 色散力（London）</td>
+<td>0.1 – 2</td>
+<td>随极化率增大</td>
+<td>Ar–Ar、烷烃</td>
+</tr>
+<tr>
+<td>├─ 偶极–偶极</td>
+<td>1 – 5</td>
+<td>与偶极矩有关</td>
+<td>HCl–HCl</td>
+</tr>
+<tr>
+<td>└─ 偶极–诱导偶极</td>
+<td>1 – 3</td>
+<td>极性–非极性分子</td>
+<td>H₂O–O₂</td>
+</tr>
+<tr>
+<td>氢键</td>
+<td>10 – 40（可达 ~60）</td>
+<td>中等强度，有方向性</td>
+<td>H₂O、DNA碱基配对</td>
+</tr>
+<tr>
+<td>金属键</td>
+<td>100 – 400</td>
+<td>非定向、离域电子</td>
+<td>Na、Al、Fe</td>
+</tr>
+<tr>
+<td>离子键</td>
+<td>400 – 1000（晶格能）</td>
+<td>强，静电主导</td>
+<td>NaCl、MgO</td>
+</tr>
+<tr>
+<td>共价键</td>
+<td>150 – 1000</td>
+<td>强，定向</td>
+<td>C–C、C≡N、O–H</td>
+</tr>
+</tbody>
+</table>
+<p>注：离子键能通常以晶格能表征，因此数值显著偏大。共价键范围很宽，单键
+&lt; 双键 &lt; 三键</p>
+<h3 id="习题-problems">习题 (Problems)</h3>
+<p><strong>0.1
+求出给定温度下普朗克分布取最大值时所对应的波长，并证明在短波长极限下，该表达式可简化为维恩位移定律。请用基本物理常数表示该定律中的常数。（此常数被称为第二辐射常数
+<span class="math inline"><em>c</em><sub>2</sub></span>。）</strong></p>
+<p>参考韦恩位移定律的证明</p>
+<p><strong>0.2
+证明在长波长极限下，普朗克分布可简化为瑞利-金斯定律。</strong></p>
+<p>普朗克分布（Planck distribution）的黑体辐射谱态密度公式为：<span class="math inline">$\rho(\lambda,T) = \frac{8\pi hc}{\lambda^5}
+\frac{1}{e^{hc/\lambda kT} - 1}$</span></p>
+<p>定义域为：<span class="math inline">   <em>T</em> &gt; 0, <em>且</em> <em>λ</em> &gt; 0</span></p>
+<p>长波长极限下，即<span class="math inline">$\lambda\,\to\,+\infty时，\frac{hc}{\lambda\,k_BT}\to\,0\;$</span></p>
+<p>则<span class="math inline">$e^{\frac{hc}{\lambda\,k_BT}}-1\;\sim\;\frac{hc}{\lambda\,k_BT}$</span></p>
+<p>此时：<span class="math inline">$\rho(\lambda,T)=\frac{8πk_BT}{\lambda^4}\;$</span></p>
+<p>此即为瑞利-金斯定律的表达式。</p>
+<p><strong>0.3 将太阳视为温度为 <span class="math inline">6000, K</span>
+的黑体辐射源，其表面积为 <span class="math inline">6 × 10<sup>18</sup>, m<sup>2</sup></span>。计算其辐射功率。在24小时内，它总共辐射出多少能量？</strong></p>
+<p>根据Stefan-Bolzmann定律</p>
+<p>辐射出射度：<span class="math inline"><em>M</em> = <em>σ</em><em>T</em><sup>4</sup> </span>，其中：<span class="math inline"><em>σ</em> = 56.7 * 10<sup>−9</sup><em>W</em><em>m</em><sup>−2</sup><em>K</em><sup>−4</sup> </span></p>
+<p>代入T=6000 K，得：<span class="math inline"><em>M</em> ≈ 7.35 * 10<sup>4</sup> <em>k</em><em>W</em><em>m</em><sup>−2</sup> </span>;</p>
+<p>辐射功率：<span class="math inline"><em>P</em> = 4.4 * 10<sup>23</sup> <em>k</em><em>W</em> </span></p>
+<p>24小时内辐射的总能量为：<span class="math inline"><em>Δ</em><em>E</em> ≈ 3.81 * 10<sup>28</sup> <em>k</em><em>J</em> </span></p>
+<p><strong>0.4
+推导爱因斯坦关于谐振子集合热容的公式。为此，请使用量子力学的结果：一个力常数为
+<span class="math inline"><em>k</em><sub><em>f</em></sub></span>、质量为
+<span class="math inline"><em>m</em></span> 的谐振子，其能量只能取 <span class="math inline">(<em>n</em> + 1/2)<em>h</em><em>ν</em></span>
+这些值，其中 <span class="math inline"><em>ν</em> = (1/2<em>π</em>)(<em>k</em><sub><em>f</em></sub>/<em>m</em>)<sup>1/2</sup></span>，且
+<span class="math inline"><em>n</em> = 0, 1, 2, …</span>。</strong></p>
+<blockquote>
+<p>提示：通过将这些能量代入玻尔兹曼分布来计算振子集合的平均能量 <span class="math inline">⟨<em>E</em>⟩</span>，然后计算热容 <span class="math inline"><em>C</em> = <em>d</em>⟨<em>E</em>⟩/<em>d</em><em>T</em></span>。</p>
+</blockquote>
+<p>参考“爱因斯坦热容公式的证明”章节</p>
+<p><strong>0.5 求出爱因斯坦热容函数在 (a) 低温和 (b)
+高温下的近似形式。</strong></p>
+<p>参考爱因斯坦热容函数的近似</p>
+<p><strong>0.6 证明当 <span class="math inline"><em>T</em> → 0</span>
+时，德拜热容表达式与 <span class="math inline"><em>T</em><sup>3</sup></span> 成正比。</strong></p>
+<p>跳过</p>
+<p><strong>0.7 估算金属钠（<span class="math inline"><em>θ</em><sub><em>D</em></sub> = 150, K</span>）和金刚石（<span class="math inline"><em>θ</em><sub><em>D</em></sub> = 1860, K</span>）在室温（<span class="math inline">300, K</span>）下的摩尔热容。</strong></p>
+<p>ChatGPT解答 金属钠：<span class="math inline"><em>C</em><sub><em>V</em>, <em>m</em></sub> ≈ 3<em>R</em> ≈ 25 J·mol<sup>−1</sup>·K<sup>−1</sup></span>，室温已激发几乎全部声子模，表现为经典极限。
+金刚石：<span class="math inline"><em>C</em><sub><em>V</em>, <em>m</em></sub> ≈ <em>R</em> ≈ 8 J·mol<sup>−1</sup>·K<sup>−1</sup></span>，
+由于极高的德拜温度，大量高频声子在室温下仍未被热激发。</p>
+<p><strong>0.8 计算爱因斯坦固体在 <span class="math inline"><em>T</em> = <em>θ</em><sub><em>E</em></sub></span>
+时的摩尔熵，详细解释这个摩尔熵的含义。</strong></p>
+<blockquote>
+<p>提示：熵的表达式为 <span class="math inline"><em>S</em>(<em>T</em>) = ∫<sub>0</sub><sup><em>T</em></sup>(<em>c</em><sub><em>V</em></sub>/<em>T</em>)<em>d</em><em>T</em></span>。请对该积分进行数值计算。</p>
+</blockquote>
+<p>热力学中，熵的微分定义为 <span class="math inline">$\mathrm
+dS=\frac{\delta Q_{\mathrm{rev}}}{T}$</span>，其中 <span class="math inline"><em>δ</em><em>Q</em><sub>rev</sub></span>
+是可逆过程中的热量交换。当体系在恒定体积 <span class="math inline"><em>V</em></span> 下缓慢、可逆地升温时，有 <span class="math inline"><em>δ</em><em>Q</em><sub>rev</sub> = <em>C</em><sub><em>V</em></sub>d<em>T</em></span>，于是得到
+<span class="math inline">$\mathrm dS=\frac{C_V}{T},\mathrm
+dT$</span>。对温度从 <span class="math inline">0</span> 积分到 <span class="math inline"><em>T</em></span>
+就得到你写出的公式。因此，这个公式成立需要几个隐含条件：过程是可逆的，体积保持不变，并且体系在
+<span class="math inline"><em>T</em> = 0</span>
+处的熵被取为零或作为参考点。这一点通常结合热力学第三定律来理解，即理想晶体在绝对零度时
+<span class="math inline"><em>S</em>(0) = 0</span>。</p>
+<p>参考章节：爱因斯坦固体的摩尔熵</p>
+<p><strong>0.9 一个额定功率为 <span class="math inline">100W</span>
+的钠灯，如果能以 100% 的效率将其所有能量都辐射为波长 <span class="math inline">589nm</span>
+的黄光，那么它每秒会发射多少个光子？</strong></p>
+<p>单个光子的能量：<span class="math inline">$\displaystyle
+E_0=hν=\frac{hc}{\lambda}$</span></p>
+<p>每秒钟内发射的光子数量为：<span class="math inline">$\displaystyle
+N=\frac{Pt}{E_{0}}=\frac{Pt\lambda}{hc}$</span></p>
+<p>代入数据得：<span class="math inline"><em>N</em> = 2.96 * 10<sup>20</sup></span> 个</p>
+<p><strong>0.10 当波长为 <span class="math inline">195 nm</span>
+的紫外辐射照射到某种金属表面时，电子以 <span class="math inline">1.23 Mm ⋅ s<sup>−1</sup></span>
+的速度被击出。计算当用波长为 <span class="math inline">255, nm</span>
+的辐射照射同一金属表面时，被击出电子的速度。</strong></p>
+<p>根据光电效应的实验结论：<span class="math inline"><em>E</em><sub><em>K</em></sub> = <em>h</em><em>ν</em> − <em>Φ</em></span>，其中Φ为该种金属的功函数。</p>
+<p>又因为：<span class="math inline">$\displaystyle
+E_K=\frac{mv^2}{2}$</span> ，则：<span class="math inline">$\displaystyle \frac{mv^2}{2}=hν-Φ$</span></p>
+<p>则：<span class="math inline">$\displaystyle
+\frac{mv_{2}^2}{2}-\frac{mv_{1}^2}{2}=(hν_{2}-Φ)-(hν_{1}-Φ)$</span></p>
+<p>则：<span class="math inline">$\displaystyle v_{2}=\sqrt{ v_{1}^2+
+\frac{2h}{m}*\left( \frac{c}{\lambda_{2}} -\frac{c}{\lambda_{1}}\right)
+}$</span></p>
+<p>代入数据得：<span class="math inline"><em>v</em><sub>2</sub> = 0.9931 * 10<sup>6</sup> <em>m</em><em>s</em><sup>−1</sup></span></p>
+<p><strong>0.11 对于钾（功函数 <span class="math inline"><em>Φ</em> = 2.3, eV</span>），入射辐射的波长 <span class="math inline"><em>λ</em></span>
+为多大时，使用相对论和非相对论公式计算出的光电子线性动量会相差 10%。
+即，求出 <span class="math inline"><em>λ</em></span>
+使得两种方法得到的动量相差 10%。</strong></p>
+<p>跳过</p>
+<p><strong>0.12
+基于能量和线性动量守恒定律，推导康普顿效应公式（0.10）。</strong></p>
+<p>提示：使用相对论表达式。初始时，电子静止，能量为 <span class="math inline"><em>m</em><sub><em>e</em></sub><em>c</em><sup>2</sup></span>。当它以动量
+<span class="math inline"><em>p</em></span> 运动时，其能量为 <span class="math inline">(<em>p</em><sup>2</sup><em>c</em><sup>2</sup> + <em>m</em><sub><em>e</em></sub><sup>2</sup><em>c</em><sup>4</sup>)<sup>1/2</sup></span>。光子初始动量为
+<span class="math inline"><em>h</em>/<em>λ</em><sub><em>i</em></sub></span>，能量为
+<span class="math inline"><em>h</em><em>ν</em><sub><em>i</em></sub></span>，它撞击静止的电子，被偏转角度
+<span class="math inline"><em>θ</em></span> 后，以动量 <span class="math inline"><em>h</em>/<em>λ</em><sub><em>f</em></sub></span>
+和能量 <span class="math inline"><em>h</em><em>ν</em><sub><em>f</em></sub></span>
+射出。电子初始时静止（<span class="math inline"><em>p</em> = 0</span>），碰撞后以角度 <span class="math inline"><em>φ</em></span>
+相对于入射光子方向飞出。分别对平行和垂直于初始动量方向的两个分量应用动量守恒，并应用能量守恒。先消去
+<span class="math inline"><em>φ</em></span>，再消去 <span class="math inline"><em>p</em></span>，最终得到 <span class="math inline"><em>Δ</em><em>λ</em></span> 的表达式。</p>
+<p>参考章节：康普顿效应公式的证明</p>
+<p>0.13
+氢原子可见光区（巴耳末系）光谱的前几条谱线波长（单位：nm）为：656.46,
+486.27, 434.17, 410.29, ……。请根据这些数据求出氢的里德伯常数 <span class="math inline"><em>R</em><sub><em>H</em></sub></span>。电离能 <span class="math inline"><em>I</em></span>
+是将电子移走所需的最小能量。请从上述数据中求出 <span class="math inline"><em>I</em></span>，并用电子伏特（<span class="math inline">1 eV = 1.602 × 10<sup>−19</sup> J</span>）表示其值。<span class="math inline"><em>I</em></span> 与 <span class="math inline"><em>R</em><sub><em>H</em></sub></span> 有何关系？
+提示：电离极限对应于电子最终态的主量子数 <span class="math inline"><em>n</em> → ∞</span>。</p>
+<p>对于氢原子，巴尔末系所对应的光谱线频率(波数)的公式为：<span class="math inline">$\displaystyle \frac{1}{λ}= R_{{H}}(\frac{1}{4}-
+\frac{1}{n_{i}^2}) \quad$</span> 其中：<span class="math inline"><em>n</em><sub><em>i</em></sub> = 3, 4, 5, 6……</span>
+观察该式可知，<span class="math inline"><em>n</em><sub><em>i</em></sub></span>越小，对应的<span class="math inline"><em>λ</em></span>越大。则，<span class="math inline"><em>n</em><sub><em>i</em></sub> = 3</span>对应的波长为<span class="math inline"><em>λ</em> = 656.46</span> 代入数据得：<span class="math inline"><em>R</em><sub><em>H</em></sub> = 1.097 * 10<sup>5</sup> <em>c</em><em>m</em><sup>−1</sup></span></p>
+<p>巴尔末系的最短波长<span class="math inline"><em>λ</em><sub><em>m</em><em>i</em><em>n</em></sub></span>对应<span class="math inline"><em>n</em><sub><em>i</em></sub> → +∞</span>的情况。即：<span class="math inline">$\displaystyle λ_{min}= \frac{4}{R_{H}} \approx 365
+\; nm$</span> 这种情况对应的电离能 <span class="math inline"><em>I</em></span> 等于从 <span class="math inline"><em>n</em><sub><em>i</em></sub> → +∞</span> 跃迁回
+<span class="math inline"><em>n</em><sub><em>f</em></sub> = 2</span>
+的情况。 即：<span class="math inline">$\displaystyle I=hν_{max}=
+\frac{hc}{λ_{min}}= \frac{hcR_{H}}{4}= 3.40 \; eV$</span></p>
+<p>但是题目要求求解基态氢原子的电离能 <span class="math inline"><em>I</em></span> 对于氢原子，莱曼系<span class="math inline">(<em>n</em><sub><em>f</em></sub> = 1)</span>所对应的光谱线频率(波数)的公式为：<span class="math inline">$\displaystyle \frac{1}{λ}= R( 1 -
+\frac{1}{n_{i}^2}) \quad$</span> 其中：<span class="math inline"><em>n</em><sub><em>i</em></sub> = 2, 3, 4, 5, 6……</span>
+氢原子的基态电离能 <span class="math inline"><em>I</em></span>
+对应的是把电子从<span class="math inline"><em>n</em><sub><em>f</em></sub> = 1</span>搬离至<span class="math inline"><em>n</em><sub><em>i</em></sub> = +∞</span>的情况。对应的是莱曼系的最短波长为<span class="math inline">$\displaystyle λ_{min}= \frac{1}{R_{H}}$</span>
+则：<span class="math inline">$I=hν_{max}= \frac{hc}{λ_{min}}=hcR_{H}
+\approx 13.60 \; eV$</span></p>
+<p>0.14 利用氢原子电子能级表达式，推导出以波数表示的里德伯常数 <span class="math inline"><em>R</em><sub><em>H</em></sub></span>
+关于基本物理常数的表达式。分别 (a) 使用氢原子的约化质量 <span class="math inline"><em>μ</em></span>，(b) 用电子质量 <span class="math inline"><em>m</em><sub><em>e</em></sub></span>
+代替约化质量，来计算里德伯常数。(c)
+这两种计算结果的百分比差异是多少？</p>
+<p>能级公式：<span class="math inline">$\displaystyle E_{总}= -
+\frac{m_{e}e^4}{8ε_{0}^2h^2} \frac{1}{n^2} = - \frac{13.6 \; eV}{n^2}
+\quad  其中：n=1, 2, 3, 4, \dots$</span> 光谱线频率/波数：<span class="math inline">$\displaystyle
+\frac{1}{λ}=  \frac{m_{e}e^4}{8ε_{0}^2h^3c}(\frac{1}{n_{f}^2}-
+\frac{1}{n_{i}^2})=  R_{\infty}(\frac{1}{n_{f}^2}- \frac{1}{n_{i}^2})
+\quad$</span></p>
+<p>(a)里德伯常数<span class="math inline">$\displaystyle R_{real}=
+\frac{μe^4}{8ε_{0}^2h^3c}$</span> (b)里德伯常数<span class="math inline">$\displaystyle R_{\infty}=
+\frac{m_{e}e^4}{8ε_{0}^2h^3c}$</span> (c)<span class="math inline">$\displaystyle \frac{R_{real}}{R_{\infty}}=
+\frac{μ}{m_{e}}$</span></p>
+<p>0.15 推导一个可用于通过 <span class="math inline"><sup>1</sup>H</span>（氕）和 <span class="math inline"><sup>2</sup>H</span>（氘）光谱线位移来确定氘核质量的表达式。</p>
+<p>跳过</p>
+<p>0.16 电磁场与电荷之间耦合强度的一个度量是精细结构常数（fine-structure
+constant）<span class="math inline"><em>α</em> = <em>e</em><sup>2</sup>/(4<em>π</em><em>ϵ</em><sub>0</sub>ℏ<em>c</em>)</span>。请用此常数
+<span class="math inline"><em>α</em></span>
+来表示里德伯常数（以波数形式）。</p>
+<p>跳过</p>
+<p>0.17 计算以下物体的德布罗意波长： (a) 一个质量为 <span class="math inline">1.0, g</span>、以 <span class="math inline">1.0, cm ⋅ s<sup>−1</sup></span> 速度运动的物体； (b)
+同一物体以光速 95% 的速度运动； (c) 室温（<span class="math inline">300, K</span>）下的一个氢原子；请根据能量均分原理估算其平均速度，该原理指出原子的平均动能等于
+<span class="math inline">$\frac{3}{2} kT$</span>，其中 <span class="math inline"><em>k</em></span> 为玻尔兹曼常数； (d)
+一个从静止开始被电势差加速的电子，电势差分别为 (i) <span class="math inline">1.0, V</span>，(ii) <span class="math inline">10, kV</span>。 提示：对于 (b) 中的动量，请使用
+<span class="math inline"><em>p</em> = <em>m</em><em>v</em>/(1 − <em>v</em><sup>2</sup>/<em>c</em><sup>2</sup>)<sup>1/2</sup></span>；对于
+(d) 中的速度，请使用 <span class="math inline">$\frac{1}{2}m_e v^2 =
+eV$</span>，其中 <span class="math inline"><em>V</em></span>
+为电势差。</p>
+<ol type="a">
+<li><p>对于非相对论情形：<span class="math inline">$\displaystyle λ=
+\frac{h}{mv}= 6.626*10^{-29} \; m$</span></p></li>
+<li><p>对于相对论情形：<span class="math inline">$\displaystyle
+λ=\frac{h}{ \frac{mv}{\sqrt{ 1-\frac{v^2}{c^2} }}}= \frac{{h \sqrt{ 1-
+\frac{v^2}{c^2} }}}{mv}= \frac{{h \sqrt{ 1-0.95^2 }}}{m*0.95c} \approx
+7.26*10^{-40} \; m$</span></p></li>
+<li><p>室温下的氢原子 根据能量均分定理：<span class="math inline">$\displaystyle \langle \frac{mv^2}{2} \rangle =
+\frac{3kT}{2}$</span> ，解得：<span class="math inline">$\displaystyle
+v= \sqrt{ \frac{3kT}{m} }$</span> ，其中：<span class="math inline"><em>m</em><sub><em>H</em></sub> = 1.674 * 10<sup>−27</sup> <em>k</em><em>g</em></span>
+则：<span class="math inline">$\displaystyle λ= \frac{h}{mv}=
+\frac{h}{\sqrt{ 3mkT }}= 1.453*10^{-10} \; m$</span></p></li>
+<li><p>被加速电子 根据能量守恒：<span class="math inline">$\displaystyle
+\frac{ m_{e}v^2}{2} = e*x \qquad$</span> 其中：<span class="math inline"><em>e</em></span> 代表电子电量，<span class="math inline"><em>x</em></span> 代表电势差 则：<span class="math inline">$\displaystyle λ= \frac{h}{m_{e}v}= \frac{h}{\sqrt{
+2m_{e}ex }}$</span> 计算得</p></li>
+<li><p><span class="math inline"><em>λ</em> = 1.226 * 10<sup>−9</sup> <em>m</em></span></p></li>
+</ol>
+<ol start="2" type="i">
+<li><span class="math inline"><em>λ</em> = 1.226 * 10<sup>−11</sup> <em>m</em></span></li>
+</ol>
+<p>备注：<span class="math inline">$\displaystyle \langle \frac{mv^2}{2}
+\rangle = \frac{3kT}{2}$</span>
+代表室温下氢原子动能的平均值，计算得到的是 rms 速度</p>
+<p>0.18
+推导氢原子中电子允许能级的公式。为此，请使用玻尔的以下（不正确的）假设：
+(a) 电子在半径为 <span class="math inline"><em>r</em></span>
+的圆形轨道上绕核运动； (b) 电子的角动量是 <span class="math inline">ℏ</span> 的整数倍，即 <span class="math inline"><em>m</em><sub><em>e</em></sub><em>v</em><em>r</em> = <em>n</em>ℏ</span>。
+提示：轨道运动的力学稳定性要求电子与原子核之间的库仑吸引力等于圆周运动的离心力。电子的总能量是其动能与（库仑）势能之和。为简化起见，请使用电子质量
+<span class="math inline"><em>m</em><sub><em>e</em></sub></span>，而非约化质量
+<span class="math inline"><em>μ</em></span>。</p>
+<p>参考章节：玻尔的氢原子模型</p>
+</body>
+</html>
